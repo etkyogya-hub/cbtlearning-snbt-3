@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Gesture Multi-Target</title>
+<title>CBT Gesture Ultimate Loop</title>
 
 <style>
 html,body{
@@ -20,8 +20,8 @@ html,body{
   position:relative;
   width:100vw;
   height:100vh;
-  background:#000;
   overflow:hidden;
+  background:#000;
 }
 
 /* VIDEO CBT */
@@ -72,14 +72,41 @@ video{
   transform-origin:20% 20%;
 }
 
-/* MULTI-TARGET GESTURE */
+/* MULTI-TARGET + TAP ANIMATION */
 @keyframes handmove{
-  0%{opacity:0; transform:translate(0,24px) scale(.92);}
-  10%{opacity:1; transform:translate(0,0) scale(1);}       /* target 1 */
-  30%{transform:translate(-24px,-12px) scale(1);}           /* target 2 */
-  55%{transform:translate(-48px,24px) scale(1);}            /* target 3 */
-  70%{opacity:0; transform:translate(-48px,24px) scale(.96);}
-  100%{opacity:0;}
+  0%{
+    opacity:0;
+    transform:translate(0,24px) scale(.92);
+  }
+  10%{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }             /* target 1 - soal */
+  25%{
+    transform:translate(-24px,-12px) scale(.92);
+  }
+  30%{
+    transform:translate(-24px,-12px) scale(.95);
+  }             /* tap small */
+  32%{
+    transform:translate(-24px,-12px) scale(1);
+  }             /* release */
+  50%{
+    transform:translate(-48px,24px) scale(.92);
+  }
+  55%{
+    transform:translate(-48px,24px) scale(.95);
+  }             /* tap small */
+  57%{
+    transform:translate(-48px,24px) scale(1);
+  }             /* release */
+  70%{
+    opacity:0;
+    transform:translate(-48px,24px) scale(.96);
+  }
+  100%{
+    opacity:0;
+  }
 }
 </style>
 </head>
