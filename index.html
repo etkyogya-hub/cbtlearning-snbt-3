@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Gesture Loop</title>
+<title>CBT Gesture PNG Loop</title>
 
 <style>
 html,body{
@@ -20,8 +20,8 @@ html,body{
   position:relative;
   width:100vw;
   height:100vh;
-  overflow:hidden;
   background:#000;
+  overflow:hidden;
 }
 
 /* VIDEO CBT */
@@ -40,7 +40,7 @@ video{
   100%{transform:scale(1.025);}
 }
 
-/* SAFE AREA (PHONE REALITY) */
+/* SAFE AREA (REAL PHONE SCREEN) */
 .safe{
   position:absolute;
   top:8%;
@@ -52,30 +52,30 @@ video{
   pointer-events:none;
 }
 
-/* HAND GESTURE */
+/* HAND PNG */
 .hand{
   position:absolute;
-  width:64px;
-  height:64px;
-  left:60%;
-  top:40%;
+  width:96px;
+  height:auto;
+  left:62%;
+  top:46%;
   opacity:0;
   animation: handmove 7.5s infinite;
 }
 
-/* simple hand icon (CSS) */
-.hand::before{
-  content:"☝️";
-  font-size:56px;
+.hand img{
+  width:100%;
+  height:auto;
   display:block;
-  filter:drop-shadow(0 6px 18px rgba(0,0,0,.45));
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,.45));
+  transform-origin: 20% 20%;
 }
 
-/* GESTURE TIMING */
+/* GESTURE ANIMATION */
 @keyframes handmove{
   0%{
     opacity:0;
-    transform:translate(0,20px) scale(.9);
+    transform:translate(0,24px) scale(.92);
   }
   12%{
     opacity:1;
@@ -83,15 +83,15 @@ video{
   }
   35%{
     opacity:1;
-    transform:translate(-24px,-12px) scale(1);
+    transform:translate(-36px,-18px) scale(1);
   }
   55%{
     opacity:1;
-    transform:translate(-24px,-12px) scale(1);
+    transform:translate(-36px,-18px) scale(1);
   }
   70%{
     opacity:0;
-    transform:translate(-24px,-12px) scale(.95);
+    transform:translate(-36px,-18px) scale(.96);
   }
   100%{
     opacity:0;
@@ -108,7 +108,9 @@ video{
 
   <!-- SAFE PHONE AREA -->
   <div class="safe">
-    <div class="hand"></div>
+    <div class="hand">
+      <img src="hand.png" alt="gesture hand">
+    </div>
   </div>
 
 </div>
