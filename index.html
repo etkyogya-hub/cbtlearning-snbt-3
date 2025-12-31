@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CBTLearning – Cognitive Trap</title>
+<title>CBTLearning – Decision First</title>
 
 <style>
 body{
@@ -13,64 +13,36 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:system-ui,-apple-system,Segoe UI;
-  overflow:hidden;
+  font-family:system-ui;
 }
-
-/* PHONE */
 .phone{
-  width:240px;
-  height:480px;
-  position:relative;
+  width:240px;height:480px;position:relative;
 }
 .body{
-  position:absolute;
-  inset:0;
-  border-radius:36px;
+  position:absolute;inset:0;border-radius:36px;
   background:#020617;
   box-shadow:0 40px 100px rgba(0,0,0,.8),
              inset 0 0 0 1.5px #334155;
 }
 .screen{
-  position:absolute;
-  inset:10px;
-  border-radius:28px;
+  position:absolute;inset:10px;border-radius:28px;
+  display:flex;justify-content:center;align-items:center;
   overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
 }
-
-/* TEXT CORE */
 .core{
-  width:88%;
-  text-align:center;
-  color:#fff;
-  font-weight:700;
-  line-height:1.25;
-  opacity:0;
-  transform:scale(.95);
-  transition:all .4s ease;
+  width:90%;text-align:center;
+  color:#fff;font-weight:700;
+  opacity:0;transform:scale(.95);
+  transition:.35s ease;
 }
-.core.show{
-  opacity:1;
-  transform:scale(1);
-}
-
-/* STATES */
-.wrong{color:#fb7185;}
-.rationale{color:#38bdf8;font-weight:600;font-size:.85em;}
-.question{color:#e5e7eb;font-size:.9em;}
-.correct{color:#a7f3d0;}
-
-/* BRANDING (MINIMAL) */
+.core.show{opacity:1;transform:scale(1)}
+.option{color:#e5e7eb;font-size:1em}
+.hint{color:#38bdf8;font-size:.8em}
+.question{color:#e5e7eb;font-size:.85em}
+.correct{color:#a7f3d0}
 .brand{
-  position:absolute;
-  bottom:6px;
-  right:8px;
-  font-size:9px;
-  color:#fff;
-  opacity:.35;
+  position:absolute;bottom:6px;right:8px;
+  font-size:9px;opacity:.35;color:#fff;
 }
 </style>
 </head>
@@ -88,30 +60,22 @@ body{
 const core = document.getElementById("core");
 
 const steps = [
-  {text:"❌ x = 5", cls:"wrong", t:800},
-  {text:"Kesalahan umum: berhenti di angka pertama", cls:"rationale", t:1000},
-  {text:"Jika 3x + 5 = 20, berapa nilai x?", cls:"question", t:1200},
-  {text:"✅ x = 3", cls:"correct", t:1200},
+ {text:"A. Efisiensi<br>B. Efektivitas", cls:"option", t:900},
+ {text:"Mana yang paling masuk akal?", cls:"hint", t:900},
+ {text:"Kebijakan dinilai dari hasil, bukan proses", cls:"question", t:1100},
+ {text:"Jawaban: Efektivitas", cls:"correct", t:1200}
 ];
 
-let i = 0;
-
+let i=0;
 function play(){
-  core.className = "core show " + steps[i].cls;
-  core.textContent = steps[i].text;
-
+  core.className="core show "+steps[i].cls;
+  core.innerHTML=steps[i].text;
   setTimeout(()=>{
     core.classList.remove("show");
-    i++;
-    if(i < steps.length){
-      setTimeout(play,200);
-    }else{
-      i = 0;
-      setTimeout(play,600); // freeze → loop
-    }
-  }, steps[i].t);
+    i++; if(i>=steps.length){i=0; setTimeout(play,600);}
+    else setTimeout(play,200);
+  },steps[i].t);
 }
-
 play();
 </script>
 </body>
