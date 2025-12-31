@@ -3,108 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT SNBT – Logic Trap</title>
-
+<title>CBT Trap 01</title>
 <style>
-body{
-  margin:0;
-  background:#020617;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:system-ui;
-}
-
-/* PHONE */
-.phone{
-  width:240px;
-  height:480px;
-  background:#020617;
-  border-radius:30px;
-  box-shadow:0 40px 80px rgba(0,0,0,.7);
-  padding:14px;
-  box-sizing:border-box;
-  color:#fff;
-  position:relative;
-}
-
-/* TEXT BASE */
-.center{
-  position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
-  font-weight:700;
-}
-
-/* STATES */
+body{margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:#020617;font-family:system-ui}
+.phone{width:240px;height:480px;background:#020617;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.7);position:relative;overflow:hidden;color:#fff}
+.center{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;text-align:center;padding:18px;font-weight:700}
+.fade{transition:.4s}
 .hidden{opacity:0}
-.show{opacity:1}
-.big{font-size:1.15em}
-.small{font-size:.9em}
-
-/* COLORS */
-.hook{color:#38bdf8}
-.trap{color:#facc15}
-.rationale{color:#4ade80}
-
-/* TRANSITION */
-.fade{
-  transition:opacity .4s ease;
-}
+.hook{color:#38bdf8;font-size:1.15em}
+.trap{color:#facc15;font-size:1.05em}
+.rationale{color:#4ade80;font-size:.9em}
+.cta{font-size:.85em;opacity:.85}
 </style>
 </head>
-
 <body>
 <div class="phone">
-
-  <!-- HOOK -->
-  <div id="hook" class="center big hook fade">
-    90% orang SALAH di soal ini
-  </div>
-
-  <!-- TRAP -->
-  <div id="trap" class="center big trap fade hidden">
-    Jika 3x + 5 = 20<br>nilai x?
-  </div>
-
-  <!-- RATIONALE -->
-  <div id="why" class="center small rationale fade hidden">
-    Bukan hitungannya yang salah,<br>
-    tapi cara bacanya.
-  </div>
-
-  <!-- CTA -->
-  <div id="cta" class="center small fade hidden">
-    Ulangi sebelum jawab.
-  </div>
-
+  <div id="a" class="center hook fade">CBT Trap<br>Kalau jawab cepat,<br>hampir pasti salah.</div>
+  <div id="b" class="center trap fade hidden">Jika 3x + 5 = 20,<br>nilai x?</div>
+  <div id="c" class="center rationale fade hidden">Yang bikin salah bukan hitungan,<br>tapi cara membaca soal.</div>
+  <div id="d" class="center cta fade hidden">Ulangi.</div>
 </div>
-
 <script>
-const hook = document.getElementById("hook");
-const trap = document.getElementById("trap");
-const why  = document.getElementById("why");
-const cta  = document.getElementById("cta");
-
-setTimeout(()=>{
-  hook.classList.add("hidden");
-  trap.classList.remove("hidden");
-},1500);
-
-setTimeout(()=>{
-  trap.classList.add("hidden");
-  why.classList.remove("hidden");
-},4000);
-
-setTimeout(()=>{
-  why.classList.add("hidden");
-  cta.classList.remove("hidden");
-},7500);
+setTimeout(()=>a.classList.add("hidden"),1300);
+setTimeout(()=>b.classList.remove("hidden"),1300);
+setTimeout(()=>b.classList.add("hidden"),3800);
+setTimeout(()=>c.classList.remove("hidden"),3800);
+setTimeout(()=>c.classList.add("hidden"),7000);
+setTimeout(()=>d.classList.remove("hidden"),7000);
 </script>
 </body>
 </html>
