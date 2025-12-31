@@ -1,34 +1,123 @@
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CBT Trap – ASN</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBT Cascade</title>
+
 <style>
-body{margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:#020617;font-family:system-ui}
-.phone{width:240px;height:480px;border-radius:28px;background:#020617;overflow:hidden;position:relative;box-shadow:0 40px 90px rgba(0,0,0,.8)}
-.hook{position:absolute;top:18px;width:100%;text-align:center;color:#e5e7eb;font-weight:700;opacity:0;transition:.4s}
-.layer{position:absolute;left:5%;width:90%;padding:10px;border:1px solid #334155;border-radius:12px;color:#e5e7eb;background:#020617;opacity:0;transform:translateY(18px) scale(.96);transition:.6s cubic-bezier(.22,.9,.22,1)}
-.show{opacity:1;transform:none}
-.i1{top:98px}.i2{top:150px}
-.r{top:240px;border-color:#38bdf8}
-.u{position:absolute;bottom:16px;width:100%;text-align:center;color:#e5e7eb;font-size:11px;opacity:0;transition:.4s}
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#020617;
+  font-family:system-ui;
+}
+
+.phone{
+  width:260px;
+  height:500px;
+  border-radius:30px;
+  background:#020617;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 40px 100px rgba(0,0,0,.85);
+}
+
+/* Hook */
+.hook{
+  position:absolute;
+  top:18px;
+  width:100%;
+  text-align:center;
+  font-weight:700;
+  color:#e5e7eb;
+  opacity:0;
+  transition:.4s;
+}
+
+/* Book */
+.book{
+  position:absolute;
+  left:8%;
+  width:84%;
+  padding:12px;
+  border-radius:14px;
+  background:#020617;
+  border:1px solid #334155;
+  color:#e5e7eb;
+  font-size:14px;
+  opacity:0;
+  transform:translateY(-10px) scale(.97);
+  transition:.6s cubic-bezier(.22,.9,.22,1);
+}
+
+.show{
+  opacity:1;
+  transform:none;
+}
+
+/* Positions */
+.b1{ top:100px; }
+.b2{ top:150px; }
+.b3{ top:200px; }
+.b4{
+  top:270px;
+  border-color:#38bdf8;
+}
+
+/* Repeat */
+.repeat{
+  position:absolute;
+  bottom:14px;
+  width:100%;
+  text-align:center;
+  font-size:11px;
+  color:#94a3b8;
+  opacity:0;
+  transition:.4s;
+}
 </style>
 </head>
+
 <body>
 <div class="phone">
-  <div class="hook" id="h">CBT Trap</div>
-  <div class="layer i1" id="i1">ASN: “Kecuali” mengubah seluruh jawaban.</div>
-  <div class="layer i2" id="i2">Cari kata perintah dulu.</div>
-  <div class="layer r" id="r">Yang terlewat biasanya satu kata.</div>
-  <div class="u" id="u">(ulangi)</div>
+
+  <div class="hook" id="hook">CBT Learning</div>
+
+  <div class="book b1" id="b1">
+    Soal terlihat mudah.
+  </div>
+
+  <div class="book b2" id="b2">
+    Banyak peserta langsung jawab.
+  </div>
+
+  <div class="book b3" id="b3">
+    Di sini jebakan mulai bekerja.
+  </div>
+
+  <div class="book b4" id="b4">
+    CBT bukan hafalan, tapi urutan baca.
+  </div>
+
+  <div class="repeat" id="r">(ulangi)</div>
+
 </div>
+
 <script>
-setTimeout(()=>h.style.opacity=1,120);
-setTimeout(()=>i1.classList.add("show"),460);
-setTimeout(()=>i2.classList.add("show"),860);
-setTimeout(()=>r.classList.add("show"),3200);
-setTimeout(()=>u.style.opacity=.4,5200);
-setTimeout(()=>location.reload(),6400);
+setTimeout(()=>hook.style.opacity=1,120);
+
+setTimeout(()=>b1.classList.add("show"),400);
+setTimeout(()=>b2.classList.add("show"),800);
+setTimeout(()=>b3.classList.add("show"),1200);
+setTimeout(()=>b4.classList.add("show"),2600);
+
+setTimeout(()=>r.style.opacity=.4,5200);
+setTimeout(()=>location.reload(),6500);
 </script>
+
 </body>
 </html>
