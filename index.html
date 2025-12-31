@@ -3,90 +3,120 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CBT Trap – Video Level</title>
+<title>CBT Trap – Built Video</title>
 
 <style>
 body{
   margin:0;
-  background:#020617;
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100vh;
+  background:#020617;
   font-family:system-ui;
 }
 
 .phone{
   width:240px;
   height:480px;
+  background:#020617;
   border-radius:28px;
   overflow:hidden;
-  background:#000;
-  box-shadow:0 30px 80px rgba(0,0,0,.8);
   position:relative;
+  box-shadow:0 40px 90px rgba(0,0,0,.8);
 }
 
-/* VIDEO */
-video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* TEXT OVERLAY */
-.txt{
+/* ===== BASE ===== */
+.layer{
   position:absolute;
-  width:100%;
-  text-align:center;
+  width:90%;
+  left:5%;
+  background:#020617;
+  border:1px solid #334155;
+  border-radius:12px;
+  padding:10px;
   color:#e5e7eb;
-  font-weight:700;
-  pointer-events:none;
+  font-size:13px;
   opacity:0;
-  transform:translateY(6px);
-  transition:.45s ease;
+  transform:translateY(20px) scale(.96);
+  transition:.6s cubic-bezier(.22,.9,.22,1);
 }
 
-.show{opacity:1;transform:none}
+.show{
+  opacity:1;
+  transform:none;
+}
 
-.hook{top:22px;font-size:16px}
-.insight{bottom:56px;font-size:13px;opacity:.85}
-.replay{bottom:18px;font-size:11px;opacity:0;transition:.4s}
+/* ===== HOOK ===== */
+.hook{
+  top:18px;
+  text-align:center;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.5px;
+  opacity:0;
+  transition:.4s;
+}
+
+/* ===== SOAL ===== */
+.q1{top:90px}
+.q2{top:140px}
+
+/* ===== RATIONALE ===== */
+.rationale{
+  top:220px;
+  border-color:#38bdf8;
+}
+
+/* ===== REPLAY ===== */
+.replay{
+  bottom:16px;
+  text-align:center;
+  font-size:11px;
+  opacity:0;
+  transition:.4s;
+}
 </style>
 </head>
 
 <body>
 <div class="phone">
 
-  <!-- VIDEO CBT ASLI -->
-  <video id="vid" autoplay muted playsinline>
-    <source src="video.mp4" type="video/mp4">
-  </video>
+  <div class="hook" id="hook">CBT Trap</div>
 
-  <!-- HOOK -->
-  <div class="txt hook" id="hook">CBT Trap</div>
-
-  <!-- INSIGHT -->
-  <div class="txt insight" id="insight">
-    Yang bikin salah bukan hitungan.
+  <div class="layer q1" id="q1">
+    Jika 3x + 5 = 20
   </div>
 
-  <!-- REPLAY -->
-  <div class="txt replay" id="replay">(ulangi)</div>
+  <div class="layer q2" id="q2">
+    Maka nilai x adalah…
+  </div>
+
+  <div class="layer rationale" id="r">
+    Kesalahan paling sering bukan di hitungan,
+    tapi di cara membaca.
+  </div>
+
+  <div class="replay" id="u">(ulangi)</div>
 
 </div>
 
 <script>
-const v = document.getElementById("vid");
+/* HOOK – delta frame cepat */
+setTimeout(()=>hook.style.opacity=1,150);
 
-setTimeout(()=>hook.classList.add("show"),400);
-setTimeout(()=>insight.classList.add("show"),6500);
-setTimeout(()=>replay.style.opacity=.4,8500);
+/* SOAL MASUK */
+setTimeout(()=>q1.classList.add("show"),500);
+setTimeout(()=>q2.classList.add("show"),900);
 
-/* loop natural */
-v.onended = ()=>{
-  v.currentTime = 0;
-  v.play();
-};
+/* RATIONALE */
+setTimeout(()=>r.classList.add("show"),3200);
+
+/* REPLAY (SETELAH SEMUA SELESAI) */
+setTimeout(()=>u.style.opacity=.4,5200);
+
+/* LOOP NATURAL */
+setTimeout(()=>location.reload(),6400);
 </script>
 
 </body>
