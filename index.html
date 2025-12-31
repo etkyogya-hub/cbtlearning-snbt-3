@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Demo Gesture</title>
+<title>CBT Demo Gesture Real</title>
 
 <style>
 html,body{
@@ -61,38 +61,48 @@ video{
   text-align:center;
 }
 
-/* HAND IMAGE */
+/* HAND IMAGE REALISTIS */
 .hand img{
   width:100%;
   height:auto;
   display:block;
-  filter:drop-shadow(0 8px 22px rgba(0,0,0,.45));
+  background:transparent; /* penting! */
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)); /* natural shadow */
   transform-origin:20% 20%;
   transition: transform 0.2s ease-out;
 }
 
-/* ANIMASI TANGAN MENUNJUK TOMBOL */
+/* MULTI-TOMBOL + TAP */
 @keyframes handmove{
   0%{
     opacity:0;
     transform:translate(0,24px) rotate(0deg) scale(.92);
   }
-  12%{
+  10%{
     opacity:1;
-    transform:translate(0,0) rotate(-10deg) scale(1); /* mendekati area soal */
+    transform:translate(0,0) rotate(-10deg) scale(1); /* target 1 - soal */
   }
-  35%{
-    transform:translate(20px,50px) rotate(15deg) scale(.92); /* mendekati tombol target */
+  25%{
+    transform:translate(20px,50px) rotate(15deg) scale(.92); /* target 2 - opsi jawaban */
   }
-  38%{
+  28%{
     transform:translate(20px,50px) rotate(15deg) scale(.95); /* tap */
   }
-  40%{
+  30%{
     transform:translate(20px,50px) rotate(15deg) scale(1); /* release */
+  }
+  45%{
+    transform:translate(-10px,80px) rotate(-5deg) scale(.92); /* target 3 - tombol next */
+  }
+  48%{
+    transform:translate(-10px,80px) rotate(-5deg) scale(.95); /* tap */
+  }
+  50%{
+    transform:translate(-10px,80px) rotate(-5deg) scale(1); /* release */
   }
   70%{
     opacity:0;
-    transform:translate(20px,50px) rotate(15deg) scale(.96);
+    transform:translate(-10px,80px) rotate(-5deg) scale(.96);
   }
   100%{
     opacity:0;
@@ -110,7 +120,8 @@ video{
   <!-- SAFE PHONE AREA -->
   <div class="safe">
     <div class="hand">
-      <img src="hand.png" alt="gesture hand" onerror="this.style.display='none'; this.parentNode.innerHTML='☝️';">
+      <img src="hand.png" alt="gesture hand" 
+           onerror="this.style.display='none'; this.parentNode.innerHTML='☝️';">
     </div>
   </div>
 
