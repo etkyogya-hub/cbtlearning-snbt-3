@@ -3,21 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CBTLearning – Decision First</title>
+<title>CBTLearning – Interrupted Rationale</title>
 
 <style>
 body{
-  margin:0;
-  height:100vh;
-  background:#020617;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  margin:0;height:100vh;background:#020617;
+  display:flex;justify-content:center;align-items:center;
   font-family:system-ui;
 }
-.phone{
-  width:240px;height:480px;position:relative;
-}
+.phone{width:240px;height:480px;position:relative;}
 .body{
   position:absolute;inset:0;border-radius:36px;
   background:#020617;
@@ -30,15 +24,13 @@ body{
   overflow:hidden;
 }
 .core{
-  width:90%;text-align:center;
-  color:#fff;font-weight:700;
+  width:90%;text-align:center;font-weight:700;
   opacity:0;transform:scale(.95);
   transition:.35s ease;
 }
 .core.show{opacity:1;transform:scale(1)}
-.option{color:#e5e7eb;font-size:1em}
-.hint{color:#38bdf8;font-size:.8em}
-.question{color:#e5e7eb;font-size:.85em}
+.wrong{color:#fb7185}
+.fix{color:#38bdf8;font-size:.85em}
 .correct{color:#a7f3d0}
 .brand{
   position:absolute;bottom:6px;right:8px;
@@ -57,19 +49,19 @@ body{
 </div>
 
 <script>
-const core = document.getElementById("core");
+const core=document.getElementById("core");
 
-const steps = [
- {text:"A. Efisiensi<br>B. Efektivitas", cls:"option", t:900},
- {text:"Mana yang paling masuk akal?", cls:"hint", t:900},
- {text:"Kebijakan dinilai dari hasil, bukan proses", cls:"question", t:1100},
- {text:"Jawaban: Efektivitas", cls:"correct", t:1200}
+const steps=[
+ {text:"Karena angkanya besar, pilih C", cls:"wrong", t:900},
+ {text:"❌ Bukan itu yang diuji", cls:"wrong", t:600},
+ {text:"Yang diuji adalah hubungan antar nilai", cls:"fix", t:1100},
+ {text:"Jawaban: B", cls:"correct", t:1200}
 ];
 
 let i=0;
 function play(){
   core.className="core show "+steps[i].cls;
-  core.innerHTML=steps[i].text;
+  core.textContent=steps[i].text;
   setTimeout(()=>{
     core.classList.remove("show");
     i++; if(i>=steps.length){i=0; setTimeout(play,600);}
