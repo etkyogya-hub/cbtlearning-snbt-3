@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Perfect Loop</title>
+<title>CBT Real Screen Loop</title>
 
 <style>
 html,body{
@@ -13,7 +13,7 @@ html,body{
   height:100%;
   background:#000;
   overflow:hidden;
-  font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 }
 
 .stage{
@@ -24,75 +24,80 @@ html,body{
   overflow:hidden;
 }
 
-/* VIDEO */
+/* VIDEO REAL SCREEN */
 video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  animation: zoomin 7.5s linear infinite;
+  animation:zoomin 7.5s linear infinite;
 }
 
 @keyframes zoomin{
   0%{transform:scale(1);}
-  25%{transform:scale(1.05);}
-  100%{transform:scale(1.05);}
+  25%{transform:scale(1.03);}
+  100%{transform:scale(1.03);}
 }
 
-/* TEXT ZONE */
-.text{
+/* PHONE SAFE AREA */
+.safe{
   position:absolute;
   top:10%;
-  width:100%;
+  left:50%;
+  transform:translateX(-50%);
+  width:86%;
+  max-width:420px;
   text-align:center;
   color:#fff;
   pointer-events:none;
 }
 
+/* TEXT */
 .line{
   opacity:0;
   animation:textin 7.5s infinite;
-  text-shadow:0 6px 20px rgba(0,0,0,0.45);
+  text-shadow:0 6px 20px rgba(0,0,0,.45);
 }
 
-/* HIERARCHY */
 .line.main{
-  font-size:8.5vw;
+  font-size:6.2vw;
   font-weight:800;
 }
+
 .line.sub{
-  font-size:5.5vw;
+  font-size:4.2vw;
   font-weight:600;
-  margin-top:1.5vw;
-}
-.line.cta{
-  font-size:4.5vw;
-  font-weight:600;
-  margin-top:3vw;
-  opacity:0.85;
+  margin-top:1.2vw;
 }
 
-/* TIMING */
+.line.cta{
+  font-size:3.6vw;
+  margin-top:3vw;
+  opacity:.85;
+}
+
+/* timing */
 .line:nth-child(1){animation-delay:.4s;}
 .line:nth-child(2){animation-delay:1.6s;}
 .line:nth-child(3){animation-delay:5.6s;}
 
 @keyframes textin{
-  0%{opacity:0; transform:translateY(16px);}
-  12%{opacity:1; transform:translateY(0);}
+  0%{opacity:0;transform:translateY(14px);}
+  12%{opacity:1;transform:translateY(0);}
   80%{opacity:1;}
   100%{opacity:0;}
 }
 
-/* CASCADE */
+/* CASCADE SIMULATION */
 .cascade{
   position:absolute;
   bottom:10%;
   left:50%;
   transform:translateX(-50%);
-  width:78%;
-  height:28%;
+  width:80%;
+  max-width:420px;
+  height:26%;
   pointer-events:none;
 }
 
@@ -101,9 +106,9 @@ video{
   left:0; right:0;
   margin:auto;
   height:22%;
-  background:rgba(12,14,40,0.9);
-  border-radius:16px;
-  box-shadow:0 16px 36px rgba(0,0,0,0.45);
+  background:rgba(12,14,40,.9);
+  border-radius:14px;
+  box-shadow:0 14px 32px rgba(0,0,0,.45);
   opacity:0;
   animation:stack 7.5s infinite;
 }
@@ -113,7 +118,7 @@ video{
 .book:nth-child(3){bottom:24%;animation-delay:1.8s;}
 
 @keyframes stack{
-  0%{opacity:0;transform:translateY(30px);}
+  0%{opacity:0;transform:translateY(26px);}
   15%{opacity:1;transform:translateY(0);}
   100%{opacity:1;}
 }
@@ -125,7 +130,7 @@ video{
 
   <video src="video.mp4" autoplay muted loop playsinline></video>
 
-  <div class="text">
+  <div class="safe">
     <div class="line main">Bukan soal pintar</div>
     <div class="line sub">Tapi paham sistem CBT</div>
     <div class="line cta">Ulangi</div>
