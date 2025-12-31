@@ -1,50 +1,75 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CBT Learning – Visual Hook</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Video Mockup Fullscreen</title>
 <style>
-body{
-  margin:0;
-  background:#020617;
-  color:white;
-  font-family:Inter, Arial, sans-serif;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:100vh;
-  overflow:hidden;
-}
+  /* Reset default margin/padding */
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000; /* Optional: hitam supaya kontras */
+  }
 
-.scene{
-  text-align:center;
-  animation: zoomIn 1.2s ease-out forwards;
-}
+  /* Container untuk video / animasi mockup */
+  .mockup {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-h1{
-  font-size:3rem;
-  line-height:1.2;
-}
+  /* Video atau elemen konten utama */
+  video, .content {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fill screen tanpa merusak aspect ratio */
+  }
 
-.highlight{
-  color:#facc15;
-}
-
-@keyframes zoomIn{
-  from{transform:scale(0.9); opacity:0}
-  to{transform:scale(1); opacity:1}
-}
+  /* Contoh overlay teks / CTA */
+  .overlay-text {
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    text-align: center;
+    font-size: 48px;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  }
 </style>
 </head>
-
 <body>
-  <div class="scene">
-    <h1>
-      Kesalahan kecil<br>
-      <span class="highlight">yang bikin skor CBT jatuh</span>
-    </h1>
-  </div>
+
+<div class="mockup">
+  <!-- Contoh video, bisa diganti dengan elemen animasi JS -->
+  <video autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+    Browser tidak mendukung video.
+  </video>
+
+  <!-- Overlay teks / CTA -->
+  <div class="overlay-text">Belajar lebih mudah dengan CBTLearning!</div>
+</div>
+
+<!-- Optional: animasi JS -->
+<script>
+  // Contoh animasi sederhana: teks bergoyang
+  const overlay = document.querySelector('.overlay-text');
+  let angle = 0;
+  function animate() {
+    angle += 0.5;
+    overlay.style.transform = `translateY(${Math.sin(angle * Math.PI / 180) * 10}px)`;
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+
 </body>
 </html>
