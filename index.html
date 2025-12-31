@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Gesture Next-Level</title>
+<title>CBT Demo Gesture</title>
 
 <style>
 html,body{
@@ -24,7 +24,7 @@ html,body{
   background:#000;
 }
 
-/* VIDEO CBT */
+/* VIDEO DEMO CBT */
 video{
   position:absolute;
   inset:0;
@@ -40,7 +40,7 @@ video{
   100%{transform:scale(1.025);}
 }
 
-/* SAFE PHONE AREA */
+/* SAFE AREA HP */
 .safe{
   position:absolute;
   top:8%;
@@ -59,7 +59,6 @@ video{
   height:auto;
   opacity:0;
   text-align:center;
-  font-size:56px;
 }
 
 /* HAND IMAGE */
@@ -69,40 +68,31 @@ video{
   display:block;
   filter:drop-shadow(0 8px 22px rgba(0,0,0,.45));
   transform-origin:20% 20%;
-  transition: transform 0.25s ease-out;
+  transition: transform 0.2s ease-out;
 }
 
-/* ANIMASI ROTASI + TAP DYNAMIC */
+/* ANIMASI TANGAN MENUNJUK TOMBOL */
 @keyframes handmove{
   0%{
     opacity:0;
     transform:translate(0,24px) rotate(0deg) scale(.92);
   }
-  10%{
+  12%{
     opacity:1;
-    transform:translate(0,0) rotate(-15deg) scale(1);
+    transform:translate(0,0) rotate(-10deg) scale(1); /* mendekati area soal */
   }
-  25%{
-    transform:translate(-24px,-12px) rotate(10deg) scale(.92);
+  35%{
+    transform:translate(20px,50px) rotate(15deg) scale(.92); /* mendekati tombol target */
   }
-  30%{
-    transform:translate(-24px,-12px) rotate(10deg) scale(.95);
+  38%{
+    transform:translate(20px,50px) rotate(15deg) scale(.95); /* tap */
   }
-  32%{
-    transform:translate(-24px,-12px) rotate(10deg) scale(1);
-  }
-  50%{
-    transform:translate(-48px,24px) rotate(-5deg) scale(.92);
-  }
-  55%{
-    transform:translate(-48px,24px) rotate(-5deg) scale(.95);
-  }
-  57%{
-    transform:translate(-48px,24px) rotate(-5deg) scale(1);
+  40%{
+    transform:translate(20px,50px) rotate(15deg) scale(1); /* release */
   }
   70%{
     opacity:0;
-    transform:translate(-48px,24px) rotate(0deg) scale(.96);
+    transform:translate(20px,50px) rotate(15deg) scale(.96);
   }
   100%{
     opacity:0;
@@ -125,36 +115,5 @@ video{
   </div>
 
 </div>
-
-<script>
-// OPTIONAL: follow cursor / scroll simulation
-// Ini membuat tangan bergerak halus mengikuti alur tertentu
-const hand = document.querySelector('.hand img');
-
-// definisikan target X,Y relatif ke safe container
-const targets = [
-  {x:0, y:0, rotate:-15, scale:1},   // target 1
-  {x:-24, y:-12, rotate:10, scale:1},// target 2
-  {x:-48, y:24, rotate:-5, scale:1}  // target 3
-];
-
-let t=0;
-const duration = 7500; // 7.5 detik
-function animateHand(timestamp){
-  const time = performance.now() % duration;
-  // tentukan fase berdasarkan waktu
-  let phase = 0;
-  if(time < duration*0.3) phase=0;
-  else if(time < duration*0.55) phase=1;
-  else phase=2;
-
-  const target = targets[phase];
-  hand.style.transform = `translate(${target.x}px, ${target.y}px) rotate(${target.rotate}deg) scale(${target.scale})`;
-
-  requestAnimationFrame(animateHand);
-}
-requestAnimationFrame(animateHand);
-</script>
-
 </body>
 </html>
