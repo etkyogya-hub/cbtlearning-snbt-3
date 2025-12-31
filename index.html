@@ -1,31 +1,30 @@
 <!doctype html>
-<html lang="id">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CBT Trap 01</title>
 <style>
 body{margin:0;background:#020617;display:flex;justify-content:center;align-items:center;height:100vh;font-family:system-ui}
-.phone{width:240px;height:480px;background:#020617;border-radius:28px;box-shadow:0 30px 80px rgba(0,0,0,.8);position:relative;overflow:hidden}
-.txt{position:absolute;width:100%;text-align:center;color:#e5e7eb;font-weight:700;opacity:0;transform:translateY(6px);transition:.45s}
+.phone{width:240px;height:480px;border-radius:28px;background:#020617;position:relative}
+.t{position:absolute;width:100%;text-align:center;color:#fff;font-weight:700;opacity:0;transform:translateY(6px);transition:.45s}
 .show{opacity:1;transform:none}
-.h{top:38px;font-size:18px}
-.s{top:68px;font-size:12px;opacity:.85}
-.c{top:200px;font-size:14px}
+.h{top:36px;font-size:17px}
+.q{top:200px;font-size:14px}
+.i{top:230px;font-size:13px;opacity:.85}
 .u{bottom:18px;font-size:11px;opacity:0;transition:.4s}
 </style>
 </head>
 <body>
 <div class="phone">
-  <div class="txt h" id="h">CBT Trap</div>
-  <div class="txt s" id="s">Jawab cepat ≠ benar</div>
-  <div class="txt c" id="c">Jika 3x + 5 = 20<br>berapa x?</div>
-  <div class="txt u" id="u">(ulangi)</div>
+  <div class="t h" id="h">CBT Trap</div>
+  <div class="t q" id="q">Semua pilihan terlihat benar.</div>
+  <div class="t i" id="i">Kesalahannya bukan di hitungan.</div>
+  <div class="t u" id="u">(ulangi)</div>
 </div>
 <script>
 setTimeout(()=>h.classList.add("show"),120);
-setTimeout(()=>s.classList.add("show"),360);
-setTimeout(()=>c.classList.add("show"),900);
+setTimeout(()=>q.classList.add("show"),520);
+setTimeout(()=>i.classList.add("show"),1100);
 setTimeout(()=>u.style.opacity=.4,4200);
 setTimeout(()=>location.reload(),5200);
 </script>
