@@ -6,24 +6,24 @@
 <style>
 body{margin:0;background:#020617;display:flex;justify-content:center;align-items:center;height:100vh;font-family:system-ui}
 .phone{width:240px;height:480px;border-radius:28px;background:#020617;position:relative}
-.t{position:absolute;width:100%;text-align:center;color:#e5e7eb;font-weight:700;opacity:0;transform:translateY(6px);transition:.45s}
+.t{position:absolute;width:100%;text-align:center;color:#fff;font-weight:700;opacity:0;transform:translateY(6px);transition:.45s}
 .show{opacity:1;transform:none}
-.h{top:40px;font-size:17px}
-.c{top:210px;font-size:14px}
+.h{top:36px;font-size:17px}
+.m{top:210px;font-size:14px}
 .u{bottom:18px;font-size:11px;opacity:0;transition:.4s}
 </style>
 </head>
 <body>
 <div class="phone">
   <div class="t h" id="h">CBT Trap</div>
-  <div class="t c" id="c">Orang pintar sering berhenti di sini.</div>
+  <div class="t m" id="m">CBT ≠ hafalan.</div>
   <div class="t u" id="u">(ulangi)</div>
 </div>
 <script>
 setTimeout(()=>h.classList.add("show"),120);
-setTimeout(()=>c.classList.add("show"),720);
-setTimeout(()=>u.style.opacity=.4,4000);
-setTimeout(()=>location.reload(),5000);
+setTimeout(()=>m.classList.add("show"),720);
+setTimeout(()=>u.style.opacity=.4,3800);
+setTimeout(()=>location.reload(),4800);
 </script>
 </body>
 </html>
