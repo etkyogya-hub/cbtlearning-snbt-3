@@ -1,29 +1,93 @@
 <!doctype html>
-<html>
+<html lang="id">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CBT Trap – Video Level</title>
+
 <style>
-body{margin:0;background:#020617;display:flex;justify-content:center;align-items:center;height:100vh;font-family:system-ui}
-.phone{width:240px;height:480px;border-radius:28px;background:#020617;position:relative}
-.t{position:absolute;width:100%;text-align:center;color:#e5e7eb;font-weight:700;opacity:0;transform:translateY(6px);transition:.45s}
+body{
+  margin:0;
+  background:#020617;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:system-ui;
+}
+
+.phone{
+  width:240px;
+  height:480px;
+  border-radius:28px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:0 30px 80px rgba(0,0,0,.8);
+  position:relative;
+}
+
+/* VIDEO */
+video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* TEXT OVERLAY */
+.txt{
+  position:absolute;
+  width:100%;
+  text-align:center;
+  color:#e5e7eb;
+  font-weight:700;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(6px);
+  transition:.45s ease;
+}
+
 .show{opacity:1;transform:none}
-.h{top:40px;font-size:17px}
-.b{top:210px;font-size:14px}
-.u{bottom:18px;font-size:11px;opacity:0;transition:.4s}
+
+.hook{top:22px;font-size:16px}
+.insight{bottom:56px;font-size:13px;opacity:.85}
+.replay{bottom:18px;font-size:11px;opacity:0;transition:.4s}
 </style>
 </head>
+
 <body>
 <div class="phone">
-  <div class="t h" id="h">CBT Trap</div>
-  <div class="t b" id="b">Yang keliru bukan jawabannya.</div>
-  <div class="t u" id="u">(ulangi)</div>
+
+  <!-- VIDEO CBT ASLI -->
+  <video id="vid" autoplay muted playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+  <!-- HOOK -->
+  <div class="txt hook" id="hook">CBT Trap</div>
+
+  <!-- INSIGHT -->
+  <div class="txt insight" id="insight">
+    Yang bikin salah bukan hitungan.
+  </div>
+
+  <!-- REPLAY -->
+  <div class="txt replay" id="replay">(ulangi)</div>
+
 </div>
+
 <script>
-setTimeout(()=>h.classList.add("show"),120);
-setTimeout(()=>b.classList.add("show"),720);
-setTimeout(()=>u.style.opacity=.4,3800);
-setTimeout(()=>location.reload(),4800);
+const v = document.getElementById("vid");
+
+setTimeout(()=>hook.classList.add("show"),400);
+setTimeout(()=>insight.classList.add("show"),6500);
+setTimeout(()=>replay.style.opacity=.4,8500);
+
+/* loop natural */
+v.onended = ()=>{
+  v.currentTime = 0;
+  v.play();
+};
 </script>
+
 </body>
 </html>
