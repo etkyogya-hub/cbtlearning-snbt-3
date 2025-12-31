@@ -2,34 +2,28 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CBT Trap 01</title>
 <style>
-body{margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:#020617;font-family:system-ui}
-.phone{width:240px;height:480px;background:#020617;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.7);position:relative;overflow:hidden;color:#fff}
-.center{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;text-align:center;padding:18px;font-weight:700}
-.fade{transition:.4s}
-.hidden{opacity:0}
-.hook{color:#38bdf8;font-size:1.15em}
-.trap{color:#facc15;font-size:1.05em}
-.rationale{color:#4ade80;font-size:.9em}
-.cta{font-size:.85em;opacity:.85}
+body{margin:0;background:#020617;display:flex;justify-content:center;align-items:center;height:100vh;font-family:system-ui}
+.phone{width:240px;height:480px;background:#020617;border-radius:28px;box-shadow:0 30px 80px rgba(0,0,0,.8);overflow:hidden;position:relative}
+.txt{position:absolute;width:100%;text-align:center;color:#e5e7eb;font-weight:700}
+.hook{top:40px;font-size:18px}
+.sub{top:70px;font-size:12px;opacity:.8}
+.center{top:200px;font-size:14px;opacity:.9}
+.end{bottom:18px;font-size:11px;opacity:0;transition:.5s}
 </style>
 </head>
 <body>
 <div class="phone">
-  <div id="a" class="center hook fade">CBT Trap<br>Kalau jawab cepat,<br>hampir pasti salah.</div>
-  <div id="b" class="center trap fade hidden">Jika 3x + 5 = 20,<br>nilai x?</div>
-  <div id="c" class="center rationale fade hidden">Yang bikin salah bukan hitungan,<br>tapi cara membaca soal.</div>
-  <div id="d" class="center cta fade hidden">Ulangi.</div>
+  <div class="txt hook">CBT Trap</div>
+  <div class="txt sub">Jawab cepat ≠ benar</div>
+  <div class="txt center">Jika 3x + 5 = 20<br>berapa x?</div>
+  <div class="txt end" id="u">(ulangi)</div>
 </div>
 <script>
-setTimeout(()=>a.classList.add("hidden"),1300);
-setTimeout(()=>b.classList.remove("hidden"),1300);
-setTimeout(()=>b.classList.add("hidden"),3800);
-setTimeout(()=>c.classList.remove("hidden"),3800);
-setTimeout(()=>c.classList.add("hidden"),7000);
-setTimeout(()=>d.classList.remove("hidden"),7000);
+setTimeout(()=>u.style.opacity=.4,4200);
+setTimeout(()=>location.reload(),5200);
 </script>
 </body>
 </html>
