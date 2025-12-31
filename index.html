@@ -2,76 +2,138 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CBT Pure Visual</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CBT Perfect Loop</title>
 
 <style>
-body{
-  margin:0;height:100vh;display:flex;justify-content:center;align-items:center;
-  background:#020617;font-family:system-ui
-}
-.phone{
-  width:260px;height:500px;border-radius:30px;overflow:hidden;position:relative;
-  background:#000;box-shadow:0 40px 90px rgba(0,0,0,.85)
-}
-video{width:100%;height:100%;object-fit:cover}
-
-/* overlay */
-.overlay{position:absolute;inset:0;pointer-events:none}
-
-/* subtle hook (diam, tapi hidup) */
-.hook{
-  position:absolute;top:14px;width:100%;text-align:center;
-  font-size:12px;font-weight:700;color:#e5e7eb;opacity:0;transition:.3s
+html,body{
+  margin:0;
+  padding:0;
+  background:#000;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* cascade */
+.stage{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  background:#000;
+}
+
+/* VIDEO */
+video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+   object-fit:cover;
+  animation: zoomin 7.5s linear infinite;
+}
+
+/* ZOOM HALUS 2 DETIK AWAL */
+@keyframes zoomin{
+  0%{ transform:scale(1); }
+  25%{ transform:scale(1.04); }
+  100%{ transform:scale(1.04); }
+}
+
+/* CASCADE BOOK LAYER */
+.cascade{
+  position:absolute;
+  bottom:12%;
+  left:50%;
+  transform:translateX(-50%);
+  width:80%;
+  height:30%;
+  pointer-events:none;
+}
+
 .book{
-  position:absolute;left:7%;width:86%;
-  padding:9px 12px;border-radius:14px;
-  background:rgba(2,6,23,.72);
-  border:1px solid #334155;color:#e5e7eb;font-size:12.5px;
-  opacity:0;transform:translateY(-8px) scale(.98);
-  transition:.55s cubic-bezier(.22,.9,.22,1);
-  backdrop-filter:blur(6px)
+  position:absolute;
+  left:0;
+  right:0;
+  margin:auto;
+  height:22%;
+  background:rgba(10,10,30,0.85);
+  border-radius:14px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.35);
+  opacity:0;
+  animation: stack 7.5s infinite;
 }
-.show{opacity:1;transform:none}
-.b1{top:96px}.b2{top:144px}.b3{top:192px}
-.b4{top:262px;border-color:#38bdf8}
 
-/* replay cue (akhir saja) */
-.repeat{
-  position:absolute;bottom:12px;width:100%;
-  text-align:center;font-size:11px;color:#94a3b8;
-  opacity:0;transition:.3s
+.book:nth-child(1){
+  bottom:0%;
+  animation-delay:0.6s;
+}
+.book:nth-child(2){
+  bottom:12%;
+  animation-delay:1.2s;
+}
+.book:nth-child(3){
+  bottom:24%;
+  animation-delay:1.8s;
+}
+
+@keyframes stack{
+  0%{ opacity:0; transform:translateY(30px); }
+  15%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:1; }
+}
+
+/* TEXT */
+.text{
+  position:absolute;
+  top:12%;
+  width:100%;
+  text-align:center;
+  color:#fff;
+  font-weight:600;
+  letter-spacing:0.3px;
+}
+
+.line{
+  opacity:0;
+  animation: textin 7.5s infinite;
+}
+
+.line:nth-child(1){ animation-delay:0.4s; }
+.line:nth-child(2){ animation-delay:1.6s; }
+.line:nth-child(3){ animation-delay:5.4s; }
+
+@keyframes textin{
+  0%{ opacity:0; transform:translateY(12px); }
+  12%{ opacity:1; transform:translateY(0); }
+  80%{ opacity:1; }
+  100%{ opacity:0; }
 }
 </style>
 </head>
 
 <body>
-<div class="phone">
-  <video src="demo.mp4" autoplay muted loop></video>
+<div class="stage">
 
-  <div class="overlay">
-    <div class="hook" id="h">CBT Learning</div>
+  <!-- VIDEO DEMO CBT -->
+  <video src="video.mp4" autoplay muted loop playsinline></video>
 
-    <div class="book b1" id="b1">Soal tampak mudah.</div>
-    <div class="book b2" id="b2">Langsung dikerjakan.</div>
-    <div class="book b3" id="b3">Instruksi terlewat.</div>
-    <div class="book b4" id="b4">Menang = urutan baca.</div>
-
-    <div class="repeat" id="r">(ulang)</div>
+  <!-- TEXT -->
+  <div class="text">
+    <div class="line">Bukan soal pintar</div>
+    <div class="line">Tapi paham sistem CBT</div>
+    <div class="line">Ulangi</div>
   </div>
-</div>
 
-<script>
-setTimeout(()=>h.style.opacity=1,120);
-setTimeout(()=>b1.classList.add("show"),520);
-setTimeout(()=>b2.classList.add("show"),980);
-setTimeout(()=>b3.classList.add("show"),1500);
-setTimeout(()=>b4.classList.add("show"),2800);
-setTimeout(()=>r.style.opacity=.45,5600);
-setTimeout(()=>location.reload(),7000);
-</script>
+  <!-- CASCADE -->
+  <div class="cascade">
+    <div class="book"></div>
+    <div class="book"></div>
+    <div class="book"></div>
+  </div>
+
+</div>
 </body>
 </html>
+
