@@ -3,42 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CBT Trap 01 – Revisi</title>
+<title>CBT Trap 01</title>
 <style>
-body{
-  margin:0;background:#020617;
-  display:flex;justify-content:center;align-items:center;
-  height:100vh;font-family:system-ui;
-}
-.phone{
-  width:240px;height:480px;
-  background:#020617;border-radius:28px;
-  box-shadow:0 30px 80px rgba(0,0,0,.8);
-  overflow:hidden;position:relative;
-}
-.txt{
-  position:absolute;width:100%;
-  text-align:center;color:#e5e7eb;font-weight:700;
-  opacity:0;transform:translateY(6px);
-  transition:opacity .45s ease, transform .45s ease;
-}
-.show{opacity:1;transform:translateY(0)}
-.hook{top:38px;font-size:18px}
-.sub{top:68px;font-size:12px;opacity:.85}
-.center{top:200px;font-size:14px}
-.end{bottom:18px;font-size:11px;opacity:0;transition:.4s}
+body{margin:0;background:#020617;display:flex;justify-content:center;align-items:center;height:100vh;font-family:system-ui}
+.phone{width:240px;height:480px;background:#020617;border-radius:28px;box-shadow:0 30px 80px rgba(0,0,0,.8);position:relative;overflow:hidden}
+.txt{position:absolute;width:100%;text-align:center;color:#e5e7eb;font-weight:700;opacity:0;transform:translateY(6px);transition:.45s}
+.show{opacity:1;transform:none}
+.h{top:38px;font-size:18px}
+.s{top:68px;font-size:12px;opacity:.85}
+.c{top:200px;font-size:14px}
+.u{bottom:18px;font-size:11px;opacity:0;transition:.4s}
 </style>
 </head>
 <body>
 <div class="phone">
-  <div class="txt hook" id="h">CBT Trap</div>
-  <div class="txt sub" id="s">Jawab cepat ≠ benar</div>
-  <div class="txt center" id="c">Jika 3x + 5 = 20<br>berapa x?</div>
-  <div class="txt end" id="u">(ulangi)</div>
+  <div class="txt h" id="h">CBT Trap</div>
+  <div class="txt s" id="s">Jawab cepat ≠ benar</div>
+  <div class="txt c" id="c">Jika 3x + 5 = 20<br>berapa x?</div>
+  <div class="txt u" id="u">(ulangi)</div>
 </div>
 <script>
-setTimeout(()=>h.classList.add("show"),100);
-setTimeout(()=>s.classList.add("show"),350);
+setTimeout(()=>h.classList.add("show"),120);
+setTimeout(()=>s.classList.add("show"),360);
 setTimeout(()=>c.classList.add("show"),900);
 setTimeout(()=>u.style.opacity=.4,4200);
 setTimeout(()=>location.reload(),5200);
