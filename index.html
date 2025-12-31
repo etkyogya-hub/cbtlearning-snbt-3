@@ -1,133 +1,44 @@
-<!doctype html>
-<html lang="id">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Gesture Super Safe</title>
-
-<style>
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  background:#000;
-  overflow:hidden;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-}
-
-.stage{
-  position:relative;
-  width:100vw;
-  height:100vh;
-  overflow:hidden;
-  background:#000;
-}
-
-/* VIDEO DEMO CBT */
-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:1; /* video di belakang */
-  animation:zoomin 7.5s linear infinite;
-}
-
-@keyframes zoomin{
-  0%{transform:scale(1);}
-  25%{transform:scale(1.025);}
-  100%{transform:scale(1.025);}
-}
-
-/* SAFE AREA HP */
-.safe{
-  position:absolute;
-  top:8%;
-  bottom:8%;
-  left:50%;
-  transform:translateX(-50%);
-  width:86%;
-  max-width:420px;
-  pointer-events:none;
-  z-index:5; /* pastikan tangan berada di atas video */
-}
-
-/* HAND CONTAINER */
-.hand{
-  position:absolute;
-  width:96px;
-  height:auto;
-  opacity:0;
-  text-align:center;
-  z-index:10; /* selalu di atas video */
-}
-
-/* HAND IMAGE REALISTIS */
-.hand img{
-  width:100%;
-  height:auto;
-  display:block;
-  background:transparent; /* harus transparan */
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)); /* natural shadow */
-  transform-origin:20% 20%;
-  transition: transform 0.2s ease-out;
-}
-
-/* MULTI-TOMBOL + TAP */
-@keyframes handmove{
-  0%{
-    opacity:0;
-    transform:translate(0,24px) rotate(0deg) scale(.92);
-  }
-  10%{
-    opacity:1;
-    transform:translate(0,0) rotate(-10deg) scale(1); /* target 1 - soal */
-  }
-  25%{
-    transform:translate(20px,50px) rotate(15deg) scale(.92); /* target 2 - opsi */
-  }
-  28%{
-    transform:translate(20px,50px) rotate(15deg) scale(.95); /* tap */
-  }
-  30%{
-    transform:translate(20px,50px) rotate(15deg) scale(1); /* release */
-  }
-  45%{
-    transform:translate(-10px,80px) rotate(-5deg) scale(.92); /* target 3 - tombol next */
-  }
-  48%{
-    transform:translate(-10px,80px) rotate(-5deg) scale(.95); /* tap */
-  }
-  50%{
-    transform:translate(-10px,80px) rotate(-5deg) scale(1); /* release */
-  }
-  70%{
-    opacity:0;
-    transform:translate(-10px,80px) rotate(-5deg) scale(.96);
-  }
-  100%{
-    opacity:0;
-  }
-}
-</style>
-</head>
-
 <body>
 <div class="stage">
 
   <!-- VIDEO DEMO CBT -->
-  <video src="video.mp4" autoplay muted loop playsinline></video>
+  <video id="demoVideo" src="video.mp4" autoplay muted loop playsinline></video>
 
   <!-- SAFE PHONE AREA -->
   <div class="safe">
-    <div class="hand">
+    <div class="hand" id="hand">
       <img src="hand.png" alt="gesture hand"
            onerror="this.style.display='none'; this.parentNode.innerHTML='☝️';">
     </div>
   </div>
 
 </div>
-</body>
-</html>
+
+<script>
+const video = document.getElementById('demoVideo');
+const hand = document.getElementById('hand');
+
+// Definisikan timeline gesture (dalam detik)
+const timeline = [
+  {start:0, end:1.5, x:0, y:24, rotate:0, scale:0.92, opacity:0},
+  {start:1.5, end:2.5, x:0, y:0, rotate:-10, scale:1, opacity:1},  // target 1
+  {start:2.5, end:4, x:20, y:50, rotate:15, scale:0.92, opacity:1}, // target 2
+  {start:4, end:4.3, x:20, y:50, rotate:15, scale:0.95, opacity:1}, // tap
+  {start:4.3, end:4.5, x:20, y:50, rotate:15, scale:1, opacity:1}, // release
+  {start:4.5, end:6, x:-10, y:80, rotate:-5, scale:0.92, opacity:1}, // target 3
+  {start:6, end:6.3, x:-10, y:80, rotate:-5, scale:0.95, opacity:1}, // tap
+  {start:6.3, end:6.5, x:-10, y:80, rotate:-5, scale:1, opacity:1}, // release
+  {start:6.5, end:7.5, x:-10, y:80, rotate:-5, scale:0.96, opacity:0}, // fade out
+];
+
+video.addEventListener('timeupdate', () => {
+  const t = video.currentTime % video.duration; // loop
+  let state = timeline.find(s => t >= s.start && t < s.end);
+  if(state){
+    hand.style.opacity = state.opacity;
+    hand.style.transform = `translate(${state.x}px, ${state.y}px) rotate(${state.rotate}deg) scale(${state.scale})`;
+  } else {
+    hand.style.opacity = 0;
+  }
+});
+</script>
