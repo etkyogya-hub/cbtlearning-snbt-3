@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CBTLearning – Interrupted Rationale</title>
+<title>CBTLearning – Cognitive Engine</title>
 
 <style>
 body{
@@ -24,17 +24,22 @@ body{
   overflow:hidden;
 }
 .core{
-  width:90%;text-align:center;font-weight:700;
+  width:90%;text-align:center;
+  font-weight:700;line-height:1.25;
   opacity:0;transform:scale(.95);
   transition:.35s ease;
 }
 .core.show{opacity:1;transform:scale(1)}
+
 .wrong{color:#fb7185}
-.fix{color:#38bdf8;font-size:.85em}
+.rationale{color:#38bdf8;font-size:.85em}
+.question{color:#e5e7eb;font-size:.85em}
+.option{color:#e5e7eb}
 .correct{color:#a7f3d0}
+
 .brand{
   position:absolute;bottom:6px;right:8px;
-  font-size:9px;opacity:.35;color:#fff;
+  font-size:9px;color:#fff;opacity:.35;
 }
 </style>
 </head>
@@ -49,25 +54,80 @@ body{
 </div>
 
 <script>
-const core=document.getElementById("core");
+/* ================================
+   MODE: pilih salah satu
+   "WRONG_FIRST"
+   "DECISION_FIRST"
+   "INTERRUPTED_RATIONALE"
+================================ */
+const MODE = "WRONG_FIRST";
 
-const steps=[
- {text:"Karena angkanya besar, pilih C", cls:"wrong", t:900},
- {text:"❌ Bukan itu yang diuji", cls:"wrong", t:600},
- {text:"Yang diuji adalah hubungan antar nilai", cls:"fix", t:1100},
- {text:"Jawaban: B", cls:"correct", t:1200}
-];
+/* ===== DATA (GANTI INI SAJA) ===== */
+const DATA = {
+  wrong: "❌ x = 5",
+  rationale: "Kesalahan umum: berhenti di angka pertama",
+  question: "Jika 3x + 5 = 20, berapa nilai x?",
+  correct: "✅ x = 3",
 
+  options: "A. Efisiensi<br>B. Efektivitas",
+  decisionHint: "Mana yang paling masuk akal?",
+
+  wrongRationale: "Karena angkanya besar, pilih C",
+  fixRationale: "Yang diuji adalah hubungan antar nilai"
+};
+
+const core = document.getElementById("core");
+
+/* ===== STEP GENERATOR ===== */
+function getSteps(){
+  if(MODE==="WRONG_FIRST"){
+    return [
+      {t:800, cls:"wrong", text:DATA.wrong},
+      {t:1000, cls:"rationale", text:DATA.rationale},
+      {t:1200, cls:"question", text:DATA.question},
+      {t:1200, cls:"correct", text:DATA.correct}
+    ];
+  }
+
+  if(MODE==="DECISION_FIRST"){
+    return [
+      {t:900, cls:"option", text:DATA.options},
+      {t:900, cls:"rationale", text:DATA.decisionHint},
+      {t:1100, cls:"question", text:DATA.question},
+      {t:1200, cls:"correct", text:DATA.correct}
+    ];
+  }
+
+  if(MODE==="INTERRUPTED_RATIONALE"){
+    return [
+      {t:900, cls:"wrong", text:DATA.wrongRationale},
+      {t:600, cls:"wrong", text:"❌ Bukan itu yang diuji"},
+      {t:1100, cls:"rationale", text:DATA.fixRationale},
+      {t:1200, cls:"correct", text:DATA.correct}
+    ];
+  }
+}
+
+/* ===== PLAYER ===== */
+const steps = getSteps();
 let i=0;
+
 function play(){
   core.className="core show "+steps[i].cls;
-  core.textContent=steps[i].text;
+  core.innerHTML=steps[i].text;
+
   setTimeout(()=>{
     core.classList.remove("show");
-    i++; if(i>=steps.length){i=0; setTimeout(play,600);}
-    else setTimeout(play,200);
+    i++;
+    if(i>=steps.length){
+      i=0;
+      setTimeout(play,600); // freeze → loop
+    }else{
+      setTimeout(play,200);
+    }
   },steps[i].t);
 }
+
 play();
 </script>
 </body>
