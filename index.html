@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Real Screen Loop</title>
+<title>CBT Gesture Loop</title>
 
 <style>
 html,body{
@@ -20,107 +20,82 @@ html,body{
   position:relative;
   width:100vw;
   height:100vh;
-  background:#000;
   overflow:hidden;
+  background:#000;
 }
 
-/* VIDEO REAL SCREEN */
+/* VIDEO CBT */
 video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  animation:zoomin 7.5s linear infinite;
+  animation: zoomin 7.5s linear infinite;
 }
 
 @keyframes zoomin{
   0%{transform:scale(1);}
-  25%{transform:scale(1.03);}
-  100%{transform:scale(1.03);}
+  25%{transform:scale(1.025);}
+  100%{transform:scale(1.025);}
 }
 
-/* PHONE SAFE AREA */
+/* SAFE AREA (PHONE REALITY) */
 .safe{
   position:absolute;
-  top:10%;
+  top:8%;
+  bottom:8%;
   left:50%;
   transform:translateX(-50%);
   width:86%;
   max-width:420px;
-  text-align:center;
-  color:#fff;
   pointer-events:none;
 }
 
-/* TEXT */
-.line{
-  opacity:0;
-  animation:textin 7.5s infinite;
-  text-shadow:0 6px 20px rgba(0,0,0,.45);
-}
-
-.line.main{
-  font-size:6.2vw;
-  font-weight:800;
-}
-
-.line.sub{
-  font-size:4.2vw;
-  font-weight:600;
-  margin-top:1.2vw;
-}
-
-.line.cta{
-  font-size:3.6vw;
-  margin-top:3vw;
-  opacity:.85;
-}
-
-/* timing */
-.line:nth-child(1){animation-delay:.4s;}
-.line:nth-child(2){animation-delay:1.6s;}
-.line:nth-child(3){animation-delay:5.6s;}
-
-@keyframes textin{
-  0%{opacity:0;transform:translateY(14px);}
-  12%{opacity:1;transform:translateY(0);}
-  80%{opacity:1;}
-  100%{opacity:0;}
-}
-
-/* CASCADE SIMULATION */
-.cascade{
+/* HAND GESTURE */
+.hand{
   position:absolute;
-  bottom:10%;
-  left:50%;
-  transform:translateX(-50%);
-  width:80%;
-  max-width:420px;
-  height:26%;
-  pointer-events:none;
-}
-
-.book{
-  position:absolute;
-  left:0; right:0;
-  margin:auto;
-  height:22%;
-  background:rgba(12,14,40,.9);
-  border-radius:14px;
-  box-shadow:0 14px 32px rgba(0,0,0,.45);
+  width:64px;
+  height:64px;
+  left:60%;
+  top:40%;
   opacity:0;
-  animation:stack 7.5s infinite;
+  animation: handmove 7.5s infinite;
 }
 
-.book:nth-child(1){bottom:0%;animation-delay:.6s;}
-.book:nth-child(2){bottom:12%;animation-delay:1.2s;}
-.book:nth-child(3){bottom:24%;animation-delay:1.8s;}
+/* simple hand icon (CSS) */
+.hand::before{
+  content:"☝️";
+  font-size:56px;
+  display:block;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.45));
+}
 
-@keyframes stack{
-  0%{opacity:0;transform:translateY(26px);}
-  15%{opacity:1;transform:translateY(0);}
-  100%{opacity:1;}
+/* GESTURE TIMING */
+@keyframes handmove{
+  0%{
+    opacity:0;
+    transform:translate(0,20px) scale(.9);
+  }
+  12%{
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }
+  35%{
+    opacity:1;
+    transform:translate(-24px,-12px) scale(1);
+  }
+  55%{
+    opacity:1;
+    transform:translate(-24px,-12px) scale(1);
+  }
+  70%{
+    opacity:0;
+    transform:translate(-24px,-12px) scale(.95);
+  }
+  100%{
+    opacity:0;
+  }
 }
 </style>
 </head>
@@ -128,18 +103,12 @@ video{
 <body>
 <div class="stage">
 
+  <!-- VIDEO DEMO CBT -->
   <video src="video.mp4" autoplay muted loop playsinline></video>
 
+  <!-- SAFE PHONE AREA -->
   <div class="safe">
-    <div class="line main">Bukan soal pintar</div>
-    <div class="line sub">Tapi paham sistem CBT</div>
-    <div class="line cta">Ulangi</div>
-  </div>
-
-  <div class="cascade">
-    <div class="book"></div>
-    <div class="book"></div>
-    <div class="book"></div>
+    <div class="hand"></div>
   </div>
 
 </div>
