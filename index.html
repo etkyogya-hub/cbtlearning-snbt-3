@@ -3,121 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CBT Cascade</title>
-
+<title>SNBT CBT 01</title>
 <style>
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#020617;
-  font-family:system-ui;
-}
-
-.phone{
-  width:260px;
-  height:500px;
-  border-radius:30px;
-  background:#020617;
-  overflow:hidden;
-  position:relative;
-  box-shadow:0 40px 100px rgba(0,0,0,.85);
-}
-
-/* Hook */
-.hook{
-  position:absolute;
-  top:18px;
-  width:100%;
-  text-align:center;
-  font-weight:700;
-  color:#e5e7eb;
-  opacity:0;
-  transition:.4s;
-}
-
-/* Book */
-.book{
-  position:absolute;
-  left:8%;
-  width:84%;
-  padding:12px;
-  border-radius:14px;
-  background:#020617;
-  border:1px solid #334155;
-  color:#e5e7eb;
-  font-size:14px;
-  opacity:0;
-  transform:translateY(-10px) scale(.97);
-  transition:.6s cubic-bezier(.22,.9,.22,1);
-}
-
-.show{
-  opacity:1;
-  transform:none;
-}
-
-/* Positions */
-.b1{ top:100px; }
-.b2{ top:150px; }
-.b3{ top:200px; }
-.b4{
-  top:270px;
-  border-color:#38bdf8;
-}
-
-/* Repeat */
-.repeat{
-  position:absolute;
-  bottom:14px;
-  width:100%;
-  text-align:center;
-  font-size:11px;
-  color:#94a3b8;
-  opacity:0;
-  transition:.4s;
-}
+body{margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:#020617;font-family:system-ui}
+.phone{width:260px;height:500px;border-radius:30px;background:#020617;position:relative;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.85)}
+.hook{position:absolute;top:18px;width:100%;text-align:center;font-weight:700;color:#e5e7eb;opacity:0;transition:.4s}
+.book{position:absolute;left:8%;width:84%;padding:12px;border-radius:14px;background:#020617;border:1px solid #334155;color:#e5e7eb;font-size:14px;opacity:0;transform:translateY(-10px) scale(.97);transition:.6s cubic-bezier(.22,.9,.22,1)}
+.show{opacity:1;transform:none}
+.b1{top:100px}.b2{top:150px}.b3{top:200px}
+.b4{top:270px;border-color:#38bdf8}
+.repeat{position:absolute;bottom:14px;width:100%;text-align:center;font-size:11px;color:#94a3b8;opacity:0;transition:.4s}
 </style>
 </head>
-
 <body>
 <div class="phone">
-
-  <div class="hook" id="hook">CBT Learning</div>
-
-  <div class="book b1" id="b1">
-    Soal terlihat mudah.
-  </div>
-
-  <div class="book b2" id="b2">
-    Banyak peserta langsung jawab.
-  </div>
-
-  <div class="book b3" id="b3">
-    Di sini jebakan mulai bekerja.
-  </div>
-
-  <div class="book b4" id="b4">
-    CBT bukan hafalan, tapi urutan baca.
-  </div>
-
+  <div class="hook" id="h">SNBT TPS</div>
+  <div class="book b1" id="b1">Soal terlihat gampang.</div>
+  <div class="book b2" id="b2">Peserta langsung hitung.</div>
+  <div class="book b3" id="b3">Padahal yang diuji bukan hitungan.</div>
+  <div class="book b4" id="b4">CBT: baca hubungan, bukan angka.</div>
   <div class="repeat" id="r">(ulangi)</div>
-
 </div>
-
 <script>
-setTimeout(()=>hook.style.opacity=1,120);
-
-setTimeout(()=>b1.classList.add("show"),400);
-setTimeout(()=>b2.classList.add("show"),800);
-setTimeout(()=>b3.classList.add("show"),1200);
-setTimeout(()=>b4.classList.add("show"),2600);
-
-setTimeout(()=>r.style.opacity=.4,5200);
-setTimeout(()=>location.reload(),6500);
+setTimeout(()=>h.style.opacity=1,120)
+setTimeout(()=>b1.classList.add("show"),500)
+setTimeout(()=>b2.classList.add("show"),900)
+setTimeout(()=>b3.classList.add("show"),1500)
+setTimeout(()=>b4.classList.add("show"),3000)
+setTimeout(()=>r.style.opacity=.4,5600)
+setTimeout(()=>location.reload(),7000)
 </script>
-
 </body>
 </html>
