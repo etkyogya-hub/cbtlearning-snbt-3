@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Demo Gesture Real</title>
+<title>CBT Gesture Super Safe</title>
 
 <style>
 html,body{
@@ -31,6 +31,7 @@ video{
   width:100%;
   height:100%;
   object-fit:cover;
+  z-index:1; /* video di belakang */
   animation:zoomin 7.5s linear infinite;
 }
 
@@ -50,6 +51,7 @@ video{
   width:86%;
   max-width:420px;
   pointer-events:none;
+  z-index:5; /* pastikan tangan berada di atas video */
 }
 
 /* HAND CONTAINER */
@@ -59,6 +61,7 @@ video{
   height:auto;
   opacity:0;
   text-align:center;
+  z-index:10; /* selalu di atas video */
 }
 
 /* HAND IMAGE REALISTIS */
@@ -66,7 +69,7 @@ video{
   width:100%;
   height:auto;
   display:block;
-  background:transparent; /* penting! */
+  background:transparent; /* harus transparan */
   filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)); /* natural shadow */
   transform-origin:20% 20%;
   transition: transform 0.2s ease-out;
@@ -83,7 +86,7 @@ video{
     transform:translate(0,0) rotate(-10deg) scale(1); /* target 1 - soal */
   }
   25%{
-    transform:translate(20px,50px) rotate(15deg) scale(.92); /* target 2 - opsi jawaban */
+    transform:translate(20px,50px) rotate(15deg) scale(.92); /* target 2 - opsi */
   }
   28%{
     transform:translate(20px,50px) rotate(15deg) scale(.95); /* tap */
@@ -120,7 +123,7 @@ video{
   <!-- SAFE PHONE AREA -->
   <div class="safe">
     <div class="hand">
-      <img src="hand.png" alt="gesture hand" 
+      <img src="hand.png" alt="gesture hand"
            onerror="this.style.display='none'; this.parentNode.innerHTML='☝️';">
     </div>
   </div>
