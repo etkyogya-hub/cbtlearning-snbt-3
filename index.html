@@ -9,9 +9,9 @@
 html,body{
   margin:0;
   padding:0;
-  background:#000;
   width:100%;
   height:100%;
+  background:#000;
   overflow:hidden;
   font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
@@ -20,8 +20,8 @@ html,body{
   position:relative;
   width:100vw;
   height:100vh;
-  overflow:hidden;
   background:#000;
+  overflow:hidden;
 }
 
 /* VIDEO */
@@ -30,85 +30,92 @@ video{
   inset:0;
   width:100%;
   height:100%;
-   object-fit:cover;
+  object-fit:cover;
   animation: zoomin 7.5s linear infinite;
 }
 
-/* ZOOM HALUS 2 DETIK AWAL */
 @keyframes zoomin{
-  0%{ transform:scale(1); }
-  25%{ transform:scale(1.04); }
-  100%{ transform:scale(1.04); }
+  0%{transform:scale(1);}
+  25%{transform:scale(1.05);}
+  100%{transform:scale(1.05);}
 }
 
-/* CASCADE BOOK LAYER */
+/* TEXT ZONE */
+.text{
+  position:absolute;
+  top:10%;
+  width:100%;
+  text-align:center;
+  color:#fff;
+  pointer-events:none;
+}
+
+.line{
+  opacity:0;
+  animation:textin 7.5s infinite;
+  text-shadow:0 6px 20px rgba(0,0,0,0.45);
+}
+
+/* HIERARCHY */
+.line.main{
+  font-size:8.5vw;
+  font-weight:800;
+}
+.line.sub{
+  font-size:5.5vw;
+  font-weight:600;
+  margin-top:1.5vw;
+}
+.line.cta{
+  font-size:4.5vw;
+  font-weight:600;
+  margin-top:3vw;
+  opacity:0.85;
+}
+
+/* TIMING */
+.line:nth-child(1){animation-delay:.4s;}
+.line:nth-child(2){animation-delay:1.6s;}
+.line:nth-child(3){animation-delay:5.6s;}
+
+@keyframes textin{
+  0%{opacity:0; transform:translateY(16px);}
+  12%{opacity:1; transform:translateY(0);}
+  80%{opacity:1;}
+  100%{opacity:0;}
+}
+
+/* CASCADE */
 .cascade{
   position:absolute;
-  bottom:12%;
+  bottom:10%;
   left:50%;
   transform:translateX(-50%);
-  width:80%;
-  height:30%;
+  width:78%;
+  height:28%;
   pointer-events:none;
 }
 
 .book{
   position:absolute;
-  left:0;
-  right:0;
+  left:0; right:0;
   margin:auto;
   height:22%;
-  background:rgba(10,10,30,0.85);
-  border-radius:14px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.35);
+  background:rgba(12,14,40,0.9);
+  border-radius:16px;
+  box-shadow:0 16px 36px rgba(0,0,0,0.45);
   opacity:0;
-  animation: stack 7.5s infinite;
+  animation:stack 7.5s infinite;
 }
 
-.book:nth-child(1){
-  bottom:0%;
-  animation-delay:0.6s;
-}
-.book:nth-child(2){
-  bottom:12%;
-  animation-delay:1.2s;
-}
-.book:nth-child(3){
-  bottom:24%;
-  animation-delay:1.8s;
-}
+.book:nth-child(1){bottom:0%;animation-delay:.6s;}
+.book:nth-child(2){bottom:12%;animation-delay:1.2s;}
+.book:nth-child(3){bottom:24%;animation-delay:1.8s;}
 
 @keyframes stack{
-  0%{ opacity:0; transform:translateY(30px); }
-  15%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:1; }
-}
-
-/* TEXT */
-.text{
-  position:absolute;
-  top:12%;
-  width:100%;
-  text-align:center;
-  color:#fff;
-  font-weight:600;
-  letter-spacing:0.3px;
-}
-
-.line{
-  opacity:0;
-  animation: textin 7.5s infinite;
-}
-
-.line:nth-child(1){ animation-delay:0.4s; }
-.line:nth-child(2){ animation-delay:1.6s; }
-.line:nth-child(3){ animation-delay:5.4s; }
-
-@keyframes textin{
-  0%{ opacity:0; transform:translateY(12px); }
-  12%{ opacity:1; transform:translateY(0); }
-  80%{ opacity:1; }
-  100%{ opacity:0; }
+  0%{opacity:0;transform:translateY(30px);}
+  15%{opacity:1;transform:translateY(0);}
+  100%{opacity:1;}
 }
 </style>
 </head>
@@ -116,17 +123,14 @@ video{
 <body>
 <div class="stage">
 
-  <!-- VIDEO DEMO CBT -->
   <video src="video.mp4" autoplay muted loop playsinline></video>
 
-  <!-- TEXT -->
   <div class="text">
-    <div class="line">Bukan soal pintar</div>
-    <div class="line">Tapi paham sistem CBT</div>
-    <div class="line">Ulangi</div>
+    <div class="line main">Bukan soal pintar</div>
+    <div class="line sub">Tapi paham sistem CBT</div>
+    <div class="line cta">Ulangi</div>
   </div>
 
-  <!-- CASCADE -->
   <div class="cascade">
     <div class="book"></div>
     <div class="book"></div>
@@ -136,4 +140,3 @@ video{
 </div>
 </body>
 </html>
-
