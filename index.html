@@ -3,189 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 3 | Rationale Generator</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Level 3 Quiz – Rationale Generator</title>
 
 <style>
-/* ===== BASE ===== */
-body{
-  margin:0;
-  background:#111;
-  font-family:"Roboto",sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  color:#fff;
-}
-.phone{
-  width:360px;
-  height:640px;
-  background:#222;
-  border-radius:28px;
-  padding:18px;
-  box-sizing:border-box;
-  display:flex;
-  flex-direction:column;
-  box-shadow:0 0 25px rgba(0,0,0,.7);
-}
+  body {
+    margin:0;
+    background:#0b0b0b;
+    color:#fff;
+    font-family: 'Arial', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
 
-/* ===== SOAL ===== */
-.soal{
-  font-size:20px;
-  font-weight:700;
-  line-height:1.45;
-  margin-bottom:14px;
-}
-.clue{
-  display:inline-block;
-  position:relative;
-}
+  .frame {
+    width:360px;
+    height:640px;
+    padding:24px;
+    box-sizing:border-box;
+    border:1px solid #222;
+    position:relative;
+    overflow:hidden;
+  }
 
-/* clue animations */
-@keyframes shake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-4px)}
-  50%{transform:translateX(4px)}
-  75%{transform:translateX(-4px)}
-  100%{transform:translateX(0)}
-}
-@keyframes flash{
-  0%{text-shadow:none}
-  50%{text-shadow:0 0 10px #fff}
-  100%{text-shadow:none}
-}
-.sebab{ color:#f1c40f }
-.akibat{ color:#1abc9c }
+  h1 {
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:16px;
+  }
 
-.animate-shake{ animation:shake .8s ease }
-.animate-flash{ animation:flash .8s ease }
+  .question {
+    font-size:16px;
+    line-height:1.4;
+    margin-bottom:20px;
+  }
 
-/* ===== JAWABAN ===== */
-.opsi{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin-bottom:12px;
-}
-.opsi div{
-  background:#444;
-  padding:10px;
-  border-radius:8px;
-  cursor:pointer;
-  transition:.25s;
-}
-.opsi div.correct{background:#2ecc71}
-.opsi div.wrong{background:#e74c3c}
+  .options div {
+    border:1px solid #333;
+    padding:10px;
+    margin-bottom:8px;
+    font-size:14px;
+    opacity:.7;
+  }
 
-/* ===== RATIONALE ===== */
-.rationale{
-  display:none;
-  background:#333;
-  border-radius:10px;
-  padding:12px;
-  flex:1;
-  overflow-y:auto;
-  scroll-behavior:smooth;
-}
-.step{
-  font-size:13px;
-  line-height:1.45;
-  margin-bottom:6px;
-  color:#aaa;
-}
-.step span{
-  opacity:.3;
-  display:inline-block;
-}
+  .correct {
+    border-color:#fff;
+    opacity:1;
+  }
 
-/* colors per step */
-.s1 span{color:#f1c40f}
-.s2 span{color:#e67e22}
-.s3 span{color:#3498db}
-.s4 span{color:#9b59b6}
-.s5 span{color:#1abc9c}
-.s6 span{color:#e74c3c}
-.s7 span{color:#fff;font-weight:600}
+  /* ===== CUE WORD ANIMATION ===== */
+  @keyframes cuePulse {
+    0%   { transform:scale(1);   text-shadow:none; }
+    40%  { transform:scale(1.15); text-shadow:0 0 14px #fff; }
+    70%  { transform:scale(0.95); text-shadow:0 0 8px #fff; }
+    100% { transform:scale(1);   text-shadow:none; }
+  }
 
-/* shine */
-@keyframes shine{
-  0%{opacity:.3}
-  50%{opacity:1;text-shadow:0 0 8px #fff}
-  100%{opacity:.3;text-shadow:none}
-}
-.shine{animation:shine .8s ease}
+  .cue-loop {
+    animation: cuePulse 1s ease-in-out infinite;
+    color:#fff;
+    font-weight:700;
+  }
+
+  /* ===== RATIONALE ===== */
+  .rationale {
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#000;
+    padding:16px;
+    box-sizing:border-box;
+    display:none;
+    font-size:12px;
+    line-height:1.45;
+  }
+
+  .step {
+    opacity:0;
+    margin-bottom:6px;
+  }
+
+  .step.active {
+    opacity:1;
+    color:#fff;
+  }
+
 </style>
 </head>
 
 <body>
-<div class="phone">
+<div class="frame">
 
-  <!-- SOAL -->
-  <div class="soal">
-    Seorang pedagang membeli
-    <span class="clue sebab">10 kotak apel</span>
-    seharga Rp80.000 per kotak.  
-    Ia menjual semuanya dengan
-    <span class="clue akibat">diskon 20%</span>.
-    Biaya operasional Rp250.000.  
-    Berapakah keuntungan yang ia peroleh?
+  <h1>LEVEL 3 QUIZ</h1>
+
+  <div class="question">
+    Sebuah toko memiliki <span class="clue">10 kotak apel</span>.
+    Setiap kotak berisi 12 apel.
+    Jika diberikan <span class="clue">diskon 20%</span>,
+    berapa apel yang *efektif* terjual?
   </div>
 
-  <!-- OPSI -->
-  <div class="opsi">
-    <div data-correct="false">A. Rp150.000</div>
-    <div data-correct="true">B. Rp180.000</div>
-    <div data-correct="false">C. Rp200.000</div>
-    <div data-correct="false">D. Rp120.000</div>
+  <div class="options">
+    <div>A. 96</div>
+    <div>B. 100</div>
+    <div class="correct">C. 120</div>
+    <div>D. 144</div>
   </div>
 
-  <!-- RATIONALE -->
   <div class="rationale" id="rationale">
-    <div class="step s1" data-text="1 Identifikasi konsep: beli, jual, diskon"></div>
-    <div class="step s2" data-text="2 Tentukan domain: aritmetika & persentase"></div>
-    <div class="step s3" data-text="3 Opsi tampak benar karena salah urutan"></div>
-    <div class="step s4" data-text="4 Eliminasi jawaban tanpa hitung diskon"></div>
-    <div class="step s5" data-text="5 Validasi total beli dan total jual"></div>
-    <div class="step s6" data-text="6 Cek ulang hasil yang tampak masuk akal"></div>
-    <div class="step s7" data-text="7 Konfirmasi hasil akhir secara logis"></div>
+    <div class="step">1. Identifikasi domain soal (kuantitas).</div>
+    <div class="step">2. Tentukan total awal: 10 × 12.</div>
+    <div class="step">3. Diskon ≠ pengurangan jumlah fisik.</div>
+    <div class="step">4. Diskon memengaruhi harga, bukan unit.</div>
+    <div class="step">5. Apel tetap 120 buah.</div>
+    <div class="step">6. Opsi lain jebakan asumsi.</div>
+    <div class="step">7. Jawaban benar: C.</div>
   </div>
 
 </div>
 
 <script>
-/* split rationale text */
-document.querySelectorAll(".step").forEach(step=>{
-  const words = step.dataset.text.split(" ");
-  step.innerHTML = words.map(w=>`<span>${w} </span>`).join("");
-});
+  const clues = document.querySelectorAll('.clue');
+  const rationale = document.getElementById('rationale');
+  const steps = document.querySelectorAll('.step');
 
-/* clue animation after 2s */
-setTimeout(()=>{
-  document.querySelector(".sebab").classList.add("animate-shake");
-  document.querySelector(".akibat").classList.add("animate-flash");
-},2000);
+  /* START cue loop after 2s */
+  setTimeout(() => {
+    clues.forEach(c => c.classList.add('cue-loop'));
+  }, 2000);
 
-/* answer click */
-document.querySelectorAll(".opsi div").forEach(opt=>{
-  opt.onclick=()=>{
-    document.querySelectorAll(".opsi div").forEach(o=>o.classList.remove("correct","wrong"));
-    opt.classList.add(opt.dataset.correct==="true"?"correct":"wrong");
+  /* AUTO select + STOP cue + SHOW rationale */
+  setTimeout(() => {
+    clues.forEach(c => c.classList.remove('cue-loop'));
+    rationale.style.display = 'block';
 
-    const r=document.getElementById("rationale");
-    r.style.display="block";
-
-    document.querySelectorAll(".step").forEach((step,i)=>{
-      const spans=step.querySelectorAll("span");
-      spans.forEach((sp,j)=>{
-        setTimeout(()=>{
-          sp.classList.add("shine");
-          r.scrollTop=step.offsetTop-10;
-        },i*800+j*140);
-      });
+    steps.forEach((step, i) => {
+      setTimeout(() => {
+        step.classList.add('active');
+      }, i * 600);
     });
-  }
-});
+
+  }, 5000);
 </script>
 </body>
 </html>
