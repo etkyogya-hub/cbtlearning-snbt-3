@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Level 3.2 – Salah Pilih Konsep</title>
+  <title>Level 3.3 – Terjebak Opsi Tampak Benar</title>
   <style>
     body {
       margin: 0;
@@ -107,22 +107,22 @@
   <div class="phone-frame">
     <div class="screen">
       <div class="soal" id="soal">
-        Soal ini tampak familiar, tapi bukan fokusnya.
+        Soal ini terlihat gampang… tapi hati-hati.
         <br><br>
-        Seorang pegawai bekerja 8 jam sehari. Hitung produktivitas jika target naik 25%.
+        Jika sebuah mobil menempuh 60 km/jam selama 2 jam, jarak tempuh berapa km?
       </div>
 
       <div class="jawaban" id="jawaban">
-        <div>A: Fokus hitung jam kerja</div>
-        <div>B: Fokus target output</div>
-        <div>C: Fokus kompensasi</div>
-        <div>D: Fokus metode</div>
+        <div>A: 60 km</div>
+        <div>B: 120 km</div>
+        <div>C: 180 km</div>
+        <div>D: 240 km</div>
       </div>
 
-      <div class="text-overlay" id="overlay1">Langsung pilih konsep tanpa cek domain.</div>
-      <div class="text-overlay" id="overlay2">Soal selalu meminta konsep yang tepat dulu.</div>
-      <div class="text-overlay" id="overlay3">Bukan lebih pintar. Lebih tepat pilih konsep.</div>
-      <div class="text-overlay" id="overlay4">Yang dilatih bukan soal. Tapi pemilihan konsep yang tepat.</div>
+      <div class="text-overlay" id="overlay1">Terjebak jawaban yang tampak benar.</div>
+      <div class="text-overlay" id="overlay2">Cek tiap opsi. Mana benar-benar sesuai soal?</div>
+      <div class="text-overlay" id="overlay3">Bukan lebih pintar. Lebih teliti memilih opsi.</div>
+      <div class="text-overlay" id="overlay4">Yang dilatih bukan soal. Tapi kemampuan eliminasi & logika.</div>
 
       <div class="list-small" id="list-small">
         <div>Konsep</div>
@@ -148,7 +148,7 @@
     // Timeline (detik)
     setTimeout(() => {
       overlay1.classList.add('fade-in'); // 1.5–5.0
-      jawabanDivs[0].classList.add('highlight'); // highlight pilihan awal keliru
+      jawabanDivs[2].classList.add('highlight'); // distractor tampak benar
     }, 1500);
 
     setTimeout(() => {
@@ -156,7 +156,7 @@
       overlay2.classList.add('fade-in'); // 5.0–9.0
       soal.style.transform = 'scale(1.05)'; // zoom ringan
       jawabanDivs.forEach(div => div.classList.remove('highlight'));
-      jawabanDivs[1].classList.add('highlight'); // highlight konsep benar
+      jawabanDivs[1].classList.add('highlight'); // jawaban benar
     }, 5000);
 
     setTimeout(() => {
