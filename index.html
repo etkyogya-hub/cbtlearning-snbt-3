@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 3.3 – Dua Jawaban Tampak Benar</title>
+<title>Level 3.4 – Rationale 7 Langkah</title>
 
 <style>
 body{
@@ -28,7 +28,7 @@ body{
 }
 
 h1{
-  font-size:16px;
+  font-size:15px;
   font-weight:600;
   margin-bottom:14px;
 }
@@ -39,58 +39,48 @@ h1{
   margin-bottom:18px;
 }
 
-.cue{
-  font-weight:700;
-  color:#fff;
-}
-
-/* ===== CUE LOOP ===== */
-@keyframes pulseZoom{
-  0%{transform:scale(1); text-shadow:none;}
-  40%{transform:scale(1.18); text-shadow:0 0 16px #fff;}
-  70%{transform:scale(0.95); text-shadow:0 0 8px #fff;}
-  100%{transform:scale(1); text-shadow:none;}
-}
-
-.loop{
-  animation:pulseZoom 1s ease-in-out infinite;
-}
-
-/* ===== OPTIONS ===== */
 .options div{
   border:1px solid #333;
   padding:10px;
   margin-bottom:8px;
   font-size:14px;
-  opacity:.75;
+  opacity:.7;
 }
 
-.compare{
+.correct{
   border-color:#fff;
   opacity:1;
 }
 
-/* ===== RATIONALE ===== */
+/* ===== RATIONALE STACK ===== */
 .rationale{
   position:absolute;
   bottom:0;
   left:0;
   width:100%;
   background:#000;
-  padding:16px;
+  padding:14px;
   box-sizing:border-box;
   font-size:12px;
-  line-height:1.5;
-  display:none;
+  line-height:1.45;
 }
 
 .step{
   opacity:0;
-  margin-bottom:6px;
+  margin-bottom:4px;
+  transform:translateY(6px);
 }
 
-.step.active{
+.step.show{
   opacity:1;
+  transform:translateY(0);
+  transition:.3s;
+}
+
+/* ===== CUT EFFECT ===== */
+.cut{
+  text-decoration:line-through;
+  opacity:.35;
 }
 </style>
 </head>
@@ -98,53 +88,40 @@ h1{
 <body>
 <div class="frame">
 
-<h1>LEVEL 3.3 — PERBANDINGAN OPSI</h1>
+<h1>LEVEL 3.4 — RATIONALE SYSTEM</h1>
 
 <div class="question">
-Sebuah pekerjaan dapat diselesaikan dalam
-<span class="cue">6 hari oleh A</span> dan
-<span class="cue">12 hari oleh B</span>.
-Jika A dan B bekerja bersama,
-berapa lama pekerjaan selesai?
+Jika 3 mesin menghasilkan 90 unit dalam 6 jam,
+berapa unit dihasilkan 5 mesin dalam 4 jam?
 </div>
 
 <div class="options">
-  <div class="compare">A. 4 hari</div>
-  <div class="compare">B. 6 hari</div>
-  <div>C. 8 hari</div>
-  <div>D. 12 hari</div>
+  <div>A. 80</div>
+  <div>B. 90</div>
+  <div class="correct">C. 100</div>
+  <div>D. 120</div>
 </div>
 
 <div class="rationale" id="rationale">
-  <div class="step">1. Dua jawaban tampak masuk akal.</div>
-  <div class="step">2. 6 hari = waktu A sendiri.</div>
-  <div class="step">3. Kerja bersama ≠ ambil tercepat.</div>
-  <div class="step">4. Hitung laju kerja, bukan waktu.</div>
-  <div class="step">5. A: 1/6, B: 1/12.</div>
-  <div class="step">6. Total: 1/4 per hari.</div>
-  <div class="step">7. Jawaban tepat: A (4 hari).</div>
+  <div class="step">1. Identifikasi domain (produktivitas).</div>
+  <div class="step">2. Asumsikan laju konstan.</div>
+  <div class="step">3. Hitung unit per mesin per jam.</div>
+  <div class="step">4. <span class="cut">Langsung kalikan angka besar.</span></div>
+  <div class="step">5. Fokus ke rasio.</div>
+  <div class="step">6. Bandingkan skala mesin & waktu.</div>
+  <div class="step">7. Validasi logika akhir.</div>
 </div>
 
 </div>
 
 <script>
-const cues = document.querySelectorAll('.cue');
-const rationale = document.getElementById('rationale');
 const steps = document.querySelectorAll('.step');
 
-/* cue start */
-setTimeout(()=>{
-  cues.forEach(c=>c.classList.add('loop'));
-},2000);
-
-/* stop cue + show rationale */
-setTimeout(()=>{
-  cues.forEach(c=>c.classList.remove('loop'));
-  rationale.style.display='block';
-  steps.forEach((s,i)=>{
-    setTimeout(()=>s.classList.add('active'), i*600);
-  });
-},5200);
+steps.forEach((s,i)=>{
+  setTimeout(()=>{
+    s.classList.add('show');
+  }, i*420);
+});
 </script>
 
 </body>
