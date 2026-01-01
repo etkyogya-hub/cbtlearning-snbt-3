@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 3.4 – Rationale 7 Langkah</title>
+<title>Level 3.5 – Trainer System</title>
 
 <style>
 body{
@@ -30,57 +30,47 @@ body{
 h1{
   font-size:15px;
   font-weight:600;
-  margin-bottom:14px;
+  margin-bottom:16px;
 }
 
-.question{
-  font-size:15px;
-  line-height:1.45;
-  margin-bottom:18px;
-}
-
-.options div{
-  border:1px solid #333;
-  padding:10px;
-  margin-bottom:8px;
+.block{
   font-size:14px;
-  opacity:.7;
-}
-
-.correct{
-  border-color:#fff;
-  opacity:1;
-}
-
-/* ===== RATIONALE STACK ===== */
-.rationale{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  background:#000;
-  padding:14px;
-  box-sizing:border-box;
-  font-size:12px;
   line-height:1.45;
+  margin-bottom:14px;
+  opacity:.85;
 }
 
-.step{
+.fade{
+  opacity:.35;
+}
+
+/* ===== FLOW LIST ===== */
+.flow{
+  margin-top:18px;
+  font-size:13px;
+}
+
+.flow div{
   opacity:0;
-  margin-bottom:4px;
+  margin-bottom:6px;
   transform:translateY(6px);
 }
 
-.step.show{
+.flow div.show{
   opacity:1;
   transform:translateY(0);
   transition:.3s;
 }
 
-/* ===== CUT EFFECT ===== */
-.cut{
-  text-decoration:line-through;
-  opacity:.35;
+/* ===== FINAL LINE ===== */
+.final{
+  position:absolute;
+  bottom:20px;
+  left:22px;
+  right:22px;
+  font-size:14px;
+  font-weight:600;
+  text-align:center;
 }
 </style>
 </head>
@@ -88,39 +78,46 @@ h1{
 <body>
 <div class="frame">
 
-<h1>LEVEL 3.4 — RATIONALE SYSTEM</h1>
+<h1>LEVEL 3.5 — KENAPA LATIHAN GAGAL</h1>
 
-<div class="question">
-Jika 3 mesin menghasilkan 90 unit dalam 6 jam,
-berapa unit dihasilkan 5 mesin dalam 4 jam?
+<div class="block">
+Latihan soal biasa:
 </div>
 
-<div class="options">
-  <div>A. 80</div>
-  <div>B. 90</div>
-  <div class="correct">C. 100</div>
-  <div>D. 120</div>
+<div class="block fade">
+• Jawab<br>
+• Cek benar / salah<br>
+• Ulangi
 </div>
 
-<div class="rationale" id="rationale">
-  <div class="step">1. Identifikasi domain (produktivitas).</div>
-  <div class="step">2. Asumsikan laju konstan.</div>
-  <div class="step">3. Hitung unit per mesin per jam.</div>
-  <div class="step">4. <span class="cut">Langsung kalikan angka besar.</span></div>
-  <div class="step">5. Fokus ke rasio.</div>
-  <div class="step">6. Bandingkan skala mesin & waktu.</div>
-  <div class="step">7. Validasi logika akhir.</div>
+<div class="block">
+Yang tidak dilatih:
+</div>
+
+<div class="block fade">
+• Urutan berpikir<br>
+• Titik keputusan<br>
+• Kesalahan proses
+</div>
+
+<div class="flow" id="flow">
+  <div>Latihan soal → sibuk</div>
+  <div>Sistem berpikir → naik level</div>
+</div>
+
+<div class="final">
+Yang dilatih bukan soal.<br>
+Tapi cara berpikir.
 </div>
 
 </div>
 
 <script>
-const steps = document.querySelectorAll('.step');
-
-steps.forEach((s,i)=>{
+const items = document.querySelectorAll('.flow div');
+items.forEach((it,i)=>{
   setTimeout(()=>{
-    s.classList.add('show');
-  }, i*420);
+    it.classList.add('show');
+  }, i*600);
 });
 </script>
 
