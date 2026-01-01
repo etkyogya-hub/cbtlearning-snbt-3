@@ -3,149 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 3 Quiz – Rationale Generator</title>
+<title>Level 3.3 – Dua Jawaban Tampak Benar</title>
 
 <style>
-  body {
-    margin:0;
-    background:#0b0b0b;
-    color:#fff;
-    font-family: 'Arial', sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-  }
+body{
+  margin:0;
+  background:#0b0b0b;
+  color:#fff;
+  font-family:Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
 
-  .frame {
-    width:360px;
-    height:640px;
-    padding:24px;
-    box-sizing:border-box;
-    border:1px solid #222;
-    position:relative;
-    overflow:hidden;
-  }
+.frame{
+  width:360px;
+  height:640px;
+  padding:22px;
+  box-sizing:border-box;
+  border:1px solid #222;
+  position:relative;
+  overflow:hidden;
+}
 
-  h1 {
-    font-size:18px;
-    font-weight:600;
-    margin-bottom:16px;
-  }
+h1{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:14px;
+}
 
-  .question {
-    font-size:16px;
-    line-height:1.4;
-    margin-bottom:20px;
-  }
+.question{
+  font-size:15px;
+  line-height:1.45;
+  margin-bottom:18px;
+}
 
-  .options div {
-    border:1px solid #333;
-    padding:10px;
-    margin-bottom:8px;
-    font-size:14px;
-    opacity:.7;
-  }
+.cue{
+  font-weight:700;
+  color:#fff;
+}
 
-  .correct {
-    border-color:#fff;
-    opacity:1;
-  }
+/* ===== CUE LOOP ===== */
+@keyframes pulseZoom{
+  0%{transform:scale(1); text-shadow:none;}
+  40%{transform:scale(1.18); text-shadow:0 0 16px #fff;}
+  70%{transform:scale(0.95); text-shadow:0 0 8px #fff;}
+  100%{transform:scale(1); text-shadow:none;}
+}
 
-  /* ===== CUE WORD ANIMATION ===== */
-  @keyframes cuePulse {
-    0%   { transform:scale(1);   text-shadow:none; }
-    40%  { transform:scale(1.15); text-shadow:0 0 14px #fff; }
-    70%  { transform:scale(0.95); text-shadow:0 0 8px #fff; }
-    100% { transform:scale(1);   text-shadow:none; }
-  }
+.loop{
+  animation:pulseZoom 1s ease-in-out infinite;
+}
 
-  .cue-loop {
-    animation: cuePulse 1s ease-in-out infinite;
-    color:#fff;
-    font-weight:700;
-  }
+/* ===== OPTIONS ===== */
+.options div{
+  border:1px solid #333;
+  padding:10px;
+  margin-bottom:8px;
+  font-size:14px;
+  opacity:.75;
+}
 
-  /* ===== RATIONALE ===== */
-  .rationale {
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:#000;
-    padding:16px;
-    box-sizing:border-box;
-    display:none;
-    font-size:12px;
-    line-height:1.45;
-  }
+.compare{
+  border-color:#fff;
+  opacity:1;
+}
 
-  .step {
-    opacity:0;
-    margin-bottom:6px;
-  }
+/* ===== RATIONALE ===== */
+.rationale{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#000;
+  padding:16px;
+  box-sizing:border-box;
+  font-size:12px;
+  line-height:1.5;
+  display:none;
+}
 
-  .step.active {
-    opacity:1;
-    color:#fff;
-  }
+.step{
+  opacity:0;
+  margin-bottom:6px;
+}
 
+.step.active{
+  opacity:1;
+}
 </style>
 </head>
 
 <body>
 <div class="frame">
 
-  <h1>LEVEL 3 QUIZ</h1>
+<h1>LEVEL 3.3 — PERBANDINGAN OPSI</h1>
 
-  <div class="question">
-    Sebuah toko memiliki <span class="clue">10 kotak apel</span>.
-    Setiap kotak berisi 12 apel.
-    Jika diberikan <span class="clue">diskon 20%</span>,
-    berapa apel yang *efektif* terjual?
-  </div>
+<div class="question">
+Sebuah pekerjaan dapat diselesaikan dalam
+<span class="cue">6 hari oleh A</span> dan
+<span class="cue">12 hari oleh B</span>.
+Jika A dan B bekerja bersama,
+berapa lama pekerjaan selesai?
+</div>
 
-  <div class="options">
-    <div>A. 96</div>
-    <div>B. 100</div>
-    <div class="correct">C. 120</div>
-    <div>D. 144</div>
-  </div>
+<div class="options">
+  <div class="compare">A. 4 hari</div>
+  <div class="compare">B. 6 hari</div>
+  <div>C. 8 hari</div>
+  <div>D. 12 hari</div>
+</div>
 
-  <div class="rationale" id="rationale">
-    <div class="step">1. Identifikasi domain soal (kuantitas).</div>
-    <div class="step">2. Tentukan total awal: 10 × 12.</div>
-    <div class="step">3. Diskon ≠ pengurangan jumlah fisik.</div>
-    <div class="step">4. Diskon memengaruhi harga, bukan unit.</div>
-    <div class="step">5. Apel tetap 120 buah.</div>
-    <div class="step">6. Opsi lain jebakan asumsi.</div>
-    <div class="step">7. Jawaban benar: C.</div>
-  </div>
+<div class="rationale" id="rationale">
+  <div class="step">1. Dua jawaban tampak masuk akal.</div>
+  <div class="step">2. 6 hari = waktu A sendiri.</div>
+  <div class="step">3. Kerja bersama ≠ ambil tercepat.</div>
+  <div class="step">4. Hitung laju kerja, bukan waktu.</div>
+  <div class="step">5. A: 1/6, B: 1/12.</div>
+  <div class="step">6. Total: 1/4 per hari.</div>
+  <div class="step">7. Jawaban tepat: A (4 hari).</div>
+</div>
 
 </div>
 
 <script>
-  const clues = document.querySelectorAll('.clue');
-  const rationale = document.getElementById('rationale');
-  const steps = document.querySelectorAll('.step');
+const cues = document.querySelectorAll('.cue');
+const rationale = document.getElementById('rationale');
+const steps = document.querySelectorAll('.step');
 
-  /* START cue loop after 2s */
-  setTimeout(() => {
-    clues.forEach(c => c.classList.add('cue-loop'));
-  }, 2000);
+/* cue start */
+setTimeout(()=>{
+  cues.forEach(c=>c.classList.add('loop'));
+},2000);
 
-  /* AUTO select + STOP cue + SHOW rationale */
-  setTimeout(() => {
-    clues.forEach(c => c.classList.remove('cue-loop'));
-    rationale.style.display = 'block';
-
-    steps.forEach((step, i) => {
-      setTimeout(() => {
-        step.classList.add('active');
-      }, i * 600);
-    });
-
-  }, 5000);
+/* stop cue + show rationale */
+setTimeout(()=>{
+  cues.forEach(c=>c.classList.remove('loop'));
+  rationale.style.display='block';
+  steps.forEach((s,i)=>{
+    setTimeout(()=>s.classList.add('active'), i*600);
+  });
+},5200);
 </script>
+
 </body>
 </html>
