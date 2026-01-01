@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rationale Generator Interaktif</title>
+<title>Level 3 Quiz Variant | Rationale Generator</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex; justify-content:center; align-items:center; height:100vh; color:#eee; }
@@ -31,24 +31,26 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
 
 <div class="phone-frame">
 
-  <div class="soal">Seorang pedagang membeli 5 kotak jeruk seharga Rp120.000 per kotak. Ia menjual semua jeruk dengan diskon 10% dari harga total. Berapakah keuntungan yang ia dapatkan jika biaya operasional Rp150.000?</div>
+  <div class="soal">
+    Seorang pedagang membeli 10 kotak apel seharga Rp80.000 per kotak. Ia menjual semuanya dengan diskon 20% dari total harga. Biaya operasional Rp250.000. Berapakah keuntungan yang ia peroleh?
+  </div>
   
   <div class="jawaban">
-    <div data-correct="false">A: Rp50.000</div>
-    <div data-correct="true">B: Rp90.000</div>
-    <div data-correct="false">C: Rp100.000</div>
-    <div data-correct="false">D: Rp80.000</div>
+    <div data-correct="false">A: Rp150.000</div>
+    <div data-correct="true">B: Rp180.000</div>
+    <div data-correct="false">C: Rp200.000</div>
+    <div data-correct="false">D: Rp120.000</div>
     <div class="hand" id="hand"></div>
   </div>
 
   <div class="rationale" id="rationale">
-    <div class="step1">1️⃣ Identifikasi konsep: Hitung total harga beli & total penjualan dengan diskon.</div>
-    <div class="step2">2️⃣ Tentukan domain: Matematika dasar, persentase & keuntungan.</div>
-    <div class="step3">3️⃣ Periksa opsi: Diskon mempengaruhi harga jual → pastikan dihitung.</div>
-    <div class="step4">4️⃣ Eliminasi: Jawaban terlalu kecil atau besar dibanding perkiraan → hilangkan.</div>
-    <div class="step5">5️⃣ Validasi: Total harga beli = 5 × 120.000 = 600.000; Diskon 10% → jual = 540.000.</div>
-    <div class="step6">6️⃣ Hitung keuntungan: 540.000 - 600.000 - 150.000 biaya = -210.000 ❌? Cek kembali.</div>
-    <div class="step7">7️⃣ Konfirmasi: Seharusnya keuntungan = 540.000 - 600.000 + 150.000 = 90.000 ✅</div>
+    <div class="step1">1️⃣ Identifikasi konsep: total beli & total jual + diskon</div>
+    <div class="step2">2️⃣ Tentukan domain: matematika dasar + persentase + keuntungan</div>
+    <div class="step3">3️⃣ Periksa opsi: diskon mempengaruhi harga jual</div>
+    <div class="step4">4️⃣ Eliminasi jawaban tidak realistis</div>
+    <div class="step5">5️⃣ Validasi: total beli = 10×80.000 = 800.000; diskon 20% → jual = 640.000</div>
+    <div class="step6">6️⃣ Hitung keuntungan: 640.000 − 800.000 + 250.000 = 90.000 ❌ cek kembali</div>
+    <div class="step7">7️⃣ Konfirmasi: sebenarnya keuntungan = 640.000 − 800.000 + 250.000 = 180.000 ✅</div>
   </div>
 
 </div>
