@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Level 3.5 – Trainer System</title>
 
+<!-- Anton-like fallback -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
 <style>
 body{
   margin:0;
-  background:#0b0b0b;
+  background:#050505;
   color:#fff;
   font-family:Arial, sans-serif;
   display:flex;
@@ -27,50 +30,84 @@ body{
   overflow:hidden;
 }
 
-h1{
-  font-size:15px;
-  font-weight:600;
-  margin-bottom:16px;
+/* ===== SHOCK OPEN ===== */
+@keyframes shock {
+  0%{transform:scale(1.6); filter:brightness(3);}
+  40%{transform:scale(0.9); filter:brightness(0.7);}
+  70%{transform:scale(1.05); filter:brightness(1.4);}
+  100%{transform:scale(1); filter:none;}
 }
 
-.block{
+/* ===== COLOR FLASH ===== */
+@keyframes colorFlash {
+  0%{color:#fff;}
+  50%{color:#ff2d2d;}
+  100%{color:#fff;}
+}
+
+/* ===== TITLE ===== */
+.title{
+  font-family:'Anton', Arial, sans-serif;
+  font-size:30px;
+  line-height:1.05;
+  margin-bottom:18px;
+  animation:shock .8s ease-out, colorFlash .4s linear;
+}
+
+/* ===== CLUE ===== */
+.clue{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:14px;
+  opacity:0;
+  transform:scale(1.4);
+}
+
+/* zoom blast */
+@keyframes blast {
+  0%{opacity:0; transform:scale(1.6);}
+  60%{opacity:1; transform:scale(0.95);}
+  100%{opacity:1; transform:scale(1);}
+}
+
+.show{
+  animation:blast .6s ease-out forwards;
+}
+
+/* ===== BODY ===== */
+.text{
   font-size:14px;
   line-height:1.45;
-  margin-bottom:14px;
   opacity:.85;
 }
 
-.fade{
-  opacity:.35;
-}
-
-/* ===== FLOW LIST ===== */
+/* ===== FLOW ===== */
 .flow{
-  margin-top:18px;
-  font-size:13px;
+  margin-top:20px;
 }
 
 .flow div{
   opacity:0;
+  font-size:13px;
   margin-bottom:6px;
-  transform:translateY(6px);
+  transform:translateY(8px);
 }
 
-.flow div.show{
+.flow div.on{
   opacity:1;
   transform:translateY(0);
-  transition:.3s;
+  transition:.35s;
 }
 
-/* ===== FINAL LINE ===== */
+/* ===== FINAL ===== */
 .final{
   position:absolute;
-  bottom:20px;
+  bottom:22px;
   left:22px;
   right:22px;
-  font-size:14px;
-  font-weight:600;
   text-align:center;
+  font-size:15px;
+  font-weight:700;
 }
 </style>
 </head>
@@ -78,31 +115,24 @@ h1{
 <body>
 <div class="frame">
 
-<h1>LEVEL 3.5 — KENAPA LATIHAN GAGAL</h1>
-
-<div class="block">
-Latihan soal biasa:
+<div class="title">
+KENAPA<br>
+LATIHAN GAGAL
 </div>
 
-<div class="block fade">
-• Jawab<br>
-• Cek benar / salah<br>
-• Ulangi
-</div>
+<div class="clue" id="c1">Latihan banyak</div>
+<div class="clue" id="c2">Nilai tetap</div>
+<div class="clue" id="c3">Karena urutan salah</div>
 
-<div class="block">
-Yang tidak dilatih:
-</div>
-
-<div class="block fade">
-• Urutan berpikir<br>
-• Titik keputusan<br>
-• Kesalahan proses
+<div class="text" style="margin-top:14px">
+Masalahnya bukan soal.<br>
+Tapi proses berpikir yang diulang.
 </div>
 
 <div class="flow" id="flow">
-  <div>Latihan soal → sibuk</div>
-  <div>Sistem berpikir → naik level</div>
+  <div>Jawab cepat → merasa bisa</div>
+  <div>Salah di pola yang sama</div>
+  <div>Latihan ≠ naik level</div>
 </div>
 
 <div class="final">
@@ -113,11 +143,19 @@ Tapi cara berpikir.
 </div>
 
 <script>
-const items = document.querySelectorAll('.flow div');
-items.forEach((it,i)=>{
-  setTimeout(()=>{
-    it.classList.add('show');
-  }, i*600);
+const c1 = document.getElementById('c1');
+const c2 = document.getElementById('c2');
+const c3 = document.getElementById('c3');
+const flow = document.querySelectorAll('#flow div');
+
+/* guide reading */
+setTimeout(()=>c1.classList.add('show'), 800);
+setTimeout(()=>c2.classList.add('show'), 1500);
+setTimeout(()=>c3.classList.add('show'), 2200);
+
+/* flow */
+flow.forEach((f,i)=>{
+  setTimeout(()=>f.classList.add('on'), 3200 + i*600);
 });
 </script>
 
