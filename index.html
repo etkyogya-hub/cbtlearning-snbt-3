@@ -15,7 +15,7 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
 .jawaban div.incorrect { background:#e74c3c; color:#fff; }
 .rationale { background:#333; padding:15px; border-radius:10px; display:none; flex-direction:column; gap:6px; max-height:250px; overflow-y:auto; }
 .rationale div { font-size:13px; line-height:1.4; color:#aaa; }
-.rationale div span { display:inline-block; opacity:0.3; transition: all 0.3s; }
+.rationale div span { display:inline-block; opacity:0.3; position:relative; transition: opacity 0.3s; }
 .hand { position:absolute; width:40px; height:40px; background:url('https://i.ibb.co/6Yp0W0y/hand-click.png') no-repeat center/contain; pointer-events:none; opacity:0; transition:opacity 0.2s ease; }
 .hand.show { opacity:1; }
 /* Colors per step */
@@ -26,6 +26,18 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
 .step5 span { color:#1abc9c; }
 .step6 span { color:#e74c3c; }
 .step7 span { color:#fff; font-weight:600; }
+/* Glimmer effect */
+@keyframes shine {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shine {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 1s ease forwards;
+}
 </style>
 </head>
 <body>
@@ -57,13 +69,11 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
 </div>
 
 <script>
-// Function to split text into spans for per-word animation
+// Function to split text into spans
 function splitTextToSpans(el){
   const words = el.dataset.text.split(' ');
   el.innerHTML = words.map(w => `<span>${w} </span>`).join('');
 }
-
-// Initialize spans
 document.querySelectorAll('.rationale div').forEach(splitTextToSpans);
 
 const answers = document.querySelectorAll(".jawaban div[data-correct]");
@@ -72,15 +82,14 @@ const hand = document.getElementById("hand");
 
 answers.forEach(a=>{
   a.addEventListener("click", e=>{
-    // Reset background jawaban
+    // Reset
     answers.forEach(x=>x.classList.remove('correct','incorrect'));
     if(a.dataset.correct==="true") a.classList.add('correct'); 
     else a.classList.add('incorrect');
 
-    // Show rationale
     rationale.style.display="flex";
 
-    // Hand animation
+    // Hand click
     const rect = a.getBoundingClientRect();
     const parentRect = a.parentElement.getBoundingClientRect();
     hand.style.left = (rect.left - parentRect.left + rect.width - 20)+"px";
@@ -88,15 +97,15 @@ answers.forEach(a=>{
     hand.classList.add("show");
     setTimeout(()=>hand.classList.remove("show"),800);
 
-    // Animate rationale word-by-word
+    // Animate rationale with shine per word
     const steps = rationale.querySelectorAll('div');
-    steps.forEach((step, i)=>{
+    steps.forEach((step,i)=>{
       const spans = step.querySelectorAll('span');
       step.style.opacity = 1;
-      spans.forEach((span, j)=>{
+      spans.forEach((span,j)=>{
         setTimeout(()=>{
-          span.style.opacity = 1;
-        }, (i*700) + (j*120)); // stagger per word
+          span.classList.add('shine');
+        }, (i*700) + (j*150));
       });
     });
   });
