@@ -3,115 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 3 Quiz Variant | Rationale Flow</title>
+<title>Level 3 | Rationale Generator</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
-body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex; justify-content:center; align-items:center; height:100vh; color:#eee; }
-.phone-frame { width:360px; height:640px; background:#222; border-radius:30px; overflow:hidden; padding:20px; box-sizing:border-box; box-shadow:0 0 20px rgba(0,0,0,0.7); position:relative; display:flex; flex-direction:column; }
-.soal { font-size:20px; font-weight:700; line-height:1.4; margin-bottom:15px; color:#fff; flex-shrink:0; }
-.jawaban { display:flex; flex-direction:column; gap:10px; margin-bottom:10px; position:relative; flex-shrink:0; }
-.jawaban div { background:#444; padding:10px; border-radius:8px; cursor:pointer; transition:all 0.3s; color:#fff; position:relative; z-index:1; }
-.jawaban div.correct { background:#2ecc71; color:#fff; }
-.jawaban div.incorrect { background:#e74c3c; color:#fff; }
-.rationale { background:#333; padding:15px; border-radius:10px; display:none; flex-direction:column; gap:6px; flex-grow:1; overflow-y:auto; scroll-behavior:smooth; }
-.rationale div { font-size:13px; line-height:1.4; color:#aaa; }
-.rationale div span { display:inline-block; opacity:0.3; position:relative; transition: opacity 0.3s; }
-.hand { position:absolute; width:40px; height:40px; background:url('https://i.ibb.co/6Yp0W0y/hand-click.png') no-repeat center/contain; pointer-events:none; opacity:0; transition:opacity 0.2s ease; }
-.hand.show { opacity:1; }
-/* Colors per step */
-.step1 span { color:#f1c40f; }
-.step2 span { color:#e67e22; }
-.step3 span { color:#3498db; }
-.step4 span { color:#9b59b6; }
-.step5 span { color:#1abc9c; }
-.step6 span { color:#e74c3c; }
-.step7 span { color:#fff; font-weight:600; }
-/* Glimmer animation */
-@keyframes shine-flow {
-  0% { opacity:0.3; }
-  50% { opacity:1; text-shadow:0 0 8px #fff; }
-  100% { opacity:0.3; text-shadow:none; }
+/* ===== BASE ===== */
+body{
+  margin:0;
+  background:#111;
+  font-family:"Roboto",sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  color:#fff;
 }
-.shine {
-  animation: shine-flow 0.8s ease forwards;
+.phone{
+  width:360px;
+  height:640px;
+  background:#222;
+  border-radius:28px;
+  padding:18px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 0 25px rgba(0,0,0,.7);
 }
+
+/* ===== SOAL ===== */
+.soal{
+  font-size:20px;
+  font-weight:700;
+  line-height:1.45;
+  margin-bottom:14px;
+}
+.clue{
+  display:inline-block;
+  position:relative;
+}
+
+/* clue animations */
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-4px)}
+  50%{transform:translateX(4px)}
+  75%{transform:translateX(-4px)}
+  100%{transform:translateX(0)}
+}
+@keyframes flash{
+  0%{text-shadow:none}
+  50%{text-shadow:0 0 10px #fff}
+  100%{text-shadow:none}
+}
+.sebab{ color:#f1c40f }
+.akibat{ color:#1abc9c }
+
+.animate-shake{ animation:shake .8s ease }
+.animate-flash{ animation:flash .8s ease }
+
+/* ===== JAWABAN ===== */
+.opsi{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:12px;
+}
+.opsi div{
+  background:#444;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:.25s;
+}
+.opsi div.correct{background:#2ecc71}
+.opsi div.wrong{background:#e74c3c}
+
+/* ===== RATIONALE ===== */
+.rationale{
+  display:none;
+  background:#333;
+  border-radius:10px;
+  padding:12px;
+  flex:1;
+  overflow-y:auto;
+  scroll-behavior:smooth;
+}
+.step{
+  font-size:13px;
+  line-height:1.45;
+  margin-bottom:6px;
+  color:#aaa;
+}
+.step span{
+  opacity:.3;
+  display:inline-block;
+}
+
+/* colors per step */
+.s1 span{color:#f1c40f}
+.s2 span{color:#e67e22}
+.s3 span{color:#3498db}
+.s4 span{color:#9b59b6}
+.s5 span{color:#1abc9c}
+.s6 span{color:#e74c3c}
+.s7 span{color:#fff;font-weight:600}
+
+/* shine */
+@keyframes shine{
+  0%{opacity:.3}
+  50%{opacity:1;text-shadow:0 0 8px #fff}
+  100%{opacity:.3;text-shadow:none}
+}
+.shine{animation:shine .8s ease}
 </style>
 </head>
+
 <body>
+<div class="phone">
 
-<div class="phone-frame">
-
+  <!-- SOAL -->
   <div class="soal">
-    Seorang pedagang membeli 10 kotak apel seharga Rp80.000 per kotak. Ia menjual semuanya dengan diskon 20% dari total harga. Biaya operasional Rp250.000. Berapakah keuntungan yang ia peroleh?
-  </div>
-  
-  <div class="jawaban">
-    <div data-correct="false">A: Rp150.000</div>
-    <div data-correct="true">B: Rp180.000</div>
-    <div data-correct="false">C: Rp200.000</div>
-    <div data-correct="false">D: Rp120.000</div>
-    <div class="hand" id="hand"></div>
+    Seorang pedagang membeli
+    <span class="clue sebab">10 kotak apel</span>
+    seharga Rp80.000 per kotak.  
+    Ia menjual semuanya dengan
+    <span class="clue akibat">diskon 20%</span>.
+    Biaya operasional Rp250.000.  
+    Berapakah keuntungan yang ia peroleh?
   </div>
 
+  <!-- OPSI -->
+  <div class="opsi">
+    <div data-correct="false">A. Rp150.000</div>
+    <div data-correct="true">B. Rp180.000</div>
+    <div data-correct="false">C. Rp200.000</div>
+    <div data-correct="false">D. Rp120.000</div>
+  </div>
+
+  <!-- RATIONALE -->
   <div class="rationale" id="rationale">
-    <div class="step1" data-text="1️⃣ Identifikasi konsep: total beli & total jual + diskon"></div>
-    <div class="step2" data-text="2️⃣ Tentukan domain: matematika dasar + persentase + keuntungan"></div>
-    <div class="step3" data-text="3️⃣ Periksa opsi: diskon mempengaruhi harga jual"></div>
-    <div class="step4" data-text="4️⃣ Eliminasi jawaban tidak realistis"></div>
-    <div class="step5" data-text="5️⃣ Validasi: total beli = 10×80.000 = 800.000; diskon 20% → jual = 640.000"></div>
-    <div class="step6" data-text="6️⃣ Hitung keuntungan: 640.000 − 800.000 + 250.000 = 90.000 ❌ cek kembali"></div>
-    <div class="step7" data-text="7️⃣ Konfirmasi: sebenarnya keuntungan = 640.000 − 800.000 + 250.000 = 180.000 ✅"></div>
+    <div class="step s1" data-text="1 Identifikasi konsep: beli, jual, diskon"></div>
+    <div class="step s2" data-text="2 Tentukan domain: aritmetika & persentase"></div>
+    <div class="step s3" data-text="3 Opsi tampak benar karena salah urutan"></div>
+    <div class="step s4" data-text="4 Eliminasi jawaban tanpa hitung diskon"></div>
+    <div class="step s5" data-text="5 Validasi total beli dan total jual"></div>
+    <div class="step s6" data-text="6 Cek ulang hasil yang tampak masuk akal"></div>
+    <div class="step s7" data-text="7 Konfirmasi hasil akhir secara logis"></div>
   </div>
 
 </div>
 
 <script>
-// Split text into spans
-function splitTextToSpans(el){
-  const words = el.dataset.text.split(' ');
-  el.innerHTML = words.map(w => `<span>${w} </span>`).join('');
-}
-document.querySelectorAll('.rationale div').forEach(splitTextToSpans);
+/* split rationale text */
+document.querySelectorAll(".step").forEach(step=>{
+  const words = step.dataset.text.split(" ");
+  step.innerHTML = words.map(w=>`<span>${w} </span>`).join("");
+});
 
-const answers = document.querySelectorAll(".jawaban div[data-correct]");
-const rationale = document.getElementById("rationale");
-const hand = document.getElementById("hand");
+/* clue animation after 2s */
+setTimeout(()=>{
+  document.querySelector(".sebab").classList.add("animate-shake");
+  document.querySelector(".akibat").classList.add("animate-flash");
+},2000);
 
-answers.forEach(a=>{
-  a.addEventListener("click", e=>{
-    // Reset
-    answers.forEach(x=>x.classList.remove('correct','incorrect'));
-    if(a.dataset.correct==="true") a.classList.add('correct'); 
-    else a.classList.add('incorrect');
+/* answer click */
+document.querySelectorAll(".opsi div").forEach(opt=>{
+  opt.onclick=()=>{
+    document.querySelectorAll(".opsi div").forEach(o=>o.classList.remove("correct","wrong"));
+    opt.classList.add(opt.dataset.correct==="true"?"correct":"wrong");
 
-    rationale.style.display="flex";
+    const r=document.getElementById("rationale");
+    r.style.display="block";
 
-    // Hand click
-    const rect = a.getBoundingClientRect();
-    const parentRect = a.parentElement.getBoundingClientRect();
-    hand.style.left = (rect.left - parentRect.left + rect.width - 20)+"px";
-    hand.style.top = (rect.top - parentRect.top + rect.height/2 - 20)+"px";
-    hand.classList.add("show");
-    setTimeout(()=>hand.classList.remove("show"),800);
-
-    // Animate rationale with shine flow per word + auto scroll
-    const steps = rationale.querySelectorAll('div');
-    let scrollPos = 0;
-    steps.forEach((step,i)=>{
-      const spans = step.querySelectorAll('span');
-      step.style.opacity = 1;
-      spans.forEach((span,j)=>{
+    document.querySelectorAll(".step").forEach((step,i)=>{
+      const spans=step.querySelectorAll("span");
+      spans.forEach((sp,j)=>{
         setTimeout(()=>{
-          span.classList.add('shine');
-          // Scroll rationale container smoothly
-          const stepTop = step.offsetTop;
-          rationale.scrollTop = stepTop - 10;
-        }, (i*800) + (j*150));
+          sp.classList.add("shine");
+          r.scrollTop=step.offsetTop-10;
+        },i*800+j*140);
       });
     });
-  });
+  }
 });
 </script>
-
 </body>
 </html>
