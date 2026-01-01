@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 3 Quiz Variant | Rationale Generator Shine Flow</title>
+<title>Level 3 Quiz Variant | Rationale Flow</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex; justify-content:center; align-items:center; height:100vh; color:#eee; }
-.phone-frame { width:360px; background:#222; border-radius:30px; overflow:hidden; padding:20px; box-sizing:border-box; box-shadow:0 0 20px rgba(0,0,0,0.7); position:relative; }
-.soal { font-size:20px; font-weight:700; line-height:1.4; margin-bottom:15px; color:#fff; }
-.jawaban { display:flex; flex-direction:column; gap:10px; margin-bottom:15px; position:relative; }
+.phone-frame { width:360px; height:640px; background:#222; border-radius:30px; overflow:hidden; padding:20px; box-sizing:border-box; box-shadow:0 0 20px rgba(0,0,0,0.7); position:relative; display:flex; flex-direction:column; }
+.soal { font-size:20px; font-weight:700; line-height:1.4; margin-bottom:15px; color:#fff; flex-shrink:0; }
+.jawaban { display:flex; flex-direction:column; gap:10px; margin-bottom:10px; position:relative; flex-shrink:0; }
 .jawaban div { background:#444; padding:10px; border-radius:8px; cursor:pointer; transition:all 0.3s; color:#fff; position:relative; z-index:1; }
 .jawaban div.correct { background:#2ecc71; color:#fff; }
 .jawaban div.incorrect { background:#e74c3c; color:#fff; }
-.rationale { background:#333; padding:15px; border-radius:10px; display:none; flex-direction:column; gap:6px; max-height:250px; overflow-y:auto; }
+.rationale { background:#333; padding:15px; border-radius:10px; display:none; flex-direction:column; gap:6px; flex-grow:1; overflow-y:auto; scroll-behavior:smooth; }
 .rationale div { font-size:13px; line-height:1.4; color:#aaa; }
 .rationale div span { display:inline-block; opacity:0.3; position:relative; transition: opacity 0.3s; }
 .hand { position:absolute; width:40px; height:40px; background:url('https://i.ibb.co/6Yp0W0y/hand-click.png') no-repeat center/contain; pointer-events:none; opacity:0; transition:opacity 0.2s ease; }
@@ -94,14 +94,18 @@ answers.forEach(a=>{
     hand.classList.add("show");
     setTimeout(()=>hand.classList.remove("show"),800);
 
-    // Animate rationale with shine flow per word
+    // Animate rationale with shine flow per word + auto scroll
     const steps = rationale.querySelectorAll('div');
+    let scrollPos = 0;
     steps.forEach((step,i)=>{
       const spans = step.querySelectorAll('span');
       step.style.opacity = 1;
       spans.forEach((span,j)=>{
         setTimeout(()=>{
           span.classList.add('shine');
+          // Scroll rationale container smoothly
+          const stepTop = step.offsetTop;
+          rationale.scrollTop = stepTop - 10;
         }, (i*800) + (j*150));
       });
     });
