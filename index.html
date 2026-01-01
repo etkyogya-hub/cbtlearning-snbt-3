@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Level 3.4 – Rationale 7 Langkah (Dipotong)</title>
+  <title>Level 3.5 – Perlu Trainer System</title>
   <style>
     body {
       margin: 0;
@@ -15,7 +15,6 @@
       height: 100vh;
       color: #eee;
     }
-
     .phone-frame {
       width: 360px;
       height: 640px;
@@ -25,7 +24,6 @@
       position: relative;
       box-shadow: 0 0 30px rgba(0,0,0,0.7);
     }
-
     .screen {
       width: 100%;
       height: 100%;
@@ -33,7 +31,6 @@
       padding: 20px;
       box-sizing: border-box;
     }
-
     .soal {
       font-size: 16px;
       line-height: 1.5;
@@ -43,12 +40,10 @@
       margin-bottom: 20px;
       transition: transform 0.5s ease, background 0.5s ease;
     }
-
     .highlight {
       background: #444;
       transition: background 0.3s ease;
     }
-
     .text-overlay {
       position: absolute;
       bottom: 20px;
@@ -59,11 +54,9 @@
       opacity: 0;
       transition: opacity 0.5s ease;
     }
-
     .fade-in {
       opacity: 1 !important;
     }
-
     .list-small {
       position: absolute;
       top: 10px;
@@ -76,7 +69,6 @@
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-
     .list-small.show {
       opacity: 1;
     }
@@ -87,18 +79,15 @@
 <div class="phone-frame">
   <div class="screen">
     <div class="soal" id="soal">
-      Mari lihat Rationale singkatnya.
+      Latihan biasa sering gagal…
       <br><br>
-      Seorang pegawai harus menyelesaikan target 100 unit/hari. Bagaimana cara menilai produktivitasnya?
+      Seorang peserta berlatih soal 100 kali, tapi tetap salah urut langkah.
     </div>
 
-    <div class="text-overlay" id="overlay1">Langkah 1: Identifikasi konsep</div>
-    <div class="text-overlay" id="overlay2">Langkah 2: Tentukan domain</div>
-    <div class="text-overlay" id="overlay3">Langkah 3: Periksa opsi</div>
-    <div class="text-overlay" id="overlay4">Langkah 4: Eliminasi</div>
-    <div class="text-overlay" id="overlay5">Langkah 5: Validasi</div>
-    <div class="text-overlay" id="overlay6">Langkah 6–7: Logika & Konfirmasi</div>
-    <div class="text-overlay" id="overlay7">Rationale singkat ini membentuk urutan berpikir yang benar.</div>
+    <div class="text-overlay" id="overlay1">Hanya mengandalkan jawaban cepat, bukan proses berpikir.</div>
+    <div class="text-overlay" id="overlay2">Urutan berpikir yang sistematis lebih penting daripada menghafal jawaban.</div>
+    <div class="text-overlay" id="overlay3">Dengan trainer system → latihan menjadi efektif.</div>
+    <div class="text-overlay" id="overlay4">Latihan bukan soal. Tapi sistem berpikir yang benar.</div>
 
     <div class="list-small" id="list-small">
       <div>Konsep</div>
@@ -117,23 +106,16 @@
     document.getElementById('overlay1'),
     document.getElementById('overlay2'),
     document.getElementById('overlay3'),
-    document.getElementById('overlay4'),
-    document.getElementById('overlay5'),
-    document.getElementById('overlay6'),
-    document.getElementById('overlay7'),
+    document.getElementById('overlay4')
   ];
   const soal = document.getElementById('soal');
   const listSmall = document.getElementById('list-small');
 
-  // Timeline dalam milidetik
-  setTimeout(() => overlays[0].classList.add('fade-in'), 1500);   // langkah 1
-  setTimeout(() => { overlays[0].classList.remove('fade-in'); overlays[1].classList.add('fade-in'); soal.style.transform='scale(1.05)'; }, 3000);
-  setTimeout(() => { overlays[1].classList.remove('fade-in'); overlays[2].classList.add('fade-in'); }, 4500);
-  setTimeout(() => { overlays[2].classList.remove('fade-in'); overlays[3].classList.add('fade-in'); }, 6000);
-  setTimeout(() => { overlays[3].classList.remove('fade-in'); overlays[4].classList.add('fade-in'); }, 7500);
-  setTimeout(() => { overlays[4].classList.remove('fade-in'); overlays[5].classList.add('fade-in'); }, 9000);
-  setTimeout(() => { overlays[5].classList.remove('fade-in'); overlays[6].classList.add('fade-in'); listSmall.classList.add('show'); }, 12000);
-  setTimeout(() => overlays[6].classList.remove('fade-in'), 18000); // diam terakhir
+  setTimeout(() => overlays[0].classList.add('fade-in'), 1500);
+  setTimeout(() => { overlays[0].classList.remove('fade-in'); overlays[1].classList.add('fade-in'); soal.style.transform='scale(1.05)'; }, 5000);
+  setTimeout(() => { overlays[1].classList.remove('fade-in'); overlays[2].classList.add('fade-in'); }, 10000);
+  setTimeout(() => { overlays[2].classList.remove('fade-in'); overlays[3].classList.add('fade-in'); listSmall.classList.add('show'); }, 14000);
+  setTimeout(() => overlays[3].classList.remove('fade-in'), 16000); // STOP diam 1 detik
 </script>
 
 </body>
