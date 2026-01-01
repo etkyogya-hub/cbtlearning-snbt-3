@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 3 Quiz Variant | Rationale Generator</title>
+<title>Level 3 Quiz Variant | Rationale Generator Gleam</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex; justify-content:center; align-items:center; height:100vh; color:#eee; }
@@ -14,17 +14,18 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
 .jawaban div.correct { background:#2ecc71; color:#fff; }
 .jawaban div.incorrect { background:#e74c3c; color:#fff; }
 .rationale { background:#333; padding:15px; border-radius:10px; display:none; flex-direction:column; gap:6px; max-height:250px; overflow-y:auto; }
-.rationale div { font-size:13px; line-height:1.4; }
-.rationale div.step1 { color:#f1c40f; font-weight:500; }
-.rationale div.step2 { color:#e67e22; }
-.rationale div.step3 { color:#3498db; }
-.rationale div.step4 { color:#9b59b6; }
-.rationale div.step5 { color:#1abc9c; }
-.rationale div.step6 { color:#e74c3c; }
-.rationale div.step7 { color:#95a5a6; font-style:italic; }
-/* Tangan klik */
+.rationale div { font-size:13px; line-height:1.4; color:#aaa; }
+.rationale div span { display:inline-block; opacity:0.3; transition: all 0.3s; }
 .hand { position:absolute; width:40px; height:40px; background:url('https://i.ibb.co/6Yp0W0y/hand-click.png') no-repeat center/contain; pointer-events:none; opacity:0; transition:opacity 0.2s ease; }
 .hand.show { opacity:1; }
+/* Colors per step */
+.step1 span { color:#f1c40f; }
+.step2 span { color:#e67e22; }
+.step3 span { color:#3498db; }
+.step4 span { color:#9b59b6; }
+.step5 span { color:#1abc9c; }
+.step6 span { color:#e74c3c; }
+.step7 span { color:#fff; font-weight:600; }
 </style>
 </head>
 <body>
@@ -44,18 +45,27 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
   </div>
 
   <div class="rationale" id="rationale">
-    <div class="step1">1️⃣ Identifikasi konsep: total beli & total jual + diskon</div>
-    <div class="step2">2️⃣ Tentukan domain: matematika dasar + persentase + keuntungan</div>
-    <div class="step3">3️⃣ Periksa opsi: diskon mempengaruhi harga jual</div>
-    <div class="step4">4️⃣ Eliminasi jawaban tidak realistis</div>
-    <div class="step5">5️⃣ Validasi: total beli = 10×80.000 = 800.000; diskon 20% → jual = 640.000</div>
-    <div class="step6">6️⃣ Hitung keuntungan: 640.000 − 800.000 + 250.000 = 90.000 ❌ cek kembali</div>
-    <div class="step7">7️⃣ Konfirmasi: sebenarnya keuntungan = 640.000 − 800.000 + 250.000 = 180.000 ✅</div>
+    <div class="step1" data-text="1️⃣ Identifikasi konsep: total beli & total jual + diskon"></div>
+    <div class="step2" data-text="2️⃣ Tentukan domain: matematika dasar + persentase + keuntungan"></div>
+    <div class="step3" data-text="3️⃣ Periksa opsi: diskon mempengaruhi harga jual"></div>
+    <div class="step4" data-text="4️⃣ Eliminasi jawaban tidak realistis"></div>
+    <div class="step5" data-text="5️⃣ Validasi: total beli = 10×80.000 = 800.000; diskon 20% → jual = 640.000"></div>
+    <div class="step6" data-text="6️⃣ Hitung keuntungan: 640.000 − 800.000 + 250.000 = 90.000 ❌ cek kembali"></div>
+    <div class="step7" data-text="7️⃣ Konfirmasi: sebenarnya keuntungan = 640.000 − 800.000 + 250.000 = 180.000 ✅"></div>
   </div>
 
 </div>
 
 <script>
+// Function to split text into spans for per-word animation
+function splitTextToSpans(el){
+  const words = el.dataset.text.split(' ');
+  el.innerHTML = words.map(w => `<span>${w} </span>`).join('');
+}
+
+// Initialize spans
+document.querySelectorAll('.rationale div').forEach(splitTextToSpans);
+
 const answers = document.querySelectorAll(".jawaban div[data-correct]");
 const rationale = document.getElementById("rationale");
 const hand = document.getElementById("hand");
@@ -64,23 +74,31 @@ answers.forEach(a=>{
   a.addEventListener("click", e=>{
     // Reset background jawaban
     answers.forEach(x=>x.classList.remove('correct','incorrect'));
-    
-    // Set jawaban benar / salah
     if(a.dataset.correct==="true") a.classList.add('correct'); 
     else a.classList.add('incorrect');
 
-    // Tampilkan rationale
+    // Show rationale
     rationale.style.display="flex";
 
-    // Tampilkan tangan klik di posisi jawaban
+    // Hand animation
     const rect = a.getBoundingClientRect();
     const parentRect = a.parentElement.getBoundingClientRect();
     hand.style.left = (rect.left - parentRect.left + rect.width - 20)+"px";
     hand.style.top = (rect.top - parentRect.top + rect.height/2 - 20)+"px";
     hand.classList.add("show");
-    
-    // Hapus tangan setelah 800ms
     setTimeout(()=>hand.classList.remove("show"),800);
+
+    // Animate rationale word-by-word
+    const steps = rationale.querySelectorAll('div');
+    steps.forEach((step, i)=>{
+      const spans = step.querySelectorAll('span');
+      step.style.opacity = 1;
+      spans.forEach((span, j)=>{
+        setTimeout(()=>{
+          span.style.opacity = 1;
+        }, (i*700) + (j*120)); // stagger per word
+      });
+    });
   });
 });
 </script>
