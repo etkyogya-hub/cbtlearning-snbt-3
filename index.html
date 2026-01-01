@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rationale Generator Example</title>
+<title>Rationale Generator Interaktif</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex; justify-content:center; align-items:center; height:100vh; color:#eee; }
-.phone-frame { width:360px; background:#222; border-radius:30px; overflow:hidden; padding:20px; box-sizing:border-box; box-shadow:0 0 20px rgba(0,0,0,0.7); }
+.phone-frame { width:360px; background:#222; border-radius:30px; overflow:hidden; padding:20px; box-sizing:border-box; box-shadow:0 0 20px rgba(0,0,0,0.7); position:relative; }
 .soal { font-size:20px; font-weight:700; line-height:1.4; margin-bottom:15px; color:#fff; }
-.jawaban { display:flex; flex-direction:column; gap:10px; margin-bottom:15px; }
-.jawaban div { background:#444; padding:10px; border-radius:8px; cursor:pointer; transition:all 0.3s; }
+.jawaban { display:flex; flex-direction:column; gap:10px; margin-bottom:15px; position:relative; }
+.jawaban div { background:#444; padding:10px; border-radius:8px; cursor:pointer; transition:all 0.3s; color:#fff; position:relative; z-index:1; }
 .jawaban div.correct { background:#2ecc71; color:#fff; }
-.rationale { background:#333; padding:15px; border-radius:10px; display:none; flex-direction:column; gap:6px; }
+.jawaban div.incorrect { background:#e74c3c; color:#fff; }
+.rationale { background:#333; padding:15px; border-radius:10px; display:none; flex-direction:column; gap:6px; max-height:250px; overflow-y:auto; }
 .rationale div { font-size:13px; line-height:1.4; }
 .rationale div.step1 { color:#f1c40f; font-weight:500; }
 .rationale div.step2 { color:#e67e22; }
@@ -21,6 +22,9 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
 .rationale div.step5 { color:#1abc9c; }
 .rationale div.step6 { color:#e74c3c; }
 .rationale div.step7 { color:#95a5a6; font-style:italic; }
+/* Tangan klik */
+.hand { position:absolute; width:40px; height:40px; background:url('https://i.ibb.co/6Yp0W0y/hand-click.png') no-repeat center/contain; pointer-events:none; opacity:0; transition:opacity 0.2s ease; }
+.hand.show { opacity:1; }
 </style>
 </head>
 <body>
@@ -34,6 +38,7 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
     <div data-correct="true">B: Rp90.000</div>
     <div data-correct="false">C: Rp100.000</div>
     <div data-correct="false">D: Rp80.000</div>
+    <div class="hand" id="hand"></div>
   </div>
 
   <div class="rationale" id="rationale">
@@ -49,15 +54,31 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
 </div>
 
 <script>
-// klik jawaban → tampilkan rationale
-const answers = document.querySelectorAll(".jawaban div");
+const answers = document.querySelectorAll(".jawaban div[data-correct]");
 const rationale = document.getElementById("rationale");
+const hand = document.getElementById("hand");
 
 answers.forEach(a=>{
-  a.addEventListener("click", ()=>{
-    answers.forEach(x=>x.style.background="#444"); // reset
-    a.style.background = a.dataset.correct==="true" ? "#2ecc71" : "#e74c3c";
-    rationale.style.display = "flex";
+  a.addEventListener("click", e=>{
+    // Reset background jawaban
+    answers.forEach(x=>x.classList.remove('correct','incorrect'));
+    
+    // Set jawaban benar / salah
+    if(a.dataset.correct==="true") a.classList.add('correct'); 
+    else a.classList.add('incorrect');
+
+    // Tampilkan rationale
+    rationale.style.display="flex";
+
+    // Tampilkan tangan klik di posisi jawaban
+    const rect = a.getBoundingClientRect();
+    const parentRect = a.parentElement.getBoundingClientRect();
+    hand.style.left = (rect.left - parentRect.left + rect.width - 20)+"px";
+    hand.style.top = (rect.top - parentRect.top + rect.height/2 - 20)+"px";
+    hand.classList.add("show");
+    
+    // Hapus tangan setelah 800ms
+    setTimeout(()=>hand.classList.remove("show"),800);
   });
 });
 </script>
