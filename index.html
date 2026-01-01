@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 3 Quiz Variant | Rationale Generator Gleam</title>
+<title>Level 3 Quiz Variant | Rationale Generator Shine Flow</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex; justify-content:center; align-items:center; height:100vh; color:#eee; }
@@ -26,17 +26,14 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
 .step5 span { color:#1abc9c; }
 .step6 span { color:#e74c3c; }
 .step7 span { color:#fff; font-weight:600; }
-/* Glimmer effect */
-@keyframes shine {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+/* Glimmer animation */
+@keyframes shine-flow {
+  0% { opacity:0.3; }
+  50% { opacity:1; text-shadow:0 0 8px #fff; }
+  100% { opacity:0.3; text-shadow:none; }
 }
 .shine {
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 1s ease forwards;
+  animation: shine-flow 0.8s ease forwards;
 }
 </style>
 </head>
@@ -69,7 +66,7 @@ body { margin:0; font-family:"Roboto", sans-serif; background:#111; display:flex
 </div>
 
 <script>
-// Function to split text into spans
+// Split text into spans
 function splitTextToSpans(el){
   const words = el.dataset.text.split(' ');
   el.innerHTML = words.map(w => `<span>${w} </span>`).join('');
@@ -97,7 +94,7 @@ answers.forEach(a=>{
     hand.classList.add("show");
     setTimeout(()=>hand.classList.remove("show"),800);
 
-    // Animate rationale with shine per word
+    // Animate rationale with shine flow per word
     const steps = rationale.querySelectorAll('div');
     steps.forEach((step,i)=>{
       const spans = step.querySelectorAll('span');
@@ -105,7 +102,7 @@ answers.forEach(a=>{
       spans.forEach((span,j)=>{
         setTimeout(()=>{
           span.classList.add('shine');
-        }, (i*700) + (j*150));
+        }, (i*800) + (j*150));
       });
     });
   });
