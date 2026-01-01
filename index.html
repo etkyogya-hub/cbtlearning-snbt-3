@@ -1,121 +1,182 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Level 3.5 – Perlu Trainer System</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: #111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #eee;
-    }
-    .phone-frame {
-      width: 360px;
-      height: 640px;
-      background: #222;
-      border-radius: 40px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 0 30px rgba(0,0,0,0.7);
-    }
-    .screen {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .soal {
-      font-size: 16px;
-      line-height: 1.5;
-      background: #333;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      transition: transform 0.5s ease, background 0.5s ease;
-    }
-    .highlight {
-      background: #444;
-      transition: background 0.3s ease;
-    }
-    .text-overlay {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      font-size: 14px;
-      line-height: 1.4;
-      max-width: 320px;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .fade-in {
-      opacity: 1 !important;
-    }
-    .list-small {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 10px;
-      color: #aaa;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .list-small.show {
-      opacity: 1;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CORE SERIES Level 3 - Final Clean</title>
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #eee;
+}
+.phone-frame {
+  width: 360px;
+  height: 640px;
+  background: #222;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
+.screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.soal {
+  font-size: 16px;
+  line-height: 1.5;
+  background: #333;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: transform 0.5s ease, background 0.5s ease;
+}
+.highlight { background: #444; transition: background 0.3s ease; }
+.jawaban { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.jawaban div { background: #555; padding: 10px; border-radius: 8px; cursor: pointer; transition: background 0.3s ease; }
+.jawaban div.correct { background: #2ecc71; color: #fff; }
+.text-overlay { position: absolute; bottom: 20px; left: 20px; font-size: 14px; line-height: 1.4; max-width: 320px; opacity: 0; transition: opacity 0.5s ease; }
+.fade-in { opacity: 1 !important; }
+.list-small { position: absolute; top: 10px; right: 10px; font-size: 10px; color: #aaa; display: flex; flex-direction: column; gap: 2px; opacity: 0; transition: opacity 0.3s ease; }
+.list-small.show { opacity: 1; }
+.level { display: none; }
+.level.active { display: block; }
+</style>
 </head>
 <body>
 
 <div class="phone-frame">
-  <div class="screen">
-    <div class="soal" id="soal">
-      Latihan biasa sering gagal…
-      <br><br>
-      Seorang peserta berlatih soal 100 kali, tapi tetap salah urut langkah.
+
+  <!-- ===== LEVEL 3.1: Salah Baca Soal ===== -->
+  <div class="screen level" id="level3-1">
+    <div class="soal">Soal ini sering dianggap mudah…</div>
+    <div class="jawaban">
+      <div>A: 60 km</div>
+      <div>B: 120 km</div>
+      <div>C: 180 km</div>
+      <div>D: 240 km</div>
     </div>
-
-    <div class="text-overlay" id="overlay1">Hanya mengandalkan jawaban cepat, bukan proses berpikir.</div>
-    <div class="text-overlay" id="overlay2">Urutan berpikir yang sistematis lebih penting daripada menghafal jawaban.</div>
-    <div class="text-overlay" id="overlay3">Dengan trainer system → latihan menjadi efektif.</div>
-    <div class="text-overlay" id="overlay4">Latihan bukan soal. Tapi sistem berpikir yang benar.</div>
-
-    <div class="list-small" id="list-small">
-      <div>Konsep</div>
-      <div>Domain</div>
-      <div>Opsi</div>
-      <div>Eliminasi</div>
-      <div>Validasi</div>
-      <div>Logika</div>
-      <div>Konfirmasi</div>
+    <div class="text-overlay" id="overlay1-1">Langsung jawab. Tanpa membaca struktur.</div>
+    <div class="text-overlay" id="overlay1-2">Soal selalu meminta ini dulu.</div>
+    <div class="text-overlay" id="overlay1-3">Bukan lebih pintar. Lebih teratur.</div>
+    <div class="text-overlay" id="overlay1-4">Yang dilatih bukan soal. Tapi urutan berpikir.</div>
+    <div class="list-small" id="list1">
+      <div>Konsep</div><div>Domain</div><div>Opsi</div><div>Eliminasi</div><div>Validasi</div><div>Logika</div><div>Konfirmasi</div>
     </div>
   </div>
+
+  <!-- ===== LEVEL 3.2: Salah Pilih Konsep ===== -->
+  <div class="screen level" id="level3-2">
+    <div class="soal">Salah pilih konsep sering terjadi…</div>
+    <div class="jawaban">
+      <div>A: Konsep Salah</div>
+      <div>B: Konsep Benar</div>
+      <div>C: Konsep Distractor</div>
+    </div>
+    <div class="text-overlay" id="overlay2-1">Memilih domain keliru → jawaban salah.</div>
+    <div class="text-overlay" id="overlay2-2">Langkah logis memeriksa konsep sangat penting.</div>
+    <div class="text-overlay" id="overlay2-3">Urutan berpikir lebih penting daripada jawaban instan.</div>
+    <div class="list-small" id="list2">
+      <div>Konsep</div><div>Domain</div><div>Opsi</div><div>Eliminasi</div><div>Validasi</div><div>Logika</div><div>Konfirmasi</div>
+    </div>
+  </div>
+
+  <!-- ===== LEVEL 3.3: Terjebak Opsi Tampak Benar ===== -->
+  <div class="screen level" id="level3-3">
+    <div class="soal">Soal ini terlihat gampang… tapi hati-hati.</div>
+    <div class="jawaban">
+      <div>A: 60 km</div>
+      <div>B: 120 km</div>
+      <div>C: 180 km</div>
+      <div>D: 240 km</div>
+    </div>
+    <div class="text-overlay" id="overlay3-1">Terjebak jawaban yang tampak benar.</div>
+    <div class="text-overlay" id="overlay3-2">Cek tiap opsi. Mana benar-benar sesuai soal?</div>
+    <div class="text-overlay" id="overlay3-3">Bukan lebih pintar. Lebih teliti memilih opsi.</div>
+    <div class="text-overlay" id="overlay3-4">Yang dilatih bukan soal. Tapi kemampuan eliminasi & logika.</div>
+    <div class="list-small" id="list3">
+      <div>Konsep</div><div>Domain</div><div>Opsi</div><div>Eliminasi</div><div>Validasi</div><div>Logika</div><div>Konfirmasi</div>
+    </div>
+  </div>
+
+  <!-- ===== LEVEL 3.4: Rationale Singkat ===== -->
+  <div class="screen level" id="level3-4">
+    <div class="soal">Mari lihat Rationale singkatnya.</div>
+    <div class="text-overlay" id="overlay4-1">Langkah 1: Identifikasi konsep</div>
+    <div class="text-overlay" id="overlay4-2">Langkah 2: Tentukan domain</div>
+    <div class="text-overlay" id="overlay4-3">Langkah 3: Periksa opsi</div>
+    <div class="text-overlay" id="overlay4-4">Langkah 4: Eliminasi</div>
+    <div class="text-overlay" id="overlay4-5">Langkah 5: Validasi</div>
+    <div class="text-overlay" id="overlay4-6">Langkah 6–7: Logika & Konfirmasi</div>
+    <div class="text-overlay" id="overlay4-7">Rationale singkat ini membentuk urutan berpikir yang benar.</div>
+    <div class="list-small" id="list4">
+      <div>Konsep</div><div>Domain</div><div>Opsi</div><div>Eliminasi</div><div>Validasi</div><div>Logika</div><div>Konfirmasi</div>
+    </div>
+  </div>
+
+  <!-- ===== LEVEL 3.5: Kenapa Latihan Biasa Gagal ===== -->
+  <div class="screen level" id="level3-5">
+    <div class="soal">Latihan biasa sering gagal…</div>
+    <div class="jawaban">
+      <div>A: Jawaban Instan</div>
+      <div>B: Jawaban Sistematis</div>
+    </div>
+    <div class="text-overlay" id="overlay5-1">Hanya mengandalkan jawaban cepat, bukan proses berpikir.</div>
+    <div class="text-overlay" id="overlay5-2">Urutan berpikir yang sistematis lebih penting daripada menghafal jawaban.</div>
+    <div class="text-overlay" id="overlay5-3">Dengan trainer system → latihan menjadi efektif.</div>
+    <div class="text-overlay" id="overlay5-4">Latihan bukan soal. Tapi sistem berpikir yang benar.</div>
+    <div class="list-small" id="list5">
+      <div>Konsep</div><div>Domain</div><div>Opsi</div><div>Eliminasi</div><div>Validasi</div><div>Logika</div><div>Konfirmasi</div>
+    </div>
+  </div>
+
 </div>
 
 <script>
-  const overlays = [
-    document.getElementById('overlay1'),
-    document.getElementById('overlay2'),
-    document.getElementById('overlay3'),
-    document.getElementById('overlay4')
-  ];
-  const soal = document.getElementById('soal');
-  const listSmall = document.getElementById('list-small');
-
-  setTimeout(() => overlays[0].classList.add('fade-in'), 1500);
-  setTimeout(() => { overlays[0].classList.remove('fade-in'); overlays[1].classList.add('fade-in'); soal.style.transform='scale(1.05)'; }, 5000);
-  setTimeout(() => { overlays[1].classList.remove('fade-in'); overlays[2].classList.add('fade-in'); }, 10000);
-  setTimeout(() => { overlays[2].classList.remove('fade-in'); overlays[3].classList.add('fade-in'); listSmall.classList.add('show'); }, 14000);
-  setTimeout(() => overlays[3].classList.remove('fade-in'), 16000); // STOP diam 1 detik
+const levels = ["level3-1","level3-2","level3-3","level3-4","level3-5"];
+function showLevel(idx){
+  levels.forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById(levels[idx]).classList.add('active');
+}
+function runLevel(idx){
+  showLevel(idx);
+  const level = document.getElementById(levels[idx]);
+  const overlays = level.querySelectorAll(".text-overlay");
+  const listSmall = level.querySelector(".list-small");
+  overlays.forEach(o=>o.classList.remove('fade-in'));
+  if(listSmall) listSmall.classList.remove('show');
+  
+  let timeline=[];
+  switch(idx){
+    case 0: timeline=[1500, 3000, 7500, 11500]; break;
+    case 1: timeline=[1500, 4500, 7500]; break;
+    case 2: timeline=[1500, 4000, 7500, 11500]; break;
+    case 3: timeline=[1500, 3000, 4500, 6000, 7500, 9000, 12000]; break;
+    case 4: timeline=[1500, 5000, 10000, 14000]; break;
+  }
+  
+  overlays.forEach((o,i)=>{
+    setTimeout(()=>{
+      overlays.forEach(x=>x.classList.remove('fade-in'));
+      o.classList.add('fade-in');
+      if(i===overlays.length-1 && listSmall) listSmall.classList.add('show');
+    }, timeline[i] || (i*2000));
+  });
+  
+  setTimeout(()=>{
+    if(idx<levels.length-1) runLevel(idx+1);
+  },18000);
+}
+runLevel(0);
 </script>
 
 </body>
