@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CBT Learning – Level 3</title>
+<title>Level 4 – Trainer Mode</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
-  background:#050505;
+  background:#030303;
   color:#fff;
   font-family:Arial, sans-serif;
   display:flex;
@@ -29,71 +29,73 @@ body{
   overflow:hidden;
 }
 
-/* ===== PATTERN BREAK ===== */
-@keyframes shock {
-  0%{transform:scale(1.6); filter:brightness(3);}
-  40%{transform:scale(0.9); filter:brightness(0.7);}
-  70%{transform:scale(1.05); filter:brightness(1.4);}
-  100%{transform:scale(1); filter:none;}
-}
-
-@keyframes colorFlash {
-  0%{color:#fff;}
-  50%{color:#ff2d2d;}
-  100%{color:#fff;}
-}
-
 /* ===== TITLE ===== */
 .title{
   font-family:'Anton', Arial, sans-serif;
-  font-size:30px;
+  font-size:28px;
   line-height:1.05;
-  margin-bottom:18px;
-  animation:shock .8s ease-out, colorFlash .4s linear;
+  margin-bottom:16px;
 }
 
-/* ===== CLUE ===== */
-.clue{
-  font-size:18px;
-  font-weight:700;
-  margin-bottom:14px;
-  opacity:0;
-  transform:scale(1.4);
-}
-
-@keyframes blast {
-  0%{opacity:0; transform:scale(1.6);}
-  60%{opacity:1; transform:scale(0.95);}
-  100%{opacity:1; transform:scale(1);}
-}
-
-.show{
-  animation:blast .6s ease-out forwards;
-}
-
-/* ===== BODY ===== */
-.text{
+/* ===== TIMER ===== */
+.timer{
+  position:absolute;
+  top:14px;
+  right:18px;
   font-size:14px;
+  font-weight:700;
+  color:#ff3b3b;
+  animation: blink .8s infinite;
+}
+
+@keyframes blink{
+  0%,50%{opacity:1;}
+  51%,100%{opacity:.3;}
+}
+
+/* ===== QUESTION ===== */
+.question{
+  font-size:15px;
   line-height:1.45;
-  opacity:.85;
+  margin-bottom:18px;
 }
 
-/* ===== FLOW ===== */
-.flow{
-  margin-top:20px;
+/* ===== OPTIONS ===== */
+.options div{
+  border:1px solid #333;
+  padding:10px;
+  margin-bottom:8px;
+  font-size:14px;
+  opacity:.75;
 }
 
-.flow div{
-  opacity:0;
+/* ===== PRESSURE ===== */
+@keyframes shake{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(-2px);}
+  50%{transform:translateX(2px);}
+  75%{transform:translateX(-2px);}
+  100%{transform:translateX(0);}
+}
+
+.pressure{
+  animation: shake .3s infinite;
+}
+
+/* ===== RESULT ===== */
+.result{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:16px;
+  background:#000;
   font-size:13px;
-  margin-bottom:6px;
-  transform:translateY(8px);
+  display:none;
 }
 
-.flow div.on{
-  opacity:1;
-  transform:translateY(0);
-  transition:.35s;
+.result.show{
+  display:block;
 }
 
 /* ===== FINAL ===== */
@@ -105,58 +107,61 @@ body{
   text-align:center;
   font-size:15px;
   font-weight:700;
+  opacity:0;
 }
+.final.on{opacity:1; transition:.4s;}
 </style>
 </head>
 
 <body>
 <div class="frame">
 
-<!-- ===== EDIT HERE ===== -->
+<div class="timer">⏱ 00:07</div>
+
 <div class="title">
-SALAH<br>
-BACA SOAL
+TRAINER MODE
 </div>
 
-<div class="clue" id="c1">Langsung jawab</div>
-<div class="clue" id="c2">Merasa familiar</div>
-<div class="clue" id="c3">Urutan dilewati</div>
-
-<div class="text" style="margin-top:14px">
-Kesalahan bukan di otak.<br>
-Tapi di langkah yang dilompati.
+<div class="question">
+Jika suatu pekerjaan diselesaikan A dalam 4 hari
+dan B dalam 6 hari,
+berapa hari jika bekerja bersama?
 </div>
 
-<div class="flow" id="flow">
-  <div>Baca cepat → yakin</div>
-  <div>Salah di pola sama</div>
-  <div>Nilai tidak naik</div>
+<div class="options pressure" id="options">
+  <div>A. 5 hari</div>
+  <div>B. 4 hari</div>
+  <div>C. 2.4 hari</div>
+  <div>D. 10 hari</div>
 </div>
 
-<div class="final">
-Yang dilatih bukan soal.<br>
-Tapi urutan berpikir.
+<div class="result" id="result">
+Keputusan diambil terlalu cepat.<br>
+Yang dihitung waktu, bukan laju.
 </div>
-<!-- ===== STOP EDIT ===== -->
+
+<div class="final" id="final">
+Di ujian, waktu menekan.<br>
+Tanpa sistem, salah di detik awal.
+</div>
 
 </div>
 
 <script>
-const clues = [
-  document.getElementById('c1'),
-  document.getElementById('c2'),
-  document.getElementById('c3')
-];
+const options = document.getElementById('options');
+const result = document.getElementById('result');
+const final = document.getElementById('final');
 
-const flow = document.querySelectorAll('#flow div');
+/* stop pressure & reveal */
+setTimeout(()=>{
+  options.classList.remove('pressure');
+  result.classList.add('show');
+}, 4500);
 
-setTimeout(()=>clues[0].classList.add('show'), 800);
-setTimeout(()=>clues[1].classList.add('show'), 1500);
-setTimeout(()=>clues[2].classList.add('show'), 2200);
-
-flow.forEach((f,i)=>{
-  setTimeout(()=>f.classList.add('on'), 3200 + i*600);
-});
+/* final lock */
+setTimeout(()=>{
+  final.classList.add('on');
+}, 6500);
 </script>
 
 </body>
