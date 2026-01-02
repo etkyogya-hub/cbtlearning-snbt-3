@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 4 – Trainer Mode</title>
+<title>Level 4.1 – Trainer Mode</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
-  background:#030303;
+  background:#020202;
   color:#fff;
   font-family:Arial, sans-serif;
   display:flex;
@@ -24,17 +24,8 @@ body{
   height:640px;
   padding:22px;
   box-sizing:border-box;
-  border:1px solid #222;
   position:relative;
   overflow:hidden;
-}
-
-/* ===== TITLE ===== */
-.title{
-  font-family:'Anton', Arial, sans-serif;
-  font-size:28px;
-  line-height:1.05;
-  margin-bottom:16px;
 }
 
 /* ===== TIMER ===== */
@@ -43,21 +34,28 @@ body{
   top:14px;
   right:18px;
   font-size:14px;
-  font-weight:700;
+  font-weight:800;
   color:#ff3b3b;
-  animation: blink .8s infinite;
+  animation: blink .7s infinite;
 }
-
 @keyframes blink{
   0%,50%{opacity:1;}
-  51%,100%{opacity:.3;}
+  51%,100%{opacity:.25;}
+}
+
+/* ===== TITLE ===== */
+.title{
+  font-family:'Anton', sans-serif;
+  font-size:30px;
+  line-height:1.05;
+  margin-bottom:14px;
 }
 
 /* ===== QUESTION ===== */
 .question{
   font-size:15px;
   line-height:1.45;
-  margin-bottom:18px;
+  margin-bottom:16px;
 }
 
 /* ===== OPTIONS ===== */
@@ -66,66 +64,68 @@ body{
   padding:10px;
   margin-bottom:8px;
   font-size:14px;
-  opacity:.75;
+  opacity:.8;
 }
 
 /* ===== PRESSURE ===== */
 @keyframes shake{
   0%{transform:translateX(0);}
-  25%{transform:translateX(-2px);}
-  50%{transform:translateX(2px);}
-  75%{transform:translateX(-2px);}
+  25%{transform:translateX(-3px);}
+  50%{transform:translateX(3px);}
+  75%{transform:translateX(-3px);}
   100%{transform:translateX(0);}
 }
-
 .pressure{
-  animation: shake .3s infinite;
+  animation: shake .25s infinite;
 }
 
-/* ===== RESULT ===== */
-.result{
+/* ===== WRONG ===== */
+.wrong{
   position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  padding:16px;
+  inset:0;
   background:#000;
-  font-size:13px;
-  display:none;
-}
-
-.result.show{
-  display:block;
-}
-
-/* ===== FINAL ===== */
-.final{
-  position:absolute;
-  bottom:22px;
-  left:22px;
-  right:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-align:center;
-  font-size:15px;
-  font-weight:700;
+  font-family:'Anton', sans-serif;
+  font-size:32px;
+  color:#ff3b3b;
   opacity:0;
 }
-.final.on{opacity:1; transition:.4s;}
+.wrong.show{opacity:1;}
+
+/* ===== CORRECTION ===== */
+.correct{
+  position:absolute;
+  bottom:18px;
+  left:18px;
+  right:18px;
+  background:#000;
+  border:1px solid #222;
+  padding:14px;
+  font-size:13px;
+  line-height:1.4;
+  opacity:0;
+}
+.correct.show{
+  opacity:1;
+  transition:.3s;
+}
 </style>
 </head>
 
 <body>
 <div class="frame">
 
-<div class="timer">⏱ 00:07</div>
+<div class="timer">⏱ 00:06</div>
 
-<div class="title">
-TRAINER MODE
-</div>
+<div class="title">TRAINER MODE</div>
 
 <div class="question">
-Jika suatu pekerjaan diselesaikan A dalam 4 hari
-dan B dalam 6 hari,
-berapa hari jika bekerja bersama?
+A menyelesaikan pekerjaan 4 hari,  
+B menyelesaikan 6 hari.  
+Jika bersama?
 </div>
 
 <div class="options pressure" id="options">
@@ -135,33 +135,33 @@ berapa hari jika bekerja bersama?
   <div>D. 10 hari</div>
 </div>
 
-<div class="result" id="result">
-Keputusan diambil terlalu cepat.<br>
-Yang dihitung waktu, bukan laju.
+<div class="wrong" id="wrong">
+SALAH
 </div>
 
-<div class="final" id="final">
-Di ujian, waktu menekan.<br>
-Tanpa sistem, salah di detik awal.
+<div class="correct" id="correct">
+Kesalahan umum: menjumlah waktu.<br>
+Ujian menghitung <b>laju kerja</b>, bukan hari.
 </div>
 
 </div>
 
 <script>
 const options = document.getElementById('options');
-const result = document.getElementById('result');
-const final = document.getElementById('final');
+const wrong = document.getElementById('wrong');
+const correct = document.getElementById('correct');
 
-/* stop pressure & reveal */
+/* pressure stop → salah */
 setTimeout(()=>{
   options.classList.remove('pressure');
-  result.classList.add('show');
-}, 4500);
+  wrong.classList.add('show');
+}, 4200);
 
-/* final lock */
+/* koreksi muncul */
 setTimeout(()=>{
-  final.classList.add('on');
-}, 6500);
+  wrong.classList.remove('show');
+  correct.classList.add('show');
+}, 5600);
 </script>
 
 </body>
