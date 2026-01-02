@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 3.5 – Trainer System</title>
+<title>CBT Learning – Level 3</title>
 
-<!-- Anton-like fallback -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
@@ -30,7 +29,7 @@ body{
   overflow:hidden;
 }
 
-/* ===== SHOCK OPEN ===== */
+/* ===== PATTERN BREAK ===== */
 @keyframes shock {
   0%{transform:scale(1.6); filter:brightness(3);}
   40%{transform:scale(0.9); filter:brightness(0.7);}
@@ -38,7 +37,6 @@ body{
   100%{transform:scale(1); filter:none;}
 }
 
-/* ===== COLOR FLASH ===== */
 @keyframes colorFlash {
   0%{color:#fff;}
   50%{color:#ff2d2d;}
@@ -63,7 +61,6 @@ body{
   transform:scale(1.4);
 }
 
-/* zoom blast */
 @keyframes blast {
   0%{opacity:0; transform:scale(1.6);}
   60%{opacity:1; transform:scale(0.95);}
@@ -115,45 +112,48 @@ body{
 <body>
 <div class="frame">
 
+<!-- ===== EDIT HERE ===== -->
 <div class="title">
-KENAPA<br>
-LATIHAN GAGAL
+SALAH<br>
+BACA SOAL
 </div>
 
-<div class="clue" id="c1">Latihan banyak</div>
-<div class="clue" id="c2">Nilai tetap</div>
-<div class="clue" id="c3">Karena urutan salah</div>
+<div class="clue" id="c1">Langsung jawab</div>
+<div class="clue" id="c2">Merasa familiar</div>
+<div class="clue" id="c3">Urutan dilewati</div>
 
 <div class="text" style="margin-top:14px">
-Masalahnya bukan soal.<br>
-Tapi proses berpikir yang diulang.
+Kesalahan bukan di otak.<br>
+Tapi di langkah yang dilompati.
 </div>
 
 <div class="flow" id="flow">
-  <div>Jawab cepat → merasa bisa</div>
-  <div>Salah di pola yang sama</div>
-  <div>Latihan ≠ naik level</div>
+  <div>Baca cepat → yakin</div>
+  <div>Salah di pola sama</div>
+  <div>Nilai tidak naik</div>
 </div>
 
 <div class="final">
 Yang dilatih bukan soal.<br>
-Tapi cara berpikir.
+Tapi urutan berpikir.
 </div>
+<!-- ===== STOP EDIT ===== -->
 
 </div>
 
 <script>
-const c1 = document.getElementById('c1');
-const c2 = document.getElementById('c2');
-const c3 = document.getElementById('c3');
+const clues = [
+  document.getElementById('c1'),
+  document.getElementById('c2'),
+  document.getElementById('c3')
+];
+
 const flow = document.querySelectorAll('#flow div');
 
-/* guide reading */
-setTimeout(()=>c1.classList.add('show'), 800);
-setTimeout(()=>c2.classList.add('show'), 1500);
-setTimeout(()=>c3.classList.add('show'), 2200);
+setTimeout(()=>clues[0].classList.add('show'), 800);
+setTimeout(()=>clues[1].classList.add('show'), 1500);
+setTimeout(()=>clues[2].classList.add('show'), 2200);
 
-/* flow */
 flow.forEach((f,i)=>{
   setTimeout(()=>f.classList.add('on'), 3200 + i*600);
 });
