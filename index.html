@@ -1,168 +1,159 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 4 – Trainer Mode</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-
-<style>
-body{
-  margin:0;
-  background:#030303;
-  color:#fff;
-  font-family:Arial, sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-.frame{
-  width:360px;
-  height:640px;
-  padding:22px;
-  box-sizing:border-box;
-  border:1px solid #222;
-  position:relative;
-  overflow:hidden;
-}
-
-/* ===== TITLE ===== */
-.title{
-  font-family:'Anton', Arial, sans-serif;
-  font-size:28px;
-  line-height:1.05;
-  margin-bottom:16px;
-}
-
-/* ===== TIMER ===== */
-.timer{
-  position:absolute;
-  top:14px;
-  right:18px;
-  font-size:14px;
-  font-weight:700;
-  color:#ff3b3b;
-  animation: blink .8s infinite;
-}
-
-@keyframes blink{
-  0%,50%{opacity:1;}
-  51%,100%{opacity:.3;}
-}
-
-/* ===== QUESTION ===== */
-.question{
-  font-size:15px;
-  line-height:1.45;
-  margin-bottom:18px;
-}
-
-/* ===== OPTIONS ===== */
-.options div{
-  border:1px solid #333;
-  padding:10px;
-  margin-bottom:8px;
-  font-size:14px;
-  opacity:.75;
-}
-
-/* ===== PRESSURE ===== */
-@keyframes shake{
-  0%{transform:translateX(0);}
-  25%{transform:translateX(-2px);}
-  50%{transform:translateX(2px);}
-  75%{transform:translateX(-2px);}
-  100%{transform:translateX(0);}
-}
-
-.pressure{
-  animation: shake .3s infinite;
-}
-
-/* ===== RESULT ===== */
-.result{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  padding:16px;
-  background:#000;
-  font-size:13px;
-  display:none;
-}
-
-.result.show{
-  display:block;
-}
-
-/* ===== FINAL ===== */
-.final{
-  position:absolute;
-  bottom:22px;
-  left:22px;
-  right:22px;
-  text-align:center;
-  font-size:15px;
-  font-weight:700;
-  opacity:0;
-}
-.final.on{opacity:1; transition:.4s;}
-</style>
+  <meta charset="UTF-8" />
+  <title>FYP Test – Cognitive Shock Series</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0e0e11;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 24px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+    .script {
+      background: #16161d;
+      border-left: 6px solid #ff3b3b;
+      padding: 24px;
+      margin-bottom: 48px;
+      border-radius: 8px;
+    }
+    .time {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+    .line {
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+    .emph {
+      color: #ffcc00;
+      font-weight: bold;
+    }
+    .end {
+      font-size: 18px;
+      color: #ff6b6b;
+      font-weight: bold;
+    }
+  </style>
 </head>
-
 <body>
-<div class="frame">
+  <div class="container">
+    <h1>3 Skrip FYP-Test (Tanpa Produk)</h1>
 
-<div class="timer">⏱ 00:07</div>
+    <!-- SCRIPT 1 -->
+    <div class="script">
+      <div class="time">SCRIPT 1 — SNBT / ASN (Soal Mudah Menipu)</div>
 
-<div class="title">
-TRAINER MODE
-</div>
+      <div class="line">[0–2s] Tampilkan soal di layar.</div>
+      <div class="line">“Soal ini kelihatannya gampang.”</div>
 
-<div class="question">
-Jika suatu pekerjaan diselesaikan A dalam 4 hari
-dan B dalam 6 hari,
-berapa hari jika bekerja bersama?
-</div>
+      <div class="line">[2–5s]</div>
+      <div class="line emph">“Lebih dari 70% peserta jawab PERCAYA DIRI.”</div>
 
-<div class="options pressure" id="options">
-  <div>A. 5 hari</div>
-  <div>B. 4 hari</div>
-  <div>C. 2.4 hari</div>
-  <div>D. 10 hari</div>
-</div>
+      <div class="line">[5–10s]</div>
+      <div class="line">“Jawabannya? Banyak yang BENAR.”</div>
 
-<div class="result" id="result">
-Keputusan diambil terlalu cepat.<br>
-Yang dihitung waktu, bukan laju.
-</div>
+      <div class="line">[10–18s]</div>
+      <div class="line emph">“Tapi… cara mikirnya SALAH.”</div>
 
-<div class="final" id="final">
-Di ujian, waktu menekan.<br>
-Tanpa sistem, salah di detik awal.
-</div>
+      <div class="line">[18–30s]</div>
+      <div class="line">
+        “Di ujian, kesalahan itu bukan kelihatan sekarang.<br>
+        Tapi muncul di soal berikutnya.”
+      </div>
 
-</div>
+      <div class="line">[30–40s]</div>
+      <div class="line">
+        “Kalau kamu nggak bisa jelasin <span class="emph">KENAPA</span> jawabannya begitu,<br>
+        berarti kamu cuma nebak dengan rapi.”
+      </div>
 
-<script>
-const options = document.getElementById('options');
-const result = document.getElementById('result');
-const final = document.getElementById('final');
+      <div class="line end">“Dan ujian tidak memberi nilai pada tebakan.”</div>
+    </div>
 
-/* stop pressure & reveal */
-setTimeout(()=>{
-  options.classList.remove('pressure');
-  result.classList.add('show');
-}, 4500);
+    <!-- SCRIPT 2 -->
+    <div class="script">
+      <div class="time">SCRIPT 2 — TOEFL / IELTS (Benar Tapi Gagal)</div>
 
-/* final lock */
-setTimeout(()=>{
-  final.classList.add('on');
-}, 6500);
-</script>
+      <div class="line">[0–3s] Tampilkan satu soal reading / structure.</div>
+      <div class="line">“Jawaban kamu benar?”</div>
 
+      <div class="line">[3–8s]</div>
+      <div class="line emph">“Masalahnya bukan itu.”</div>
+
+      <div class="line">[8–18s]</div>
+      <div class="line">
+        “Di tes seperti TOEFL atau IELTS,<br>
+        kamu bisa benar sekarang,<br>
+        tapi gagal di set soal berikutnya.”
+      </div>
+
+      <div class="line">[18–30s]</div>
+      <div class="line emph">
+        “Karena kamu tidak tahu alasan kenapa itu benar.”
+      </div>
+
+      <div class="line">[30–42s]</div>
+      <div class="line">
+        “Waktu habis.<br>
+        Soal berubah.<br>
+        Dan hafalan kamu ikut habis.”
+      </div>
+
+      <div class="line end">
+        “Tes bahasa tidak menguji hafalan.  
+        Ia menguji pola berpikir.”
+      </div>
+    </div>
+
+    <!-- SCRIPT 3 -->
+    <div class="script">
+      <div class="time">SCRIPT 3 — CBT UMUM (Mentor vs Ujian Nyata)</div>
+
+      <div class="line">[0–4s] Tampilkan tampilan CBT standar.</div>
+      <div class="line">“CBT kamu masih seperti ini?”</div>
+
+      <div class="line">[4–10s]</div>
+      <div class="line emph">
+        “Nomor, timer, submit, selesai.”
+      </div>
+
+      <div class="line">[10–22s]</div>
+      <div class="line">
+        “Masalahnya bukan di sistemnya.<br>
+        Tapi di satu hal yang tidak ada di sini.”
+      </div>
+
+      <div class="line">[22–35s]</div>
+      <div class="line emph">
+        “Pembahasan cara berpikir.”
+      </div>
+
+      <div class="line">[35–45s]</div>
+      <div class="line">
+        “Mentor manusia terbatas waktu.<br>
+        Ujian tidak.”
+      </div>
+
+      <div class="line end">
+        “Kalau persiapanmu berhenti di skor,<br>
+        ujianmu berhenti di kegagalan.”
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
