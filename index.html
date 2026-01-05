@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8" />
-<title>CBT Chaos Trigger</title>
+<meta charset="UTF-8">
+<title>CBT Internal Scatter</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 html,body{
@@ -14,89 +14,76 @@ html,body{
   overflow:hidden;
   font-family:Arial, Helvetica, sans-serif;
 }
-#stage{
-  position:relative;
-  width:100%;
-  height:100%;
-}
-.item{
-  position:absolute;
-  color:#fff;
-  font-weight:700;
-  animation: fly 1.8s linear forwards;
-  opacity:0;
-  white-space:nowrap;
-}
-@keyframes fly{
-  0%{
-    transform:translate(var(--x),var(--y)) scale(0.2) rotate(var(--r));
-    opacity:0;
-  }
-  10%{opacity:1;}
-  100%{
-    transform:translate(0,0) scale(1.8) rotate(0deg);
-    opacity:0;
-  }
-}
-.center{
+#wrap{
   position:absolute;
   inset:0;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:6vw;
-  text-align:center;
+  transform:scale(1.15);
+  animation: zoomOut 1.6s ease-out forwards;
 }
-.flash{
-  animation: flash 0.25s steps(1) infinite;
+@keyframes zoomOut{
+  to{transform:scale(1);}
 }
-@keyframes flash{
-  50%{opacity:0;}
+
+.word{
+  font-size:5vw;
+  font-weight:900;
+  color:#fff;
+  letter-spacing:0.1em;
+}
+
+.char{
+  display:inline-block;
+  animation: scatter 1.6s ease-in-out forwards;
+}
+
+@keyframes scatter{
+  0%{
+    transform:translate(0,0) scale(1);
+    opacity:1;
+  }
+  30%{
+    transform:
+      translate(calc(var(--x)*0.6), calc(var(--y)*0.6))
+      rotate(var(--r))
+      scale(1.2);
+  }
+  60%{
+    transform:
+      translate(calc(var(--x)), calc(var(--y)))
+      rotate(var(--r))
+      scale(0.9);
+    opacity:1;
+  }
+  100%{
+    transform:translate(0,0) scale(1);
+    opacity:0.85;
+  }
 }
 </style>
 </head>
 <body>
 
-<div id="stage"></div>
+<div id="wrap">
+  <div id="text" class="word"></div>
+</div>
 
 <script>
-const stage = document.getElementById("stage");
+const sentence = "SOAL INI MENIPU LOGIKA";
+const container = document.getElementById("text");
 
-const CHAOS = [
-  // 1️⃣ NUMERIC BLAST
-  ["3","7","11","?","∑","x²","≠","→"],
-
-  // 2️⃣ LOGIC SYMBOL
-  ["P → Q","Q","¬P","∴ ?","∀","∃","∧","∨"],
-
-  // 3️⃣ CBT OPTIONS
-  ["A","B","C","D","SALAH","JEBakan","LOGIKA"],
-
-  // 4️⃣ MIXED FORMULA
-  ["2x+3=7","x=?","≠","Δ","√","÷","×"],
-
-  // 5️⃣ PRESSURE WORD
-  ["JANGAN","CEPAT","SALAH","CBT","UJIAN"]
-];
-
-const pick = CHAOS[Math.floor(Math.random()*CHAOS.length)];
-
-pick.forEach(text=>{
-  const el=document.createElement("div");
-  el.className="item";
-  el.textContent=text;
-  el.style.fontSize=(Math.random()*3+2)+"vw";
-  el.style.setProperty("--x",(Math.random()*200-100)+"vw");
-  el.style.setProperty("--y",(Math.random()*200-100)+"vh");
-  el.style.setProperty("--r",(Math.random()*360)+"deg");
-  stage.appendChild(el);
+[...sentence].forEach(char=>{
+  const span = document.createElement("span");
+  span.className = "char";
+  span.textContent = char;
+  span.style.setProperty("--x",(Math.random()*40-20)+"px");
+  span.style.setProperty("--y",(Math.random()*40-20)+"px");
+  span.style.setProperty("--r",(Math.random()*30-15)+"deg");
+  span.style.animationDelay = (Math.random()*0.2)+"s";
+  container.appendChild(span);
 });
-
-setTimeout(()=>{
-  stage.innerHTML = `
-    <div class="center flash">80% SALAH DI SINI</div>
-  `;
-},1600);
 </script>
 
 </body>
