@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SNBT Logic Chaos Walkthrough</title>
+<title>SNBT Workflow Final</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
@@ -37,16 +37,16 @@ body{
   overflow:hidden;
 }
 
-/* ===== TITLE CHAOS ===== */
+/* ===== CHAOS TITLE ===== */
 .title{
   font-family:'Anton',sans-serif;
   font-size:22px;
   text-align:center;
   margin-bottom:12px;
-  animation:titleChaos .9s ease forwards;
+  animation:titleChaos .8s ease forwards;
 }
 @keyframes titleChaos{
-  0%{opacity:0;transform:scale(1.4) rotate(-2deg);color:#fff}
+  0%{opacity:0;transform:scale(1.4) rotate(-2deg)}
   40%{opacity:1;transform:scale(.9) rotate(2deg);color:#38bdf8}
   70%{transform:scale(1.05) rotate(-1deg);color:#fff}
   100%{transform:scale(1) rotate(0)}
@@ -81,7 +81,7 @@ body{
   to{opacity:1;transform:translateY(0)}
 }
 
-/* ===== CORRECT ===== */
+/* ===== ANSWER ===== */
 .correct{
   border-color:#22c55e !important;
   background:rgba(34,197,94,.18);
@@ -111,15 +111,18 @@ body{
 <div class="phone">
   <div class="screen">
 
+    <!-- PHASE 0: CHAOS -->
     <div class="title">
-      LOGIKA CEPAT — SNBT
+      LOGIKA SNBT — JANGAN KECEPETAN
     </div>
 
+    <!-- PHASE 1: QUESTION -->
     <div class="question" id="question">
       Semua dosen adalah pengajar. Sebagian pengajar adalah peneliti.
       Kesimpulan yang pasti benar adalah
     </div>
 
+    <!-- PHASE 2: OPTIONS -->
     <ul class="options">
       <li>A. Semua dosen adalah peneliti</li>
       <li>B. Sebagian dosen adalah peneliti</li>
@@ -127,48 +130,50 @@ body{
       <li>D. Tidak dapat disimpulkan hubungan dosen–peneliti</li>
     </ul>
 
+    <!-- PHASE 4–5: LOGIC -->
     <div class="rationale" id="rationale">
-      Kata “sebagian” tidak bisa dibalik atau diperluas.
-      Kita tidak boleh menambah hubungan yang tidak disebutkan.
-      Jadi relasi dosen–peneliti tidak bisa dipastikan.
+      Di sini jebakannya kata “sebagian”.  
+      Relasi “sebagian” tidak boleh dibalik atau diperluas.  
+      Kalau relasi tidak disebutkan, jangan ditambah.
     </div>
 
   </div>
 </div>
 
 <script>
-/* SPLIT QUESTION */
+/* ===== QUESTION TIMING ===== */
 const q=document.getElementById("question");
 const words=q.innerText.split(" ");
 q.innerHTML="";
 words.forEach((w,i)=>{
   const s=document.createElement("span");
   s.innerText=w+" ";
-  s.style.animationDelay=(1+i*0.07)+"s";
+  s.style.animationDelay=(1.5+i*0.07)+"s";
   q.appendChild(s);
 });
 
-/* OPTIONS TIMING */
+/* ===== OPTIONS TIMING ===== */
 document.querySelectorAll(".options li").forEach((li,i)=>{
-  li.style.animationDelay=(3.2+i*0.25)+"s";
+  li.style.animationDelay=(4+i*0.25)+"s";
 });
 
-/* CORRECT */
+/* ===== ANSWER SHOCK ===== */
 setTimeout(()=>{
   document.querySelectorAll(".options li")[3].classList.add("correct");
-},5200);
+},6000);
 
-/* RATIONALE LOOP (2x SUPPORT STAY) */
+/* ===== RATIONALE LATE ===== */
 const rat=document.getElementById("rationale");
 setTimeout(()=>{
   rat.style.opacity=1;
-},6200);
+},7200);
 
+/* ===== RATIONALE REPLAY ===== */
 setTimeout(()=>{
   rat.style.animation="none";
   void rat.offsetWidth;
   rat.style.animation="rationaleZoom 3s ease forwards";
-},9500);
+},10500);
 </script>
 
 </body>
