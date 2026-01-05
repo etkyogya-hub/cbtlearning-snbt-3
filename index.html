@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Perfect Loop</title>
+<title>CBT Visible Fix</title>
 
 <style>
 html,body{
   margin:0;
   padding:0;
-  background:#000;
   width:100%;
   height:100%;
+  background:#000;
   overflow:hidden;
-  font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
 }
 
 .stage{
   position:relative;
   width:100vw;
   height:100vh;
-  overflow:hidden;
   background:#000;
+  overflow:hidden;
 }
 
 /* VIDEO */
@@ -30,4 +30,71 @@ video{
   inset:0;
   width:100%;
   height:100%;
- 
+  object-fit:cover;
+  transform:scale(1.04);
+  animation:slowZoom 7s ease-in-out infinite;
+}
+
+@keyframes slowZoom{
+  0%,100%{transform:scale(1.04)}
+  50%{transform:scale(1)}
+}
+
+/* TEXT */
+.hook{
+  position:absolute;
+  top:8%;
+  width:100%;
+  text-align:center;
+  font-weight:800;
+  font-size:1.2em;
+  color:#fff;
+  letter-spacing:.04em;
+  opacity:0;
+  animation:hookIn 7s infinite;
+}
+
+@keyframes hookIn{
+  0%{opacity:0;transform:translateY(12px)}
+  12%{opacity:1;transform:translateY(0)}
+  70%{opacity:1}
+  100%{opacity:0}
+}
+
+/* ULANGI – MUNCUL TERAKHIR */
+.repeat{
+  position:absolute;
+  bottom:6%;
+  right:6%;
+  font-size:.7em;
+  font-weight:700;
+  color:#fff;
+  opacity:0;
+  animation:repeatIn 7s infinite;
+}
+
+@keyframes repeatIn{
+  0%,75%{opacity:0}
+  85%{opacity:.85}
+  100%{opacity:0}
+}
+</style>
+</head>
+
+<body>
+<div class="stage">
+
+  <video autoplay muted loop playsinline>
+    <source src="SNBT+VO2.webm.mp4" type="video/mp4">
+    VIDEO TIDAK TERBACA
+  </video>
+
+  <div class="hook">
+    BUKAN HAFALAN — CBT ITU STRATEGI
+  </div>
+
+  <div class="repeat">Ulangi</div>
+
+</div>
+</body>
+</html>
