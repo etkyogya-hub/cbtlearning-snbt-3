@@ -1,67 +1,128 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CBT Chaos Overlay — FYP Hook</title>
+
+<style>
+/* ================= RESET ================= */
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  background:transparent;
+  overflow:hidden;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ================= STAGE ================= */
+.stage{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ================= TEXT ================= */
+.text{
+  position:relative;
+  font-size:5.2vw;
+  font-weight:900;
+  color:white;
+  line-height:1.15;
+  text-align:center;
+  animation:globalPulse .6s ease-in-out 1;
+}
+
+/* ================= GLOBAL ZOOM ================= */
+@keyframes globalPulse{
+  0%{transform:scale(1)}
+  45%{transform:scale(1.15)}
+  100%{transform:scale(1)}
+}
+
+/* ================= WORD ================= */
+.word{
+  position:relative;
+  display:inline-block;
+  margin:0 .18em;
+}
+
+/* ================= CHAOS ORBIT ================= */
+.chaos{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform-origin:center;
+  font-size:.6em;
+  opacity:.85;
+  animation:orbit 0.45s linear infinite;
+}
+
+@keyframes orbit{
+  0%{transform:rotate(0deg) translateX(8px)}
+  100%{transform:rotate(360deg) translateX(8px)}
+}
+
+/* ================= MICRO SHAKE ================= */
+.shake{
+  animation:shake .18s linear infinite;
+}
+@keyframes shake{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(-1px,1px)}
+  50%{transform:translate(1px,-1px)}
+  75%{transform:translate(-1px,-1px)}
+  100%{transform:translate(0,0)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stage">
+  <div class="text" id="text">
+    Jika 3x + 5 = 20, berapa x?
+  </div>
+</div>
+
 <script>
-const screen = document.getElementById("screen");
-const quizText = document.getElementById("quizText");
-const hook = document.getElementById("hook");
-const rationale = document.getElementById("rationale");
-const video = document.getElementById("video");
+const text = document.getElementById("text");
 
 /* SPLIT WORD */
-function splitWords(el){
-  const words = el.innerText.split(" ");
-  el.innerHTML = words.map(w=>`<span class="w">${w}</span>`).join(" ");
-}
-splitWords(quizText);
-splitWords(hook);
+const words = text.innerText.split(" ");
+text.innerHTML = "";
 
-/* CBT DISTURBANCE */
-function disturb(el, strength=12, scale=1.15){
-  el.querySelectorAll(".w").forEach((span,i)=>{
-    const r = span.getBoundingClientRect();
-    const b = screen.getBoundingClientRect();
+words.forEach(w=>{
+  const span = document.createElement("span");
+  span.className="word";
+  span.innerText=w;
+  text.appendChild(span);
+});
 
-    const ghost = span.cloneNode(true);
-    ghost.className = "word-fly";
-    ghost.style.left = r.left - b.left + "px";
-    ghost.style.top  = r.top  - b.top  + "px";
-    ghost.style.opacity = .9;
-    screen.appendChild(ghost);
-
-    const a = Math.random()*Math.PI*2;
-    const d = Math.random()*strength + 6;
-
-    setTimeout(()=>{
-      ghost.style.transform = `
-        translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)
-        scale(${scale})
-      `;
-    },i*80);
-
-    setTimeout(()=>{
-      ghost.style.transform = "translate(0,0) scale(1)";
-      ghost.style.opacity = 0;
-    },700+i*60);
-
-    setTimeout(()=>ghost.remove(),1400);
+/* ADD INTERNAL CHAOS */
+document.querySelectorAll(".word").forEach(word=>{
+  const symbols = ["3","x","+","=","20"];
+  symbols.forEach((s,i)=>{
+    const c = document.createElement("span");
+    c.className="chaos";
+    c.innerText=s;
+    c.style.animationDelay = (i*0.05)+"s";
+    word.appendChild(c);
   });
-}
+});
 
-/* TIMELINE TERKONTROL */
+/* MICRO SHAKE BURST */
 setTimeout(()=>{
-  disturb(quizText,10,1.1);
-},1200);
-
-setTimeout(()=>{
-  disturb(hook,18,1.25);
-},2600);
-
-/* TRANSISI RATIONALE = TENANG */
-setTimeout(()=>{
-  rationale.classList.add("show");
-  video.currentTime = 0;
-  video.play();
-},4200);
+  text.classList.add("shake");
+},300);
 
 setTimeout(()=>{
-  video.pause();
-},7200);
+  text.classList.remove("shake");
+},900);
 </script>
+
+</body>
+</html>
