@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SNBT – Logika Relasi</title>
+<title>SNBT – Logika Gambar</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
@@ -32,7 +32,7 @@ body{
   inset:12px;
   border-radius:28px;
   background:#020617;
-  padding:14px;
+  padding:12px;
   color:#e5e7eb;
   overflow:hidden;
 }
@@ -42,46 +42,61 @@ body{
   font-family:'Anton',sans-serif;
   font-size:22px;
   text-align:center;
-  margin-bottom:10px;
+  margin-bottom:8px;
   opacity:0;
-  animation:titleIn 1s ease forwards;
+  animation:titleHit 1.1s ease forwards;
 }
-@keyframes titleIn{
-  0%{opacity:0;transform:scale(1.4) rotate(-2deg)}
-  60%{opacity:1;transform:scale(.95) rotate(2deg);color:#38bdf8}
+@keyframes titleHit{
+  0%{opacity:0;transform:scale(1.4) rotate(-3deg)}
+  60%{opacity:1;transform:scale(.9) rotate(2deg);color:#38bdf8}
   100%{transform:scale(1) rotate(0);color:#fff}
 }
 
-/* ===== QUESTION ===== */
-.question span{
-  display:inline-block;
-  opacity:0;
-  transform:translateY(6px);
-  animation:wordIn .25s ease forwards;
+/* ===== IMAGE GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  margin-top:6px;
 }
-@keyframes wordIn{
-  to{opacity:1;transform:translateY(0)}
+.cell{
+  aspect-ratio:1/1;
+  border:2px solid #334155;
+  border-radius:10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:26px;
+  opacity:0;
+  transform:scale(.6);
+  animation:cellIn .35s ease forwards;
+}
+@keyframes cellIn{
+  to{opacity:1;transform:scale(1)}
 }
 
 /* ===== OPTIONS ===== */
 .options{
-  margin-top:12px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:10px;
 }
-.options li{
-  list-style:none;
-  margin:6px 0;
-  padding:6px 8px;
-  border:1px solid #334155;
-  border-radius:8px;
+.opt{
+  aspect-ratio:1/1;
+  border:2px solid #334155;
+  border-radius:10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:26px;
   opacity:0;
-  transform:translateY(8px);
-  animation:optIn .25s ease forwards;
+  transform:translateY(10px);
+  animation:optIn .3s ease forwards;
 }
 @keyframes optIn{
   to{opacity:1;transform:translateY(0)}
 }
-
-/* ===== CORRECT ===== */
 .correct{
   border-color:#22c55e;
   background:rgba(34,197,94,.2);
@@ -89,7 +104,7 @@ body{
 
 /* ===== RATIONALE ===== */
 .rationale{
-  margin-top:12px;
+  margin-top:10px;
   font-size:12px;
   line-height:1.5;
   border-left:3px solid #38bdf8;
@@ -112,73 +127,76 @@ body{
   <div class="screen">
 
     <!-- 1️⃣ JUDUL -->
-    <div class="title">
-      LOGIKA RELASI – SNBT
-    </div>
+    <div class="title">LOGIKA GAMBAR – SNBT</div>
 
-    <!-- 2️⃣ SOAL -->
-    <div class="question" id="question">
-      Semua siswa rajin adalah disiplin. Sebagian siswa disiplin mengikuti lomba.
-      Kesimpulan yang PALING TEPAT adalah
+    <!-- 2️⃣ SOAL GAMBAR -->
+    <div class="grid" id="grid">
+      <div class="cell">▲</div>
+      <div class="cell">▲▲</div>
+      <div class="cell">▲▲▲</div>
+
+      <div class="cell">■</div>
+      <div class="cell">■■</div>
+      <div class="cell">■■■</div>
+
+      <div class="cell">●</div>
+      <div class="cell">●●</div>
+      <div class="cell">?</div>
     </div>
 
     <!-- 3️⃣ OPSI -->
-    <ul class="options">
-      <li>A. Semua siswa rajin mengikuti lomba</li>
-      <li>B. Sebagian siswa rajin mengikuti lomba</li>
-      <li>C. Sebagian siswa yang mengikuti lomba adalah disiplin</li>
-      <li>D. Semua siswa disiplin adalah rajin</li>
-    </ul>
+    <div class="options">
+      <div class="opt">●</div>
+      <div class="opt">●●</div>
+      <div class="opt">●●●</div>
+      <div class="opt">▲▲</div>
+    </div>
 
     <!-- 5️⃣ RATIONALE -->
-    <div class="rationale" id="rationale">
-      Informasi pertama menyatakan bahwa siswa rajin merupakan bagian dari siswa disiplin.
-      Informasi kedua menyatakan bahwa hanya sebagian siswa disiplin yang mengikuti lomba.
+    <div class="rationale" id="rat">
+      Pola disusun berdasarkan baris.
+      Setiap baris mempertahankan jenis bentuk yang sama,
+      sementara jumlahnya bertambah dari satu ke tiga.
 
-      Karena hubungan “sebagian” tidak boleh diperluas atau dibalik, kita tidak boleh
-      menyimpulkan bahwa semua atau sebagian siswa rajin pasti mengikuti lomba.
+      Baris pertama segitiga (1–3),
+      baris kedua persegi (1–3),
+      sehingga baris ketiga harus lingkaran (1–3).
 
-      Satu-satunya kesimpulan yang AMAN dan sesuai data adalah bahwa
-      sebagian peserta lomba berasal dari kelompok siswa disiplin.
-      Oleh karena itu, jawaban yang paling tepat adalah opsi C.
+      Karena dua lingkaran sudah muncul di kolom tengah,
+      maka sel terakhir harus berisi tiga lingkaran.
+      Jawaban yang benar adalah opsi ●●●.
     </div>
 
   </div>
 </div>
 
 <script>
-/* ===== QUESTION WORD FLOW ===== */
-const q=document.getElementById("question");
-const words=q.innerText.split(" ");
-q.innerHTML="";
-words.forEach((w,i)=>{
-  const s=document.createElement("span");
-  s.innerText=w+" ";
-  s.style.animationDelay=(1.2+i*0.06)+"s";
-  q.appendChild(s);
+/* TIMING GRID */
+document.querySelectorAll(".cell").forEach((c,i)=>{
+  c.style.animationDelay=(1.2+i*0.15)+"s";
 });
 
-/* ===== OPTIONS TIMING ===== */
-document.querySelectorAll(".options li").forEach((li,i)=>{
-  li.style.animationDelay=(4+i*0.3)+"s";
+/* OPTIONS */
+document.querySelectorAll(".opt").forEach((o,i)=>{
+  o.style.animationDelay=(4+i*0.3)+"s";
 });
 
-/* ===== ANSWER ===== */
+/* CORRECT */
 setTimeout(()=>{
-  document.querySelectorAll(".options li")[2].classList.add("correct");
+  document.querySelectorAll(".opt")[2].classList.add("correct");
 },6500);
 
-/* ===== RATIONALE ===== */
-const rat=document.getElementById("rationale");
+/* RATIONALE */
 setTimeout(()=>{
-  rat.style.opacity=1;
+  document.getElementById("rat").style.opacity=1;
 },7500);
 
-/* ===== RATIONALE REPEAT ===== */
+/* RATIONALE REPEAT */
 setTimeout(()=>{
-  rat.style.animation="none";
-  void rat.offsetWidth;
-  rat.style.animation="rationaleZoom 3s ease forwards";
+  const r=document.getElementById("rat");
+  r.style.animation="none";
+  void r.offsetWidth;
+  r.style.animation="rationaleZoom 3s ease forwards";
 },11000);
 </script>
 
