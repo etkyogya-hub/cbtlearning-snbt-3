@@ -3,17 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CBT Chaos Overlay — FYP Hook</title>
+<title>CBT Chaos Overlay — Production</title>
 
 <style>
-/* ================= RESET ================= */
 html,body{
   margin:0;
   width:100%;
   height:100%;
-  background:transparent;
   overflow:hidden;
   font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ================= MODE ================= */
+/* ubah ke transparent saat PRODUKSI */
+body{
+  background:#0f172a; /* <<< MODE CEK VISUAL */
+  /* background:transparent; */ /* MODE PRODUKSI */
 }
 
 /* ================= STAGE ================= */
@@ -28,18 +33,18 @@ html,body{
 /* ================= TEXT ================= */
 .text{
   position:relative;
-  font-size:5.2vw;
+  font-size:5.5vw;
   font-weight:900;
   color:white;
-  line-height:1.15;
   text-align:center;
-  animation:globalPulse .6s ease-in-out 1;
+  line-height:1.15;
+  animation:pulse .7s ease-out 1;
 }
 
-/* ================= GLOBAL ZOOM ================= */
-@keyframes globalPulse{
+/* ================= ZOOM ================= */
+@keyframes pulse{
   0%{transform:scale(1)}
-  45%{transform:scale(1.15)}
+  40%{transform:scale(1.18)}
   100%{transform:scale(1)}
 }
 
@@ -47,28 +52,28 @@ html,body{
 .word{
   position:relative;
   display:inline-block;
-  margin:0 .18em;
+  margin:0 .2em;
 }
 
-/* ================= CHAOS ORBIT ================= */
+/* ================= CHAOS INTERNAL ================= */
 .chaos{
   position:absolute;
   left:50%;
   top:50%;
-  transform-origin:center;
   font-size:.6em;
-  opacity:.85;
-  animation:orbit 0.45s linear infinite;
+  opacity:.9;
+  transform-origin:center;
+  animation:orbit .5s linear infinite;
 }
 
 @keyframes orbit{
-  0%{transform:rotate(0deg) translateX(8px)}
-  100%{transform:rotate(360deg) translateX(8px)}
+  from{transform:rotate(0deg) translateX(9px)}
+  to{transform:rotate(360deg) translateX(9px)}
 }
 
 /* ================= MICRO SHAKE ================= */
 .shake{
-  animation:shake .18s linear infinite;
+  animation:shake .2s linear infinite;
 }
 @keyframes shake{
   0%{transform:translate(0,0)}
@@ -91,37 +96,31 @@ html,body{
 <script>
 const text = document.getElementById("text");
 
-/* SPLIT WORD */
+/* SPLIT */
 const words = text.innerText.split(" ");
-text.innerHTML = "";
+text.innerHTML="";
 
 words.forEach(w=>{
-  const span = document.createElement("span");
+  const span=document.createElement("span");
   span.className="word";
   span.innerText=w;
   text.appendChild(span);
 });
 
-/* ADD INTERNAL CHAOS */
+/* INTERNAL CHAOS */
 document.querySelectorAll(".word").forEach(word=>{
-  const symbols = ["3","x","+","=","20"];
-  symbols.forEach((s,i)=>{
-    const c = document.createElement("span");
+  ["3","x","+","=","20"].forEach((s,i)=>{
+    const c=document.createElement("span");
     c.className="chaos";
     c.innerText=s;
-    c.style.animationDelay = (i*0.05)+"s";
+    c.style.animationDelay=(i*0.06)+"s";
     word.appendChild(c);
   });
 });
 
-/* MICRO SHAKE BURST */
-setTimeout(()=>{
-  text.classList.add("shake");
-},300);
-
-setTimeout(()=>{
-  text.classList.remove("shake");
-},900);
+/* SHAKE BURST */
+setTimeout(()=>text.classList.add("shake"),300);
+setTimeout(()=>text.classList.remove("shake"),950);
 </script>
 
 </body>
