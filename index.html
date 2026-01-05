@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Visible Fix</title>
+<title>CBT Pure Visual</title>
 
 <style>
 html,body{
@@ -13,9 +13,9 @@ html,body{
   height:100%;
   background:#000;
   overflow:hidden;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
 }
 
+/* STAGE */
 .stage{
   position:relative;
   width:100vw;
@@ -31,52 +31,50 @@ video{
   width:100%;
   height:100%;
   object-fit:cover;
-  transform:scale(1.04);
-  animation:slowZoom 7s ease-in-out infinite;
+
+  /* micro life */
+  transform:scale(1.06);
+  animation:
+    zoomBreath 6s ease-in-out infinite,
+    flicker 3.2s linear infinite;
 }
 
-@keyframes slowZoom{
-  0%,100%{transform:scale(1.04)}
+/* very slow zoom (algoritma-friendly) */
+@keyframes zoomBreath{
+  0%,100%{transform:scale(1.06)}
   50%{transform:scale(1)}
 }
 
-/* TEXT */
-.hook{
-  position:absolute;
-  top:8%;
-  width:100%;
-  text-align:center;
-  font-weight:800;
-  font-size:1.2em;
-  color:#fff;
-  letter-spacing:.04em;
-  opacity:0;
-  animation:hookIn 7s infinite;
+/* micro luminance change → frame variation */
+@keyframes flicker{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.06)}
 }
 
-@keyframes hookIn{
-  0%{opacity:0;transform:translateY(12px)}
-  12%{opacity:1;transform:translateY(0)}
-  70%{opacity:1}
+/* FLASH CUT – 0.2s pertama */
+.flash{
+  position:absolute;
+  inset:0;
+  background:#fff;
+  opacity:0;
+  animation:flashIn 6s infinite;
+  pointer-events:none;
+}
+
+@keyframes flashIn{
+  0%{opacity:.18}
+  3%{opacity:0}
   100%{opacity:0}
 }
 
-/* ULANGI – MUNCUL TERAKHIR */
-.repeat{
+/* CASCADE SHADOW (depth illusion) */
+.shadow{
   position:absolute;
-  bottom:6%;
-  right:6%;
-  font-size:.7em;
-  font-weight:700;
-  color:#fff;
-  opacity:0;
-  animation:repeatIn 7s infinite;
-}
-
-@keyframes repeatIn{
-  0%,75%{opacity:0}
-  85%{opacity:.85}
-  100%{opacity:0}
+  inset:0;
+  box-shadow:
+    inset 0 0 120px rgba(0,0,0,.65),
+    inset 0 0 220px rgba(0,0,0,.9);
+  pointer-events:none;
 }
 </style>
 </head>
@@ -86,14 +84,13 @@ video{
 
   <video autoplay muted loop playsinline>
     <source src="SNBT+VO2.webm.mp4" type="video/mp4">
-    VIDEO TIDAK TERBACA
   </video>
 
-  <div class="hook">
-    BUKAN HAFALAN — CBT ITU STRATEGI
-  </div>
+  <!-- 2s first-frame stim -->
+  <div class="flash"></div>
 
-  <div class="repeat">Ulangi</div>
+  <!-- depth -->
+  <div class="shadow"></div>
 
 </div>
 </body>
