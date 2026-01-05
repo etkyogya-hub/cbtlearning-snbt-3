@@ -3,124 +3,138 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CBT Chaos Overlay — Production</title>
+<title>CBT Walkthrough — SNBT</title>
 
 <style>
-html,body{
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-/* ================= MODE ================= */
-/* ubah ke transparent saat PRODUKSI */
 body{
-  background:#0f172a; /* <<< MODE CEK VISUAL */
-  /* background:transparent; */ /* MODE PRODUKSI */
-}
-
-/* ================= STAGE ================= */
-.stage{
-  width:100%;
-  height:100%;
+  margin:0;
+  height:100vh;
+  background:#020617;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  font-family:system-ui;
 }
 
-/* ================= TEXT ================= */
-.text{
+/* ============ PHONE MOCKUP ============ */
+.phone{
+  width:240px;
+  height:480px;
+  border-radius:36px;
+  background:#020617;
+  box-shadow:0 40px 90px rgba(0,0,0,.8);
   position:relative;
-  font-size:5.5vw;
-  font-weight:900;
-  color:white;
-  text-align:center;
-  line-height:1.15;
-  animation:pulse .7s ease-out 1;
 }
-
-/* ================= ZOOM ================= */
-@keyframes pulse{
-  0%{transform:scale(1)}
-  40%{transform:scale(1.18)}
-  100%{transform:scale(1)}
-}
-
-/* ================= WORD ================= */
-.word{
-  position:relative;
-  display:inline-block;
-  margin:0 .2em;
-}
-
-/* ================= CHAOS INTERNAL ================= */
-.chaos{
+.screen{
   position:absolute;
-  left:50%;
-  top:50%;
-  font-size:.6em;
-  opacity:.9;
-  transform-origin:center;
-  animation:orbit .5s linear infinite;
+  inset:12px;
+  border-radius:26px;
+  background:#020617;
+  padding:14px;
+  color:#e5e7eb;
+  font-size:13px;
+  overflow:hidden;
 }
 
-@keyframes orbit{
-  from{transform:rotate(0deg) translateX(9px)}
-  to{transform:rotate(360deg) translateX(9px)}
+/* ============ QUESTION ============ */
+.question span{
+  display:inline-block;
+  opacity:0;
+  transform:scale(.6);
+  animation:wordIn .18s ease forwards;
+}
+@keyframes wordIn{
+  to{opacity:1;transform:scale(1)}
 }
 
-/* ================= MICRO SHAKE ================= */
-.shake{
-  animation:shake .2s linear infinite;
+/* ============ OPTIONS ============ */
+.options li{
+  list-style:none;
+  margin:6px 0;
+  padding:6px 8px;
+  border:1px solid #334155;
+  border-radius:8px;
+  opacity:0;
+  transform:translateY(6px);
+  animation:optIn .25s ease forwards;
 }
-@keyframes shake{
-  0%{transform:translate(0,0)}
-  25%{transform:translate(-1px,1px)}
-  50%{transform:translate(1px,-1px)}
-  75%{transform:translate(-1px,-1px)}
-  100%{transform:translate(0,0)}
+@keyframes optIn{
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ============ CORRECT ============ */
+.correct{
+  border-color:#22c55e !important;
+  background:rgba(34,197,94,.15);
+}
+
+/* ============ RATIONALE ============ */
+.rationale{
+  margin-top:10px;
+  padding:8px;
+  border-left:3px solid #38bdf8;
+  font-size:12px;
+  line-height:1.4;
+  opacity:0;
+  animation:fadeIn .4s ease forwards;
+}
+@keyframes fadeIn{
+  to{opacity:1}
 }
 </style>
 </head>
 
 <body>
 
-<div class="stage">
-  <div class="text" id="text">
-    Jika 3x + 5 = 20, berapa x?
+<div class="phone">
+  <div class="screen">
+
+    <div class="question" id="question">
+      Jika 3x + 5 = 20, maka nilai x adalah
+    </div>
+
+    <ul class="options" id="options">
+      <li>A. 3</li>
+      <li>B. 4</li>
+      <li>C. 5</li>
+      <li>D. 6</li>
+    </ul>
+
+    <div class="rationale" id="rationale">
+      Karena 3x = 15, maka x = 5.  
+      Ini bentuk soal aljabar linear dasar SNBT.
+    </div>
+
   </div>
 </div>
 
 <script>
-const text = document.getElementById("text");
-
-/* SPLIT */
-const words = text.innerText.split(" ");
-text.innerHTML="";
-
-words.forEach(w=>{
-  const span=document.createElement("span");
-  span.className="word";
-  span.innerText=w;
-  text.appendChild(span);
+/* ===== SPLIT QUESTION ===== */
+const q=document.getElementById("question");
+const words=q.innerText.split(" ");
+q.innerHTML="";
+words.forEach((w,i)=>{
+  const s=document.createElement("span");
+  s.innerText=w+" ";
+  s.style.animationDelay=(i*0.06)+"s";
+  q.appendChild(s);
 });
 
-/* INTERNAL CHAOS */
-document.querySelectorAll(".word").forEach(word=>{
-  ["3","x","+","=","20"].forEach((s,i)=>{
-    const c=document.createElement("span");
-    c.className="chaos";
-    c.innerText=s;
-    c.style.animationDelay=(i*0.06)+"s";
-    word.appendChild(c);
-  });
+/* ===== OPTIONS TIMING ===== */
+const opts=document.querySelectorAll(".options li");
+opts.forEach((li,i)=>{
+  li.style.animationDelay=(1.2+i*0.25)+"s";
 });
 
-/* SHAKE BURST */
-setTimeout(()=>text.classList.add("shake"),300);
-setTimeout(()=>text.classList.remove("shake"),950);
+/* ===== HIGHLIGHT ANSWER ===== */
+setTimeout(()=>{
+  opts[2].classList.add("correct");
+},2800);
+
+/* ===== SHOW RATIONALE ===== */
+setTimeout(()=>{
+  document.getElementById("rationale").style.animationDelay="0s";
+},4500);
 </script>
 
 </body>
