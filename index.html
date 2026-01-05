@@ -1,280 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>SNBT CBT Landing</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CBT Gesture Super Safe</title>
 
 <style>
-*{box-sizing:border-box}
-body{
+html,body{
   margin:0;
-  background:#020617;
-  color:#e5e7eb;
-  font-family:system-ui;
-  overflow:auto;
-  padding:
-    env(safe-area-inset-top)
-    env(safe-area-inset-right)
-    env(safe-area-inset-bottom)
-    env(safe-area-inset-left);
-}
-
-/* ===== TYPO ===== */
-:root{
-  --hero:clamp(8rem,18vw,22rem);
-  --xl:clamp(4rem,7vw,8rem);
-  --md:clamp(1.4rem,3vw,2.4rem);
-}
-
-/* ===== STAGE ===== */
-#stage{
-  width:100%;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  transform-origin:center;
-}
-
-/* ===== SCENE ===== */
-.scene{
-  position:absolute;
+  padding:0;
   width:100%;
   height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  background:#000;
+  overflow:hidden;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+
+.stage{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  background:#000;
+}
+
+/* VIDEO DEMO CBT */
+video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:1; /* video di belakang */
+  animation:zoomin 7.5s linear infinite;
+}
+
+@keyframes zoomin{
+  0%{transform:scale(1);}
+  25%{transform:scale(1.025);}
+  100%{transform:scale(1.025);}
+}
+
+/* SAFE AREA HP */
+.safe{
+  position:absolute;
+  top:8%;
+  bottom:8%;
+  left:50%;
+  transform:translateX(-50%);
+  width:86%;
+  max-width:420px;
+  pointer-events:none;
+  z-index:5; /* pastikan tangan berada di atas video */
+}
+
+/* HAND CONTAINER */
+.hand{
+  position:absolute;
+  width:96px;
+  height:auto;
+  opacity:0;
   text-align:center;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .3s ease;
-}
-.scene.active{
-  opacity:1;
-  pointer-events:auto;
+  z-index:10; /* selalu di atas video */
 }
 
-/* ===== HOOK ===== */
-.hook-title{
-  font-family:'Anton',sans-serif;
-  font-size:var(--hero);
-  letter-spacing:.05em;
-  animation:
-    shake .12s infinite alternate,
-    colorShift 3s linear forwards;
-}
-@keyframes shake{
-  from{transform:translate(0,0)}
-  to{transform:translate(2px,-2px)}
-}
-@keyframes colorShift{
-  0%{color:#e5e7eb}
-  33%{color:#22d3ee}
-  66%{color:#f472b6}
-  100%{color:#e5e7eb}
+/* HAND IMAGE REALISTIS */
+.hand img{
+  width:100%;
+  height:auto;
+  display:block;
+  background:transparent; /* harus transparan */
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)); /* natural shadow */
+  transform-origin:20% 20%;
+  transition: transform 0.2s ease-out;
 }
 
-/* ===== MICRO GLITCH ===== */
-.glitch{position:relative}
-.glitch::before,
-.glitch::after{
-  content:attr(data-text);
-  position:absolute;
-  left:0;top:0;width:100%;
-}
-.glitch::before{
-  color:#22d3ee;
-  clip-path:inset(0 0 60% 0);
-  animation:glitchT .3s infinite alternate;
-}
-.glitch::after{
-  color:#f472b6;
-  clip-path:inset(60% 0 0 0);
-  animation:glitchB .4s infinite alternate;
-}
-@keyframes glitchT{to{transform:translateX(-2px)}}
-@keyframes glitchB{to{transform:translateX(2px)}}
-
-.hook-sub{
-  font-size:var(--md);
-  margin-top:10px;
-  opacity:0;
-  animation:fadeIn .6s ease forwards;
-  animation-delay:3s;
-}
-@keyframes fadeIn{to{opacity:1}}
-
-/* ===== FALL WORD ===== */
-.follow{
-  position:absolute;
-  font-size:var(--md);
-  pointer-events:none;
-  animation:fall 1.2s ease forwards;
-}
-@keyframes fall{
-  to{transform:translateY(60vh);opacity:0}
-}
-
-/* ===== PHONE MOCKUP ===== */
-.phone{
-  position:absolute;
-  bottom:6%;
-  width:220px;
-  height:390px;
-  border-radius:32px;
-  background:linear-gradient(145deg,#0f172a,#020617);
-  box-shadow:0 40px 80px rgba(0,0,0,.6);
-  transform:perspective(900px) rotateX(12deg) rotateY(-8deg);
-}
-.phone-screen{
-  margin:14px;
-  height:calc(100% - 28px);
-  border-radius:22px;
-  background:linear-gradient(180deg,#38bdf8,#0ea5e9);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:700;
-  color:#020617;
-}
-
-/* ===== CTA ===== */
-.cta{
-  position:absolute;
-  bottom:10%;
-  padding:14px 22px;
-  border-radius:14px;
-  background:#e5e7eb;
-  color:#020617;
-  font-weight:700;
-  text-decoration:none;
-}
-
-/* ===== RECORD BTN ===== */
-#recordBtn{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  padding:10px 16px;
-  border-radius:12px;
-  border:none;
-  font-weight:700;
-  background:#22d3ee;
-  color:#020617;
-  z-index:999;
+/* MULTI-TOMBOL + TAP */
+@keyframes handmove{
+  0%{
+    opacity:0;
+    transform:translate(0,24px) rotate(0deg) scale(.92);
+  }
+  10%{
+    opacity:1;
+    transform:translate(0,0) rotate(-10deg) scale(1); /* target 1 - soal */
+  }
+  25%{
+    transform:translate(20px,50px) rotate(15deg) scale(.92); /* target 2 - opsi */
+  }
+  28%{
+    transform:translate(20px,50px) rotate(15deg) scale(.95); /* tap */
+  }
+  30%{
+    transform:translate(20px,50px) rotate(15deg) scale(1); /* release */
+  }
+  45%{
+    transform:translate(-10px,80px) rotate(-5deg) scale(.92); /* target 3 - tombol next */
+  }
+  48%{
+    transform:translate(-10px,80px) rotate(-5deg) scale(.95); /* tap */
+  }
+  50%{
+    transform:translate(-10px,80px) rotate(-5deg) scale(1); /* release */
+  }
+  70%{
+    opacity:0;
+    transform:translate(-10px,80px) rotate(-5deg) scale(.96);
+  }
+  100%{
+    opacity:0;
+  }
 }
 </style>
 </head>
 
 <body>
+<div class="stage">
 
-<div id="stage">
+  <!-- VIDEO DEMO CBT -->
+  <video src="video.mp4" autoplay muted loop playsinline></video>
 
-<!-- SCENE 0 -->
-<div class="scene active" id="hook">
-  <div class="hook-title glitch" data-text="SNBT">SNBT</div>
-  <div class="hook-sub">Bukan soal pintar. Tapi sistem berpikir.</div>
-
-  <div class="phone">
-    <div class="phone-screen">CBT • 9:16</div>
+  <!-- SAFE PHONE AREA -->
+  <div class="safe">
+    <div class="hand">
+      <img src="hand.png" alt="gesture hand"
+           onerror="this.style.display='none'; this.parentNode.innerHTML='☝️';">
+    </div>
   </div>
-</div>
-
-<!-- SCENE 1 -->
-<div class="scene">
-  <div style="font-size:var(--xl);font-weight:800">BUKAN HAFALAN</div>
-</div>
-
-<!-- SCENE 2 -->
-<div class="scene">
-  <div style="font-size:var(--xl);font-weight:800">POLA BERPIKIR</div>
-</div>
-
-<!-- SCENE 3 -->
-<div class="scene">
-  <div style="font-size:var(--xl);font-weight:800">SIMULASI CBT</div>
-</div>
-
-<!-- SCENE 4 -->
-<div class="scene">
-  <div style="font-size:var(--xl);font-weight:800">MANDIRI</div>
-</div>
-
-<!-- SCENE 5 -->
-<div class="scene">
-  <div style="font-size:var(--xl);font-weight:800">SYSTEM</div>
-  <div style="font-size:var(--md)">BUILT BY G. ASFARRASYID</div>
-  <a class="cta" href="quiz/index.html">Mulai Simulasi CBT →</a>
-</div>
 
 </div>
-
-<button id="recordBtn">● RECORD</button>
-
-<script>
-/* ===== AUTO SCALE ===== */
-function autoScale(){
-  const baseW=390,baseH=844;
-  const s=Math.min(innerWidth/baseW,innerHeight/baseH);
-  stage.style.transform=`scale(${s})`;
-}
-window.addEventListener('resize',autoScale);
-autoScale();
-
-/* ===== FOLLOW WORD ===== */
-const words=['CBT','UTBK','2026','MANDIRI','SIMULASI'];
-let wi=0;
-hook.addEventListener('mousemove',e=>{
-  spawn(e.clientX,e.clientY);
-});
-hook.addEventListener('touchmove',e=>{
-  const t=e.touches[0];
-  spawn(t.clientX,t.clientY);
-});
-function spawn(x,y){
-  const d=document.createElement('div');
-  d.className='follow';
-  d.textContent=words[wi++%words.length];
-  d.style.left=x+'px';
-  d.style.top=y+'px';
-  hook.appendChild(d);
-  setTimeout(()=>d.remove(),1200);
-}
-
-/* ===== SCENE FLOW ===== */
-const scenes=document.querySelectorAll('.scene');
-let idx=0,delay=3000;
-setInterval(()=>{
-  scenes[idx].classList.remove('active');
-  idx=(idx+1)%scenes.length;
-  scenes[idx].classList.add('active');
-},delay);
-
-/* ===== RECORD ===== */
-let rec,chunks=[];
-recordBtn.onclick=async()=>{
-  const stream=await navigator.mediaDevices.getDisplayMedia({video:{frameRate:60}});
-  rec=new MediaRecorder(stream,{mimeType:'video/webm'});
-  rec.ondataavailable=e=>chunks.push(e.data);
-  rec.onstop=()=>{
-    const b=new Blob(chunks,{type:'video/webm'});
-    const a=document.createElement('a');
-    a.href=URL.createObjectURL(b);
-    a.download='snbt-demo.webm';
-    a.click();
-    chunks=[];
-  };
-  rec.start();
-  setTimeout(()=>{
-    rec.stop();
-    stream.getTracks().forEach(t=>t.stop());
-  },scenes.length*delay+500);
-};
-</script>
-
 </body>
 </html>
