@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SNBT – Logika Gambar</title>
+<title>SNBT HOOK</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
@@ -15,189 +15,74 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:system-ui;
-}
-
-/* ===== MOCKUP HP ===== */
-.phone{
-  width:260px;
-  height:540px;
-  background:#020617;
-  border-radius:38px;
-  box-shadow:0 50px 100px rgba(0,0,0,.8);
-  position:relative;
-}
-.screen{
-  position:absolute;
-  inset:12px;
-  border-radius:28px;
-  background:#020617;
-  padding:12px;
-  color:#e5e7eb;
   overflow:hidden;
 }
 
-/* ===== TITLE ===== */
+.hook-wrap{
+  text-align:center;
+  transform:scale(1.6);
+  animation:zoomOut 1.8s ease forwards;
+}
+
+@keyframes zoomOut{
+  0%{transform:scale(1.6)}
+  70%{transform:scale(1)}
+  100%{transform:scale(1)}
+}
+
 .title{
   font-family:'Anton',sans-serif;
+  font-size:44px;
+  color:#fff;
+  letter-spacing:1px;
+  animation:hit .25s ease infinite alternate;
+}
+
+@keyframes hit{
+  from{transform:translate(-2px,2px)}
+  to{transform:translate(2px,-2px)}
+}
+
+/* CHAOS SYMBOLS */
+.symbol{
+  position:absolute;
   font-size:22px;
-  text-align:center;
-  margin-bottom:8px;
-  opacity:0;
-  animation:titleHit 1.1s ease forwards;
-}
-@keyframes titleHit{
-  0%{opacity:0;transform:scale(1.4) rotate(-3deg)}
-  60%{opacity:1;transform:scale(.9) rotate(2deg);color:#38bdf8}
-  100%{transform:scale(1) rotate(0);color:#fff}
+  color:#38bdf8;
+  animation:shake .4s ease infinite alternate;
 }
 
-/* ===== IMAGE GRID ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:6px;
-  margin-top:6px;
-}
-.cell{
-  aspect-ratio:1/1;
-  border:2px solid #334155;
-  border-radius:10px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:26px;
-  opacity:0;
-  transform:scale(.6);
-  animation:cellIn .35s ease forwards;
-}
-@keyframes cellIn{
-  to{opacity:1;transform:scale(1)}
-}
-
-/* ===== OPTIONS ===== */
-.options{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-  margin-top:10px;
-}
-.opt{
-  aspect-ratio:1/1;
-  border:2px solid #334155;
-  border-radius:10px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:26px;
-  opacity:0;
-  transform:translateY(10px);
-  animation:optIn .3s ease forwards;
-}
-@keyframes optIn{
-  to{opacity:1;transform:translateY(0)}
-}
-.correct{
-  border-color:#22c55e;
-  background:rgba(34,197,94,.2);
-}
-
-/* ===== RATIONALE ===== */
-.rationale{
-  margin-top:10px;
-  font-size:12px;
-  line-height:1.5;
-  border-left:3px solid #38bdf8;
-  padding-left:8px;
-  opacity:0;
-  transform:scale(1.25);
-  animation:rationaleZoom 3s ease forwards;
-}
-@keyframes rationaleZoom{
-  0%{opacity:0;transform:scale(1.25)}
-  30%{opacity:1}
-  100%{opacity:1;transform:scale(1)}
+@keyframes shake{
+  from{transform:translate(-3px,-3px)}
+  to{transform:translate(3px,3px)}
 }
 </style>
 </head>
 
 <body>
 
-<div class="phone">
-  <div class="screen">
-
-    <!-- 1️⃣ JUDUL -->
-    <div class="title">LOGIKA GAMBAR – SNBT</div>
-
-    <!-- 2️⃣ SOAL GAMBAR -->
-    <div class="grid" id="grid">
-      <div class="cell">▲</div>
-      <div class="cell">▲▲</div>
-      <div class="cell">▲▲▲</div>
-
-      <div class="cell">■</div>
-      <div class="cell">■■</div>
-      <div class="cell">■■■</div>
-
-      <div class="cell">●</div>
-      <div class="cell">●●</div>
-      <div class="cell">?</div>
-    </div>
-
-    <!-- 3️⃣ OPSI -->
-    <div class="options">
-      <div class="opt">●</div>
-      <div class="opt">●●</div>
-      <div class="opt">●●●</div>
-      <div class="opt">▲▲</div>
-    </div>
-
-    <!-- 5️⃣ RATIONALE -->
-    <div class="rationale" id="rat">
-      Pola disusun berdasarkan baris.
-      Setiap baris mempertahankan jenis bentuk yang sama,
-      sementara jumlahnya bertambah dari satu ke tiga.
-
-      Baris pertama segitiga (1–3),
-      baris kedua persegi (1–3),
-      sehingga baris ketiga harus lingkaran (1–3).
-
-      Karena dua lingkaran sudah muncul di kolom tengah,
-      maka sel terakhir harus berisi tiga lingkaran.
-      Jawaban yang benar adalah opsi ●●●.
-    </div>
-
-  </div>
+<div class="hook-wrap">
+  <div class="title">LOGIKA SNBT</div>
 </div>
 
 <script>
-/* TIMING GRID */
-document.querySelectorAll(".cell").forEach((c,i)=>{
-  c.style.animationDelay=(1.2+i*0.15)+"s";
-});
+const symbols=["▲","■","●","×","+","=","?","∴"];
+for(let i=0;i<14;i++){
+  const s=document.createElement("div");
+  s.className="symbol";
+  s.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+  s.style.left=50+Math.random()*120+"px";
+  s.style.top =40+Math.random()*120+"px";
+  s.style.animationDelay=(Math.random()*0.2)+"s";
+  document.body.appendChild(s);
+}
 
-/* OPTIONS */
-document.querySelectorAll(".opt").forEach((o,i)=>{
-  o.style.animationDelay=(4+i*0.3)+"s";
-});
-
-/* CORRECT */
+/* FREEZE FRAME (ALGO FRIENDLY) */
 setTimeout(()=>{
-  document.querySelectorAll(".opt")[2].classList.add("correct");
-},6500);
-
-/* RATIONALE */
-setTimeout(()=>{
-  document.getElementById("rat").style.opacity=1;
-},7500);
-
-/* RATIONALE REPEAT */
-setTimeout(()=>{
-  const r=document.getElementById("rat");
-  r.style.animation="none";
-  void r.offsetWidth;
-  r.style.animation="rationaleZoom 3s ease forwards";
-},11000);
+  document.querySelectorAll(".symbol").forEach(el=>{
+    el.style.animation="none";
+  });
+  document.querySelector(".title").style.animation="none";
+},1400);
 </script>
 
 </body>
