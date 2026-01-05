@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SNBT Logic Walkthrough</title>
+<title>SNBT Logic Chaos Walkthrough</title>
 
-<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
@@ -22,7 +21,7 @@ body{
 /* ===== PHONE ===== */
 .phone{
   width:260px;
-  height:520px;
+  height:540px;
   border-radius:38px;
   background:#020617;
   box-shadow:0 40px 90px rgba(0,0,0,.85);
@@ -38,42 +37,35 @@ body{
   overflow:hidden;
 }
 
-/* ===== TITLE ===== */
+/* ===== TITLE CHAOS ===== */
 .title{
-  font-family:'Anton', sans-serif;
-  font-size:20px;
+  font-family:'Anton',sans-serif;
+  font-size:22px;
   text-align:center;
-  margin-bottom:10px;
-  animation:titleIn .6s ease forwards;
+  margin-bottom:12px;
+  animation:titleChaos .9s ease forwards;
 }
-@keyframes titleIn{
-  0%{opacity:0;transform:scale(1.3)}
-  60%{opacity:1;transform:scale(.92)}
-  100%{transform:scale(1)}
-}
-.pulse{
-  animation:pulse .35s ease-in-out 2;
-}
-@keyframes pulse{
-  0%{color:#fff}
-  50%{color:#38bdf8}
-  100%{color:#fff}
+@keyframes titleChaos{
+  0%{opacity:0;transform:scale(1.4) rotate(-2deg);color:#fff}
+  40%{opacity:1;transform:scale(.9) rotate(2deg);color:#38bdf8}
+  70%{transform:scale(1.05) rotate(-1deg);color:#fff}
+  100%{transform:scale(1) rotate(0)}
 }
 
 /* ===== QUESTION ===== */
 .question span{
   display:inline-block;
   opacity:0;
-  transform:scale(.6);
-  animation:wordIn .18s ease forwards;
+  transform:scale(.7) translateY(4px);
+  animation:wordIn .22s ease forwards;
 }
 @keyframes wordIn{
-  to{opacity:1;transform:scale(1)}
+  to{opacity:1;transform:scale(1) translateY(0)}
 }
 
 /* ===== OPTIONS ===== */
 .options{
-  margin-top:10px;
+  margin-top:12px;
 }
 .options li{
   list-style:none;
@@ -82,8 +74,8 @@ body{
   border:1px solid #334155;
   border-radius:8px;
   opacity:0;
-  transform:translateY(6px);
-  animation:optIn .22s ease forwards;
+  transform:translateY(8px);
+  animation:optIn .25s ease forwards;
 }
 @keyframes optIn{
   to{opacity:1;transform:translateY(0)}
@@ -97,16 +89,19 @@ body{
 
 /* ===== RATIONALE ===== */
 .rationale{
-  margin-top:10px;
+  margin-top:12px;
   padding:8px;
   border-left:3px solid #38bdf8;
   font-size:12px;
   line-height:1.45;
   opacity:0;
-  animation:fadeIn .4s ease forwards;
+  transform:scale(1.25);
+  animation:rationaleZoom 3s ease forwards;
 }
-@keyframes fadeIn{
-  to{opacity:1}
+@keyframes rationaleZoom{
+  0%{opacity:0;transform:scale(1.25)}
+  30%{opacity:1}
+  100%{opacity:1;transform:scale(1)}
 }
 </style>
 </head>
@@ -116,35 +111,32 @@ body{
 <div class="phone">
   <div class="screen">
 
-    <div class="title" id="title">
-      LOGIKA CEPAT ALJABAR — SNBT
+    <div class="title">
+      LOGIKA CEPAT — SNBT
     </div>
 
     <div class="question" id="question">
-      Jika 3x + 5 = 20, maka nilai x adalah
+      Semua dosen adalah pengajar. Sebagian pengajar adalah peneliti.
+      Kesimpulan yang pasti benar adalah
     </div>
 
-    <ul class="options" id="options">
-      <li>A. 3</li>
-      <li>B. 4</li>
-      <li>C. 5</li>
-      <li>D. 6</li>
+    <ul class="options">
+      <li>A. Semua dosen adalah peneliti</li>
+      <li>B. Sebagian dosen adalah peneliti</li>
+      <li>C. Sebagian peneliti adalah dosen</li>
+      <li>D. Tidak dapat disimpulkan hubungan dosen–peneliti</li>
     </ul>
 
     <div class="rationale" id="rationale">
-      Pindahkan konstanta dulu: 20 − 5 = 15.  
-      Baru bagi koefisien: x = 15 ÷ 3.  
-      Fokus geser ruas, bukan hitung panjang.
+      Kata “sebagian” tidak bisa dibalik atau diperluas.
+      Kita tidak boleh menambah hubungan yang tidak disebutkan.
+      Jadi relasi dosen–peneliti tidak bisa dipastikan.
     </div>
 
   </div>
 </div>
 
 <script>
-/* TITLE EFFECT */
-const title=document.getElementById("title");
-setTimeout(()=>title.classList.add("pulse"),500);
-
 /* SPLIT QUESTION */
 const q=document.getElementById("question");
 const words=q.innerText.split(" ");
@@ -152,24 +144,31 @@ q.innerHTML="";
 words.forEach((w,i)=>{
   const s=document.createElement("span");
   s.innerText=w+" ";
-  s.style.animationDelay=(1+i*0.06)+"s";
+  s.style.animationDelay=(1+i*0.07)+"s";
   q.appendChild(s);
 });
 
-/* OPTIONS */
+/* OPTIONS TIMING */
 document.querySelectorAll(".options li").forEach((li,i)=>{
-  li.style.animationDelay=(2.2+i*0.25)+"s";
+  li.style.animationDelay=(3.2+i*0.25)+"s";
 });
 
 /* CORRECT */
 setTimeout(()=>{
-  document.querySelectorAll(".options li")[2].classList.add("correct");
-},3600);
-
-/* RATIONALE */
-setTimeout(()=>{
-  document.getElementById("rationale").style.animationDelay="0s";
+  document.querySelectorAll(".options li")[3].classList.add("correct");
 },5200);
+
+/* RATIONALE LOOP (2x SUPPORT STAY) */
+const rat=document.getElementById("rationale");
+setTimeout(()=>{
+  rat.style.opacity=1;
+},6200);
+
+setTimeout(()=>{
+  rat.style.animation="none";
+  void rat.offsetWidth;
+  rat.style.animation="rationaleZoom 3s ease forwards";
+},9500);
 </script>
 
 </body>
