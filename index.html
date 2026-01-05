@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SNBT Workflow Final</title>
+<title>SNBT – Logika Relasi</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
@@ -18,13 +18,13 @@ body{
   font-family:system-ui;
 }
 
-/* ===== PHONE ===== */
+/* ===== MOCKUP HP ===== */
 .phone{
   width:260px;
   height:540px;
-  border-radius:38px;
   background:#020617;
-  box-shadow:0 40px 90px rgba(0,0,0,.85);
+  border-radius:38px;
+  box-shadow:0 50px 100px rgba(0,0,0,.8);
   position:relative;
 }
 .screen{
@@ -37,30 +37,30 @@ body{
   overflow:hidden;
 }
 
-/* ===== CHAOS TITLE ===== */
+/* ===== TITLE ===== */
 .title{
   font-family:'Anton',sans-serif;
   font-size:22px;
   text-align:center;
-  margin-bottom:12px;
-  animation:titleChaos .8s ease forwards;
+  margin-bottom:10px;
+  opacity:0;
+  animation:titleIn 1s ease forwards;
 }
-@keyframes titleChaos{
+@keyframes titleIn{
   0%{opacity:0;transform:scale(1.4) rotate(-2deg)}
-  40%{opacity:1;transform:scale(.9) rotate(2deg);color:#38bdf8}
-  70%{transform:scale(1.05) rotate(-1deg);color:#fff}
-  100%{transform:scale(1) rotate(0)}
+  60%{opacity:1;transform:scale(.95) rotate(2deg);color:#38bdf8}
+  100%{transform:scale(1) rotate(0);color:#fff}
 }
 
 /* ===== QUESTION ===== */
 .question span{
   display:inline-block;
   opacity:0;
-  transform:scale(.7) translateY(4px);
-  animation:wordIn .22s ease forwards;
+  transform:translateY(6px);
+  animation:wordIn .25s ease forwards;
 }
 @keyframes wordIn{
-  to{opacity:1;transform:scale(1) translateY(0)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 /* ===== OPTIONS ===== */
@@ -81,19 +81,19 @@ body{
   to{opacity:1;transform:translateY(0)}
 }
 
-/* ===== ANSWER ===== */
+/* ===== CORRECT ===== */
 .correct{
-  border-color:#22c55e !important;
-  background:rgba(34,197,94,.18);
+  border-color:#22c55e;
+  background:rgba(34,197,94,.2);
 }
 
 /* ===== RATIONALE ===== */
 .rationale{
   margin-top:12px;
-  padding:8px;
-  border-left:3px solid #38bdf8;
   font-size:12px;
-  line-height:1.45;
+  line-height:1.5;
+  border-left:3px solid #38bdf8;
+  padding-left:8px;
   opacity:0;
   transform:scale(1.25);
   animation:rationaleZoom 3s ease forwards;
@@ -111,69 +111,75 @@ body{
 <div class="phone">
   <div class="screen">
 
-    <!-- PHASE 0: CHAOS -->
+    <!-- 1️⃣ JUDUL -->
     <div class="title">
-      LOGIKA SNBT — JANGAN KECEPETAN
+      LOGIKA RELASI – SNBT
     </div>
 
-    <!-- PHASE 1: QUESTION -->
+    <!-- 2️⃣ SOAL -->
     <div class="question" id="question">
-      Semua dosen adalah pengajar. Sebagian pengajar adalah peneliti.
-      Kesimpulan yang pasti benar adalah
+      Semua siswa rajin adalah disiplin. Sebagian siswa disiplin mengikuti lomba.
+      Kesimpulan yang PALING TEPAT adalah
     </div>
 
-    <!-- PHASE 2: OPTIONS -->
+    <!-- 3️⃣ OPSI -->
     <ul class="options">
-      <li>A. Semua dosen adalah peneliti</li>
-      <li>B. Sebagian dosen adalah peneliti</li>
-      <li>C. Sebagian peneliti adalah dosen</li>
-      <li>D. Tidak dapat disimpulkan hubungan dosen–peneliti</li>
+      <li>A. Semua siswa rajin mengikuti lomba</li>
+      <li>B. Sebagian siswa rajin mengikuti lomba</li>
+      <li>C. Sebagian siswa yang mengikuti lomba adalah disiplin</li>
+      <li>D. Semua siswa disiplin adalah rajin</li>
     </ul>
 
-    <!-- PHASE 4–5: LOGIC -->
+    <!-- 5️⃣ RATIONALE -->
     <div class="rationale" id="rationale">
-      Di sini jebakannya kata “sebagian”.  
-      Relasi “sebagian” tidak boleh dibalik atau diperluas.  
-      Kalau relasi tidak disebutkan, jangan ditambah.
+      Informasi pertama menyatakan bahwa siswa rajin merupakan bagian dari siswa disiplin.
+      Informasi kedua menyatakan bahwa hanya sebagian siswa disiplin yang mengikuti lomba.
+
+      Karena hubungan “sebagian” tidak boleh diperluas atau dibalik, kita tidak boleh
+      menyimpulkan bahwa semua atau sebagian siswa rajin pasti mengikuti lomba.
+
+      Satu-satunya kesimpulan yang AMAN dan sesuai data adalah bahwa
+      sebagian peserta lomba berasal dari kelompok siswa disiplin.
+      Oleh karena itu, jawaban yang paling tepat adalah opsi C.
     </div>
 
   </div>
 </div>
 
 <script>
-/* ===== QUESTION TIMING ===== */
+/* ===== QUESTION WORD FLOW ===== */
 const q=document.getElementById("question");
 const words=q.innerText.split(" ");
 q.innerHTML="";
 words.forEach((w,i)=>{
   const s=document.createElement("span");
   s.innerText=w+" ";
-  s.style.animationDelay=(1.5+i*0.07)+"s";
+  s.style.animationDelay=(1.2+i*0.06)+"s";
   q.appendChild(s);
 });
 
 /* ===== OPTIONS TIMING ===== */
 document.querySelectorAll(".options li").forEach((li,i)=>{
-  li.style.animationDelay=(4+i*0.25)+"s";
+  li.style.animationDelay=(4+i*0.3)+"s";
 });
 
-/* ===== ANSWER SHOCK ===== */
+/* ===== ANSWER ===== */
 setTimeout(()=>{
-  document.querySelectorAll(".options li")[3].classList.add("correct");
-},6000);
+  document.querySelectorAll(".options li")[2].classList.add("correct");
+},6500);
 
-/* ===== RATIONALE LATE ===== */
+/* ===== RATIONALE ===== */
 const rat=document.getElementById("rationale");
 setTimeout(()=>{
   rat.style.opacity=1;
-},7200);
+},7500);
 
-/* ===== RATIONALE REPLAY ===== */
+/* ===== RATIONALE REPEAT ===== */
 setTimeout(()=>{
   rat.style.animation="none";
   void rat.offsetWidth;
   rat.style.animation="rationaleZoom 3s ease forwards";
-},10500);
+},11000);
 </script>
 
 </body>
