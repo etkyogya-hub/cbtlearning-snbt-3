@@ -1,182 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SNBT Hook – Internal Chaos</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<title>CBT SNBT Simulator</title>
 
 <style>
 body{
   margin:0;
-  height:100vh;
-  background:#020617;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:system-ui;
-}
-
-/* MOCKUP HP */
-.phone{
-  width:260px;
-  height:540px;
-  background:#020617;
-  border-radius:36px;
-  box-shadow:0 40px 90px rgba(0,0,0,.85);
-  position:relative;
-}
-.screen{
-  position:absolute;
-  inset:12px;
-  border-radius:26px;
-  padding:14px;
   background:#020617;
   color:#e5e7eb;
-  overflow:hidden;
+  font-family:system-ui;
 }
-
-/* TITLE */
-.title{
-  font-family:'Anton',sans-serif;
-  font-size:22px;
-  text-align:center;
-  margin-bottom:10px;
-  animation:titleShake .6s ease-in-out infinite alternate;
+.wrap{
+  max-width:720px;
+  margin:auto;
+  padding:24px;
 }
-@keyframes titleShake{
-  from{transform:translateX(-2px); color:#38bdf8}
-  to{transform:translateX(2px); color:#fff}
+.card{
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:18px;
 }
-
-/* QUESTION */
-.question span{
+h1{margin:0 0 10px;font-size:28px}
+.badge{
   display:inline-block;
-  font-size:14px;
-  font-weight:700;
-  margin-right:4px;
-  opacity:0;
-  animation:wordPop .25s ease forwards;
-}
-@keyframes wordPop{
-  from{opacity:0;transform:scale(1.4) rotate(-4deg)}
-  to{opacity:1;transform:scale(1) rotate(0)}
-}
-
-/* OPTIONS */
-.options{
-  margin-top:12px;
-}
-.opt{
-  padding:6px;
-  border:1px solid #334155;
-  border-radius:8px;
-  margin-bottom:6px;
-  font-size:13px;
-  opacity:0;
-  animation:optIn .3s ease forwards;
-}
-@keyframes optIn{
-  from{opacity:0;transform:translateY(6px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.correct{
-  border-color:#22c55e;
-  background:rgba(34,197,94,.2);
-}
-
-/* RATIONALE */
-.rationale{
-  margin-top:10px;
+  border:1px solid #64748b;
+  border-radius:999px;
+  padding:6px 14px;
   font-size:12px;
-  line-height:1.5;
-  border-left:3px solid #38bdf8;
-  padding-left:8px;
-  opacity:0;
-  transform:scale(1.25);
-  animation:rZoom 3s ease forwards;
+  margin-bottom:10px;
 }
-@keyframes rZoom{
-  0%{opacity:0;transform:scale(1.25)}
-  30%{opacity:1}
-  100%{opacity:1;transform:scale(1)}
+.row{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  margin:6px 0;
+  opacity:.9;
+}
+.btn{
+  display:block;
+  width:100%;
+  text-align:center;
+  background:#e5e7eb;
+  color:#020617;
+  padding:14px;
+  border-radius:14px;
+  font-weight:700;
+  text-decoration:none;
+  margin-top:14px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="phone">
-  <div class="screen">
+<div class="wrap">
 
-    <!-- TITLE -->
-    <div class="title">LOGIKA VERBAL — SNBT</div>
+<h1>Simulasi CBT SNBT</h1>
+<div class="badge">Aktual • Rasional • Mandiri</div>
 
-    <!-- QUESTION -->
-    <div class="question" id="q">
-      <span>Jika</span>
-      <span>semua</span>
-      <span>guru</span>
-      <span>adalah</span>
-      <span>pendidik,</span>
-      <span>dan</span>
-      <span>sebagian</span>
-      <span>pendidik</span>
-      <span>adalah</span>
-      <span>penulis,</span>
-      <span>maka</span>
-      <span>kesimpulan</span>
-      <span>yang</span>
-      <span>tepat</span>
-      <span>adalah</span>
-      <span>…</span>
-    </div>
+<div class="card">
+  <h2>Paket UTBK SNBT 2026</h2>
 
-    <!-- OPTIONS -->
-    <div class="options">
-      <div class="opt">A. Semua guru adalah penulis</div>
-      <div class="opt correct">B. Sebagian guru mungkin penulis</div>
-      <div class="opt">C. Semua penulis adalah guru</div>
-      <div class="opt">D. Tidak ada guru yang penulis</div>
-    </div>
+  <div class="row"><span>Penalaran Umum</span><span>30 soal</span></div>
+  <div class="row"><span>Literasi Bahasa</span><span>20 soal</span></div>
+  <div class="row"><span>Literasi Matematika</span><span>20 soal</span></div>
+  <div class="row"><span>Pengetahuan Umum</span><span>15 soal</span></div>
 
-    <!-- RATIONALE -->
-    <div class="rationale" id="rat">
-      Premis pertama menyatakan seluruh guru termasuk kelompok pendidik.
-      Premis kedua hanya menyebut sebagian pendidik adalah penulis.
+  <div class="row"><strong>Total</strong><strong>85 soal</strong></div>
 
-      Tidak ada pernyataan bahwa semua pendidik adalah penulis,
-      sehingga guru yang termasuk pendidik *berpeluang* menjadi penulis,
-      tetapi tidak wajib.
-
-      Maka kesimpulan paling logis adalah:
-      sebagian guru mungkin penulis.
-    </div>
-
-  </div>
+  <a class="btn" href="quiz.html">Mulai CBT</a>
 </div>
 
-<script>
-document.querySelectorAll(".question span")
-.forEach((w,i)=>w.style.animationDelay=(.6+i*.08)+"s");
+<div class="card">
+  <h3>Kenapa berbeda?</h3>
+  <ul>
+    <li>Tidak menghafal jawaban</li>
+    <li>Fokus struktur berpikir</li>
+    <li>Ada Rationale Generator</li>
+  </ul>
+</div>
 
-document.querySelectorAll(".opt")
-.forEach((o,i)=>o.style.animationDelay=(2.2+i*.25)+"s");
-
-/* rationale show */
-setTimeout(()=>{
-  document.getElementById("rat").style.opacity=1;
-},4200);
-
-/* repeat zoom for algo */
-setTimeout(()=>{
-  const r=document.getElementById("rat");
-  r.style.animation="none";
-  void r.offsetWidth;
-  r.style.animation="rZoom 3s ease forwards";
-},7500);
-</script>
+</div>
 
 </body>
 </html>
