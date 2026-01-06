@@ -2,58 +2,91 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Hook Retention CTA</title>
+<title>3D Phone Mockup Hook</title>
 
 <style>
 html,body{
   margin:0;
   padding:0;
-  background:#000;
-  overflow:hidden;
-}
-video{
-  width:100vw;
-  height:100vh;
-  object-fit:cover;
-}
-
-/* COMMON */
-.overlay{
-  position:absolute;
-  top:0;left:0;
   width:100%;
   height:100%;
+  background:radial-gradient(circle at top, #1e3c72, #0f2027);
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* PHONE MOCKUP */
+.phone{
+  width:360px;
+  height:720px;
+  background:#000;
+  border-radius:40px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.6),
+    inset 0 0 0 6px #111;
+  transform:perspective(900px) rotateX(6deg) rotateY(-6deg);
+  position:relative;
+}
+
+/* NOTCH */
+.phone::before{
+  content:'';
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:120px;
+  height:18px;
+  background:#111;
+  border-radius:0 0 14px 14px;
+  z-index:5;
+}
+
+/* VIDEO */
+video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:34px;
+}
+
+/* OVERLAY COMMON */
+.overlay{
+  position:absolute;
+  inset:0;
   display:flex;
   justify-content:center;
   align-items:center;
   text-align:center;
   pointer-events:none;
-  font-family: 'Anton', sans-serif;
+  font-family:'Anton', sans-serif;
 }
 
 /* HOOK */
 #hook{
-  font-size:7vw;
-  color:white;
+  font-size:32px;
+  color:#fff;
   opacity:0;
   animation:hookShake 2s ease-out forwards;
 }
 @keyframes hookShake{
   0%{opacity:0;transform:scale(1.4) translateX(-10px);}
-  10%{opacity:1;transform:scale(1.2) translateX(10px);}
-  20%{transform:scale(1.15) translateX(-8px);}
-  30%{transform:scale(1.1) translateX(6px);}
+  10%{opacity:1;transform:scale(1.25) translateX(10px);}
+  20%{transform:scale(1.18) translateX(-8px);}
+  30%{transform:scale(1.12) translateX(6px);}
   40%{transform:scale(1.05) translateX(-4px);}
   60%{transform:scale(1) translateX(0);}
   100%{opacity:0;}
 }
 
-/* TENSION TEXT */
+/* TENSION */
 #tension{
   position:absolute;
-  bottom:18%;
-  font-size:3.5vw;
-  color:#ddd;
+  bottom:22%;
+  font-size:16px;
+  color:#dce9ff;
   opacity:0;
   animation:tensionFade 4s ease forwards;
   animation-delay:5s;
@@ -65,12 +98,12 @@ video{
   100%{opacity:0;}
 }
 
-/* CTA */
+/* CTA LEVEL 1 */
 #cta{
   position:absolute;
-  bottom:12%;
-  font-size:4vw;
-  color:white;
+  bottom:14%;
+  font-size:18px;
+  color:#ffffff;
   opacity:0;
   animation:ctaIn 1.2s ease forwards;
   animation-delay:13.5s;
@@ -84,20 +117,22 @@ video{
 
 <body>
 
-<video autoplay muted playsinline>
-  <source src="lv_0_20260107052336.mp4" type="video/mp4">
-</video>
+<div class="phone">
+  <video autoplay muted playsinline>
+    <source src="lv_0_20260107052336.mp4" type="video/mp4">
+  </video>
 
-<!-- HOOK -->
-<div class="overlay">
-  <div id="hook">STOP. JANGAN JAWAB CEPAT.</div>
+  <!-- HOOK -->
+  <div class="overlay">
+    <div id="hook">STOP. JANGAN JAWAB CEPAT.</div>
+  </div>
+
+  <!-- TENSION -->
+  <div id="tension">Kelihatannya mudah. Tapi ini jebakan.</div>
+
+  <!-- CTA -->
+  <div id="cta">Ikutin selanjutnya.</div>
 </div>
-
-<!-- TENSION -->
-<div id="tension">Kelihatannya gampang. Tapi ini jebakan.</div>
-
-<!-- CTA -->
-<div id="cta">Ikutin selanjutnya.</div>
 
 </body>
 </html>
