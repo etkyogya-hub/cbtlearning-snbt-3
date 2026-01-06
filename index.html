@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>CBT Learning – Real Test</title>
+<title>CBT Learning – Retention Hook</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
@@ -65,16 +65,30 @@ html,body{
   color:#fff;
 }
 
-/* ===== SOAL ===== */
+/* ===== SOAL (ANTON + SHAKY + FLASH) ===== */
 .soal{
   font-family:'Anton', sans-serif;
   font-size:26px;
   line-height:1.35;
   letter-spacing:1px;
-  margin-bottom:16px;
+  margin-bottom:18px;
+  animation:
+    shake 0.35s infinite,
+    flashColor 2s infinite;
+}
+@keyframes shake{
+  0%{transform:translate(0)}
+  25%{transform:translate(-1px,1px)}
+  50%{transform:translate(1px,-1px)}
+  75%{transform:translate(-1px,-1px)}
+  100%{transform:translate(0)}
+}
+@keyframes flashColor{
+  0%,100%{color:#ffffff}
+  50%{color:#38bdf8}
 }
 
-/* ===== OPSI ===== */
+/* ===== OPSI (DIAM) ===== */
 .opsi{
   margin-bottom:10px;
   padding:10px 12px;
@@ -82,46 +96,36 @@ html,body{
   background:#020617;
   border:1px solid #334155;
   font-size:14px;
-  transition:.3s;
-}
-.opsi.correct{
-  border-color:#22c55e;
-  color:#22c55e;
-}
-.opsi.wrong{
-  border-color:#ef4444;
-  color:#ef4444;
+  color:#e5e7eb;
 }
 
 /* ===== HOLD ===== */
 .hold{
   position:absolute;
-  bottom:88px;
+  bottom:92px;
   left:18px;
   font-size:12px;
   color:#94a3b8;
-  opacity:0;
-  animation:holdIn 8s forwards;
-}
-@keyframes holdIn{
-  0%,50%{opacity:0}
-  60%,100%{opacity:1}
+  opacity:.6;
 }
 
-/* ===== RATIONALE ===== */
+/* ===== RATIONALE (PUTIH BERCAHAYA) ===== */
 .rationale{
   position:absolute;
   bottom:28px;
   left:18px;
   right:18px;
   font-size:13px;
-  color:#e5e7eb;
+  color:#ffffff;
+  text-shadow:
+    0 0 6px rgba(255,255,255,.45),
+    0 0 14px rgba(56,189,248,.35);
   opacity:0;
-  animation:ratIn 8s forwards;
+  animation:ratIn 7s forwards;
 }
 @keyframes ratIn{
-  0%,65%{opacity:0}
-  75%,100%{opacity:1}
+  0%,55%{opacity:0}
+  70%,100%{opacity:1}
 }
 </style>
 </head>
@@ -141,18 +145,18 @@ html,body{
 
   <!-- OPSI -->
   <div class="opsi">A. 3</div>
-  <div class="opsi correct">B. 5</div>
+  <div class="opsi">B. 5</div>
   <div class="opsi">C. 6</div>
   <div class="opsi">D. 7</div>
   <div class="opsi">E. 8</div>
 
   <!-- HOLD -->
-  <div class="hold">tahan… jangan jawab dulu</div>
+  <div class="hold">tahan sebentar — jangan jawab dulu</div>
 
   <!-- RATIONALE -->
   <div class="rationale">
     Rationale: kurangi 5 dari kedua sisi → 3x = 15 → x = 5.
-    Bukan soal hitung, tapi disiplin langkah.
+    Fokus pada urutan langkah, bukan hasil cepat.
   </div>
 
 </div>
