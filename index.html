@@ -1,22 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Crack Merge Hook</title>
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* PHONE */
+.phone{
+  width:360px;
+  height:720px;
+  background:#111;
+  border-radius:42px;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+  position:relative;
+  transform:perspective(900px) rotateX(4deg) rotateY(-4deg);
+}
+
+/* SCREEN (BLUE) */
+.screen{
+  position:absolute;
+  inset:10px;
+  border-radius:34px;
+  background:linear-gradient(180deg,#1e3c72,#2a5298);
+  overflow:hidden;
+}
+
+/* VIDEO */
+video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* HOOK */
 #hook{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(1);
+  font-family:'Anton',sans-serif;
   font-size:32px;
   color:#fff;
-  opacity:1;
-  animation:hookRockStay 6s ease-out forwards;
+  display:flex;
+  gap:10px;
+  z-index:10;
+  pointer-events:none;
+  transition:top .8s ease, transform .8s ease;
+}
+#hook span{
+  display:inline-block;
+  animation:crack 1.2s ease-out forwards;
 }
 
-/* SHAKY → BALIK → STAY */
-@keyframes hookRockStay{
-  /* SHOCK PHASE */
-  0%   {transform:scale(1.4) translateX(-14px);}
-  8%   {transform:scale(1.25) translateX(14px);}
-  16%  {transform:scale(1.18) translateX(-10px);}
-  24%  {transform:scale(1.12) translateX(8px);}
-  32%  {transform:scale(1.06) translateX(-5px);}
-
-  /* SNAP BACK */
-  40%  {transform:scale(1) translateX(0);}
-
-  /* STAY (UNTUK SCREEN RECORD) */
-  100% {transform:scale(1) translateX(0);}
+/* CRACK / RETAK */
+@keyframes crack{
+  0%{
+    transform:
+      translate(
+        calc(-40px + 80px * var(--x)),
+        calc(-40px + 80px * var(--y))
+      )
+      scale(1.8)
+      rotate(calc(-20deg + 40deg * var(--r)));
+    opacity:0;
+  }
+  40%{opacity:1;}
+  100%{
+    transform:translate(0,0) scale(1) rotate(0deg);
+    opacity:1;
+  }
 }
+
+/* PIN TO TOP */
+.pin{
+  top:7%;
+  transform:translate(-50%,0) scale(.75);
+}
+
+/* CTA */
+#cta{
+  position:absolute;
+  bottom:14%;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Anton',sans-serif;
+  font-size:18px;
+  color:#fff;
+  opacity:0;
+  animation:ctaIn 1.2s ease forwards;
+  animation-delay:13.5s;
+}
+@keyframes ctaIn{
+  from{opacity:0;transform:translate(-50%,20px)}
+  to{opacity:1;transform:translate(-50%,0)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+  <div class="screen">
+
+    <video autoplay muted playsinline>
+      <source src="lv_0_20260107052336.mp4" type="video/mp4">
+    </video>
+
+    <!-- HOOK -->
+    <div id="hook">
+      <span>STOP.</span>
+      <span>JANGAN</span>
+      <span>JAWAB</span>
+      <span>CEPAT.</span>
+    </div>
+
+    <!-- CTA -->
+    <div id="cta">Ikutin selanjutnya.</div>
+
+  </div>
+</div>
+
+<script>
+const hook = document.getElementById('hook');
+const words = hook.querySelectorAll('span');
+
+words.forEach(w=>{
+  w.style.setProperty('--x', Math.random());
+  w.style.setProperty('--y', Math.random());
+  w.style.setProperty('--r', Math.random());
+});
+
+setTimeout(()=>{
+  hook.classList.add('pin');
+}, 1600);
+</script>
+
+</body>
+</html>
