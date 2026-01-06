@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>CBT Learning – SNBT Retention Series</title>
+<title>CBT Learning – Hybrid Demo</title>
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
@@ -31,62 +31,38 @@ html,body{
   width:300px;
   height:540px;
   position:relative;
-  transform-style:preserve-3d;
+  border-radius:38px;
+  overflow:hidden;
+  box-shadow:0 60px 150px rgba(0,0,0,.85);
   animation:float 6s ease-in-out infinite;
 }
 @keyframes float{
   0%,100%{transform:rotateX(4deg) rotateY(-4deg)}
   50%{transform:rotateX(7deg) rotateY(-7deg)}
 }
-.body{
+
+/* ===== VIDEO ===== */
+video{
   position:absolute;
   inset:0;
-  border-radius:38px;
-  background:var(--bg);
-  box-shadow:0 60px 150px rgba(0,0,0,.85);
-}
-.body::before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  border-radius:40px;
-  background:linear-gradient(180deg, transparent, rgba(255,255,255,.35), transparent);
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.75) contrast(1.1);
 }
 
-/* ===== SCREEN ===== */
-.screen{
+/* ===== OVERLAY ===== */
+.overlay{
   position:absolute;
-  inset:16px;
-  border-radius:30px;
-  background:#020617;
+  inset:0;
   padding:18px;
   box-sizing:border-box;
+  background:linear-gradient(
+    to bottom,
+    rgba(2,6,23,.35),
+    rgba(2,6,23,.55)
+  );
   color:#fff;
-}
-
-/* ===== SLIDE ===== */
-.slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  animation:cycle 54s infinite;
-}
-.slide:nth-child(1){animation-delay:0s}
-.slide:nth-child(2){animation-delay:6s}
-.slide:nth-child(3){animation-delay:12s}
-.slide:nth-child(4){animation-delay:18s}
-.slide:nth-child(5){animation-delay:24s}
-.slide:nth-child(6){animation-delay:30s}
-.slide:nth-child(7){animation-delay:36s}
-.slide:nth-child(8){animation-delay:42s}
-.slide:nth-child(9){animation-delay:48s}
-
-@keyframes cycle{
-  0%{opacity:0}
-  8%{opacity:1}
-  60%{opacity:1}
-  75%{opacity:0}
-  100%{opacity:0}
 }
 
 /* ===== SOAL ===== */
@@ -95,7 +71,7 @@ html,body{
   font-size:26px;
   line-height:1.35;
   letter-spacing:1px;
-  margin-bottom:18px;
+  margin-top:24px;
   animation:shake .35s infinite, flash 2s infinite;
 }
 @keyframes shake{
@@ -112,21 +88,23 @@ html,body{
 
 /* ===== OPSI ===== */
 .opsi{
-  margin-bottom:10px;
+  margin-top:12px;
   padding:10px 12px;
   border-radius:10px;
-  border:1px solid #334155;
+  border:1px solid rgba(255,255,255,.25);
   font-size:14px;
   color:#e5e7eb;
+  backdrop-filter:blur(4px);
 }
 
 /* ===== HOLD ===== */
 .hold{
   position:absolute;
-  bottom:92px;
+  bottom:110px;
   left:18px;
   font-size:12px;
-  color:#94a3b8;
+  color:#cbd5f5;
+  opacity:.8;
 }
 
 /* ===== RATIONALE ===== */
@@ -137,11 +115,13 @@ html,body{
   right:18px;
   font-size:13px;
   color:#fff;
-  text-shadow:0 0 6px rgba(255,255,255,.45),0 0 14px rgba(56,189,248,.35);
+  text-shadow:
+    0 0 6px rgba(255,255,255,.45),
+    0 0 14px rgba(56,189,248,.35);
   opacity:0;
-  animation:rat 6s forwards;
+  animation:ratIn 7s forwards;
 }
-@keyframes rat{
+@keyframes ratIn{
   0%,60%{opacity:0}
   75%,100%{opacity:1}
 }
@@ -150,92 +130,36 @@ html,body{
 
 <body>
 <div class="stage">
-<div class="phone" id="phone">
-<div class="body"></div>
+  <div class="phone">
 
-<div class="screen">
+    <!-- VIDEO DEMO -->
+    <video autoplay muted loop playsinline>
+      <source src="demo.mp4" type="video/mp4">
+    </video>
 
-<!-- 1. TPS Numerasi -->
-<div class="slide" style="--bg:#0f172a">
-  <div class="soal">Jika 2x − 4 = 10,<br>nilai x adalah …</div>
-  <div class="opsi">A. 5</div><div class="opsi">B. 6</div><div class="opsi">C. 7</div>
-  <div class="hold">tahan dulu</div>
-  <div class="rationale">Tambah 4 → 2x = 14 → x = 7.</div>
-</div>
+    <!-- CBT OVERLAY -->
+    <div class="overlay">
 
-<!-- 2. Logika -->
-<div class="slide" style="--bg:#020617">
-  <div class="soal">Semua P adalah Q.<br>Sebagian Q adalah R.<br>Simpulan yang benar?</div>
-  <div class="opsi">A. Semua P adalah R</div>
-  <div class="opsi">B. Sebagian P mungkin R</div>
-  <div class="hold">jangan buru-buru</div>
-  <div class="rationale">Tidak cukup data untuk semua P → R.</div>
-</div>
+      <div class="soal">
+        Jika 3x + 5 = 20,<br>
+        maka nilai x adalah …
+      </div>
 
-<!-- 3. Literasi -->
-<div class="slide" style="--bg:#052e2b">
-  <div class="soal">Kalimat utama paragraf deduktif terletak di …</div>
-  <div class="opsi">A. Awal paragraf</div>
-  <div class="opsi">B. Tengah</div>
-  <div class="opsi">C. Akhir</div>
-  <div class="hold">tahan</div>
-  <div class="rationale">Deduktif → gagasan utama di awal.</div>
-</div>
+      <div class="opsi">A. 3</div>
+      <div class="opsi">B. 5</div>
+      <div class="opsi">C. 6</div>
+      <div class="opsi">D. 7</div>
+      <div class="opsi">E. 8</div>
 
-<!-- 4. Penalaran Umum -->
-<div class="slide" style="--bg:#312e81">
-  <div class="soal">Jika semua data valid,<br>kesimpulan yang sah harus …</div>
-  <div class="opsi">A. Sesuai asumsi</div>
-  <div class="opsi">B. Konsisten logis</div>
-  <div class="hold">fokus</div>
-  <div class="rationale">Validitas → konsistensi logika.</div>
-</div>
+      <div class="hold">tahan dulu — jangan jawab</div>
 
-<!-- 5. TPS Numerasi -->
-<div class="slide" style="--bg:#1f2933">
-  <div class="soal">Rata-rata 4 bilangan adalah 10.<br>Totalnya …</div>
-  <div class="opsi">A. 20</div><div class="opsi">B. 30</div><div class="opsi">C. 40</div>
-  <div class="hold">tahan</div>
-  <div class="rationale">Rata-rata × jumlah data.</div>
-</div>
+      <div class="rationale">
+        Rationale: kurangi 5 → 3x = 15 → x = 5.  
+        Ini bukan hafalan, tapi urutan logika.
+      </div>
 
-<!-- 6. Analogi -->
-<div class="slide" style="--bg:#3f1d38">
-  <div class="soal">Buku : Ilmu = Peta : …</div>
-  <div class="opsi">A. Arah</div><div class="opsi">B. Jalan</div>
-  <div class="hold">jangan tebak</div>
-  <div class="rationale">Fungsi → peta memberi arah.</div>
-</div>
-
-<!-- 7. Literasi -->
-<div class="slide" style="--bg:#083344">
-  <div class="soal">Kalimat fakta ditandai oleh …</div>
-  <div class="opsi">A. Opini penulis</div>
-  <div class="opsi">B. Data terverifikasi</div>
-  <div class="hold">tahan</div>
-  <div class="rationale">Fakta bisa diuji kebenarannya.</div>
-</div>
-
-<!-- 8. Logika Kuantor -->
-<div class="slide" style="--bg:#422006">
-  <div class="soal">Jika tidak semua A adalah B,<br>maka pernyataan lawannya …</div>
-  <div class="opsi">A. Semua A adalah B</div>
-  <div class="opsi">B. Sebagian A bukan B</div>
-  <div class="hold">fikirkan</div>
-  <div class="rationale">Negasi kuantor universal.</div>
-</div>
-
-<!-- 9. Penalaran -->
-<div class="slide" style="--bg:#1c1917">
-  <div class="soal">Argumen kuat harus punya …</div>
-  <div class="opsi">A. Premis relevan</div>
-  <div class="opsi">B. Bahasa panjang</div>
-  <div class="hold">tahan</div>
-  <div class="rationale">Kekuatan argumen ≠ panjang kata.</div>
-</div>
-
-</div>
-</div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
