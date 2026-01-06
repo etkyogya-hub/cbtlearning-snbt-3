@@ -3,82 +3,129 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBTLearning – Retention Hook</title>
+<title>CBTLearning – Retention Series</title>
 
 <style>
-body{
+html,body{
   margin:0;
-  background:#0b0f19;
+  width:100%;
+  height:100%;
+  background:#020617;
   font-family:system-ui,Arial;
+  overflow:hidden;
 }
 .stage{
   width:100vw;
   height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
 }
-.card{
-  width:260px;
-  height:460px;
-  background:#111827;
-  border-radius:28px;
-  padding:16px;
+
+/* ===== PHONE 3D ===== */
+.phone{
+  width:270px;
+  height:480px;
+  position:relative;
+  transform-style:preserve-3d;
+  animation:float 7s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:rotateX(4deg) rotateY(-4deg) translateY(0)}
+  50%{transform:rotateX(6deg) rotateY(-6deg) translateY(-6px)}
+}
+.body{
+  position:absolute;
+  inset:0;
+  border-radius:34px;
+  background:#020617;
+  box-shadow:
+    0 50px 120px rgba(0,0,0,.8),
+    inset 0 0 0 1.5px #1e3a8a;
+}
+.body::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:36px;
+  background:linear-gradient(180deg, transparent, rgba(56,189,248,.45), transparent);
+  animation:rim 6s ease-in-out infinite;
+}
+@keyframes rim{
+  0%,100%{transform:translateY(-20px)}
+  50%{transform:translateY(20px)}
+}
+.screen{
+  position:absolute;
+  inset:12px;
+  border-radius:26px;
+  background:#020617;
+  padding:14px;
   box-sizing:border-box;
   overflow:hidden;
-  position:relative;
 }
-.doc{
+
+/* ===== CONTENT ===== */
+.card{
   background:#020617;
-  border-radius:12px;
-  padding:10px;
-  color:#e5e7eb;
-  font-size:12px;
+  border:1px solid #1e293b;
+  border-radius:16px;
+  padding:12px;
+  color:#f8fafc;
+  font-size:13.5px;
   line-height:1.6;
-  transform:translateY(0);
-  animation:scrollFake 6s infinite;
+  animation:microScroll 9s infinite;
 }
-.highlight{
-  background:rgba(56,189,248,.25);
-  animation:blink 2s infinite;
-}
-@keyframes scrollFake{
+@keyframes microScroll{
   0%{transform:translateY(0)}
-  40%{transform:translateY(-12px)}
-  60%{transform:translateY(-10px)}
+  30%{transform:translateY(-16px)}
+  55%{transform:translateY(-14px)}
   100%{transform:translateY(0)}
 }
-@keyframes blink{
-  0%,100%{opacity:.3}
+
+/* flashing highlight */
+.hl{
+  color:#ffffff;
+  background:linear-gradient(90deg, rgba(56,189,248,.15), rgba(56,189,248,.45));
+  padding:2px 4px;
+  border-radius:4px;
+  animation:flash 1.8s infinite;
+}
+@keyframes flash{
+  0%,100%{opacity:.6}
   50%{opacity:1}
 }
-.text{
+
+/* shadow line */
+.shadow{
   position:absolute;
   left:16px;
-  bottom:54px;
+  bottom:56px;
   font-size:12px;
   color:#e5e7eb;
   opacity:0;
-  animation:textIn 6s infinite;
+  animation:shadowIn 9s infinite;
 }
-@keyframes textIn{
+@keyframes shadowIn{
   0%,30%{opacity:0}
-  40%,80%{opacity:1}
+  40%,82%{opacity:1}
   100%{opacity:0}
 }
+
+/* CTA */
 .cta{
   position:absolute;
-  bottom:20px;
+  bottom:22px;
   left:50%;
   transform:translateX(-50%);
   font-size:11px;
   color:#94a3b8;
   opacity:0;
-  animation:ctaIn 6s infinite;
+  animation:ctaIn 9s infinite;
 }
 @keyframes ctaIn{
   0%,65%{opacity:0}
-  75%,90%{opacity:1}
+  75%,92%{opacity:1}
   100%{opacity:0}
 }
 </style>
@@ -86,18 +133,51 @@ body{
 
 <body>
 <div class="stage">
-  <div class="card">
+  <div class="phone">
+    <div class="body"></div>
+    <div class="screen">
 
-    <div class="doc">
-      Jika 3x + 5 = 20 maka nilai x adalah…<br><br>
-      <span class="highlight">Langkah pertama bukan menghitung.</span><br>
-      Banyak peserta langsung lompat ke operasi,<br>
-      padahal struktur soalnya belum dibaca.
+      <!-- ITEM 1 -->
+      <div class="card">
+        <strong>LEVEL DASAR</strong><br><br>
+        Jika 2x + 7 = 19, nilai x dapat dicari.<br>
+        Banyak peserta langsung memindahkan angka.<br>
+        <span class="hl">Padahal struktur persamaan belum dibaca.</span><br><br>
+        Kesalahan bukan di hitungan,<br>
+        tapi di langkah awal membaca.
+      </div>
+
+      <!-- ITEM 2 -->
+      <div class="card">
+        <strong>LEVEL MENENGAH</strong><br><br>
+        Pernyataan logika diberikan bertingkat.<br>
+        Peserta sering mencari kesimpulan dulu.<br>
+        <span class="hl">Padahal premisnya belum stabil.</span><br><br>
+        Jawaban salah muncul dari asumsi awal.
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="card">
+        <strong>LEVEL LANJUT</strong><br><br>
+        Grafik fungsi terlihat sederhana.<br>
+        Banyak yang fokus pada titik potong.<br>
+        <span class="hl">Padahal perubahan gradien terlewat.</span><br><br>
+        Kesalahan terjadi sebelum membaca grafik.
+      </div>
+
+      <!-- ITEM 4 -->
+      <div class="card">
+        <strong>LEVEL ADVANCED</strong><br><br>
+        Teks panjang diberikan dalam literasi.<br>
+        Peserta mencari kata kunci cepat.<br>
+        <span class="hl">Padahal relasi antar paragraf diabaikan.</span><br><br>
+        Makna salah, jawaban ikut salah.
+      </div>
+
+      <div class="shadow">Kesalahan terjadi sebelum memilih.</div>
+      <div class="cta">perhatikan ulang</div>
+
     </div>
-
-    <div class="text">Kesalahan terjadi sebelum memilih.</div>
-    <div class="cta">perhatikan ulang</div>
-
   </div>
 </div>
 </body>
