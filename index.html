@@ -18,7 +18,6 @@ html,body{
   overflow:hidden;
 }
 
-/* MOCKUP HP */
 .phone{
   width:240px;
   height:480px;
@@ -27,21 +26,6 @@ html,body{
   background:linear-gradient(160deg,#0f172a,#020617);
   box-shadow:0 50px 140px rgba(0,0,0,.9);
 }
-.phone::before{
-  content:"";
-  position:absolute;
-  inset:-3px;
-  border-radius:38px;
-  background:linear-gradient(
-    180deg,
-    transparent,
-    rgba(56,189,248,.5),
-    transparent
-  );
-  opacity:.5;
-}
-
-/* SCREEN */
 .screen{
   position:absolute;
   inset:12px;
@@ -50,13 +34,24 @@ html,body{
   background:#020617;
 }
 
+/* CONTENT TEXT */
+.content{
+  position:absolute;
+  top:90px;
+  width:100%;
+  text-align:center;
+  color:#e5e7eb;
+  font-size:13px;
+  opacity:0;
+  transition:.6s ease;
+}
+
 /* TITLE */
 .title-wrap{
   position:absolute;
-  bottom:22px;
+  bottom:24px;
   width:100%;
   text-align:center;
-  pointer-events:none;
 }
 
 .title{
@@ -66,57 +61,38 @@ html,body{
   position:absolute;
   width:100%;
   left:0;
+  opacity:0;
+  transition:.6s ease;
 }
 
-/* TITLE STAY */
 .solid{
-  color:#ffffff;
+  color:#fff;
   text-shadow:0 0 14px rgba(255,255,255,.6);
   z-index:3;
 }
 
-/* SUKMA */
 .ghost{
-  z-index:2;
   color:#93c5fd;
-  opacity:.45;
-  filter:blur(1.2px);
+  opacity:.6;
+  filter:blur(1px);
+  z-index:2;
 }
 
 .ghost span{
   display:inline-block;
-  animation:sukma 2.8s ease-in-out infinite;
+  animation:sukma 2.4s ease-out forwards;
 }
 
 @keyframes sukma{
-  0%{
-    transform:translate(0,0) scale(1);
-    opacity:.45;
-  }
-  45%{
+  to{
     transform:
       translate(
-        calc(-14px + 28px * var(--x)),
-        calc(-18px + 36px * var(--y))
+        calc(-18px + 36px * var(--x)),
+        calc(-22px + 44px * var(--y))
       )
-      scale(1.6);
+      scale(1.8);
     opacity:0;
   }
-  100%{
-    transform:translate(0,0) scale(1);
-    opacity:.45;
-  }
-}
-
-/* ISI (BIAR ADA KONTEKS, TIDAK PUTIH) */
-.content{
-  position:absolute;
-  top:80px;
-  width:100%;
-  text-align:center;
-  color:#e5e7eb;
-  font-size:13px;
-  opacity:.9;
 }
 </style>
 </head>
@@ -126,16 +102,14 @@ html,body{
 <div class="phone">
   <div class="screen">
 
-    <div class="content">
+    <div class="content" id="content">
       CBT ≠ Hafalan<br>
-      Ini cara membaca soal
+      Ini cara membaca jebakan soal
     </div>
 
     <div class="title-wrap">
-      <div class="title solid">SNBT – HARD REASONING</div>
-      <div class="title ghost" id="ghostTitle">
-        SNBT – HARD REASONING
-      </div>
+      <div class="title solid" id="solidTitle">SNBT – HARD REASONING</div>
+      <div class="title ghost" id="ghostTitle">SNBT – HARD REASONING</div>
     </div>
 
   </div>
@@ -143,6 +117,9 @@ html,body{
 
 <script>
 const ghost=document.getElementById("ghostTitle");
+const solid=document.getElementById("solidTitle");
+const content=document.getElementById("content");
+
 const text=ghost.innerText;
 ghost.innerHTML="";
 
@@ -151,10 +128,26 @@ text.split("").forEach(ch=>{
   s.textContent = ch === " " ? "\u00A0" : ch;
   s.style.setProperty("--x",Math.random());
   s.style.setProperty("--y",Math.random());
-  s.style.animationDelay = (Math.random()*2.4)+"s";
-  s.style.animationDuration = (2.6+Math.random()*2.8)+"s";
+  s.style.animationDelay = (Math.random()*0.6)+"s";
   ghost.appendChild(s);
 });
+
+/* TIMELINE */
+setTimeout(()=>{
+  ghost.style.opacity=1;          // HOOK
+},300);
+
+setTimeout(()=>{
+  content.style.opacity=1;        // KONFLIK
+},2200);
+
+setTimeout(()=>{
+  solid.style.opacity=1;          // IDENTITAS / REVEAL
+},4200);
+
+setTimeout(()=>{
+  content.innerHTML += "<br><br><small>Save kalau sempat kejebak</small>";
+},6200);
 </script>
 
 </body>
