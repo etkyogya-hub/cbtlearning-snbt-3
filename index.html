@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Professional Hook Animation</title>
+<title>Phone Mockup Blue Screen</title>
 
 <style>
 html,body{
@@ -17,7 +17,7 @@ html,body{
   align-items:center;
 }
 
-/* PHONE */
+/* PHONE BODY */
 .phone{
   width:360px;
   height:720px;
@@ -25,9 +25,10 @@ html,body{
   border-radius:42px;
   box-shadow:0 30px 80px rgba(0,0,0,.7);
   position:relative;
+  transform:perspective(900px) rotateX(5deg) rotateY(-5deg);
 }
 
-/* SCREEN (BLUE INSIDE PHONE) */
+/* SCREEN (BLUE BACKGROUND) */
 .screen{
   position:absolute;
   inset:10px;
@@ -41,59 +42,67 @@ video{
   width:100%;
   height:100%;
   object-fit:cover;
+  mix-blend-mode:screen;
 }
 
-/* HOOK TEXT */
-#hook{
+/* OVERLAY COMMON */
+.overlay{
   position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(1.35);
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  pointer-events:none;
   font-family:'Anton',sans-serif;
+}
+
+/* HOOK SHAKY */
+#hook{
   font-size:32px;
   color:#fff;
-  letter-spacing:1px;
-  z-index:10;
-  pointer-events:none;
-  animation:
-    crackShake 0.9s ease-out forwards,
-    settle 0.8s ease forwards 0.9s;
+  opacity:0;
+  animation:hookShake 2s ease-out forwards;
+}
+@keyframes hookShake{
+  0%{opacity:0;transform:scale(1.4) translateX(-12px);}
+  10%{opacity:1;transform:scale(1.25) translateX(12px);}
+  20%{transform:scale(1.18) translateX(-8px);}
+  30%{transform:scale(1.1) translateX(6px);}
+  50%{transform:scale(1) translateX(0);}
+  100%{opacity:0;}
 }
 
-/* MICRO CRACK / RETAK (HALUS) */
-@keyframes crackShake{
-  0%   {transform:translate(-50%,-50%) scale(1.5);}
-  20%  {transform:translate(-50%,-50%) scale(1.5) translateX(-2px);}
-  40%  {transform:translate(-50%,-50%) scale(1.5) translateX(2px);}
-  60%  {transform:translate(-50%,-50%) scale(1.5) translateX(-1px);}
-  80%  {transform:translate(-50%,-50%) scale(1.5) translateX(1px);}
-  100% {transform:translate(-50%,-50%) scale(1.5);}
+/* TENSION */
+#tension{
+  position:absolute;
+  bottom:22%;
+  font-size:16px;
+  color:#e6f0ff;
+  opacity:0;
+  animation:tensionFade 4s ease forwards;
+  animation-delay:5s;
+}
+@keyframes tensionFade{
+  0%{opacity:0}
+  20%{opacity:1}
+  80%{opacity:1}
+  100%{opacity:0}
 }
 
-/* ZOOM OUT + PIN KE ATAS */
-@keyframes settle{
-  to{
-    top:7%;
-    transform:translate(-50%,0) scale(0.78);
-  }
-}
-
-/* CTA LEVEL 1 */
+/* CTA */
 #cta{
   position:absolute;
   bottom:14%;
-  left:50%;
-  transform:translateX(-50%);
-  font-family:'Anton',sans-serif;
   font-size:18px;
-  color:#fff;
+  color:white;
   opacity:0;
   animation:ctaIn 1.2s ease forwards;
   animation-delay:13.5s;
 }
 @keyframes ctaIn{
-  from{opacity:0;transform:translate(-50%,20px)}
-  to{opacity:1;transform:translate(-50%,0)}
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
 </style>
 </head>
@@ -108,7 +117,12 @@ video{
     </video>
 
     <!-- HOOK -->
-    <div id="hook">STOP. JANGAN JAWAB CEPAT.</div>
+    <div class="overlay">
+      <div id="hook">STOP. JANGAN JAWAB CEPAT.</div>
+    </div>
+
+    <!-- TENSION -->
+    <div id="tension">Kelihatannya gampang. Tapi ini jebakan.</div>
 
     <!-- CTA -->
     <div id="cta">Ikutin selanjutnya.</div>
