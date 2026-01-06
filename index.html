@@ -3,77 +3,68 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Pure Visual</title>
+<title>CBT LOCKED VISUAL</title>
 
 <style>
 html,body{
   margin:0;
-  padding:0;
   width:100%;
   height:100%;
-  background:#000;
   overflow:hidden;
+  background:#020617;
 }
 
-/* STAGE */
+/* ===== STAGE ===== */
 .stage{
   position:relative;
   width:100vw;
   height:100vh;
-  background:#000;
   overflow:hidden;
 }
 
-/* VIDEO */
+/* ===== FALLBACK VISUAL (ALWAYS ON) ===== */
+.fallback{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 30% 20%, #38bdf8 0%, transparent 40%),
+    radial-gradient(circle at 70% 80%, #22c55e 0%, transparent 45%),
+    linear-gradient(120deg,#020617,#020617);
+  animation:moveBG 6s ease-in-out infinite;
+  z-index:1;
+}
+
+@keyframes moveBG{
+  0%{filter:brightness(1)}
+  50%{filter:brightness(1.15)}
+  100%{filter:brightness(1)}
+}
+
+/* ===== VIDEO (OPTIONAL) ===== */
 video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-
-  /* micro life */
-  transform:scale(1.06);
-  animation:
-    zoomBreath 6s ease-in-out infinite,
-    flicker 3.2s linear infinite;
-}
-
-/* very slow zoom (algoritma-friendly) */
-@keyframes zoomBreath{
-  0%,100%{transform:scale(1.06)}
-  50%{transform:scale(1)}
-}
-
-/* micro luminance change → frame variation */
-@keyframes flicker{
-  0%,100%{filter:brightness(1)}
-  50%{filter:brightness(1.06)}
-}
-
-/* FLASH CUT – 0.2s pertama */
-.flash{
-  position:absolute;
-  inset:0;
-  background:#fff;
+  z-index:2;
   opacity:0;
-  animation:flashIn 6s infinite;
-  pointer-events:none;
+  transition:opacity .6s ease;
 }
 
-@keyframes flashIn{
-  0%{opacity:.18}
-  3%{opacity:0}
-  100%{opacity:0}
+/* when video ready */
+video.show{
+  opacity:1;
 }
 
-/* CASCADE SHADOW (depth illusion) */
-.shadow{
+/* ===== DEPTH ===== */
+.depth{
   position:absolute;
   inset:0;
   box-shadow:
-    inset 0 0 120px rgba(0,0,0,.65),
-    inset 0 0 220px rgba(0,0,0,.9);
+    inset 0 0 120px rgba(0,0,0,.6),
+    inset 0 0 260px rgba(0,0,0,.9);
+  z-index:3;
   pointer-events:none;
 }
 </style>
@@ -82,16 +73,35 @@ video{
 <body>
 <div class="stage">
 
-  <video autoplay muted loop playsinline>
+  <!-- ALWAYS VISIBLE -->
+  <div class="fallback"></div>
+
+  <!-- VIDEO (IF EXISTS) -->
+  <video id="vid" autoplay muted loop playsinline>
     <source src="SNBT+VO2.webm.mp4" type="video/mp4">
   </video>
 
-  <!-- 2s first-frame stim -->
-  <div class="flash"></div>
-
-  <!-- depth -->
-  <div class="shadow"></div>
-
+  <div class="depth"></div>
 </div>
+
+<script>
+const v = document.getElementById("vid");
+
+/* KUNCI LOGIC */
+v.addEventListener("canplay",()=>{
+  v.classList.add("show"); // tampilkan video
+});
+
+v.addEventListener("error",()=>{
+  console.log("VIDEO FAIL → FALLBACK STAYS");
+});
+
+/* SAFETY: kalau 1.5 detik tidak ready */
+setTimeout(()=>{
+  if(v.readyState < 2){
+    console.log("VIDEO TIMEOUT → FALLBACK ONLY");
+  }
+},1500);
+</script>
 </body>
 </html>
