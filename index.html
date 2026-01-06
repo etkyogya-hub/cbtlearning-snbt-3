@@ -3,163 +3,237 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CBTLearning – SNBT Hybrid Retention</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
 html,body{
   margin:0;
-  width:100%;
   height:100%;
   background:#020617;
-  overflow:hidden;
-}
-.stage{
-  width:100vw;
-  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-}
-.phone{
-  width:300px;
-  height:540px;
-  border-radius:38px;
+  font-family:system-ui;
   overflow:hidden;
-  position:absolute;
-  box-shadow:0 60px 140px rgba(0,0,0,.85);
-  animation:float 6s ease-in-out infinite;
+}
+
+/* === MOCKUP PHONE 3D === */
+.phone{
+  width:240px;
+  height:480px;
+  position:relative;
+  border-radius:36px;
+  background:linear-gradient(160deg,#0f172a,#020617);
+  box-shadow:0 50px 120px rgba(0,0,0,.85);
+  animation:float 7s ease-in-out infinite;
 }
 @keyframes float{
-  0%,100%{transform:rotateX(4deg) rotateY(-4deg)}
-  50%{transform:rotateX(7deg) rotateY(-7deg)}
+  0%,100%{transform:translateY(0) rotateX(3deg) rotateY(-3deg)}
+  50%{transform:translateY(-6px) rotateX(5deg) rotateY(-5deg)}
 }
-video{
+
+/* frame glow berubah */
+.phone::before{
+  content:"";
   position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(.65);
+  inset:-3px;
+  border-radius:38px;
+  background:linear-gradient(180deg,transparent,rgba(56,189,248,.6),transparent);
+  opacity:.5;
+  animation:frameMove 5s ease-in-out infinite;
 }
-.overlay{
+@keyframes frameMove{
+  0%,100%{transform:translateY(-20px)}
+  50%{transform:translateY(20px)}
+}
+
+.screen{
   position:absolute;
-  inset:0;
-  padding:18px;
-  background:rgba(2,6,23,.55);
-  color:#fff;
+  inset:12px;
+  border-radius:26px;
+  overflow:hidden;
+  background:radial-gradient(circle at top,#020617,#000);
+}
+
+/* === SOAL === */
+.soal{
+  position:absolute;
+  top:90px;
+  left:8%;
+  width:84%;
+  font-family:'Anton',sans-serif;
+  font-size:22px;
+  line-height:1.25;
+  text-align:center;
+  color:#f8fafc;
+  text-shadow:0 0 14px rgba(255,255,255,.45);
   opacity:0;
 }
-.soal{
-  font-family:'Anton',sans-serif;
-  font-size:26px;
-  line-height:1.35;
-  letter-spacing:1px;
-  animation:shake 1.1s ease-out;
+
+/* shaky ringan */
+.shake{
+  animation:shake .6s ease-in-out;
 }
 @keyframes shake{
-  0%{transform:translate(0)}
-  20%{transform:translate(-2px,1px)}
-  40%{transform:translate(2px,-1px)}
-  60%{transform:translate(-1px,-1px)}
-  100%{transform:translate(0)}
+  0%{transform:translateX(0)}
+  20%{transform:translateX(-2px)}
+  40%{transform:translateX(2px)}
+  60%{transform:translateX(-1px)}
+  80%{transform:translateX(1px)}
+  100%{transform:translateX(0)}
 }
+
+/* === OPSI === */
 .opsi{
-  margin-top:10px;
-  padding:10px;
-  border:1px solid #334155;
-  border-radius:10px;
-  font-size:14px;
-}
-.rationale{
   position:absolute;
-  bottom:26px;
-  left:18px;
-  right:18px;
+  top:190px;
+  left:10%;
+  width:80%;
+  color:#e5e7eb;
+  font-weight:600;
   font-size:13px;
-  color:#fff;
-  text-shadow:0 0 10px rgba(255,255,255,.6);
+  line-height:1.5;
   opacity:0;
 }
-@keyframes scene{
-  0%{opacity:0}
-  10%{opacity:1}
-  70%{opacity:1}
-  85%{opacity:0}
-  100%{opacity:0}
+
+/* === RATIONALE === */
+.rationale{
+  position:absolute;
+  bottom:60px;
+  left:8%;
+  width:84%;
+  font-size:12px;
+  color:#fff;
+  text-align:center;
+  opacity:0;
+  text-shadow:0 0 16px rgba(255,255,255,.6);
 }
-@keyframes rat{
-  0%,55%{opacity:0}
-  65%,80%{opacity:1}
-  100%{opacity:0}
+
+/* === FADE CONTROL === */
+.show{opacity:1; transition:opacity .5s ease}
+.hide{opacity:0; transition:opacity .4s ease}
+
+/* jeda visual */
+.separator{
+  position:absolute;
+  inset:0;
+  background:#020617;
+  opacity:0;
 }
+.separator.show{opacity:1}
 </style>
 </head>
 
 <body>
-<div class="stage">
 
-<!-- ===== SOAL 1 ===== -->
-<div class="phone" style="background:#0f172a;animation-delay:0s">
-<video autoplay muted loop playsinline><source src="demo.mp4"></video>
-<div class="overlay" style="animation:scene 9.5s infinite 0s">
-  <div class="soal">Jika 3x − 9 = 0,<br>nilai x adalah…</div>
-  <div class="opsi">A. 1</div><div class="opsi">B. 2</div><div class="opsi">C. 3</div>
-  <div class="rationale" style="animation:rat 9.5s infinite 0s">
-    3x = 9 → x = 3
+<div class="phone" id="phone">
+  <div class="screen">
+    <div class="soal" id="soal"></div>
+    <div class="opsi" id="opsi"></div>
+    <div class="rationale" id="rat"></div>
+    <div class="separator" id="sep"></div>
   </div>
 </div>
-</div>
 
-<!-- ===== SOAL 2 ===== -->
-<div class="phone" style="background:#1e293b;animation-delay:9.5s">
-<video autoplay muted loop playsinline><source src="demo.mp4"></video>
-<div class="overlay" style="animation:scene 9.5s infinite 9.5s">
-  <div class="soal">Semua A adalah B.<br>Beberapa B adalah C.<br>Maka…</div>
-  <div class="opsi">A. Semua A adalah C</div>
-  <div class="opsi">B. Sebagian C adalah A</div>
-  <div class="opsi">C. Tidak dapat disimpulkan</div>
-  <div class="rationale" style="animation:rat 9.5s infinite 9.5s">
-    Tidak ada hubungan pasti A–C
-  </div>
-</div>
-</div>
+<script>
+const data=[
+{
+q:"Jika 3x + 5 = 20, nilai x adalah …",
+o:"A. 3<br>B. 4<br>C. 5<br>D. 6",
+r:"Kurangi 5 di kedua sisi, lalu bagi 3."
+},
+{
+q:"Ide pokok paragraf biasanya terletak pada …",
+o:"A. Kalimat penutup<br>B. Kalimat utama<br>C. Kalimat penjelas<br>D. Kalimat contoh",
+r:"Ide pokok dirumuskan pada kalimat utama."
+},
+{
+q:"Perbandingan 2 : 5 setara dengan …",
+o:"A. 4 : 10<br>B. 5 : 2<br>C. 10 : 4<br>D. 6 : 15",
+r:"Kalikan kedua sisi dengan bilangan sama."
+},
+{
+q:"Kata ‘ambigu’ bermakna …",
+o:"A. Jelas<br>B. Tegas<br>C. Bermakna ganda<br>D. Singkat",
+r:"Ambigu = memiliki lebih dari satu makna."
+},
+{
+q:"Jika semua A adalah B, dan semua B adalah C, maka …",
+o:"A. Semua C adalah A<br>B. Semua A adalah C<br>C. Sebagian C adalah A<br>D. Tidak ada hubungan",
+r:"Silogisme transitif."
+},
+{
+q:"Rata-rata dari 4, 6, 8 adalah …",
+o:"A. 5<br>B. 6<br>C. 7<br>D. 8",
+r:"Jumlah dibagi banyak data."
+},
+{
+q:"Tujuan teks eksposisi adalah …",
+o:"A. Menghibur<br>B. Membujuk<br>C. Menjelaskan<br>D. Mengisahkan",
+r:"Eksposisi bersifat informatif."
+},
+{
+q:"Jika peluang hujan 0,2 maka peluang tidak hujan …",
+o:"A. 0,2<br>B. 0,5<br>C. 0,8<br>D. 1",
+r:"Peluang komplemen = 1 – peluang."
+},
+{
+q:"Kesimpulan yang sah harus didukung oleh …",
+o:"A. Opini<br>B. Emosi<br>C. Fakta & premis<br>D. Dugaan",
+r:"Logika valid perlu premis benar."
+}
+];
 
-<!-- ===== SOAL 3 ===== -->
-<div class="phone" style="background:#312e81;animation-delay:19s">
-<video autoplay muted loop playsinline><source src="demo.mp4"></video>
-<div class="overlay" style="animation:scene 9.5s infinite 19s">
-  <div class="soal">Deret: 2, 6, 12, 20, …</div>
-  <div class="opsi">A. 28</div><div class="opsi">B. 30</div><div class="opsi">C. 32</div>
-  <div class="rationale" style="animation:rat 9.5s infinite 19s">
-    Pola n(n+1): 5×6 = 30
-  </div>
-</div>
-</div>
+const soal=document.getElementById("soal");
+const opsi=document.getElementById("opsi");
+const rat=document.getElementById("rat");
+const sep=document.getElementById("sep");
+const phone=document.getElementById("phone");
 
-<!-- ===== SOAL 4 ===== -->
-<div class="phone" style="background:#164e63;animation-delay:28.5s">
-<video autoplay muted loop playsinline><source src="demo.mp4"></video>
-<div class="overlay" style="animation:scene 9.5s infinite 28.5s">
-  <div class="soal">Sinonim paling tepat<br>kata “implisit” adalah…</div>
-  <div class="opsi">A. Tersirat</div><div class="opsi">B. Tegas</div><div class="opsi">C. Nyata</div>
-  <div class="rationale" style="animation:rat 9.5s infinite 28.5s">
-    Implisit = tidak dinyatakan langsung
-  </div>
-</div>
-</div>
+let i=0;
 
-<!-- ===== SOAL 5 ===== -->
-<div class="phone" style="background:#3f1d38;animation-delay:38s">
-<video autoplay muted loop playsinline><source src="demo.mp4"></video>
-<div class="overlay" style="animation:scene 9.5s infinite 38s">
-  <div class="soal">Jika peluang A = 0,4<br>maka peluang bukan A?</div>
-  <div class="opsi">A. 0,4</div><div class="opsi">B. 0,6</div><div class="opsi">C. 1</div>
-  <div class="rationale" style="animation:rat 9.5s infinite 38s">
-    1 − 0,4 = 0,6
-  </div>
-</div>
-</div>
+function next(){
+  sep.classList.remove("show");
+  soal.className="soal";
+  opsi.className="opsi";
+  rat.className="rationale";
 
-</div>
+  const d=data[i];
+  soal.innerHTML=d.q;
+  opsi.innerHTML=d.o;
+  rat.innerHTML=d.r;
+
+  // warna frame acak
+  phone.style.background=
+    `linear-gradient(160deg,
+     hsl(${Math.random()*360},40%,18%),
+     #020617)`;
+
+  setTimeout(()=>{
+    soal.classList.add("show","shake");
+  },300);
+
+  setTimeout(()=>{
+    opsi.classList.add("show");
+  },900);
+
+  setTimeout(()=>{
+    rat.classList.add("show");
+  },1700);
+
+  // akhir soal (JEDA TEGAS)
+  setTimeout(()=>{
+    sep.classList.add("show");
+  },3600);
+
+  i=(i+1)%data.length;
+  setTimeout(next,4200);
+}
+
+next();
+</script>
+
 </body>
 </html>
