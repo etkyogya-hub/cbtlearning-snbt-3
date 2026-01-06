@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>CBTLearning – Retention Variants</title>
+<title>CBT Learning – Real Test</title>
 
-<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
@@ -15,8 +14,8 @@ html,body{
   width:100%;
   height:100%;
   background:#020617;
-  font-family:system-ui,Arial;
   overflow:hidden;
+  font-family:system-ui, Arial;
 }
 
 /* ===== STAGE ===== */
@@ -28,13 +27,13 @@ html,body{
   align-items:center;
 }
 
-/* ===== PHONE 3D ===== */
+/* ===== PHONE ===== */
 .phone{
-  width:270px;
-  height:480px;
+  width:300px;
+  height:540px;
   position:relative;
   transform-style:preserve-3d;
-  animation:float 7s ease-in-out infinite;
+  animation:float 6s ease-in-out infinite;
 }
 @keyframes float{
   0%,100%{transform:rotateX(4deg) rotateY(-4deg)}
@@ -43,117 +42,86 @@ html,body{
 .body{
   position:absolute;
   inset:0;
-  border-radius:34px;
+  border-radius:38px;
   background:#020617;
-  box-shadow:
-    0 50px 120px rgba(0,0,0,.85),
-    inset 0 0 0 1.6px #1e3a8a;
+  box-shadow:0 60px 150px rgba(0,0,0,.85);
 }
 .body::before{
   content:"";
   position:absolute;
   inset:-2px;
-  border-radius:36px;
-  background:linear-gradient(180deg, transparent, rgba(56,189,248,.45), transparent);
-  animation:rim 6s infinite;
+  border-radius:40px;
+  background:linear-gradient(180deg, transparent, rgba(56,189,248,.55), transparent);
 }
-@keyframes rim{
-  0%,100%{transform:translateY(-18px)}
-  50%{transform:translateY(18px)}
-}
+
+/* ===== SCREEN ===== */
 .screen{
   position:absolute;
-  inset:12px;
-  border-radius:26px;
+  inset:16px;
+  border-radius:30px;
   background:#020617;
-  padding:14px;
+  padding:18px;
   box-sizing:border-box;
-  overflow:hidden;
+  color:#fff;
 }
 
-/* ===== VARIANT SLIDES ===== */
-.slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  animation:cycle 20s infinite;
-}
-.slide:nth-child(1){animation-delay:0s}
-.slide:nth-child(2){animation-delay:5s}
-.slide:nth-child(3){animation-delay:10s}
-.slide:nth-child(4){animation-delay:15s}
-
-@keyframes cycle{
-  0%{opacity:0}
-  8%{opacity:1}
-  40%{opacity:1}
-  48%{opacity:0}
-  100%{opacity:0}
-}
-
-/* ===== CARD ===== */
-.card{
-  background:#020617;
-  border:1px solid #1e293b;
-  border-radius:16px;
-  padding:14px;
-  color:#f8fafc;
-  font-size:13.5px;
-  line-height:1.6;
-}
-
-/* ===== SOAL (ANTON) ===== */
-.question{
+/* ===== SOAL ===== */
+.soal{
   font-family:'Anton', sans-serif;
-  font-size:22px;
-  letter-spacing:.6px;
+  font-size:26px;
+  line-height:1.35;
+  letter-spacing:1px;
+  margin-bottom:16px;
+}
+
+/* ===== OPSI ===== */
+.opsi{
   margin-bottom:10px;
-  color:#ffffff;
+  padding:10px 12px;
+  border-radius:10px;
+  background:#020617;
+  border:1px solid #334155;
+  font-size:14px;
+  transition:.3s;
+}
+.opsi.correct{
+  border-color:#22c55e;
+  color:#22c55e;
+}
+.opsi.wrong{
+  border-color:#ef4444;
+  color:#ef4444;
 }
 
-/* ===== HIGHLIGHT ===== */
-.hl{
-  background:linear-gradient(90deg, rgba(56,189,248,.15), rgba(56,189,248,.5));
-  padding:2px 5px;
-  border-radius:4px;
-  animation:flash 1.7s infinite;
-}
-@keyframes flash{
-  0%,100%{opacity:.65}
-  50%{opacity:1}
-}
-
-/* ===== SHADOW TRIGGER ===== */
-.shadow{
+/* ===== HOLD ===== */
+.hold{
   position:absolute;
-  bottom:58px;
-  left:16px;
+  bottom:88px;
+  left:18px;
   font-size:12px;
-  color:#e5e7eb;
-  opacity:0;
-  animation:shadowIn 20s infinite;
-}
-@keyframes shadowIn{
-  0%,55%{opacity:0}
-  60%,90%{opacity:1}
-  100%{opacity:0}
-}
-
-/* ===== CTA ===== */
-.cta{
-  position:absolute;
-  bottom:22px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:11px;
   color:#94a3b8;
   opacity:0;
-  animation:ctaIn 20s infinite;
+  animation:holdIn 8s forwards;
 }
-@keyframes ctaIn{
-  0%,70%{opacity:0}
-  80%,95%{opacity:1}
-  100%{opacity:0}
+@keyframes holdIn{
+  0%,50%{opacity:0}
+  60%,100%{opacity:1}
+}
+
+/* ===== RATIONALE ===== */
+.rationale{
+  position:absolute;
+  bottom:28px;
+  left:18px;
+  right:18px;
+  font-size:13px;
+  color:#e5e7eb;
+  opacity:0;
+  animation:ratIn 8s forwards;
+}
+@keyframes ratIn{
+  0%,65%{opacity:0}
+  75%,100%{opacity:1}
 }
 </style>
 </head>
@@ -165,52 +133,27 @@ html,body{
 
 <div class="screen">
 
-  <!-- VARIANT A -->
-  <div class="slide">
-    <div class="card">
-      <div class="question">LEVEL DASAR</div>
-      2x + 7 = 19<br>
-      Banyak peserta langsung pindah ruas.<br>
-      <span class="hl">Struktur persamaan belum dibaca.</span><br><br>
-      Salah bukan di hitungan.
-    </div>
+  <!-- SOAL -->
+  <div class="soal">
+    Jika 3x + 5 = 20,<br>
+    maka nilai x adalah …
   </div>
 
-  <!-- VARIANT B -->
-  <div class="slide">
-    <div class="card">
-      <div class="question">LEVEL MENENGAH</div>
-      Premis logika bertingkat.<br>
-      Banyak orang loncat ke kesimpulan.<br>
-      <span class="hl">Asumsi awal belum stabil.</span><br><br>
-      Jawaban salah lahir lebih awal.
-    </div>
-  </div>
+  <!-- OPSI -->
+  <div class="opsi">A. 3</div>
+  <div class="opsi correct">B. 5</div>
+  <div class="opsi">C. 6</div>
+  <div class="opsi">D. 7</div>
+  <div class="opsi">E. 8</div>
 
-  <!-- VARIANT C -->
-  <div class="slide">
-    <div class="card">
-      <div class="question">LEVEL LANJUT</div>
-      Grafik terlihat sederhana.<br>
-      Fokus ke titik potong.<br>
-      <span class="hl">Gradien berubah terlewat.</span><br><br>
-      Kesalahan terjadi sebelum membaca grafik.
-    </div>
-  </div>
+  <!-- HOLD -->
+  <div class="hold">tahan… jangan jawab dulu</div>
 
-  <!-- VARIANT D -->
-  <div class="slide">
-    <div class="card">
-      <div class="question">LEVEL ADVANCED</div>
-      Teks panjang dibaca cepat.<br>
-      Kata kunci dicari.<br>
-      <span class="hl">Relasi paragraf diabaikan.</span><br><br>
-      Makna salah → jawaban ikut salah.
-    </div>
+  <!-- RATIONALE -->
+  <div class="rationale">
+    Rationale: kurangi 5 dari kedua sisi → 3x = 15 → x = 5.
+    Bukan soal hitung, tapi disiplin langkah.
   </div>
-
-  <div class="shadow">Kesalahan terjadi sebelum memilih.</div>
-  <div class="cta">ulang perlahan</div>
 
 </div>
 </div>
