@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBTLearning – Retention Series</title>
+
+<title>CBTLearning – Retention Variants</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
 html,body{
@@ -14,6 +18,8 @@ html,body{
   font-family:system-ui,Arial;
   overflow:hidden;
 }
+
+/* ===== STAGE ===== */
 .stage{
   width:100vw;
   height:100vh;
@@ -31,8 +37,8 @@ html,body{
   animation:float 7s ease-in-out infinite;
 }
 @keyframes float{
-  0%,100%{transform:rotateX(4deg) rotateY(-4deg) translateY(0)}
-  50%{transform:rotateX(6deg) rotateY(-6deg) translateY(-6px)}
+  0%,100%{transform:rotateX(4deg) rotateY(-4deg)}
+  50%{transform:rotateX(7deg) rotateY(-7deg)}
 }
 .body{
   position:absolute;
@@ -40,8 +46,8 @@ html,body{
   border-radius:34px;
   background:#020617;
   box-shadow:
-    0 50px 120px rgba(0,0,0,.8),
-    inset 0 0 0 1.5px #1e3a8a;
+    0 50px 120px rgba(0,0,0,.85),
+    inset 0 0 0 1.6px #1e3a8a;
 }
 .body::before{
   content:"";
@@ -49,11 +55,11 @@ html,body{
   inset:-2px;
   border-radius:36px;
   background:linear-gradient(180deg, transparent, rgba(56,189,248,.45), transparent);
-  animation:rim 6s ease-in-out infinite;
+  animation:rim 6s infinite;
 }
 @keyframes rim{
-  0%,100%{transform:translateY(-20px)}
-  50%{transform:translateY(20px)}
+  0%,100%{transform:translateY(-18px)}
+  50%{transform:translateY(18px)}
 }
 .screen{
   position:absolute;
@@ -65,54 +71,75 @@ html,body{
   overflow:hidden;
 }
 
-/* ===== CONTENT ===== */
+/* ===== VARIANT SLIDES ===== */
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  animation:cycle 20s infinite;
+}
+.slide:nth-child(1){animation-delay:0s}
+.slide:nth-child(2){animation-delay:5s}
+.slide:nth-child(3){animation-delay:10s}
+.slide:nth-child(4){animation-delay:15s}
+
+@keyframes cycle{
+  0%{opacity:0}
+  8%{opacity:1}
+  40%{opacity:1}
+  48%{opacity:0}
+  100%{opacity:0}
+}
+
+/* ===== CARD ===== */
 .card{
   background:#020617;
   border:1px solid #1e293b;
   border-radius:16px;
-  padding:12px;
+  padding:14px;
   color:#f8fafc;
   font-size:13.5px;
   line-height:1.6;
-  animation:microScroll 9s infinite;
-}
-@keyframes microScroll{
-  0%{transform:translateY(0)}
-  30%{transform:translateY(-16px)}
-  55%{transform:translateY(-14px)}
-  100%{transform:translateY(0)}
 }
 
-/* flashing highlight */
-.hl{
+/* ===== SOAL (ANTON) ===== */
+.question{
+  font-family:'Anton', sans-serif;
+  font-size:22px;
+  letter-spacing:.6px;
+  margin-bottom:10px;
   color:#ffffff;
-  background:linear-gradient(90deg, rgba(56,189,248,.15), rgba(56,189,248,.45));
-  padding:2px 4px;
+}
+
+/* ===== HIGHLIGHT ===== */
+.hl{
+  background:linear-gradient(90deg, rgba(56,189,248,.15), rgba(56,189,248,.5));
+  padding:2px 5px;
   border-radius:4px;
-  animation:flash 1.8s infinite;
+  animation:flash 1.7s infinite;
 }
 @keyframes flash{
-  0%,100%{opacity:.6}
+  0%,100%{opacity:.65}
   50%{opacity:1}
 }
 
-/* shadow line */
+/* ===== SHADOW TRIGGER ===== */
 .shadow{
   position:absolute;
+  bottom:58px;
   left:16px;
-  bottom:56px;
   font-size:12px;
   color:#e5e7eb;
   opacity:0;
-  animation:shadowIn 9s infinite;
+  animation:shadowIn 20s infinite;
 }
 @keyframes shadowIn{
-  0%,30%{opacity:0}
-  40%,82%{opacity:1}
+  0%,55%{opacity:0}
+  60%,90%{opacity:1}
   100%{opacity:0}
 }
 
-/* CTA */
+/* ===== CTA ===== */
 .cta{
   position:absolute;
   bottom:22px;
@@ -121,11 +148,11 @@ html,body{
   font-size:11px;
   color:#94a3b8;
   opacity:0;
-  animation:ctaIn 9s infinite;
+  animation:ctaIn 20s infinite;
 }
 @keyframes ctaIn{
-  0%,65%{opacity:0}
-  75%,92%{opacity:1}
+  0%,70%{opacity:0}
+  80%,95%{opacity:1}
   100%{opacity:0}
 }
 </style>
@@ -133,52 +160,60 @@ html,body{
 
 <body>
 <div class="stage">
-  <div class="phone">
-    <div class="body"></div>
-    <div class="screen">
+<div class="phone">
+<div class="body"></div>
 
-      <!-- ITEM 1 -->
-      <div class="card">
-        <strong>LEVEL DASAR</strong><br><br>
-        Jika 2x + 7 = 19, nilai x dapat dicari.<br>
-        Banyak peserta langsung memindahkan angka.<br>
-        <span class="hl">Padahal struktur persamaan belum dibaca.</span><br><br>
-        Kesalahan bukan di hitungan,<br>
-        tapi di langkah awal membaca.
-      </div>
+<div class="screen">
 
-      <!-- ITEM 2 -->
-      <div class="card">
-        <strong>LEVEL MENENGAH</strong><br><br>
-        Pernyataan logika diberikan bertingkat.<br>
-        Peserta sering mencari kesimpulan dulu.<br>
-        <span class="hl">Padahal premisnya belum stabil.</span><br><br>
-        Jawaban salah muncul dari asumsi awal.
-      </div>
-
-      <!-- ITEM 3 -->
-      <div class="card">
-        <strong>LEVEL LANJUT</strong><br><br>
-        Grafik fungsi terlihat sederhana.<br>
-        Banyak yang fokus pada titik potong.<br>
-        <span class="hl">Padahal perubahan gradien terlewat.</span><br><br>
-        Kesalahan terjadi sebelum membaca grafik.
-      </div>
-
-      <!-- ITEM 4 -->
-      <div class="card">
-        <strong>LEVEL ADVANCED</strong><br><br>
-        Teks panjang diberikan dalam literasi.<br>
-        Peserta mencari kata kunci cepat.<br>
-        <span class="hl">Padahal relasi antar paragraf diabaikan.</span><br><br>
-        Makna salah, jawaban ikut salah.
-      </div>
-
-      <div class="shadow">Kesalahan terjadi sebelum memilih.</div>
-      <div class="cta">perhatikan ulang</div>
-
+  <!-- VARIANT A -->
+  <div class="slide">
+    <div class="card">
+      <div class="question">LEVEL DASAR</div>
+      2x + 7 = 19<br>
+      Banyak peserta langsung pindah ruas.<br>
+      <span class="hl">Struktur persamaan belum dibaca.</span><br><br>
+      Salah bukan di hitungan.
     </div>
   </div>
+
+  <!-- VARIANT B -->
+  <div class="slide">
+    <div class="card">
+      <div class="question">LEVEL MENENGAH</div>
+      Premis logika bertingkat.<br>
+      Banyak orang loncat ke kesimpulan.<br>
+      <span class="hl">Asumsi awal belum stabil.</span><br><br>
+      Jawaban salah lahir lebih awal.
+    </div>
+  </div>
+
+  <!-- VARIANT C -->
+  <div class="slide">
+    <div class="card">
+      <div class="question">LEVEL LANJUT</div>
+      Grafik terlihat sederhana.<br>
+      Fokus ke titik potong.<br>
+      <span class="hl">Gradien berubah terlewat.</span><br><br>
+      Kesalahan terjadi sebelum membaca grafik.
+    </div>
+  </div>
+
+  <!-- VARIANT D -->
+  <div class="slide">
+    <div class="card">
+      <div class="question">LEVEL ADVANCED</div>
+      Teks panjang dibaca cepat.<br>
+      Kata kunci dicari.<br>
+      <span class="hl">Relasi paragraf diabaikan.</span><br><br>
+      Makna salah → jawaban ikut salah.
+    </div>
+  </div>
+
+  <div class="shadow">Kesalahan terjadi sebelum memilih.</div>
+  <div class="cta">ulang perlahan</div>
+
+</div>
+</div>
 </div>
 </body>
 </html>
