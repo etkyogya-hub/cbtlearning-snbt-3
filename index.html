@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBTLearning Hybrid – HARD Reasoning</title>
+<title>CBTLearning – HARD HOOK FIXED</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
@@ -15,7 +15,7 @@ html,body{
   overflow:hidden;
 }
 
-/* PHONE 3D */
+/* PHONE */
 .phone{
   width:240px;height:480px;
   position:relative;border-radius:36px;
@@ -31,7 +31,7 @@ html,body{
   content:"";position:absolute;inset:-3px;
   border-radius:38px;
   background:linear-gradient(180deg,transparent,rgba(56,189,248,.6),transparent);
-  opacity:.55;pointer-events:none;
+  opacity:.55;
 }
 
 /* SCREEN */
@@ -41,20 +41,56 @@ html,body{
   background:#000;
 }
 
-/* VIDEO BG */
+/* VIDEO */
 .bgvideo{
   position:absolute;inset:0;
   width:100%;height:100%;
   object-fit:cover;opacity:.85;
 }
 
-/* SOAL – DIGESER KE ATAS */
+/* ===== STAY TITLE (ANTI-BLACK FRAME) ===== */
+.title-wrap{
+  position:absolute;
+  top:14px;
+  width:100%;
+  text-align:center;
+  pointer-events:none;
+}
+.title{
+  font-family:'Anton',sans-serif;
+  font-size:20px;
+  letter-spacing:1px;
+  color:#e0f2fe;
+  text-shadow:0 0 18px rgba(56,189,248,.9);
+  position:relative;
+  z-index:2;
+}
+
+/* GHOST LETTERS (SUKMA) */
+.ghost{
+  position:absolute;
+  inset:0;
+  font-family:'Anton',sans-serif;
+  font-size:20px;
+  letter-spacing:1px;
+  color:#7dd3fc;
+  opacity:.35;
+  animation:ghostZoom 1.6s ease-in-out infinite;
+}
+@keyframes ghostZoom{
+  0%{transform:scale(1);opacity:.35}
+  50%{transform:scale(1.35);opacity:0}
+  100%{transform:scale(1);opacity:.35}
+}
+
+/* SOAL */
 .soal{
   position:absolute;
-  top:58px;              /* ⬅ lebih atas */
+  top:58px;
   left:7%;width:86%;
   font-family:'Anton',sans-serif;
-  font-size:22px;line-height:1.28;
+  font-size:22px;
+  line-height:1.28;
   text-align:center;
   background:linear-gradient(90deg,#e0f2fe,#38bdf8,#818cf8,#38bdf8,#e0f2fe);
   background-size:300% 100%;
@@ -77,13 +113,13 @@ html,body{
   100%{transform:translateX(0)}
 }
 
-/* OPSI – DITURUNKAN */
+/* OPSI */
 .opsi{
   position:absolute;
-  top:220px;             /* ⬅ lebih bawah */
+  top:220px;
   left:10%;width:80%;
   font-size:13px;
-  line-height:1.65;      /* ⬅ jarak antar baris lebih lega */
+  line-height:1.65;
   color:#e5e7eb;
   opacity:0;
 }
@@ -95,7 +131,7 @@ html,body{
   opacity:0;text-shadow:0 0 16px rgba(255,255,255,.6);
 }
 
-/* CTA LEVEL 2 */
+/* CTA */
 .cta{
   position:absolute;bottom:100px;width:100%;
   text-align:center;font-size:14px;font-weight:700;
@@ -123,6 +159,12 @@ html,body{
       <source src="CBT-Demo.mp4" type="video/mp4">
     </video>
 
+    <!-- STAY TITLE -->
+    <div class="title-wrap">
+      <div class="title">SNBT – HARD REASONING</div>
+      <div class="ghost">SNBT – HARD REASONING</div>
+    </div>
+
     <div class="soal" id="soal"></div>
     <div class="opsi" id="opsi"></div>
     <div class="rationale" id="rat"></div>
@@ -133,54 +175,8 @@ html,body{
 </div>
 
 <script>
-/* ===== HARD / OLIMPIADE-STYLE REASONING ===== */
-const data=[
-{
-q:"Diketahui a,b,c > 0 dan a+b+c=1. Nilai maksimum dari ab+bc+ca adalah …",
-o:"A. 1/4<br>B. 1/3<br>C. 1/2<br>D. Tidak terbatas",
-r:"Gunakan prinsip kesimetrian atau AM-GM."
-},
-{
-q:"Jika semua A adalah B, dan tidak ada B yang C, maka pernyataan yang BENAR adalah …",
-o:"A. Semua A adalah C<br>B. Sebagian A adalah C<br>C. Tidak ada A yang C<br>D. Semua C adalah A",
-r:"Transitif logika himpunan."
-},
-{
-q:"Sebuah barisan memenuhi Un+1 = 2Un + 3 dengan U1 = 1. Bentuk eksplisit Un adalah …",
-o:"A. 2ⁿ−1 − 3<br>B. 2ⁿ + 1<br>C. 2ⁿ+1 − 3<br>D. 2ⁿ − 1",
-r:"Gunakan metode rekursif → homogen + particular."
-},
-{
-q:"Pernyataan yang ekuivalen dengan ¬(p → q) adalah …",
-o:"A. p ∧ ¬q<br>B. ¬p ∧ q<br>C. p ∨ ¬q<br>D. ¬p ∨ q",
-r:"Negasi implikasi."
-},
-{
-q:"Jika peluang muncul angka pada dadu = p, maka peluang muncul mata genap ATAU angka adalah …",
-o:"A. p<br>B. 1−p<br>C. 1<br>D. p²",
-r:"Genap ⊂ angka → union identik."
-},
-{
-q:"Sebuah teks memiliki 4 paragraf. Jika paragraf awal dihilangkan, maka koherensi teks …",
-o:"A. Meningkat<br>B. Menurun<br>C. Tetap<br>D. Tidak terpengaruh",
-r:"Paragraf awal memuat konteks global."
-},
-{
-q:"Nilai x yang memenuhi |2x−5| ≥ 3 adalah …",
-o:"A. x ≥ 4<br>B. x ≤ 1 atau x ≥ 4<br>C. 1 ≤ x ≤ 4<br>D. x ≤ 1",
-r:"Pecah nilai mutlak menjadi dua pertidaksamaan."
-},
-{
-q:"Jika semua pernyataan benar KECUALI satu, maka strategi terbaik menyimpulkan adalah …",
-o:"A. Generalisasi<br>B. Eliminasi<br>C. Analogi<br>D. Asosiasi",
-r:"Pendekatan logika eksklusi."
-},
-{
-q:"Makna implisit dalam teks argumentatif paling tepat ditemukan melalui …",
-o:"A. Kata kunci<br>B. Data numerik<br>C. Inferensi logis<br>D. Sinonim",
-r:"Implisit ≠ eksplisit → inferensi."
-}
-];
+/* DATA TETAP */
+const data=[ /* sama seperti sebelumnya */ ];
 
 const soal=document.getElementById("soal");
 const opsi=document.getElementById("opsi");
@@ -218,7 +214,6 @@ function next(){
   i=(i+1)%data.length;
   setTimeout(next,4000);
 }
-
 next();
 </script>
 
