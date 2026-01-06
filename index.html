@@ -3,8 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-<title>CBT Learning – Hybrid Demo</title>
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
@@ -14,10 +12,9 @@ html,body{
   height:100%;
   background:#020617;
   overflow:hidden;
-  font-family:system-ui, Arial;
+  font-family:system-ui,Arial;
 }
 
-/* ===== STAGE ===== */
 .stage{
   width:100vw;
   height:100vh;
@@ -26,13 +23,13 @@ html,body{
   align-items:center;
 }
 
-/* ===== PHONE ===== */
+/* PHONE */
 .phone{
   width:300px;
   height:540px;
-  position:relative;
   border-radius:38px;
   overflow:hidden;
+  position:relative;
   box-shadow:0 60px 150px rgba(0,0,0,.85);
   animation:float 6s ease-in-out infinite;
 }
@@ -41,73 +38,53 @@ html,body{
   50%{transform:rotateX(7deg) rotateY(-7deg)}
 }
 
-/* ===== VIDEO ===== */
 video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:brightness(.75) contrast(1.1);
+  filter:brightness(.7);
 }
 
-/* ===== OVERLAY ===== */
+/* OVERLAY */
 .overlay{
   position:absolute;
   inset:0;
   padding:18px;
   box-sizing:border-box;
-  background:linear-gradient(
-    to bottom,
-    rgba(2,6,23,.35),
-    rgba(2,6,23,.55)
-  );
+  background:rgba(2,6,23,.55);
   color:#fff;
+  opacity:0;
+  animation:scene 9.5s infinite;
 }
 
-/* ===== SOAL ===== */
+/* SOAL */
 .soal{
-  font-family:'Anton', sans-serif;
+  font-family:'Anton',sans-serif;
   font-size:26px;
   line-height:1.35;
   letter-spacing:1px;
-  margin-top:24px;
-  animation:shake .35s infinite, flash 2s infinite;
+  animation:shake 1.2s ease-out;
 }
 @keyframes shake{
   0%{transform:translate(0)}
-  25%{transform:translate(-1px,1px)}
-  50%{transform:translate(1px,-1px)}
-  75%{transform:translate(-1px,-1px)}
+  20%{transform:translate(-2px,1px)}
+  40%{transform:translate(2px,-1px)}
+  60%{transform:translate(-1px,-1px)}
   100%{transform:translate(0)}
 }
-@keyframes flash{
-  0%,100%{color:#fff}
-  50%{color:#38bdf8}
-}
 
-/* ===== OPSI ===== */
+/* OPSI */
 .opsi{
-  margin-top:12px;
-  padding:10px 12px;
+  margin-top:10px;
+  padding:10px;
+  border:1px solid #334155;
   border-radius:10px;
-  border:1px solid rgba(255,255,255,.25);
   font-size:14px;
-  color:#e5e7eb;
-  backdrop-filter:blur(4px);
 }
 
-/* ===== HOLD ===== */
-.hold{
-  position:absolute;
-  bottom:110px;
-  left:18px;
-  font-size:12px;
-  color:#cbd5f5;
-  opacity:.8;
-}
-
-/* ===== RATIONALE ===== */
+/* RATIONALE */
 .rationale{
   position:absolute;
   bottom:28px;
@@ -115,51 +92,53 @@ video{
   right:18px;
   font-size:13px;
   color:#fff;
-  text-shadow:
-    0 0 6px rgba(255,255,255,.45),
-    0 0 14px rgba(56,189,248,.35);
+  text-shadow:0 0 8px rgba(255,255,255,.5);
   opacity:0;
-  animation:ratIn 7s forwards;
 }
-@keyframes ratIn{
-  0%,60%{opacity:0}
-  75%,100%{opacity:1}
+
+/* TIMELINE */
+@keyframes scene{
+  0%{opacity:0}
+  10%{opacity:1}
+  70%{opacity:1}
+  85%{opacity:0}
+  100%{opacity:0}
+}
+
+/* RATIONALE TIMING */
+.overlay .rationale{
+  animation:rat 9.5s infinite;
+}
+@keyframes rat{
+  0%,55%{opacity:0}
+  65%,80%{opacity:1}
+  100%{opacity:0}
 }
 </style>
 </head>
 
 <body>
 <div class="stage">
-  <div class="phone">
+<div class="phone" style="background:#0f172a">
+<video autoplay muted loop playsinline>
+  <source src="demo.mp4" type="video/mp4">
+</video>
 
-    <!-- VIDEO DEMO -->
-    <video autoplay muted loop playsinline>
-      <source src="demo.mp4" type="video/mp4">
-    </video>
-
-    <!-- CBT OVERLAY -->
-    <div class="overlay">
-
-      <div class="soal">
-        Jika 3x + 5 = 20,<br>
-        maka nilai x adalah …
-      </div>
-
-      <div class="opsi">A. 3</div>
-      <div class="opsi">B. 5</div>
-      <div class="opsi">C. 6</div>
-      <div class="opsi">D. 7</div>
-      <div class="opsi">E. 8</div>
-
-      <div class="hold">tahan dulu — jangan jawab</div>
-
-      <div class="rationale">
-        Rationale: kurangi 5 → 3x = 15 → x = 5.  
-        Ini bukan hafalan, tapi urutan logika.
-      </div>
-
-    </div>
+<div class="overlay">
+  <div class="soal">
+    Jika 2x − 4 = 10,<br>
+    maka x = …
   </div>
+  <div class="opsi">A. 6</div>
+  <div class="opsi">B. 7</div>
+  <div class="opsi">C. 8</div>
+
+  <div class="rationale">
+    Tambah 4 → 2x = 14 → x = 7
+  </div>
+</div>
+
+</div>
 </div>
 </body>
 </html>
