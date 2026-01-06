@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Rationale Reveal</title>
+<title>CBT Answer Click Visual</title>
 
 <style>
 html,body{
@@ -22,78 +22,102 @@ html,body{
   overflow:hidden;
 }
 
-/* ===== BACKGROUND MOTION (ANTI HITAM) ===== */
+/* ===== BACKGROUND (ALWAYS ON) ===== */
 .bg{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 30% 25%, #38bdf8 0%, transparent 45%),
-    radial-gradient(circle at 70% 75%, #22c55e 0%, transparent 50%),
+    radial-gradient(circle at 25% 30%, #38bdf8 0%, transparent 45%),
+    radial-gradient(circle at 75% 70%, #22c55e 0%, transparent 50%),
     linear-gradient(160deg,#020617,#020617);
   animation:bgPulse 7s ease-in-out infinite;
   z-index:1;
 }
 @keyframes bgPulse{
   0%,100%{filter:brightness(1)}
-  50%{filter:brightness(1.15)}
+  50%{filter:brightness(1.18)}
 }
 
-/* ===== STACK ===== */
-.stack{
+/* ===== OPTIONS ===== */
+.options{
   position:absolute;
   inset:0;
   z-index:2;
   pointer-events:none;
 }
 
-.card{
+.option{
   position:absolute;
   left:50%;
-  top:50%;
-  width:78%;
-  height:24%;
+  width:76%;
+  height:16%;
   background:#0f172a;
-  border-radius:16px;
+  border-radius:14px;
   box-shadow:
-    0 18px 40px rgba(0,0,0,.45),
+    0 18px 36px rgba(0,0,0,.45),
     inset 0 0 0 1px rgba(255,255,255,.08);
-  transform:
-    translate(-50%,-50%)
-    scale(.92);
+  transform:translateX(-50%) scale(.92);
   opacity:0;
-  animation:reveal 8s ease-in-out infinite;
+  animation:optionFlow 8s ease-in-out infinite;
 }
 
-/* stagger timing */
-.card:nth-child(1){animation-delay:0s}
-.card:nth-child(2){animation-delay:1.2s}
-.card:nth-child(3){animation-delay:2.4s}
-.card:nth-child(4){animation-delay:3.6s}
+/* vertical placement */
+.option:nth-child(1){top:30%; animation-delay:0s}
+.option:nth-child(2){top:48%; animation-delay:0s}
+.option:nth-child(3){top:66%; animation-delay:0s}
 
-@keyframes reveal{
+/* FLOW */
+@keyframes optionFlow{
   0%{
     opacity:0;
-    transform:translate(-50%,-30%) scale(.9);
+    transform:translateX(-50%) scale(.9);
   }
   15%{
     opacity:1;
-    transform:translate(-50%,-50%) scale(1);
+    transform:translateX(-50%) scale(1);
   }
   45%{
     opacity:1;
-    transform:translate(-50%,-50%) scale(1);
+    transform:translateX(-50%) scale(1);
   }
-  70%{
-    opacity:0;
-    transform:translate(-50%,-70%) scale(.96);
+  55%{
+    opacity:.25;
+    transform:translateX(-50%) scale(.96);
   }
   100%{
     opacity:0;
-    transform:translate(-50%,-90%) scale(.94);
+    transform:translateX(-50%) translateY(-30px) scale(.9);
   }
 }
 
-/* ===== VIDEO OPTIONAL ===== */
+/* ===== CORRECT CLICK ===== */
+.correct{
+  animation:correctPick 8s ease-in-out infinite;
+}
+
+@keyframes correctPick{
+  0%,35%{
+    opacity:0;
+    transform:translateX(-50%) scale(.9);
+  }
+  45%{
+    opacity:1;
+    transform:translateX(-50%) scale(1.04);
+    box-shadow:
+      0 0 0 2px rgba(56,189,248,.9),
+      0 24px 48px rgba(0,0,0,.6);
+  }
+  70%{
+    opacity:1;
+    transform:translateX(-50%) scale(1.06);
+  }
+  100%{
+    opacity:0;
+    transform:translateX(-50%) translateY(-40px) scale(1);
+  }
+}
+
+/* ===== OPTIONAL VIDEO ===== */
 video{
   position:absolute;
   inset:0;
@@ -111,8 +135,8 @@ video.show{opacity:1}
   position:absolute;
   inset:0;
   box-shadow:
-    inset 0 0 150px rgba(0,0,0,.65),
-    inset 0 0 320px rgba(0,0,0,.92);
+    inset 0 0 160px rgba(0,0,0,.7),
+    inset 0 0 340px rgba(0,0,0,.95);
   z-index:4;
   pointer-events:none;
 }
@@ -122,15 +146,12 @@ video.show{opacity:1}
 <body>
 <div class="stage">
 
-  <!-- ALWAYS VISIBLE -->
   <div class="bg"></div>
 
-  <!-- RATIONALE STACK -->
-  <div class="stack">
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
+  <div class="options">
+    <div class="option"></div>
+    <div class="option correct"></div>
+    <div class="option"></div>
   </div>
 
   <!-- VIDEO OPTIONAL -->
@@ -143,14 +164,8 @@ video.show{opacity:1}
 
 <script>
 const v=document.getElementById("vid");
-
-/* LOCKED LOGIC */
-v.addEventListener("canplay",()=>{
-  v.classList.add("show");
-});
-v.addEventListener("error",()=>{
-  console.log("video fail → rationale visual only");
-});
+v.addEventListener("canplay",()=>v.classList.add("show"));
+v.addEventListener("error",()=>console.log("video fail → visual only"));
 </script>
 </body>
 </html>
