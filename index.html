@@ -3,164 +3,49 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CBT Filled Visual</title>
+<title>CBT QUIZ TEST</title>
 
 <style>
 html,body{
   margin:0;
   width:100%;
   height:100%;
-  overflow:hidden;
-  background:#020617;
-  font-family:system-ui,Segoe UI;
+  background:#000;
+  color:#fff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ===== STAGE ===== */
 .stage{
-  position:relative;
   width:100vw;
   height:100vh;
-  overflow:hidden;
-}
-
-/* ===== BACKGROUND ===== */
-.bg{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 30%, #38bdf8 0%, transparent 45%),
-    radial-gradient(circle at 80% 70%, #22c55e 0%, transparent 50%),
-    linear-gradient(160deg,#020617,#020617);
-  animation:bgPulse 6s ease-in-out infinite;
-  z-index:1;
-}
-@keyframes bgPulse{
-  0%,100%{filter:brightness(1)}
-  50%{filter:brightness(1.15)}
-}
-
-/* ===== QUESTION PANEL ===== */
-.question{
-  position:absolute;
-  top:10%;
-  left:50%;
-  transform:translateX(-50%);
-  width:82%;
-  height:18%;
-  background:#020617;
-  border-radius:16px;
-  box-shadow:
-    inset 0 0 0 2px rgba(56,189,248,.5),
-    0 20px 40px rgba(0,0,0,.5);
   display:flex;
-  justify-content:center;
+  flex-direction:column;
   align-items:center;
-  z-index:2;
+  justify-content:center;
+  gap:20px;
 }
 
-/* fake question bars */
-.qbar{
-  width:80%;
-  height:8px;
-  background:linear-gradient(90deg,#38bdf8,#22c55e);
-  border-radius:4px;
-  opacity:.8;
-  animation:scan 2s linear infinite;
-}
-@keyframes scan{
-  0%{transform:translateX(-40%)}
-  100%{transform:translateX(40%)}
+/* BIG CLEAR TEXT */
+.quiz{
+  font-size:48px;
+  font-weight:900;
+  letter-spacing:4px;
 }
 
-/* ===== OPTIONS ===== */
-.options{
-  position:absolute;
-  inset:0;
-  z-index:3;
+.question{
+  width:90%;
+  border:2px solid #fff;
+  padding:16px;
+  font-size:18px;
+  text-align:center;
 }
 
 .option{
-  position:absolute;
-  left:50%;
-  width:78%;
-  height:14%;
-  background:#0f172a;
-  border-radius:14px;
-  box-shadow:
-    0 16px 32px rgba(0,0,0,.45),
-    inset 0 0 0 1px rgba(255,255,255,.08);
-  transform:translateX(-50%) scale(.95);
-  opacity:0;
-  display:flex;
-  align-items:center;
-  padding:0 16px;
-  gap:14px;
-}
-
-/* icon circle */
-.icon{
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#38bdf8,#22c55e);
-  opacity:.9;
-}
-
-/* fake content lines */
-.lines{
-  flex:1;
-}
-.line{
-  height:6px;
-  background:#94a3b8;
-  opacity:.6;
-  border-radius:3px;
-  margin:6px 0;
-}
-
-/* slots */
-.slot-0{top:38%}
-.slot-1{top:54%}
-.slot-2{top:70%}
-
-/* ===== ANIMATION ===== */
-.option.play{
-  animation:optionFlow 7.5s ease-in-out forwards;
-}
-@keyframes optionFlow{
-  0%{opacity:0;transform:translateX(-50%) scale(.9)}
-  15%{opacity:1;transform:translateX(-50%) scale(1)}
-  45%{opacity:1}
-  60%{opacity:.25;transform:translateX(-50%) scale(.96)}
-  100%{opacity:0;transform:translateX(-50%) translateY(-40px) scale(.92)}
-}
-
-/* correct */
-.correct{
-  animation:correctPick 7.5s ease-in-out forwards;
-}
-@keyframes correctPick{
-  0%,30%{opacity:0}
-  40%{
-    opacity:1;
-    transform:translateX(-50%) scale(1.06);
-    box-shadow:
-      0 0 0 3px rgba(56,189,248,1),
-      0 26px 60px rgba(0,0,0,.7);
-  }
-  75%{opacity:1}
-  100%{opacity:0;transform:translateX(-50%) translateY(-50px)}
-}
-
-/* ===== DEPTH ===== */
-.depth{
-  position:absolute;
-  inset:0;
-  box-shadow:
-    inset 0 0 160px rgba(0,0,0,.7),
-    inset 0 0 340px rgba(0,0,0,.95);
-  z-index:5;
-  pointer-events:none;
+  width:85%;
+  border:2px solid #fff;
+  padding:12px;
+  font-size:18px;
+  text-align:left;
 }
 </style>
 </head>
@@ -168,62 +53,16 @@ html,body{
 <body>
 <div class="stage">
 
-  <div class="bg"></div>
+  <div class="quiz">QUIZ</div>
 
   <div class="question">
-    <div class="qbar"></div>
+    Soal CBT – contoh tampilan
   </div>
 
-  <div class="options" id="opts">
-    <div class="option slot-0">
-      <div class="icon"></div>
-      <div class="lines">
-        <div class="line"></div>
-        <div class="line"></div>
-      </div>
-    </div>
-    <div class="option slot-1">
-      <div class="icon"></div>
-      <div class="lines">
-        <div class="line"></div>
-        <div class="line"></div>
-      </div>
-    </div>
-    <div class="option slot-2">
-      <div class="icon"></div>
-      <div class="lines">
-        <div class="line"></div>
-        <div class="line"></div>
-      </div>
-    </div>
-  </div>
+  <div class="option">A. Pilihan pertama</div>
+  <div class="option">B. Pilihan kedua</div>
+  <div class="option">C. Pilihan ketiga</div>
 
-  <div class="depth"></div>
 </div>
-
-<script>
-const options=[...document.querySelectorAll(".option")];
-let round=0;
-
-function play(){
-  options.forEach(o=>{
-    o.className=o.className.replace(/\b(play|correct)\b/g,"").trim();
-    o.style.animation="none";
-    o.offsetHeight;
-  });
-
-  const correct = round % options.length;
-
-  options.forEach((o,i)=>{
-    o.classList.add("play");
-    if(i===correct) o.classList.add("correct");
-  });
-
-  round++;
-}
-
-play();
-setInterval(play,7600);
-</script>
 </body>
 </html>
