@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UTBK TOP 1% – MOCKUP 3D</title>
+<title>UTBK TOP 1% – QUIZ FINAL</title>
 <style>
 body{
   margin:0;
@@ -11,36 +11,21 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(135deg,#0b3d91,#1a5fc8);
+  background:#1e3b7a; /* Latar belakang frame biru */
   font-family:Segoe UI, sans-serif;
-  perspective:1200px;
   overflow:hidden;
 }
 
-/* ===== MOCKUP HP 3D ===== */
-.phone-container{
-  width:380px;
-  height:680px;
-  transform-style:preserve-3d;
-  animation: rotate 12s linear infinite;
-}
-
-@keyframes rotate{
-  0%{transform:rotateY(0deg);}
-  50%{transform:rotateY(15deg);}
-  100%{transform:rotateY(0deg);}
-}
-
+/* ===== HP FRAME PREMIUM ===== */
 .phone{
-  width:100%;
-  height:100%;
+  width:360px;
+  height:640px;
   background:#0b0b0b;
-  border-radius:40px;
+  border-radius:38px;
   overflow:hidden;
   box-shadow:0 20px 60px rgba(0,0,0,0.6);
-  transform-style:preserve-3d;
-  transform:rotateX(10deg) rotateY(0deg);
   position:relative;
+  transform:rotateX(3deg) rotateY(0deg); /* perspektif ringan */
   border:4px solid rgba(255,255,255,0.1);
 }
 
@@ -48,7 +33,7 @@ body{
 .screen{
   position:absolute;
   inset:0;
-  padding:20px;
+  padding:22px;
   display:none;
 }
 .screen.active{display:block}
@@ -121,155 +106,152 @@ body{
 </head>
 <body>
 
-<div class="phone-container">
-  <div class="phone">
+<div class="phone">
 
-    <!-- HOOK -->
-    <div class="screen active">
-      <div class="hook">UTBK TOP 1%<br>9 SOAL MENANTANG</div>
-    </div>
-
-    <!-- ===== 9 SOAL MENANTANG ===== -->
-    <!-- LEVEL 1 -->
-    <div class="screen">
-      <div class="level">LEVEL 1 — SILOGISME</div>
-      <div class="soal">
-        Semua manusia fana.<br>
-        Socrates adalah manusia.<br>
-        Kesimpulan?
-      </div>
-      <div class="opsi">
-        <div>A. Socrates fana</div>
-        <div>B. Socrates abadi</div>
-        <div>C. Tidak bisa ditentukan</div>
-      </div>
-      <div class="overlay">Perhatikan implikasi sederhana.</div>
-    </div>
-
-    <!-- LEVEL 2 -->
-    <div class="screen">
-      <div class="level">LEVEL 2 — NEGASI</div>
-      <div class="soal">
-        Negasi dari: “Semua angka genap lebih besar dari 0”
-      </div>
-      <div class="opsi">
-        <div>A. Ada angka genap ≤ 0</div>
-        <div>B. Semua angka ganjil > 0</div>
-        <div>C. Semua angka ≤0</div>
-      </div>
-      <div class="overlay">Fokus pada kata “semua”.</div>
-    </div>
-
-    <!-- LEVEL 3 -->
-    <div class="screen">
-      <div class="level">LEVEL 3 — KONDISIONAL</div>
-      <div class="soal">
-        Jika hujan, maka jalanan basah.<br>
-        Jalanan basah.<br>
-        Apa yang benar?
-      </div>
-      <div class="opsi">
-        <div>A. Hujan pasti terjadi</div>
-        <div>B. Hujan mungkin atau tidak</div>
-        <div>C. Jalanan kering</div>
-      </div>
-      <div class="overlay">Jangan terjebak asumsi p → q terbalik.</div>
-    </div>
-
-    <!-- LEVEL 4 -->
-    <div class="screen">
-      <div class="level">LEVEL 4 — POLA ANGKA</div>
-      <div class="soal">
-        Deret: 1, 2, 6, 24, ...<br>
-        Angka ke-5?
-      </div>
-      <div class="opsi">
-        <div>A. 120</div>
-        <div>B. 48</div>
-        <div>C. 60</div>
-        <div>D. 125</div>
-      </div>
-      <div class="overlay">Perhatikan faktor perkalian bertingkat.</div>
-    </div>
-
-    <!-- LEVEL 5 -->
-    <div class="screen">
-      <div class="level">LEVEL 5 — LOGIKA VERBAL</div>
-      <div class="soal">
-        Semua A adalah B.<br>
-        Beberapa B bukan C.<br>
-        Apakah A bisa menjadi C?
-      </div>
-      <div class="opsi">
-        <div>A. Bisa</div>
-        <div>B. Tidak bisa</div>
-        <div>C. Tidak bisa ditentukan</div>
-      </div>
-      <div class="overlay">Analisis relasi logika secara teliti.</div>
-    </div>
-
-    <!-- LEVEL 6 -->
-    <div class="screen">
-      <div class="level">LEVEL 6 — ANALOGI</div>
-      <div class="soal">
-        Matahari : Siang = Bulan :
-      </div>
-      <div class="opsi">
-        <div>A. Malam</div>
-        <div>B. Siang</div>
-        <div>C. Senja</div>
-      </div>
-      <div class="overlay">Hubungan konsekuensi waktu.</div>
-    </div>
-
-    <!-- LEVEL 7 -->
-    <div class="screen">
-      <div class="level">LEVEL 7 — KONTRADIKSI</div>
-      <div class="soal">
-        Pernyataan: “Semua burung bisa terbang. Burung unta adalah burung.”<br>
-        Apa implikasinya?
-      </div>
-      <div class="opsi">
-        <div>A. Kontradiksi</div>
-        <div>B. Semua benar</div>
-        <div>C. Tidak bisa ditentukan</div>
-      </div>
-      <div class="overlay">Periksa kasus pengecualian.</div>
-    </div>
-
-    <!-- LEVEL 8 -->
-    <div class="screen">
-      <div class="level">LEVEL 8 — SIRKULAR</div>
-      <div class="soal">
-        Jika A → B, dan B → A, maka...
-      </div>
-      <div class="opsi">
-        <div>A. A ↔ B</div>
-        <div>B. A → B</div>
-        <div>C. Tidak bisa ditentukan</div>
-      </div>
-      <div class="overlay">Relasi bolak-balik harus diperhatikan.</div>
-    </div>
-
-    <!-- LEVEL 9 -->
-    <div class="screen">
-      <div class="level">LEVEL 9 — FINAL</div>
-      <div class="soal">Apa yang paling menentukan skor UTBK top 1%?</div>
-      <div class="opsi">
-        <div>A. Cepat menjawab</div>
-        <div>B. Hafal rumus</div>
-        <div>C. Urutan berpikir benar</div>
-      </div>
-      <div class="overlay show">CTA 1: Refleksi sekarang! Kamu jatuh di level berapa?</div>
-    </div>
-
+  <!-- HOOK -->
+  <div class="screen active">
+    <div class="hook">UTBK TOP 1%<br>9 SOAL MENANTANG</div>
   </div>
+
+  <!-- ===== 9 SOAL ===== -->
+  <!-- LEVEL 1 -->
+  <div class="screen">
+    <div class="level">LEVEL 1 — SILOGISME</div>
+    <div class="soal">
+      Semua manusia fana.<br>
+      Socrates adalah manusia.<br>
+      Kesimpulan?
+    </div>
+    <div class="opsi">
+      <div>A. Socrates fana</div>
+      <div>B. Socrates abadi</div>
+      <div>C. Tidak bisa ditentukan</div>
+    </div>
+    <div class="overlay">Perhatikan implikasi sederhana.</div>
+  </div>
+
+  <!-- LEVEL 2 -->
+  <div class="screen">
+    <div class="level">LEVEL 2 — NEGASI</div>
+    <div class="soal">
+      Negasi dari: “Semua angka genap lebih besar dari 0”
+    </div>
+    <div class="opsi">
+      <div>A. Ada angka genap ≤ 0</div>
+      <div>B. Semua angka ganjil > 0</div>
+      <div>C. Semua angka ≤0</div>
+    </div>
+    <div class="overlay">Fokus pada kata “semua”.</div>
+  </div>
+
+  <!-- LEVEL 3 -->
+  <div class="screen">
+    <div class="level">LEVEL 3 — KONDISIONAL</div>
+    <div class="soal">
+      Jika hujan, maka jalanan basah.<br>
+      Jalanan basah.<br>
+      Apa yang benar?
+    </div>
+    <div class="opsi">
+      <div>A. Hujan pasti terjadi</div>
+      <div>B. Hujan mungkin atau tidak</div>
+      <div>C. Jalanan kering</div>
+    </div>
+    <div class="overlay">Jangan terjebak asumsi p → q terbalik.</div>
+  </div>
+
+  <!-- LEVEL 4 -->
+  <div class="screen">
+    <div class="level">LEVEL 4 — POLA ANGKA</div>
+    <div class="soal">
+      Deret: 1, 2, 6, 24, ...<br>
+      Angka ke-5?
+    </div>
+    <div class="opsi">
+      <div>A. 120</div>
+      <div>B. 48</div>
+      <div>C. 60</div>
+      <div>D. 125</div>
+    </div>
+    <div class="overlay">Perhatikan faktor perkalian bertingkat.</div>
+  </div>
+
+  <!-- LEVEL 5 -->
+  <div class="screen">
+    <div class="level">LEVEL 5 — LOGIKA VERBAL</div>
+    <div class="soal">
+      Semua A adalah B.<br>
+      Beberapa B bukan C.<br>
+      Apakah A bisa menjadi C?
+    </div>
+    <div class="opsi">
+      <div>A. Bisa</div>
+      <div>B. Tidak bisa</div>
+      <div>C. Tidak bisa ditentukan</div>
+    </div>
+    <div class="overlay">Analisis relasi logika secara teliti.</div>
+  </div>
+
+  <!-- LEVEL 6 -->
+  <div class="screen">
+    <div class="level">LEVEL 6 — ANALOGI</div>
+    <div class="soal">
+      Matahari : Siang = Bulan :
+    </div>
+    <div class="opsi">
+      <div>A. Malam</div>
+      <div>B. Siang</div>
+      <div>C. Senja</div>
+    </div>
+    <div class="overlay">Hubungan konsekuensi waktu.</div>
+  </div>
+
+  <!-- LEVEL 7 -->
+  <div class="screen">
+    <div class="level">LEVEL 7 — KONTRADIKSI</div>
+    <div class="soal">
+      Pernyataan: “Semua burung bisa terbang. Burung unta adalah burung.”<br>
+      Apa implikasinya?
+    </div>
+    <div class="opsi">
+      <div>A. Kontradiksi</div>
+      <div>B. Semua benar</div>
+      <div>C. Tidak bisa ditentukan</div>
+    </div>
+    <div class="overlay">Periksa kasus pengecualian.</div>
+  </div>
+
+  <!-- LEVEL 8 -->
+  <div class="screen">
+    <div class="level">LEVEL 8 — SIRKULAR</div>
+    <div class="soal">
+      Jika A → B, dan B → A, maka...
+    </div>
+    <div class="opsi">
+      <div>A. A ↔ B</div>
+      <div>B. A → B</div>
+      <div>C. Tidak bisa ditentukan</div>
+    </div>
+    <div class="overlay">Relasi bolak-balik harus diperhatikan.</div>
+  </div>
+
+  <!-- LEVEL 9 -->
+  <div class="screen">
+    <div class="level">LEVEL 9 — FINAL</div>
+    <div class="soal">Apa yang paling menentukan skor UTBK top 1%?</div>
+    <div class="opsi">
+      <div>A. Cepat menjawab</div>
+      <div>B. Hafal rumus</div>
+      <div>C. Urutan berpikir benar</div>
+    </div>
+    <div class="overlay show">CTA 1: Refleksi sekarang! Kamu jatuh di level berapa?</div>
+  </div>
+
 </div>
 
 <script>
 const screens=[...document.querySelectorAll('.screen')];
 let idx=0;
-
 function showScreen(i){
   screens.forEach(s=>{
     s.classList.remove('active');
@@ -278,15 +260,10 @@ function showScreen(i){
     const overlay=s.querySelector('.overlay');
     if(overlay) overlay.classList.remove('show');
   });
-  
   const screen=screens[i];
   screen.classList.add('active');
-
   const opsi=screen.querySelectorAll('.opsi div');
-  opsi.forEach((o,j)=>{
-    setTimeout(()=>o.classList.add('show'), 400*j);
-  });
-
+  opsi.forEach((o,j)=>setTimeout(()=>o.classList.add('show'), 400*j));
   const overlay=screen.querySelector('.overlay');
   if(overlay) setTimeout(()=>overlay.classList.add('show'), 1000);
 }
