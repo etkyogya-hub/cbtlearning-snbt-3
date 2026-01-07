@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UTBK TOP 1% – LOOP ANIMATED</title>
+<title>UTBK TOP 1% – LOOP REALISTIK</title>
 
 <style>
 *{box-sizing:border-box}
@@ -57,7 +57,7 @@ body{
   background:#141414;
   padding:20px;
   border-radius:16px;
-  font-size:19px;
+  font-size:18px;
   line-height:1.55;
 }
 .opsi{
@@ -70,7 +70,7 @@ body{
   background:#1f1f1f;
   padding:15px;
   border-radius:14px;
-  font-size:18px;
+  font-size:17px;
   cursor:pointer;
   transform:scale(0.8);
   opacity:0;
@@ -108,104 +108,133 @@ body{
 <div class="screen active">
   <div class="hook">
     UTBK TOP 1%<br>
-    HANYA UNTUK YANG BERANI
+    SIAPKAN LOGIKA MU
   </div>
 </div>
 
-<!-- QUIZ TEMPLATES -->
-<div class="screen">
-  <div class="level">LEVEL 1 — IMPLIKASI</div>
-  <div class="soal">Jika <b>p → q</b> salah, maka kondisi yang pasti?</div>
-  <div class="opsi">
-    <div>A. p benar, q salah</div>
-    <div>B. p salah, q benar</div>
-    <div>C. p benar, q benar</div>
-  </div>
-  <div class="overlay">Definisi formal. Bukan intuisi.</div>
-</div>
+<!-- ===== QUIZ REALISTIK 9 LEVEL ===== -->
 
+<!-- LEVEL 1: SILOGISME SEDERHANA -->
 <div class="screen">
-  <div class="level">LEVEL 2 — SILOGISME</div>
+  <div class="level">LEVEL 1 — SILOGISME</div>
   <div class="soal">
-    Semua A adalah B.<br>
-    Tidak ada B yang C.<br>
+    Semua kucing memiliki ekor.<br>
+    Simba adalah kucing.<br>
     Kesimpulan?
   </div>
   <div class="opsi">
-    <div>A. Semua A bukan C</div>
-    <div>B. Sebagian A C</div>
+    <div>A. Simba punya ekor</div>
+    <div>B. Simba tidak punya ekor</div>
     <div>C. Tidak bisa ditentukan</div>
   </div>
-  <div class="overlay">Hati-hati jebakan klasik.</div>
+  <div class="overlay">Perhatikan urutan logika.</div>
 </div>
 
+<!-- LEVEL 2: NEGASI -->
 <div class="screen">
-  <div class="level">LEVEL 3 — NEGASI & KUANTOR</div>
-  <div class="soal">Negasi dari: “Semua mahasiswa lulus”</div>
-  <div class="opsi">
-    <div>A. Tidak ada mahasiswa lulus</div>
-    <div>B. Sebagian mahasiswa tidak lulus</div>
-    <div>C. Semua mahasiswa tidak lulus</div>
+  <div class="level">LEVEL 2 — NEGASI</div>
+  <div class="soal">
+    Negasi dari:<br>
+    “Beberapa siswa gagal ujian matematika”
   </div>
-  <div class="overlay">Baca setiap kata.</div>
+  <div class="opsi">
+    <div>A. Semua siswa lulus</div>
+    <div>B. Tidak ada siswa lulus</div>
+    <div>C. Sebagian siswa lulus</div>
+  </div>
+  <div class="overlay">Fokus kata kunci “beberapa”.</div>
 </div>
 
+<!-- LEVEL 3: KUANTOR & IMPLIKASI -->
 <div class="screen">
-  <div class="level">LEVEL 4 — POLA MATEMATIS</div>
-  <div class="soal">Jika hari ini Senin, 1000 hari lagi?</div>
-  <div class="opsi">
-    <div>A. Sabtu</div>
-    <div>B. Selasa</div>
-    <div>C. Rabu</div>
-    <div>D. Kamis</div>
+  <div class="level">LEVEL 3 — KUANTOR</div>
+  <div class="soal">
+    Jika semua burung bisa terbang, dan penguin adalah burung,<br>
+    maka penguin…?
   </div>
-  <div class="overlay">Modulo 7, jangan nebak.</div>
+  <div class="opsi">
+    <div>A. Bisa terbang</div>
+    <div>B. Tidak bisa terbang</div>
+    <div>C. Bisa dan tidak bisa</div>
+  </div>
+  <div class="overlay">Jangan langsung percaya intuisi.</div>
 </div>
 
+<!-- LEVEL 4: POLA ANGKA -->
 <div class="screen">
-  <div class="level">LEVEL 5 — ASUMSI</div>
-  <div class="soal">“Semua siswa rajin lulus”. Asumsi minimal agar benar?</div>
-  <div class="opsi">
-    <div>A. Tidak ada siswa rajin gagal</div>
-    <div>B. Semua yang lulus rajin</div>
-    <div>C. Semua siswa pintar</div>
+  <div class="level">LEVEL 4 — POLA ANGKA</div>
+  <div class="soal">
+    Deret: 2, 4, 8, 16, ...<br>
+    Angka ke-6?
   </div>
-  <div class="overlay">Asumsi logika.</div>
+  <div class="opsi">
+    <div>A. 32</div>
+    <div>B. 64</div>
+    <div>C. 128</div>
+    <div>D. 256</div>
+  </div>
+  <div class="overlay">Perhatikan pola perkalian.</div>
 </div>
 
+<!-- LEVEL 5: LOGIKA VERBAL -->
 <div class="screen">
-  <div class="level">LEVEL 6 — ANALOGI KETAT</div>
-  <div class="soal">Dokter : Rumah Sakit = Guru :</div>
-  <div class="opsi">
-    <div>A. Murid</div>
-    <div>B. Sekolah</div>
-    <div>C. Buku</div>
+  <div class="level">LEVEL 5 — LOGIKA VERBAL</div>
+  <div class="soal">
+    “Semua burung bisa terbang. Burung unta tidak bisa terbang.”<br>
+    Apa yang salah?
   </div>
-  <div class="overlay">Relasi benar-benar simetris.</div>
+  <div class="opsi">
+    <div>A. Pernyataan kontradiktif</div>
+    <div>B. Semuanya benar</div>
+    <div>C. Tidak ada jawaban benar</div>
+  </div>
+  <div class="overlay">Periksa konsistensi kalimat.</div>
 </div>
 
+<!-- LEVEL 6: ANALOGI -->
+<div class="screen">
+  <div class="level">LEVEL 6 — ANALOGI</div>
+  <div class="soal">
+    Matahari : Siang = Bulan :
+  </div>
+  <div class="opsi">
+    <div>A. Malam</div>
+    <div>B. Siang</div>
+    <div>C. Senja</div>
+  </div>
+  <div class="overlay">Hubungan jelas: konsekuensi waktu.</div>
+</div>
+
+<!-- LEVEL 7: KONTRADIKSI -->
 <div class="screen">
   <div class="level">LEVEL 7 — KONTRADIKSI</div>
-  <div class="soal">Pernyataan salah → implikasi?</div>
-  <div class="opsi">
-    <div>A. Benar</div>
-    <div>B. Salah</div>
-    <div>C. Paradoks</div>
+  <div class="soal">
+    Jika “Semua A bukan B” salah, maka…?
   </div>
-  <div class="overlay">Self-reference jebakan.</div>
+  <div class="opsi">
+    <div>A. Beberapa A adalah B</div>
+    <div>B. Semua A adalah B</div>
+    <div>C. Tidak ada A B</div>
+  </div>
+  <div class="overlay">Perhatikan kata “semua”.</div>
 </div>
 
+<!-- LEVEL 8: SIRKULAR -->
 <div class="screen">
-  <div class="level">LEVEL 8 — LOGIKA SIRKULAR</div>
-  <div class="soal">Jika <b>p ↔ q</b> salah, maka…</div>
-  <div class="opsi">
-    <div>A. p benar, q salah</div>
-    <div>B. p salah, q benar</div>
-    <div>C. p = q</div>
+  <div class="level">LEVEL 8 — SIRKULAR</div>
+  <div class="soal">
+    Pernyataan: “Jika A maka B. Jika B maka A.”<br>
+    Apa implikasinya?
   </div>
-  <div class="overlay">Hati-hati jebakan sirkular.</div>
+  <div class="opsi">
+    <div>A. A ↔ B</div>
+    <div>B. A → B saja</div>
+    <div>C. Tidak bisa ditentukan</div>
+  </div>
+  <div class="overlay">Cek hubungan bolak-balik.</div>
 </div>
 
+<!-- LEVEL 9: FINAL CTA -->
 <div class="screen">
   <div class="level">LEVEL 9 — FINAL</div>
   <div class="soal">Yang PALING menentukan skor UTBK top 1%:</div>
@@ -214,7 +243,7 @@ body{
     <div>B. Hafal rumus</div>
     <div>C. Urutan berpikir benar</div>
   </div>
-  <div class="overlay show">CTA 1: Kamu jatuh di level berapa? Refleksi sekarang!</div>
+  <div class="overlay show">CTA 1: Refleksi sekarang! Kamu jatuh di level berapa?</div>
 </div>
 
 </div>
@@ -235,23 +264,20 @@ function showScreen(i){
   const screen=screens[i];
   screen.classList.add('active');
 
-  // animate options stagger
   const opsi=screen.querySelectorAll('.opsi div');
   opsi.forEach((o,j)=>{
     setTimeout(()=>o.classList.add('show'), 400*j);
   });
 
-  // overlay delay
   const overlay=screen.querySelector('.overlay');
   if(overlay) setTimeout(()=>overlay.classList.add('show'), 1000);
 }
 
-// loop auto replay
 setInterval(()=>{
   showScreen(idx);
   idx++;
   if(idx>=screens.length) idx=0;
-}, 3500); // rocky cepat
+}, 3800);
 </script>
 
 </body>
