@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QUIZ SERIES – LEVEL UP</title>
+<title>SNBT LOGIC – HARD MODE</title>
 
 <style>
 *{box-sizing:border-box}
@@ -19,10 +19,10 @@ body{
 .phone{
   width:360px;
   height:640px;
-  background:#111;
+  background:#0b0b0b;
   border-radius:38px;
   overflow:hidden;
-  color:#f2f2f2;
+  color:#f5f5f5;
   position:relative;
 }
 .screen{
@@ -35,27 +35,28 @@ body{
 
 /* TYPO */
 .hook{
-  font-size:26px;
-  font-weight:800;
+  font-size:30px;
+  font-weight:900;
   text-align:center;
-  margin-top:180px;
+  line-height:1.15;
+  margin-top:190px;
 }
 .soal{
-  background:#1e1e1e;
-  padding:18px;
-  border-radius:14px;
-  font-size:18px;
-  line-height:1.5;
+  background:#141414;
+  padding:20px;
+  border-radius:16px;
+  font-size:19px;
+  line-height:1.55;
 }
 .opsi{
-  margin-top:18px;
+  margin-top:20px;
 }
 .opsi div{
-  background:#2b2b2b;
-  padding:14px;
-  border-radius:12px;
-  font-size:17px;
-  margin-bottom:10px;
+  background:#1f1f1f;
+  padding:15px;
+  border-radius:14px;
+  font-size:18px;
+  margin-bottom:12px;
 }
 .overlay{
   position:absolute;
@@ -64,15 +65,16 @@ body{
   bottom:26px;
   font-size:15px;
   opacity:0;
-  transition:.4s;
+  transition:.35s;
 }
 .overlay.show{opacity:1}
-.level-tag{
+.level{
   position:absolute;
   top:14px;
   left:18px;
   font-size:12px;
-  opacity:.6;
+  opacity:.55;
+  letter-spacing:.5px;
 }
 </style>
 </head>
@@ -80,176 +82,144 @@ body{
 <body>
 <div class="phone">
 
-<!-- ========== QUIZ 1 -->
+<!-- ===== HOOK 0 (1.5 DETIK) -->
 <div class="screen active">
-  <div class="level-tag">LEVEL 1</div>
-  <div class="hook">JANGAN JAWAB CEPAT.</div>
+  <div class="hook">
+    KALAU KAMU JAWAB CEPAT,<br>PASTI SALAH.
+  </div>
 </div>
 
+<!-- ===== QUIZ 1 -->
 <div class="screen">
+  <div class="level">LEVEL 1 — IMPLIKASI</div>
   <div class="soal">
-    Sebuah mobil menempuh 150 km dalam 3 jam.<br>
-    Kecepatan rata-ratanya?
+    Jika <b>p → q</b> bernilai SALAH,<br>
+    maka kondisi yang PASTI benar adalah?
   </div>
   <div class="opsi">
-    <div>A. 30 km/jam</div>
-    <div>B. 50 km/jam</div>
-    <div>C. 75 km/jam</div>
-    <div>D. 150 km/jam</div>
+    <div>A. p benar, q salah</div>
+    <div>B. p salah, q benar</div>
+    <div>C. p benar, q benar</div>
   </div>
-  <div class="overlay">Yang kelihatan benar sering salah.</div>
+  <div class="overlay">Definisi formal. Bukan intuisi.</div>
 </div>
 
-<!-- ========== QUIZ 2 -->
+<!-- ===== QUIZ 2 -->
 <div class="screen">
-  <div class="level-tag">LEVEL 2</div>
-  <div class="hook">OTAKMU MAU CEPAT SELESAI.</div>
-</div>
-
-<div class="screen">
+  <div class="level">LEVEL 2 — SILOGISME</div>
   <div class="soal">
-    Jika semua A adalah B, dan sebagian B adalah C.<br>
+    Semua A adalah B.<br>
+    Tidak ada B yang C.<br>
     Maka:
   </div>
   <div class="opsi">
-    <div>A. Semua A adalah C</div>
-    <div>B. Sebagian A mungkin C</div>
-    <div>C. Semua C adalah A</div>
+    <div>A. Semua A bukan C</div>
+    <div>B. Sebagian A C</div>
+    <div>C. Tidak bisa ditentukan</div>
   </div>
-  <div class="overlay">Logika ≠ insting.</div>
+  <div class="overlay">Relasi himpunan.</div>
 </div>
 
-<!-- ========== QUIZ 3 -->
+<!-- ===== QUIZ 3 -->
 <div class="screen">
-  <div class="level-tag">LEVEL 3</div>
-  <div class="hook">INI BUKAN SOAL HITUNG.</div>
-</div>
-
-<div class="screen">
+  <div class="level">LEVEL 3 — NEGASI</div>
   <div class="soal">
-    Angka mana berikutnya?<br>
-    2 – 4 – 8 – 16 – ?
+    Negasi dari:<br>
+    “Semua mahasiswa lulus”
   </div>
   <div class="opsi">
-    <div>A. 18</div>
-    <div>B. 24</div>
-    <div>C. 32</div>
-    <div>D. 64</div>
+    <div>A. Tidak ada mahasiswa lulus</div>
+    <div>B. Sebagian mahasiswa tidak lulus</div>
+    <div>C. Semua mahasiswa tidak lulus</div>
   </div>
-  <div class="overlay">Pola dulu. Jangan lompat.</div>
+  <div class="overlay">Kesalahan SNBT paling sering.</div>
 </div>
 
-<!-- ========== QUIZ 4 -->
+<!-- ===== QUIZ 4 -->
 <div class="screen">
-  <div class="level-tag">LEVEL 4</div>
-  <div class="hook">YANG INI PALING SERING MENIPU.</div>
-</div>
-
-<div class="screen">
+  <div class="level">LEVEL 4 — POLA LOGIKA</div>
   <div class="soal">
-    Semua dokter pintar.<br>
-    Andi pintar.<br>
-    Maka:
+    Jika hari ini Jumat,<br>
+    2026 hari lagi adalah hari?
   </div>
   <div class="opsi">
-    <div>A. Andi dokter</div>
-    <div>B. Andi mungkin dokter</div>
-    <div>C. Tidak bisa disimpulkan</div>
+    <div>A. Senin</div>
+    <div>B. Selasa</div>
+    <div>C. Rabu</div>
+    <div>D. Kamis</div>
   </div>
-  <div class="overlay">Kesalahan klasik.</div>
+  <div class="overlay">Modulo 7. Jangan hitung manual.</div>
 </div>
 
-<!-- ========== QUIZ 5 -->
+<!-- ===== QUIZ 5 -->
 <div class="screen">
-  <div class="level-tag">LEVEL 5</div>
-  <div class="hook">YAKIN? CEK ULANG.</div>
-</div>
-
-<div class="screen">
+  <div class="level">LEVEL 5 — KUANTOR</div>
   <div class="soal">
-    5 pekerja selesai 10 hari.<br>
-    10 pekerja butuh?
+    Pernyataan berikut BENAR, kecuali:
   </div>
   <div class="opsi">
-    <div>A. 2 hari</div>
-    <div>B. 5 hari</div>
-    <div>C. 10 hari</div>
-    <div>D. 20 hari</div>
-  </div>
-  <div class="overlay">Bandingkan, bukan tebak.</div>
-</div>
-
-<!-- ========== QUIZ 6 -->
-<div class="screen">
-  <div class="level-tag">LEVEL 6</div>
-  <div class="hook">DISTRACTOR TERLIHAT BENAR.</div>
-</div>
-
-<div class="screen">
-  <div class="soal">
-    Jika hari ini Senin,<br>
-    100 hari lagi hari apa?
-  </div>
-  <div class="opsi">
-    <div>A. Selasa</div>
-    <div>B. Rabu</div>
-    <div>C. Kamis</div>
-    <div>D. Jumat</div>
-  </div>
-  <div class="overlay">Modulo, bukan hitung panjang.</div>
-</div>
-
-<!-- ========== QUIZ 7 -->
-<div class="screen">
-  <div class="level-tag">LEVEL 7</div>
-  <div class="hook">INI LEVEL TES ASLI.</div>
-</div>
-
-<div class="screen">
-  <div class="soal">
-    Pernyataan benar kecuali:
-  </div>
-  <div class="opsi">
-    <div>A. Semua segitiga punya 3 sisi</div>
+    <div>A. Semua bilangan prima > 2 adalah ganjil</div>
     <div>B. Semua bilangan genap habis dibagi 2</div>
-    <div>C. Semua bilangan prima ganjil</div>
+    <div>C. Semua bilangan ganjil adalah prima</div>
   </div>
-  <div class="overlay">Cari yang salah.</div>
+  <div class="overlay">Baca satu-satu.</div>
 </div>
 
-<!-- ========== QUIZ 8 -->
+<!-- ===== QUIZ 6 -->
 <div class="screen">
-  <div class="level-tag">LEVEL 8</div>
-  <div class="hook">HAMPIR SEMUA SALAH DI SINI.</div>
-</div>
-
-<div class="screen">
+  <div class="level">LEVEL 6 — ANALOGI</div>
   <div class="soal">
-    Jika p → q salah,<br>
-    maka p?
+    Dokter : Rumah Sakit =<br>
+    Guru :
+  </div>
+  <div class="opsi">
+    <div>A. Murid</div>
+    <div>B. Sekolah</div>
+    <div>C. Buku</div>
+  </div>
+  <div class="overlay">Relasi profesi–tempat.</div>
+</div>
+
+<!-- ===== QUIZ 7 -->
+<div class="screen">
+  <div class="level">LEVEL 7 — ASUMSI</div>
+  <div class="soal">
+    “Semua siswa rajin lulus.”<br>
+    Agar pernyataan ini benar, harus diasumsikan:
+  </div>
+  <div class="opsi">
+    <div>A. Semua yang lulus rajin</div>
+    <div>B. Tidak ada siswa rajin gagal</div>
+    <div>C. Semua siswa rajin pintar</div>
+  </div>
+  <div class="overlay">Asumsi minimal.</div>
+</div>
+
+<!-- ===== QUIZ 8 -->
+<div class="screen">
+  <div class="level">LEVEL 8 — KONSISTENSI</div>
+  <div class="soal">
+    Jika pernyataan ini salah,<br>
+    maka pernyataan ini…
   </div>
   <div class="opsi">
     <div>A. Benar</div>
     <div>B. Salah</div>
-    <div>C. Tidak bisa ditentukan</div>
+    <div>C. Paradoks</div>
   </div>
-  <div class="overlay">Logika formal.</div>
+  <div class="overlay">Self-reference.</div>
 </div>
 
-<!-- ========== QUIZ 9 -->
+<!-- ===== QUIZ 9 (FINAL CTA 1) -->
 <div class="screen">
-  <div class="level-tag">LEVEL 9</div>
-  <div class="hook">BACA PELAN. INI FINAL.</div>
-</div>
-
-<div class="screen">
+  <div class="level">LEVEL 9 — FINAL</div>
   <div class="soal">
-    Mana yang PALING benar?
+    Yang PALING menentukan skor SNBT:
   </div>
   <div class="opsi">
     <div>A. Cepat menjawab</div>
-    <div>B. Jawaban terlihat benar</div>
-    <div>C. Urutan berpikir tepat</div>
+    <div>B. Hafal rumus</div>
+    <div>C. Urutan berpikir benar</div>
   </div>
   <div class="overlay show">
     CTA 1: Kamu jatuh di level berapa?
@@ -265,13 +235,13 @@ function play(){
   screens.forEach(s=>s.classList.remove('active'));
   screens[i].classList.add('active');
   const o=screens[i].querySelector('.overlay');
-  if(o) setTimeout(()=>o.classList.add('show'),700);
+  if(o) setTimeout(()=>o.classList.add('show'),600);
   i++;
 }
 let t=0;
 screens.forEach(()=>{
   setTimeout(play,t);
-  t+=3500; // CEPAT & PADAT
+  t+=3200; // TEMPO CEPAT = RETENSI
 });
 </script>
 
