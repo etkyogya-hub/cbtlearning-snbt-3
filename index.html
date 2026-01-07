@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UTBK TOP 1% – LOOP HARDCORE</title>
+<title>UTBK TOP 1% – LOOP ANIMATED</title>
 
 <style>
 *{box-sizing:border-box}
@@ -15,6 +15,7 @@ body{
   justify-content:center;
   align-items:center;
   font-family:Segoe UI, system-ui, sans-serif;
+  overflow:hidden;
 }
 .phone{
   width:360px;
@@ -33,7 +34,7 @@ body{
 }
 .screen.active{display:block}
 
-/* TYPO */
+/* HOOK SHAKE */
 .hook{
   font-size:32px;
   font-weight:900;
@@ -51,6 +52,7 @@ body{
   100%{transform:translateX(0);}
 }
 
+/* TYPO */
 .soal{
   background:#141414;
   padding:20px;
@@ -60,13 +62,23 @@ body{
 }
 .opsi{
   margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
 }
 .opsi div{
   background:#1f1f1f;
   padding:15px;
   border-radius:14px;
   font-size:18px;
-  margin-bottom:12px;
+  cursor:pointer;
+  transform:scale(0.8);
+  opacity:0;
+  transition:transform 0.35s, opacity 0.35s;
+}
+.opsi div.show{
+  transform:scale(1);
+  opacity:1;
 }
 .overlay{
   position:absolute;
@@ -92,7 +104,7 @@ body{
 <body>
 <div class="phone">
 
-<!-- ===== HOOK SHAKE 0 -->
+<!-- HOOK SHAKE -->
 <div class="screen active">
   <div class="hook">
     UTBK TOP 1%<br>
@@ -100,12 +112,10 @@ body{
   </div>
 </div>
 
-<!-- ===== QUIZ 1 -->
+<!-- QUIZ TEMPLATES -->
 <div class="screen">
   <div class="level">LEVEL 1 — IMPLIKASI</div>
-  <div class="soal">
-    Jika <b>p → q</b> salah, maka kondisi yang pasti?
-  </div>
+  <div class="soal">Jika <b>p → q</b> salah, maka kondisi yang pasti?</div>
   <div class="opsi">
     <div>A. p benar, q salah</div>
     <div>B. p salah, q benar</div>
@@ -114,7 +124,6 @@ body{
   <div class="overlay">Definisi formal. Bukan intuisi.</div>
 </div>
 
-<!-- ===== QUIZ 2 -->
 <div class="screen">
   <div class="level">LEVEL 2 — SILOGISME</div>
   <div class="soal">
@@ -130,13 +139,9 @@ body{
   <div class="overlay">Hati-hati jebakan klasik.</div>
 </div>
 
-<!-- ===== QUIZ 3 -->
 <div class="screen">
   <div class="level">LEVEL 3 — NEGASI & KUANTOR</div>
-  <div class="soal">
-    Negasi dari:<br>
-    “Semua mahasiswa lulus”
-  </div>
+  <div class="soal">Negasi dari: “Semua mahasiswa lulus”</div>
   <div class="opsi">
     <div>A. Tidak ada mahasiswa lulus</div>
     <div>B. Sebagian mahasiswa tidak lulus</div>
@@ -145,13 +150,9 @@ body{
   <div class="overlay">Baca setiap kata.</div>
 </div>
 
-<!-- ===== QUIZ 4 -->
 <div class="screen">
   <div class="level">LEVEL 4 — POLA MATEMATIS</div>
-  <div class="soal">
-    Hitung hari:<br>
-    Jika hari ini Senin, 1000 hari lagi?
-  </div>
+  <div class="soal">Jika hari ini Senin, 1000 hari lagi?</div>
   <div class="opsi">
     <div>A. Sabtu</div>
     <div>B. Selasa</div>
@@ -161,13 +162,9 @@ body{
   <div class="overlay">Modulo 7, jangan nebak.</div>
 </div>
 
-<!-- ===== QUIZ 5 -->
 <div class="screen">
   <div class="level">LEVEL 5 — ASUMSI</div>
-  <div class="soal">
-    Pernyataan: “Semua siswa rajin lulus”<br>
-    Asumsi minimal agar benar?
-  </div>
+  <div class="soal">“Semua siswa rajin lulus”. Asumsi minimal agar benar?</div>
   <div class="opsi">
     <div>A. Tidak ada siswa rajin gagal</div>
     <div>B. Semua yang lulus rajin</div>
@@ -176,12 +173,9 @@ body{
   <div class="overlay">Asumsi logika.</div>
 </div>
 
-<!-- ===== QUIZ 6 -->
 <div class="screen">
   <div class="level">LEVEL 6 — ANALOGI KETAT</div>
-  <div class="soal">
-    Dokter : Rumah Sakit = Guru :
-  </div>
+  <div class="soal">Dokter : Rumah Sakit = Guru :</div>
   <div class="opsi">
     <div>A. Murid</div>
     <div>B. Sekolah</div>
@@ -190,12 +184,9 @@ body{
   <div class="overlay">Relasi benar-benar simetris.</div>
 </div>
 
-<!-- ===== QUIZ 7 -->
 <div class="screen">
   <div class="level">LEVEL 7 — KONTRADIKSI</div>
-  <div class="soal">
-    Pernyataan salah → implikasi?
-  </div>
+  <div class="soal">Pernyataan salah → implikasi?</div>
   <div class="opsi">
     <div>A. Benar</div>
     <div>B. Salah</div>
@@ -204,12 +195,9 @@ body{
   <div class="overlay">Self-reference jebakan.</div>
 </div>
 
-<!-- ===== QUIZ 8 -->
 <div class="screen">
   <div class="level">LEVEL 8 — LOGIKA SIRKULAR</div>
-  <div class="soal">
-    Jika <b>p ↔ q</b> salah, maka…
-  </div>
+  <div class="soal">Jika <b>p ↔ q</b> salah, maka…</div>
   <div class="opsi">
     <div>A. p benar, q salah</div>
     <div>B. p salah, q benar</div>
@@ -218,36 +206,52 @@ body{
   <div class="overlay">Hati-hati jebakan sirkular.</div>
 </div>
 
-<!-- ===== QUIZ 9 — FINAL CTA 1 -->
 <div class="screen">
   <div class="level">LEVEL 9 — FINAL</div>
-  <div class="soal">
-    Yang PALING menentukan skor UTBK top 1%:
-  </div>
+  <div class="soal">Yang PALING menentukan skor UTBK top 1%:</div>
   <div class="opsi">
     <div>A. Cepat menjawab</div>
     <div>B. Hafal rumus</div>
     <div>C. Urutan berpikir benar</div>
   </div>
-  <div class="overlay show">
-    CTA 1: Kamu jatuh di level berapa? Refleksi sekarang!
-  </div>
+  <div class="overlay show">CTA 1: Kamu jatuh di level berapa? Refleksi sekarang!</div>
 </div>
 
 </div>
 
 <script>
 const screens=[...document.querySelectorAll('.screen')];
-let i=0;
-function play(){
-  screens.forEach(s=>s.classList.remove('active'));
-  screens[i].classList.add('active');
-  const o=screens[i].querySelector('.overlay');
-  if(o) setTimeout(()=>o.classList.add('show'),500);
-  i++;
-  if(i>=screens.length) i=0; // LOOP AUTO REPLAY
+let idx=0;
+
+function showScreen(i){
+  screens.forEach(s=>{
+    s.classList.remove('active');
+    const opsi=s.querySelectorAll('.opsi div');
+    opsi.forEach(o=>o.classList.remove('show'));
+    const overlay=s.querySelector('.overlay');
+    if(overlay) overlay.classList.remove('show');
+  });
+  
+  const screen=screens[i];
+  screen.classList.add('active');
+
+  // animate options stagger
+  const opsi=screen.querySelectorAll('.opsi div');
+  opsi.forEach((o,j)=>{
+    setTimeout(()=>o.classList.add('show'), 400*j);
+  });
+
+  // overlay delay
+  const overlay=screen.querySelector('.overlay');
+  if(overlay) setTimeout(()=>overlay.classList.add('show'), 1000);
 }
-setInterval(play, 3200); // TEMPO CEPAT = RETENSI
+
+// loop auto replay
+setInterval(()=>{
+  showScreen(idx);
+  idx++;
+  if(idx>=screens.length) idx=0;
+}, 3500); // rocky cepat
 </script>
 
 </body>
