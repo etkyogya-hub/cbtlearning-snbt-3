@@ -11,11 +11,12 @@ body{margin:0;background:#000;font-family:Segoe UI, system-ui,sans-serif;display
 .screen{position:absolute;inset:0;padding:26px;display:none}
 .screen.active{display:block}
 .hook{font-size:28px;font-weight:900;text-align:center;margin-top:180px;animation:shake 0.1s 6 alternate,colorchange 0.2s infinite alternate}
+.hook-end{animation:none;color:#fff}
 @keyframes shake{0%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}}
 @keyframes colorchange{0%{color:#ff5555}25%{color:#55ff55}50%{color:#5555ff}75%{color:#ffff55}100%{color:#ff55ff}}
-.soal{background:#141414;padding:20px;border-radius:16px;font-size:18px;line-height:1.55;text-align:center;color:#fff}
+.soal{background:#141414;padding:20px;border-radius:16px;font-size:18px;line-height:1.55;text-align:center;color:#fff;margin-top:50px}
 .opsi{margin-top:20px;display:flex;flex-direction:column;gap:14px;align-items:center}
-.opsi div{background:#1f1f1f;padding:15px;border-radius:14px;font-size:17px;cursor:pointer;transform:scale(0.8);opacity:0;transition:transform 0.35s, opacity 0.35s;color:#fff}
+.opsi div{background:#1f1f1f;padding:15px;border-radius:14px;font-size:17px;cursor:pointer;transform:scale(0.8);opacity:0;transition:transform 0.35s, opacity 0.35s,color 0.2s}
 .opsi div.show{transform:scale(1);opacity:1}
 .overlay{position:absolute;left:26px;right:26px;bottom:26px;font-size:15px;opacity:0;transition:.35s;text-align:center;color:#fff}
 .overlay.show{opacity:1}
@@ -149,21 +150,60 @@ body{margin:0;background:#000;font-family:Segoe UI, system-ui,sans-serif;display
 
 </div>
 <script>
-const screens=[...document.querySelectorAll('.screen')];
-let idx=0;
-function showScreen(i){
-  screens.forEach(s=>{
-    s.classList.remove('active');
-    const opsi=s.querySelectorAll('.opsi div');
-    opsi.forEach(o=>o.classList.remove('show'));
-    const overlay=s.querySelector('.overlay');
-    if(overlay) overlay.classList.remove('show');
-  });
-  const screen=screens[i];
-  screen.classList.add('active');
-  const opsi=screen.querySelectorAll('.opsi div');
-  opsi.forEach((o,j)=>{setTimeout(()=>o.classList.add('show'),400*j)});
-  const overlay=screen.querySelector('.overlay');
-  if(overlay) setTimeout(()=>overlay.classList.add('show'),1000);
+const screens = [...document.querySelectorAll('.screen')];
+let idx = 0;
+let timeouts = [];
+
+// clear semua timeout agar tidak tumpang tindih
+function clearAllTimeouts() {
+  timeouts.forEach(t => clearTimeout(t));
+  timeouts = [];
 }
-setInte
+
+function showScreen(i) {
+  clearAllTimeouts();
+
+  // hapus semua aktif screen
+  screens.forEach(s => {
+    s.classList.remove('active');
+    const opsi = s.querySelectorAll('.opsi div');
+    opsi.forEach(o => o.classList.remove('show'));
+    const overlay = s.querySelector('.overlay');
+    if (overlay) overlay.classList.remove('show');
+  });
+
+  const screen = screens[i];
+  screen.classList.add('active');
+
+  // hentikan animasi hook jika sudah masuk screen 1+
+  const hook = document.querySelector('.hook');
+  if (hook && i > 0) hook.classList.add('hook-end');
+
+  const opsi = screen.querySelectorAll('.opsi div');
+  opsi.forEach((o, j) => {
+    const t = setTimeout(() => o.classList.add('show'), 400 * j);
+    timeouts.push(t);
+  });
+
+  const overlay = screen.querySelector('.overlay');
+  if (overlay) {
+    const t = setTimeout(() => overlay.classList.add('show'), 400 * opsi.length + 400);
+    timeouts.push(t);
+  }
+}
+
+// loop screens dengan delay dinamis
+function loopScreens() {
+  showScreen(idx);
+  const currentScreen = screens[idx];
+  const opsiCount = currentScreen.querySelectorAll('.opsi div').length;
+  const totalDuration = 400 * opsiCount + 400 + 2000; // opsi + overlay + delay sebelum next
+  idx = (idx + 1) % screens.length;
+  setTimeout(loopScreens, totalDuration);
+}
+
+// mulai loop
+loopScreens();
+</script>
+</body>
+</html>
