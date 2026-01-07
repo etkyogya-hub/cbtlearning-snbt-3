@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT Figural</title>
+<title>SNBT LOGIKA FIGURAL</title>
 
 <style>
 *{box-sizing:border-box}
@@ -14,178 +14,211 @@ body{
   justify-content:center;
   align-items:center;
   height:100vh;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Segoe UI,Arial,sans-serif;
+  color:#fff;
 }
-.container{
-  width:720px;
-  background:#fff;
-  padding:20px;
-}
-.row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:20px;
-}
-.frame{
-  width:140px;
-  height:140px;
-  border:2px solid #000;
+
+/* MOCKUP HP */
+.phone{
+  width:360px;
+  height:640px;
+  background:#0b0b0b;
+  border-radius:36px;
+  border:4px solid #3399ff;
+  box-shadow:0 0 35px rgba(0,0,0,.8);
+  overflow:hidden;
   position:relative;
 }
-.sym{
-  font-size:32px;
+
+/* SCREEN */
+.screen{
+  position:absolute;
+  inset:0;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* HOOK */
+.hook{
+  font-size:22px;
   font-weight:900;
+  text-align:center;
+  margin-top:18px;
+  animation:shake .12s infinite alternate,colorchange .3s infinite alternate;
+}
+@keyframes shake{
+  from{transform:translateX(-2px)}
+  to{transform:translateX(2px)}
+}
+@keyframes colorchange{
+  0%{color:#ff4d4d}
+  25%{color:#4dff4d}
+  50%{color:#4d4dff}
+  75%{color:#ffff4d}
+  100%{color:#ff4dff}
 }
 
-/* ===== SHAPES ===== */
-.hex{
-  position:absolute;
-  left:20px; top:28px;
-  width:80px; height:80px;
-  background:#fff;
-  border:2px solid #000;
-  clip-path:polygon(
-    25% 0%, 75% 0%,
-    100% 50%,
-    75% 100%, 25% 100%,
-    0% 50%
-  );
-}
-.hex.fill{
-  background:repeating-linear-gradient(
-    45deg,#000 0 2px,transparent 2px 4px
-  );
+/* QUESTION */
+.level{
+  margin-top:10px;
+  font-size:13px;
+  opacity:.75;
 }
 
-.dot{
-  position:absolute;
-  width:14px;height:14px;
-  border-radius:50%;
-  border:2px solid #000;
+.soal{
+  margin-top:18px;
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
-.dot.fill{background:#000}
 
-.chev{
-  position:absolute;
-  left:30px; top:30px;
+/* FIGURE BOX */
+.box{
+  width:78px;
+  height:78px;
+  background:#1c1c1c;
+  border:2px solid #fff;
+  border-radius:6px;
+  display:flex;
+  flex-wrap:wrap;
+  align-content:center;
+  justify-content:center;
+  gap:4px;
+}
+
+.box.q{
+  border-style:dashed;
+  font-size:26px;
+  font-weight:700;
+}
+
+/* SHAPES */
+.shape{width:16px;height:16px;background:#fff}
+
+.circle{border-radius:50%}
+
+.tri-right{
   width:0;height:0;
-  border-top:40px solid transparent;
-  border-bottom:40px solid transparent;
-  border-left:60px solid #000;
+  border-left:16px solid #fff;
+  border-top:8px solid transparent;
+  border-bottom:8px solid transparent;
 }
-.chev.outline{
-  border-left-color:transparent;
-  border-left:2px solid #000;
+
+.tri-iso{
+  width:0;height:0;
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-bottom:16px solid #fff;
+}
+
+.rect{width:16px;height:8px}
+
+.rect-striped{
+  width:16px;height:8px;
+  background:repeating-linear-gradient(
+    45deg,#fff 0 2px,transparent 2px 4px
+  );
+}
+
+.half-circle{
+  width:16px;height:8px;
+  background:#fff;
+  border-radius:8px 8px 0 0;
 }
 
 /* OPTIONS */
 .options{
-  display:flex;
-  justify-content:space-between;
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
+
 .opt{
-  width:120px;
-  height:120px;
-  border:2px solid #000;
-  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
 }
+
 .label{
-  position:absolute;
-  bottom:-22px;
-  left:50%;
-  transform:translateX(-50%);
-  font-weight:900;
+  font-size:12px;
+  opacity:.7;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
+<div class="phone">
+  <div class="screen">
 
-<!-- A : B = C : ? -->
-<div class="row">
-  <!-- A -->
-  <div class="frame">
-    <div class="hex"></div>
-    <div class="dot" style="right:14px;top:26px"></div>
-    <div class="dot fill" style="right:14px;top:56px"></div>
-    <div class="dot" style="right:14px;top:86px"></div>
+    <!-- HOOK -->
+    <div class="hook">LOGIKA FIGURAL SNBT</div>
+    <div class="level">Soal 1</div>
+
+    <!-- QUESTION FIGURE -->
+    <div class="soal">
+      <div class="box">
+        <div class="tri-right"></div>
+        <div class="rect"></div>
+        <div class="rect-striped"></div>
+      </div>
+
+      <div class="box">
+        <div class="tri-right" style="transform:rotate(90deg)"></div>
+        <div class="rect" style="transform:rotate(90deg)"></div>
+        <div class="rect-striped" style="transform:rotate(90deg)"></div>
+      </div>
+
+      <div class="box q">?</div>
+    </div>
+
+    <!-- OPTIONS -->
+    <div class="options">
+
+      <!-- A (BENAR) -->
+      <div class="opt">
+        <div class="box">
+          <div class="tri-right" style="transform:rotate(180deg)"></div>
+          <div class="rect" style="transform:rotate(180deg)"></div>
+          <div class="rect-striped" style="transform:rotate(180deg)"></div>
+        </div>
+        <div class="label">A</div>
+      </div>
+
+      <!-- B -->
+      <div class="opt">
+        <div class="box">
+          <div class="tri-iso"></div>
+          <div class="rect"></div>
+          <div class="rect-striped"></div>
+        </div>
+        <div class="label">B</div>
+      </div>
+
+      <!-- C -->
+      <div class="opt">
+        <div class="box">
+          <div class="circle"></div>
+          <div class="rect"></div>
+        </div>
+        <div class="label">C</div>
+      </div>
+
+      <!-- D -->
+      <div class="opt">
+        <div class="box">
+          <div class="half-circle"></div>
+          <div class="rect-striped"></div>
+        </div>
+        <div class="label">D</div>
+      </div>
+
+    </div>
+
   </div>
-
-  <div class="sym">:</div>
-
-  <!-- B -->
-  <div class="frame">
-    <div class="hex fill"></div>
-    <div class="dot" style="right:14px;top:26px"></div>
-    <div class="dot" style="right:14px;top:56px"></div>
-    <div class="dot" style="right:14px;top:86px"></div>
-  </div>
-
-  <div class="sym">=</div>
-
-  <!-- C -->
-  <div class="frame">
-    <div class="chev outline"></div>
-    <div class="dot" style="right:14px;top:26px"></div>
-    <div class="dot fill" style="right:14px;top:56px"></div>
-    <div class="dot" style="right:14px;top:86px"></div>
-  </div>
-
-  <div class="sym">:</div>
-
-  <!-- ? -->
-  <div class="frame" style="display:flex;justify-content:center;align-items:center;font-size:40px;font-weight:900">
-    ?
-  </div>
-</div>
-
-<!-- OPTIONS -->
-<div class="options">
-
-<div class="opt">
-  <div class="chev"></div>
-  <div class="dot fill" style="right:14px;top:26px"></div>
-  <div class="dot" style="right:14px;top:56px"></div>
-  <div class="dot" style="right:14px;top:86px"></div>
-  <div class="label">A</div>
-</div>
-
-<div class="opt">
-  <div class="chev outline"></div>
-  <div class="dot" style="right:14px;top:26px"></div>
-  <div class="dot" style="right:14px;top:56px"></div>
-  <div class="dot fill" style="right:14px;top:86px"></div>
-  <div class="label">B</div>
-</div>
-
-<div class="opt">
-  <div class="chev"></div>
-  <div class="dot" style="right:14px;top:26px"></div>
-  <div class="dot" style="right:14px;top:56px"></div>
-  <div class="dot" style="right:14px;top:86px"></div>
-  <div class="label">C</div>
-</div>
-
-<div class="opt">
-  <div class="chev fill"></div>
-  <div class="dot" style="right:14px;top:26px"></div>
-  <div class="dot" style="right:14px;top:56px"></div>
-  <div class="dot" style="right:14px;top:86px"></div>
-  <div class="label">D</div>
-</div>
-
-<div class="opt">
-  <div class="chev outline"></div>
-  <div class="dot" style="right:14px;top:26px"></div>
-  <div class="dot fill" style="right:14px;top:56px"></div>
-  <div class="dot" style="right:14px;top:86px"></div>
-  <div class="label">E</div>
-</div>
-
-</div>
-
 </div>
 </body>
 </html>
