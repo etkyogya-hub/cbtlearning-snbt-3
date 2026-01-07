@@ -3,184 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT FIGURAL — EXAM MODE</title>
+<title>SNBT FIGURAL – EXAM MODE</title>
 
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;background:#000;
   display:flex;justify-content:center;align-items:center;
-  height:100vh;font-family:Arial,sans-serif;color:#fff
+  height:100vh;font-family:Segoe UI,Arial,sans-serif;color:#fff;
 }
 .phone{
-  width:360px;height:640px;background:#0b0b0b;
-  border-radius:36px;border:4px solid #3aa0ff;
-  overflow:hidden;position:relative
+  width:360px;height:640px;
+  background:#0b0b0b;
+  border-radius:36px;
+  border:4px solid #3399ff;
+  box-shadow:0 0 40px rgba(0,0,0,.9);
+  overflow:hidden;position:relative;
 }
 .screen{
-  position:absolute;inset:0;padding:18px;
-  display:none;flex-direction:column;align-items:center
+  position:absolute;inset:0;
+  padding:16px;
+  display:flex;flex-direction:column;align-items:center;
 }
-.screen.active{display:flex}
-
 .hook{
   font-size:22px;font-weight:900;text-align:center;
-  animation:shake .12s infinite alternate,color .25s infinite alternate
+  margin-top:14px;
+  animation:shake .12s infinite alternate,color .3s infinite alternate;
 }
 @keyframes shake{from{transform:translateX(-2px)}to{transform:translateX(2px)}}
 @keyframes color{
-  0%{color:#ff5555}25%{color:#55ff55}
-  50%{color:#5555ff}75%{color:#ffff55}100%{color:#ff55ff}
+  0%{color:#ff4d4d}25%{color:#4dff4d}
+  50%{color:#4d4dff}75%{color:#ffff4d}100%{color:#ff4dff}
 }
-
-.level{margin-top:6px;font-size:13px;opacity:.7}
 .timer{
-  margin-top:6px;font-size:14px;
-  border:1px solid #fff;padding:4px 10px;border-radius:6px
+  margin-top:6px;font-size:14px;opacity:.8;
 }
-
-.row{margin-top:16px;display:flex;gap:12px}
+.row{
+  margin-top:18px;display:flex;gap:12px;
+}
 .box{
-  width:96px;height:96px;background:#1c1c1c;
+  width:92px;height:92px;
+  background:#1c1c1c;
   border:2px solid #fff;border-radius:6px;
-  display:flex;justify-content:center;align-items:center
+  display:flex;justify-content:center;align-items:center;
 }
-.box.q{border-style:dashed;font-size:30px;font-weight:800}
-
+.box.q{
+  border-style:dashed;font-size:28px;font-weight:700;
+}
 .options{
-  margin-top:16px;
-  display:grid;grid-template-columns:1fr 1fr;gap:12px
+  margin-top:18px;
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
 }
 .opt{display:flex;flex-direction:column;align-items:center}
-.lbl{font-size:12px;opacity:.6}
-
-svg{width:78px;height:78px}
-
+.lbl{font-size:12px;opacity:.7}
+svg{width:72px;height:72px}
 .rationale{
-  margin-top:14px;
-  font-size:13px;line-height:1.35;
-  opacity:0;transition:.4s;text-align:center
+  margin-top:10px;
+  font-size:12px;line-height:1.4;
+  opacity:0;transition:.4s;
+  text-align:center;
 }
-.rationale.show{opacity:.9}
-
+.rationale.show{opacity:1}
 .cta{
-  margin-top:18px;font-size:16px;font-weight:800;
-  padding:10px 14px;border:2px solid #fff;border-radius:8px;
-  animation:pulse .8s infinite alternate;opacity:0
+  position:absolute;bottom:18px;
+  font-size:14px;font-weight:700;
+  opacity:0;transition:.4s;
+  animation:pulse 1s infinite alternate;
 }
-.cta.show{opacity:1}
-@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.06)}}
+@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.08)}}
 </style>
 </head>
 
 <body>
 <div class="phone">
+<div class="screen">
+
+<div class="hook">LOGIKA FIGURAL SNBT</div>
+<div class="timer">EXAM MODE · 7 detik</div>
+
+<!-- SOAL KOMPOSISI -->
+<div class="row">
+  <!-- A -->
+  <div class="box">
+    <svg viewBox="0 0 100 100">
+      <polygon points="10,80 60,20 60,80" fill="#fff"/>
+      <rect x="62" y="20" width="10" height="60" fill="#fff"/>
+      <rect x="74" y="20" width="10" height="60" fill="url(#h1)"/>
+      <defs>
+        <pattern id="h1" width="4" height="4" patternUnits="userSpaceOnUse">
+          <rect width="2" height="4" fill="#fff"/>
+        </pattern>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- B (rotasi + pertukaran atribut) -->
+  <div class="box">
+    <svg viewBox="0 0 100 100" transform="rotate(90)">
+      <polygon points="10,80 60,20 60,80" fill="#fff"/>
+      <rect x="62" y="20" width="10" height="60" fill="url(#h2)"/>
+      <rect x="74" y="20" width="10" height="60" fill="#fff"/>
+      <defs>
+        <pattern id="h2" width="4" height="4" patternUnits="userSpaceOnUse">
+          <rect width="2" height="4" fill="#fff"/>
+        </pattern>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- ? -->
+  <div class="box q">?</div>
+</div>
+
+<!-- OPSI -->
+<div class="options">
+
+<!-- A (BENAR) -->
+<div class="opt">
+<div class="box">
+<svg viewBox="0 0 100 100" transform="rotate(180)">
+  <polygon points="10,80 60,20 60,80" fill="#fff"/>
+  <rect x="62" y="20" width="10" height="60" fill="#fff"/>
+  <rect x="74" y="20" width="10" height="60" fill="url(#h3)"/>
+  <defs>
+    <pattern id="h3" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="2" height="4" fill="#fff"/>
+    </pattern>
+  </defs>
+</svg>
+</div><div class="lbl">A</div>
+</div>
+
+<!-- B -->
+<div class="opt"><div class="box">
+<svg viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="25" fill="#fff"/>
+</svg></div><div class="lbl">B</div></div>
+
+<!-- C -->
+<div class="opt"><div class="box">
+<svg viewBox="0 0 100 100">
+<rect x="20" y="20" width="60" height="60" fill="#fff"/>
+</svg></div><div class="lbl">C</div></div>
+
+<!-- D -->
+<div class="opt"><div class="box">
+<svg viewBox="0 0 100 100">
+<polygon points="50,10 90,90 10,90" fill="#fff"/>
+</svg></div><div class="lbl">D</div></div>
+
+</div>
+
+<!-- RATIONALE -->
+<div class="rationale" id="rat">
+Pola: figur komposit dipertahankan, setiap langkah terjadi rotasi 90° dan
+pertukaran atribut arsiran antar persegi panjang.
+Langkah berikutnya = rotasi 180° dengan komposisi tetap.
+</div>
+
+<div class="cta" id="cta">FOLLOW · SAVE · PART 2</div>
+
+</div>
+</div>
 
 <script>
-// ================== DATA ==================
-const Q=[
-{
-a:`<svg viewBox="0 0 100 100"><polygon points="10,10 70,10 10,70" fill="#fff"/><rect x="72" y="14" width="10" height="16" fill="#fff"/><rect x="72" y="36" width="10" height="16" fill="#fff"/><rect x="72" y="58" width="10" height="16" fill="#fff"/></svg>`,
-b:`<svg viewBox="0 0 100 100"><polygon points="90,10 30,10 90,70" fill="#fff"/><rect x="18" y="14" width="10" height="16" fill="#fff"/><rect x="18" y="36" width="10" height="16" fill="#fff"/><rect x="18" y="58" width="10" height="16" fill="#fff"/></svg>`,
-o:`<svg viewBox="0 0 100 100"><polygon points="10,90 70,90 10,30" fill="#fff"/><rect x="72" y="18" width="10" height="16" fill="#fff"/><rect x="72" y="40" width="10" height="16" fill="#fff"/><rect x="72" y="62" width="10" height="16" fill="#fff"/></svg>`,
-r:`Segitiga bermirror. Jumlah & posisi balok konsisten.`
-},
-{
-a:`<svg viewBox="0 0 100 100"><circle cx="30" cy="30" r="10" fill="#fff"/><circle cx="70" cy="30" r="10" fill="#fff"/><rect x="25" y="55" width="50" height="14" fill="#fff"/></svg>`,
-b:`<svg viewBox="0 0 100 100"><circle cx="30" cy="70" r="10" fill="#fff"/><circle cx="70" cy="70" r="10" fill="#fff"/><rect x="25" y="31" width="50" height="14" fill="#fff"/></svg>`,
-o:`<svg viewBox="0 0 100 100"><circle cx="30" cy="30" r="10" fill="#fff"/><circle cx="70" cy="70" r="10" fill="#fff"/><rect x="25" y="43" width="50" height="14" fill="#fff"/></svg>`,
-r:`Pusat massa dipertahankan.`
-},
-{
-a:`<svg viewBox="0 0 100 100"><rect x="30" y="30" width="40" height="40" fill="#fff"/></svg>`,
-b:`<svg viewBox="0 0 100 100"><rect x="22" y="22" width="20" height="20" fill="#fff"/><rect x="58" y="58" width="20" height="20" fill="#fff"/></svg>`,
-o:`<svg viewBox="0 0 100 100"><rect x="18" y="18" width="16" height="16" fill="#fff"/><rect x="42" y="42" width="16" height="16" fill="#fff"/><rect x="66" y="66" width="16" height="16" fill="#fff"/></svg>`,
-r:`Fragmentasi 1→2→3 diagonal.`
-},
-{
-a:`<svg viewBox="0 0 100 100"><polygon points="20,80 50,20 80,80" fill="#fff"/><rect x="44" y="52" width="12" height="26" fill="#000"/></svg>`,
-b:`<svg viewBox="0 0 100 100"><polygon points="20,20 80,20 50,80" fill="#fff"/><rect x="44" y="20" width="12" height="26" fill="#000"/></svg>`,
-o:`<svg viewBox="0 0 100 100"><polygon points="80,20 80,80 20,50" fill="#fff"/><rect x="20" y="44" width="26" height="12" fill="#000"/></svg>`,
-r:`Rotasi 120°, anchor tetap.`
-},
-{
-a:`<svg viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="#fff"/><circle cx="35" cy="35" r="10" fill="#000"/></svg>`,
-b:`<svg viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="#fff"/><circle cx="50" cy="50" r="10" fill="#000"/></svg>`,
-o:`<svg viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="#fff"/><circle cx="65" cy="65" r="10" fill="#000"/></svg>`,
-r:`Traversal diagonal.`
-},
-{
-a:`<svg viewBox="0 0 100 100"><rect x="10" y="14" width="80" height="18" fill="#fff"/><rect x="10" y="42" width="80" height="18" fill="#aaa"/></svg>`,
-b:`<svg viewBox="0 0 100 100"><rect x="10" y="42" width="80" height="18" fill="#fff"/><rect x="10" y="14" width="80" height="18" fill="#aaa"/></svg>`,
-o:`<svg viewBox="0 0 100 100"><rect x="10" y="28" width="80" height="18" fill="#fff"/><rect x="10" y="56" width="80" height="18" fill="#aaa"/></svg>`,
-r:`Atribut bertukar.`
-},
-{
-a:`<svg viewBox="0 0 100 100"><circle cx="30" cy="50" r="10" fill="#fff"/><circle cx="70" cy="50" r="10" fill="#fff"/></svg>`,
-b:`<svg viewBox="0 0 100 100"><circle cx="30" cy="30" r="10" fill="#fff"/><circle cx="70" cy="70" r="10" fill="#fff"/></svg>`,
-o:`<svg viewBox="0 0 100 100"><circle cx="50" cy="30" r="10" fill="#fff"/><circle cx="50" cy="70" r="10" fill="#fff"/></svg>`,
-r:`Orientasi berubah.`
-},
-{
-a:`<svg viewBox="0 0 100 100"><rect x="20" y="20" width="18" height="60" fill="#fff"/><rect x="62" y="20" width="18" height="60" fill="#000"/></svg>`,
-b:`<svg viewBox="0 0 100 100"><rect x="20" y="20" width="18" height="60" fill="#000"/><rect x="62" y="20" width="18" height="60" fill="#fff"/></svg>`,
-o:`<svg viewBox="0 0 100 100"><rect x="20" y="20" width="18" height="60" fill="#fff"/><rect x="41" y="20" width="18" height="60" fill="#000"/><rect x="62" y="20" width="18" height="60" fill="#fff"/></svg>`,
-r:`Inversi + penyeimbang.`
-},
-{
-a:`<svg viewBox="0 0 100 100"><polygon points="20,20 80,20 50,50" fill="#fff"/><polygon points="20,80 80,80 50,50" fill="#fff"/></svg>`,
-b:`<svg viewBox="0 0 100 100"><polygon points="20,20 50,50 20,80" fill="#fff"/><polygon points="80,20 50,50 80,80" fill="#fff"/></svg>`,
-o:`<svg viewBox="0 0 100 100"><polygon points="20,20 80,80 50,50" fill="#fff"/><polygon points="80,20 20,80 50,50" fill="#fff"/></svg>`,
-r:`Simetri silang pusat.`
-}
-];
+let t=7;
+const timer=document.querySelector('.timer');
+const rat=document.getElementById('rat');
+const cta=document.getElementById('cta');
 
-// =============== RENDER ===================
-let loop=0,idx=0,time=6;
-const root=document.querySelector('.phone');
-
-function render(){
-  root.innerHTML='';
-  const q=Q[idx];
-  const s=document.createElement('div');
-  s.className='screen active';
-  s.innerHTML=`
-  <div class="hook">LOGIKA FIGURAL</div>
-  <div class="level">Soal ${idx+1}/9</div>
-  <div class="timer">${time}s</div>
-
-  <div class="row">
-    <div class="box">${q.a}</div>
-    <div class="box">${q.b}</div>
-    <div class="box q">?</div>
-  </div>
-
-  <div class="options">
-    ${[q.o,q.a,q.b,q.a].sort(()=>Math.random()-0.5).map((x,i)=>`
-      <div class="opt"><div class="box">${x}</div><div class="lbl">${'ABCD'[i]}</div></div>
-    `).join('')}
-  </div>
-
-  <div class="rationale ${loop?'show':''}">${q.r}</div>
-  ${loop&&idx===8?'<div class="cta show">FOLLOW • SAVE • PART 2 ➜</div>':''}
-  `;
-  root.appendChild(s);
-}
-render();
-
-setInterval(()=>{
-  time--;
-  if(time<0){
-    time=6;
-    idx++;
-    if(idx>=Q.length){idx=0;loop++}
-    render();
-  }else{
-    document.querySelector('.timer').innerText=time+'s';
+const iv=setInterval(()=>{
+  t--;
+  timer.textContent="EXAM MODE · "+t+" detik";
+  if(t===0){
+    rat.classList.add('show');
+    cta.style.opacity=1;
+    clearInterval(iv);
+    setTimeout(()=>location.reload(),2500); // LOOP
   }
 },1000);
 </script>
 
-</div>
 </body>
 </html>
