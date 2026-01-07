@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>QUIZ RETENTION – READY</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QUIZ SERIES – LEVEL UP</title>
 
 <style>
 *{box-sizing:border-box}
@@ -14,128 +14,245 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:Segoe UI, sans-serif;
+  font-family:Segoe UI, system-ui, sans-serif;
 }
 .phone{
   width:360px;
   height:640px;
   background:#111;
-  border-radius:36px;
+  border-radius:38px;
   overflow:hidden;
-  color:#eee;
+  color:#f2f2f2;
   position:relative;
 }
 .screen{
-  width:100%;
-  height:100%;
-  padding:20px;
-  display:none;
   position:absolute;
-  top:0;left:0;
+  inset:0;
+  padding:26px;
+  display:none;
 }
 .screen.active{display:block}
 
-.big{
-  font-size:22px;
-  font-weight:700;
+/* TYPO */
+.hook{
+  font-size:26px;
+  font-weight:800;
   text-align:center;
   margin-top:180px;
 }
 .soal{
-  background:#222;
-  padding:14px;
-  border-radius:10px;
-  font-size:16px;
+  background:#1e1e1e;
+  padding:18px;
+  border-radius:14px;
+  font-size:18px;
   line-height:1.5;
 }
 .opsi{
-  margin-top:14px;
+  margin-top:18px;
 }
 .opsi div{
-  background:#333;
-  padding:10px;
-  border-radius:8px;
-  margin-bottom:8px;
+  background:#2b2b2b;
+  padding:14px;
+  border-radius:12px;
+  font-size:17px;
+  margin-bottom:10px;
 }
 .overlay{
   position:absolute;
-  bottom:20px;
-  left:20px;
-  right:20px;
-  font-size:14px;
+  left:26px;
+  right:26px;
+  bottom:26px;
+  font-size:15px;
   opacity:0;
   transition:.4s;
 }
 .overlay.show{opacity:1}
-
-.list{
+.level-tag{
   position:absolute;
-  top:10px;
-  right:10px;
-  font-size:10px;
-  opacity:0;
-  transition:.3s;
+  top:14px;
+  left:18px;
+  font-size:12px;
+  opacity:.6;
 }
-.list.show{opacity:1}
 </style>
 </head>
 
 <body>
 <div class="phone">
 
-<!-- HOOK -->
-<div class="screen active" id="s0">
-  <div class="big">
-    JANGAN JAWAB CEPAT.<br>
-    INI SOAL PERANGKAP.
-  </div>
+<!-- ========== QUIZ 1 -->
+<div class="screen active">
+  <div class="level-tag">LEVEL 1</div>
+  <div class="hook">JANGAN JAWAB CEPAT.</div>
 </div>
 
-<!-- QUIZ -->
-<div class="screen" id="s1">
+<div class="screen">
   <div class="soal">
-    Sebuah mobil menempuh jarak 120 km dalam 2 jam.<br>
-    Berapa kecepatan rata-ratanya?
+    Sebuah mobil menempuh 150 km dalam 3 jam.<br>
+    Kecepatan rata-ratanya?
   </div>
   <div class="opsi">
-    <div>A. 40 km/jam</div>
-    <div>B. 60 km/jam</div>
-    <div>C. 80 km/jam</div>
-    <div>D. 120 km/jam</div>
+    <div>A. 30 km/jam</div>
+    <div>B. 50 km/jam</div>
+    <div>C. 75 km/jam</div>
+    <div>D. 150 km/jam</div>
   </div>
-  <div class="overlay" id="o1">Jawab di kepala. Jangan klik.</div>
+  <div class="overlay">Yang kelihatan benar sering salah.</div>
 </div>
 
-<!-- RETENSI 1 -->
-<div class="screen" id="s2">
-  <div class="soal">Soal ini sering dianggap mudah…</div>
-  <div class="overlay">Langsung jawab. Tanpa baca struktur.</div>
-  <div class="list">Konsep<br>Domain<br>Opsi<br>Eliminasi<br>Validasi</div>
+<!-- ========== QUIZ 2 -->
+<div class="screen">
+  <div class="level-tag">LEVEL 2</div>
+  <div class="hook">OTAKMU MAU CEPAT SELESAI.</div>
 </div>
 
-<!-- RETENSI 2 -->
-<div class="screen" id="s3">
-  <div class="soal">Yang menjebak bukan hitungannya.</div>
-  <div class="overlay">Tapi kebiasaan lompat langkah.</div>
-  <div class="list">Konsep<br>Domain<br>Opsi<br>Eliminasi<br>Validasi</div>
+<div class="screen">
+  <div class="soal">
+    Jika semua A adalah B, dan sebagian B adalah C.<br>
+    Maka:
+  </div>
+  <div class="opsi">
+    <div>A. Semua A adalah C</div>
+    <div>B. Sebagian A mungkin C</div>
+    <div>C. Semua C adalah A</div>
+  </div>
+  <div class="overlay">Logika ≠ insting.</div>
 </div>
 
-<!-- RATIONALE -->
-<div class="screen" id="s4">
-  <div class="soal">Urutan berpikir yang benar:</div>
+<!-- ========== QUIZ 3 -->
+<div class="screen">
+  <div class="level-tag">LEVEL 3</div>
+  <div class="hook">INI BUKAN SOAL HITUNG.</div>
+</div>
+
+<div class="screen">
+  <div class="soal">
+    Angka mana berikutnya?<br>
+    2 – 4 – 8 – 16 – ?
+  </div>
+  <div class="opsi">
+    <div>A. 18</div>
+    <div>B. 24</div>
+    <div>C. 32</div>
+    <div>D. 64</div>
+  </div>
+  <div class="overlay">Pola dulu. Jangan lompat.</div>
+</div>
+
+<!-- ========== QUIZ 4 -->
+<div class="screen">
+  <div class="level-tag">LEVEL 4</div>
+  <div class="hook">YANG INI PALING SERING MENIPU.</div>
+</div>
+
+<div class="screen">
+  <div class="soal">
+    Semua dokter pintar.<br>
+    Andi pintar.<br>
+    Maka:
+  </div>
+  <div class="opsi">
+    <div>A. Andi dokter</div>
+    <div>B. Andi mungkin dokter</div>
+    <div>C. Tidak bisa disimpulkan</div>
+  </div>
+  <div class="overlay">Kesalahan klasik.</div>
+</div>
+
+<!-- ========== QUIZ 5 -->
+<div class="screen">
+  <div class="level-tag">LEVEL 5</div>
+  <div class="hook">YAKIN? CEK ULANG.</div>
+</div>
+
+<div class="screen">
+  <div class="soal">
+    5 pekerja selesai 10 hari.<br>
+    10 pekerja butuh?
+  </div>
+  <div class="opsi">
+    <div>A. 2 hari</div>
+    <div>B. 5 hari</div>
+    <div>C. 10 hari</div>
+    <div>D. 20 hari</div>
+  </div>
+  <div class="overlay">Bandingkan, bukan tebak.</div>
+</div>
+
+<!-- ========== QUIZ 6 -->
+<div class="screen">
+  <div class="level-tag">LEVEL 6</div>
+  <div class="hook">DISTRACTOR TERLIHAT BENAR.</div>
+</div>
+
+<div class="screen">
+  <div class="soal">
+    Jika hari ini Senin,<br>
+    100 hari lagi hari apa?
+  </div>
+  <div class="opsi">
+    <div>A. Selasa</div>
+    <div>B. Rabu</div>
+    <div>C. Kamis</div>
+    <div>D. Jumat</div>
+  </div>
+  <div class="overlay">Modulo, bukan hitung panjang.</div>
+</div>
+
+<!-- ========== QUIZ 7 -->
+<div class="screen">
+  <div class="level-tag">LEVEL 7</div>
+  <div class="hook">INI LEVEL TES ASLI.</div>
+</div>
+
+<div class="screen">
+  <div class="soal">
+    Pernyataan benar kecuali:
+  </div>
+  <div class="opsi">
+    <div>A. Semua segitiga punya 3 sisi</div>
+    <div>B. Semua bilangan genap habis dibagi 2</div>
+    <div>C. Semua bilangan prima ganjil</div>
+  </div>
+  <div class="overlay">Cari yang salah.</div>
+</div>
+
+<!-- ========== QUIZ 8 -->
+<div class="screen">
+  <div class="level-tag">LEVEL 8</div>
+  <div class="hook">HAMPIR SEMUA SALAH DI SINI.</div>
+</div>
+
+<div class="screen">
+  <div class="soal">
+    Jika p → q salah,<br>
+    maka p?
+  </div>
+  <div class="opsi">
+    <div>A. Benar</div>
+    <div>B. Salah</div>
+    <div>C. Tidak bisa ditentukan</div>
+  </div>
+  <div class="overlay">Logika formal.</div>
+</div>
+
+<!-- ========== QUIZ 9 -->
+<div class="screen">
+  <div class="level-tag">LEVEL 9</div>
+  <div class="hook">BACA PELAN. INI FINAL.</div>
+</div>
+
+<div class="screen">
+  <div class="soal">
+    Mana yang PALING benar?
+  </div>
+  <div class="opsi">
+    <div>A. Cepat menjawab</div>
+    <div>B. Jawaban terlihat benar</div>
+    <div>C. Urutan berpikir tepat</div>
+  </div>
   <div class="overlay show">
-    Konsep → Domain → Opsi → Eliminasi → Validasi
-  </div>
-</div>
-
-<!-- CTA 1 -->
-<div class="screen" id="s5">
-  <div class="soal">Bukan soal ini yang menentukan.</div>
-  <div class="overlay show">
-    Di langkah mana kamu biasanya jatuh?
-  </div>
-  <div class="list show">
-    Konsep<br>Domain<br>Opsi<br>Eliminasi<br>Validasi
+    CTA 1: Kamu jatuh di level berapa?
   </div>
 </div>
 
@@ -144,21 +261,18 @@ body{
 <script>
 const screens=[...document.querySelectorAll('.screen')];
 let i=0;
-function next(){
+function play(){
   screens.forEach(s=>s.classList.remove('active'));
   screens[i].classList.add('active');
   const o=screens[i].querySelector('.overlay');
-  const l=screens[i].querySelector('.list');
-  if(o) setTimeout(()=>o.classList.add('show'),800);
-  if(l) setTimeout(()=>l.classList.add('show'),1200);
+  if(o) setTimeout(()=>o.classList.add('show'),700);
   i++;
 }
-setTimeout(next,1500);
-setTimeout(next,6000);
-setTimeout(next,12000);
-setTimeout(next,18000);
-setTimeout(next,24000);
-setTimeout(next,30000);
+let t=0;
+screens.forEach(()=>{
+  setTimeout(play,t);
+  t+=3500; // CEPAT & PADAT
+});
 </script>
 
 </body>
