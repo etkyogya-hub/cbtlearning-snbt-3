@@ -1,141 +1,164 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CORE SERIES Level 3 - Final Clean</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>QUIZ RETENTION – READY</title>
+
 <style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: #eee;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#000;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Segoe UI, sans-serif;
 }
-.phone-frame {
-  width: 360px;
-  height: 640px;
-  background: #222;
-  border-radius: 40px;
-  overflow: hidden;
-  position: relative;
+.phone{
+  width:360px;
+  height:640px;
+  background:#111;
+  border-radius:36px;
+  overflow:hidden;
+  color:#eee;
+  position:relative;
 }
-.screen {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  padding: 20px;
-  box-sizing: border-box;
+.screen{
+  width:100%;
+  height:100%;
+  padding:20px;
+  display:none;
+  position:absolute;
+  top:0;left:0;
 }
-.soal {
-  font-size: 16px;
-  background: #333;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+.screen.active{display:block}
+
+.big{
+  font-size:22px;
+  font-weight:700;
+  text-align:center;
+  margin-top:180px;
 }
-.jawaban div {
-  background: #555;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+.soal{
+  background:#222;
+  padding:14px;
+  border-radius:10px;
+  font-size:16px;
+  line-height:1.5;
 }
-.text-overlay {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 14px;
-  max-width: 320px;
-  opacity: 0;
-  transition: opacity .5s;
+.opsi{
+  margin-top:14px;
 }
-.fade-in { opacity: 1; }
-.list-small {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 10px;
-  opacity: 0;
-  transition: opacity .3s;
+.opsi div{
+  background:#333;
+  padding:10px;
+  border-radius:8px;
+  margin-bottom:8px;
 }
-.list-small.show { opacity: 1; }
-.level { display: none; }
-.level.active { display: block; }
+.overlay{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  right:20px;
+  font-size:14px;
+  opacity:0;
+  transition:.4s;
+}
+.overlay.show{opacity:1}
+
+.list{
+  position:absolute;
+  top:10px;
+  right:10px;
+  font-size:10px;
+  opacity:0;
+  transition:.3s;
+}
+.list.show{opacity:1}
 </style>
 </head>
+
 <body>
+<div class="phone">
 
-<div class="phone-frame">
+<!-- HOOK -->
+<div class="screen active" id="s0">
+  <div class="big">
+    JANGAN JAWAB CEPAT.<br>
+    INI SOAL PERANGKAP.
+  </div>
+</div>
 
-<!-- LEVEL 3.1 -->
-<div class="screen level" id="level3-1">
+<!-- QUIZ -->
+<div class="screen" id="s1">
+  <div class="soal">
+    Sebuah mobil menempuh jarak 120 km dalam 2 jam.<br>
+    Berapa kecepatan rata-ratanya?
+  </div>
+  <div class="opsi">
+    <div>A. 40 km/jam</div>
+    <div>B. 60 km/jam</div>
+    <div>C. 80 km/jam</div>
+    <div>D. 120 km/jam</div>
+  </div>
+  <div class="overlay" id="o1">Jawab di kepala. Jangan klik.</div>
+</div>
+
+<!-- RETENSI 1 -->
+<div class="screen" id="s2">
   <div class="soal">Soal ini sering dianggap mudah…</div>
-  <div class="jawaban">
-    <div>A: 60 km</div><div>B: 120 km</div><div>C: 180 km</div><div>D: 240 km</div>
+  <div class="overlay">Langsung jawab. Tanpa baca struktur.</div>
+  <div class="list">Konsep<br>Domain<br>Opsi<br>Eliminasi<br>Validasi</div>
+</div>
+
+<!-- RETENSI 2 -->
+<div class="screen" id="s3">
+  <div class="soal">Yang menjebak bukan hitungannya.</div>
+  <div class="overlay">Tapi kebiasaan lompat langkah.</div>
+  <div class="list">Konsep<br>Domain<br>Opsi<br>Eliminasi<br>Validasi</div>
+</div>
+
+<!-- RATIONALE -->
+<div class="screen" id="s4">
+  <div class="soal">Urutan berpikir yang benar:</div>
+  <div class="overlay show">
+    Konsep → Domain → Opsi → Eliminasi → Validasi
   </div>
-  <div class="text-overlay">Langsung jawab. Tanpa membaca struktur.</div>
 </div>
 
-<!-- LEVEL 3.2 -->
-<div class="screen level" id="level3-2">
-  <div class="soal">Salah pilih konsep sering terjadi…</div>
-  <div class="jawaban">
-    <div>A: Konsep Salah</div><div>B: Konsep Benar</div><div>C: Distractor</div>
-  </div>
-  <div class="text-overlay">Memilih domain keliru → jawaban salah.</div>
-</div>
-
-<!-- LEVEL 3.3 -->
-<div class="screen level" id="level3-3">
-  <div class="soal">Soal ini terlihat gampang…</div>
-  <div class="jawaban">
-    <div>A: 60 km</div><div>B: 120 km</div><div>C: 180 km</div><div>D: 240 km</div>
-  </div>
-  <div class="text-overlay">Terjebak jawaban yang tampak benar.</div>
-</div>
-
-<!-- LEVEL 3.4 -->
-<div class="screen level" id="level3-4">
-  <div class="soal">Rationale singkat:</div>
-  <div class="text-overlay">Konsep → Domain → Opsi → Eliminasi → Validasi</div>
-</div>
-
-<!-- LEVEL 3.5 -->
-<div class="screen level" id="level3-5">
-  <div class="soal">Latihan biasa sering gagal…</div>
-  <div class="jawaban">
-    <div>A: Jawaban Instan</div>
-    <div>B: Jawaban Sistematis</div>
-  </div>
-  <div class="text-overlay">Latihan bukan soal. Tapi sistem berpikir.</div>
-</div>
-
-<!-- LEVEL 3.6 CTA -->
-<div class="screen level" id="level3-6">
+<!-- CTA 1 -->
+<div class="screen" id="s5">
   <div class="soal">Bukan soal ini yang menentukan.</div>
-  <div class="text-overlay">Di langkah mana kamu biasanya jatuh?</div>
+  <div class="overlay show">
+    Di langkah mana kamu biasanya jatuh?
+  </div>
+  <div class="list show">
+    Konsep<br>Domain<br>Opsi<br>Eliminasi<br>Validasi
+  </div>
 </div>
 
 </div>
 
 <script>
-const levels = ["level3-1","level3-2","level3-3","level3-4","level3-5","level3-6"];
-let idx = 0;
-
-function show(){
-  document.querySelectorAll('.level').forEach(l=>l.classList.remove('active'));
-  const lvl = document.getElementById(levels[idx]);
-  lvl.classList.add('active');
-  const t = lvl.querySelector('.text-overlay');
-  if(t){ setTimeout(()=>t.classList.add('fade-in'),800); }
-  idx = (idx + 1) % levels.length;
+const screens=[...document.querySelectorAll('.screen')];
+let i=0;
+function next(){
+  screens.forEach(s=>s.classList.remove('active'));
+  screens[i].classList.add('active');
+  const o=screens[i].querySelector('.overlay');
+  const l=screens[i].querySelector('.list');
+  if(o) setTimeout(()=>o.classList.add('show'),800);
+  if(l) setTimeout(()=>l.classList.add('show'),1200);
+  i++;
 }
-
-show();
-setInterval(show, 3500);
+setTimeout(next,1500);
+setTimeout(next,6000);
+setTimeout(next,12000);
+setTimeout(next,18000);
+setTimeout(next,24000);
+setTimeout(next,30000);
 </script>
 
 </body>
