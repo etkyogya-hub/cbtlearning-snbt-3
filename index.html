@@ -3,64 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT – Penalaran Figural (30 Soal)</title>
+<title>SNBT – Penalaran Figural</title>
 
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;
   background:#000;
-  color:#fff;
-  font-family:system-ui,Segoe UI,sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
 }
 .phone{
-  width:360px;height:640px;
-  background:#0b0b0b;
+  width:360px;
+  height:640px;
+  background:#fff;
   border-radius:36px;
-  overflow:hidden;
-  border:4px solid #3399ff;
+  padding:16px;
 }
-.screen{
-  display:none;
-  padding:18px;
-  height:100%;
-}
-.screen.active{display:flex;flex-direction:column}
+
+/* TITLE */
 .title{
-  font-size:20px;
   font-weight:900;
+  font-size:20px;
   text-align:center;
   animation:shake .12s infinite alternate,color .3s infinite alternate;
 }
 @keyframes shake{from{transform:translateX(-1px)}to{transform:translateX(1px)}}
-@keyframes color{0%{color:#ff5}50%{color:#5ff}100%{color:#f5f}}
-.qno{margin-top:6px;font-size:13px;opacity:.7}
-.grid{display:flex;justify-content:center;gap:12px;margin-top:16px}
-.box{
-  width:86px;height:86px;
-  border:2px solid #fff;
-  display:flex;flex-wrap:wrap;
-  align-items:center;justify-content:center;
-  gap:4px;
+@keyframes color{0%{color:#d00}50%{color:#00f}100%{color:#080}}
+
+/* GRID */
+.top{
+  display:flex;
+  justify-content:space-between;
+  margin-top:18px;
 }
-.empty{border-style:dashed;font-size:22px}
-.opts{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.opt{border:2px solid #888;padding:4px}
-.shape{width:18px;height:18px;background:#fff}
-.tri{clip-path:polygon(0 100%,50% 0,100% 100%)}
-.rect{width:18px;height:10px}
-.circle{border-radius:50%}
-.half{border-radius:10px 10px 0 0;height:9px}
-.striped{background:repeating-linear-gradient(45deg,#fff 0 2px,transparent 2px 4px)}
-.overlay{
-  position:absolute;inset:0;
-  background:#000;
-  display:flex;justify-content:center;align-items:center;
-  font-size:18px;font-weight:800;
+.frame{
+  width:150px;
+  height:150px;
+  border:2px solid #000;
+  position:relative;
+}
+.eq,.colon{
+  font-size:28px;
+  font-weight:900;
+  align-self:center;
+  margin:0 4px;
+}
+
+/* SHAPES */
+.trap{
+  position:absolute;
+  left:16px; top:24px;
+  width:90px; height:90px;
+  clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);
+  border:2px solid #000;
+}
+.trap.fill{background:repeating-linear-gradient(45deg,#000 0 2px,transparent 2px 4px)}
+
+.circle{
+  position:absolute;
+  width:18px;height:18px;
+  border:2px solid #000;
+  border-radius:50%;
+}
+.circle.fill{background:#000}
+
+.half{
+  position:absolute;
+  left:18px; top:36px;
+  width:90px;height:45px;
+  border:2px solid #000;
+  border-bottom:none;
+  border-radius:90px 90px 0 0;
+}
+.half.fill{background:repeating-linear-gradient(45deg,#000 0 2px,transparent 2px 4px)}
+
+.square{
+  position:absolute;
+  width:18px;height:18px;
+  border:2px solid #000;
+}
+.square.fill{background:#000}
+
+/* OPTIONS */
+.options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:22px;
+}
+.opt{
+  border:2px solid #000;
+  height:140px;
+  position:relative;
+}
+.label{
+  position:absolute;
+  top:4px;left:6px;
+  font-weight:900;
 }
 </style>
 </head>
@@ -68,88 +111,81 @@ body{
 <body>
 <div class="phone">
 
-<!-- HOOK -->
-<div class="screen active">
-  <div class="title">SNBT – PENALARAN FIGURAL</div>
-  <div style="margin-top:14px;text-align:center;font-size:14px;opacity:.7">
-    Rotasi • Mirror • Arah • Overlap
+<div class="title">SNBT – PENALARAN FIGURAL</div>
+
+<!-- A : B -->
+<div class="top">
+  <div class="frame">
+    <div class="trap"></div>
+    <div class="circle" style="right:12px;top:18px"></div>
+    <div class="circle fill" style="right:12px;top:58px"></div>
+    <div class="circle" style="right:12px;top:98px"></div>
+  </div>
+
+  <div class="colon">:</div>
+
+  <div class="frame">
+    <div class="trap fill"></div>
+    <div class="circle" style="right:12px;top:18px"></div>
+    <div class="circle" style="right:12px;top:58px"></div>
+    <div class="circle" style="right:12px;top:98px"></div>
   </div>
 </div>
 
-<!-- TEMPLATE SOAL -->
-<script>
-const soal = [
-/* 1 */ {p:"ROTASI", a:[["tri"],["tri"],["tri"]], rule:"rotate"},
-/* 2 */ {p:"MIRROR", a:[["rect"],["rect"],["rect"]], rule:"mirror"},
-/* 3 */ {p:"OVERLAP", a:[["circle","rect"],["rect","tri"],["tri","circle"]], rule:"overlap"},
-/* 4 */ {p:"ARAH", a:[["tri"],["tri"],["tri"]], rule:"direction"},
-/* 5 */ {p:"FRAG", a:[["rect"],["rect","rect"],["rect","rect","rect","rect"]], rule:"fragment"},
-/* 6 */ {p:"ROTASI", a:[["half"],["half"],["half"]], rule:"rotate"},
-/* 7 */ {p:"ISI", a:[["striped"],["striped"],["striped"]], rule:"fill"},
-/* 8 */ {p:"POSISI", a:[["circle"],["circle"],["circle"]], rule:"move"},
-/* 9 */ {p:"MIRROR", a:[["tri","rect"],["rect","tri"],["tri","rect"]], rule:"mirror"},
-/* 10 */ {p:"OVERLAP", a:[["tri","circle"],["circle","rect"],["rect","tri"]], rule:"overlap"}
-];
+<div class="eq" style="text-align:center;margin:6px 0">=</div>
 
-// duplikasi sampai 30 (variasi konsisten)
-while(soal.length<30){
-  soal.push(JSON.parse(JSON.stringify(soal[soal.length%10])));
-}
+<!-- C : ? -->
+<div class="top">
+  <div class="frame">
+    <div class="half"></div>
+    <div class="square" style="right:12px;top:18px"></div>
+    <div class="square fill" style="right:12px;top:58px"></div>
+    <div class="square" style="right:12px;top:98px"></div>
+  </div>
 
-const phone = document.querySelector(".phone");
-let idx=0;
+  <div class="colon">:</div>
 
-function makeBox(items){
-  const b=document.createElement("div");
-  b.className="box";
-  items.forEach(s=>{
-    const d=document.createElement("div");
-    d.className="shape "+s;
-    b.appendChild(d);
-  });
-  return b;
-}
+  <div class="frame" style="display:flex;justify-content:center;align-items:center;font-size:40px;font-weight:900">
+    ?
+  </div>
+</div>
 
-function showSoal(){
-  phone.innerHTML="";
-  const s=document.createElement("div");
-  s.className="screen active";
-  s.innerHTML=`<div class="qno">Soal ${idx+1} / 30</div>`;
-  const g=document.createElement("div");
-  g.className="grid";
+<!-- OPTIONS -->
+<div class="options">
 
-  soal[idx].a.forEach(x=>g.appendChild(makeBox(x)));
-  const e=document.createElement("div");
-  e.className="box empty";
-  e.textContent="?";
-  g.appendChild(e);
-  s.appendChild(g);
+<div class="opt">
+<span class="label">A</span>
+<div class="half"></div>
+<div class="square" style="right:12px;top:18px"></div>
+<div class="square" style="right:12px;top:58px"></div>
+<div class="square fill" style="right:12px;top:98px"></div>
+</div>
 
-  const o=document.createElement("div");
-  o.className="opts";
-  for(let i=0;i<4;i++){
-    const d=document.createElement("div");
-    d.className="opt";
-    d.appendChild(makeBox(soal[idx].a[(i+idx)%3]));
-    o.appendChild(d);
-  }
-  s.appendChild(o);
-  phone.appendChild(s);
+<div class="opt">
+<span class="label">B</span>
+<div class="half fill"></div>
+<div class="square fill" style="right:12px;top:18px"></div>
+<div class="square" style="right:12px;top:58px"></div>
+<div class="square" style="right:12px;top:98px"></div>
+</div>
 
-  setTimeout(next,1800);
-}
+<div class="opt">
+<span class="label">C</span>
+<div class="half fill"></div>
+<div class="square" style="right:12px;top:18px"></div>
+<div class="square" style="right:12px;top:58px"></div>
+<div class="square" style="right:12px;top:98px"></div>
+</div>
 
-function next(){
-  idx++;
-  if(idx>=soal.length){
-    phone.innerHTML=`<div class="overlay">SELESAI</div>`;
-    return;
-  }
-  showSoal();
-}
+<div class="opt">
+<span class="label">D</span>
+<div class="half"></div>
+<div class="square" style="right:12px;top:18px"></div>
+<div class="square fill" style="right:12px;top:58px"></div>
+<div class="square" style="right:12px;top:98px"></div>
+</div>
 
-setTimeout(showSoal,2500);
-</script>
+</div>
 
 </div>
 </body>
