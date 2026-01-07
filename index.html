@@ -3,69 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Figural Hardcore SNBT</title>
-
+<title>SNBT Figural Komposisi Hardcore</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;background:#000;
-  display:flex;justify-content:center;align-items:center;
-  height:100vh;font-family:Arial,Helvetica,sans-serif;color:#fff
-}
-.phone{
-  width:360px;height:640px;background:#0b0b0b;
-  border-radius:36px;border:4px solid #3aa0ff;
-  box-shadow:0 0 40px rgba(0,0,0,.85);
-  overflow:hidden;position:relative
-}
-.screen{
-  position:absolute;inset:0;padding:18px;
-  display:none;flex-direction:column;align-items:center
-}
+body{margin:0;background:#000;display:flex;justify-content:center;align-items:center;height:100vh;font-family:Arial,sans-serif;color:#fff}
+.phone{width:360px;height:640px;background:#0b0b0b;border-radius:36px;border:4px solid #3aa0ff;overflow:hidden;position:relative}
+.screen{position:absolute;inset:0;padding:18px;display:none;flex-direction:column;align-items:center}
 .screen.active{display:flex}
-
-.hook{
-  font-size:22px;font-weight:900;text-align:center;
-  animation:shake .12s infinite alternate,color .25s infinite alternate
-}
+.hook{font-size:22px;font-weight:900;text-align:center;animation:shake .12s infinite alternate,color .25s infinite alternate}
 @keyframes shake{from{transform:translateX(-2px)}to{transform:translateX(2px)}}
-@keyframes color{
-  0%{color:#ff5252}25%{color:#52ff52}
-  50%{color:#5252ff}75%{color:#ffff52}100%{color:#ff52ff}
-}
-
-.level{margin-top:6px;font-size:13px;opacity:.75}
-
-.row{margin-top:18px;display:flex;gap:12px;align-items:center}
-.box{
-  width:96px;height:96px;background:#1c1c1c;
-  border:2px solid #fff;border-radius:6px;
-  display:flex;justify-content:center;align-items:center
-}
-.box.q{border-style:dashed;font-size:30px;font-weight:800}
-
-.options{
-  margin-top:18px;
-  display:grid;grid-template-columns:1fr 1fr;gap:12px
-}
-.opt{display:flex;flex-direction:column;align-items:center;gap:4px}
-.lbl{font-size:12px;opacity:.65}
-
+@keyframes color{0%{color:#ff5555}25%{color:#55ff55}50%{color:#5555ff}75%{color:#ffff55}100%{color:#ff55ff}}
+.level{margin-top:6px;font-size:13px;opacity:.7}
+.row{margin-top:18px;display:flex;gap:12px}
+.box{width:96px;height:96px;background:#1c1c1c;border:2px solid #fff;border-radius:6px;display:flex;justify-content:center;align-items:center}
+.box.q{border-style:dashed;font-size:32px;font-weight:800}
+.options{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{display:flex;flex-direction:column;align-items:center}
+.lbl{font-size:12px;opacity:.6}
 svg{width:78px;height:78px}
-
-.rationale{
-  margin-top:14px;
-  font-size:13px;line-height:1.35;
-  opacity:.85;text-align:center
-}
-
-.cta{
-  margin-top:20px;
-  font-size:16px;font-weight:800;
-  padding:10px 14px;
-  border:2px solid #fff;border-radius:8px;
-  animation:pulse .8s infinite alternate
-}
+.rationale{margin-top:14px;font-size:13px;line-height:1.35;opacity:.85;text-align:center}
+.cta{margin-top:20px;font-size:16px;font-weight:800;padding:10px 14px;border:2px solid #fff;border-radius:8px;animation:pulse .8s infinite alternate}
 @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.06)}}
 </style>
 </head>
@@ -74,141 +31,156 @@ svg{width:78px;height:78px}
 <div class="phone">
 
 <script>
-const Q = [
+const Q=[
 {
 a:`<svg viewBox="0 0 100 100">
-<rect x="18" y="18" width="44" height="44" fill="#fff"/>
-<polygon points="62,18 86,50 62,82" fill="#fff"/>
-<line x1="18" y1="62" x2="62" y2="18" stroke="#000" stroke-width="4"/>
-</svg>`,
-b:`<svg viewBox="0 0 100 100" transform="rotate(90)">
-<rect x="18" y="18" width="44" height="44" fill="#fff"/>
-<polygon points="62,18 86,50 62,82" fill="#fff"/>
-<line x1="18" y1="62" x2="62" y2="18" stroke="#000" stroke-width="4"/>
-</svg>`,
-o:`<svg viewBox="0 0 100 100" transform="rotate(180)">
-<rect x="18" y="18" width="44" height="44" fill="#fff"/>
-<polygon points="62,18 86,50 62,82" fill="#fff"/>
-<line x1="18" y1="62" x2="62" y2="18" stroke="#000" stroke-width="4"/>
-</svg>`,
-r:`Rotasi konsisten 90° searah jarum jam. Arah diagonal internal ikut berpindah, bukan tetap.`
-},
-{
-a:`<svg viewBox="0 0 100 100">
-<polygon points="20,20 60,20 80,50 60,80 20,80" fill="#fff"/>
-<rect x="44" y="30" width="12" height="40" fill="#000"/>
-</svg>`,
-b:`<svg viewBox="0 0 100 100" transform="scale(-1,1)">
-<polygon points="20,20 60,20 80,50 60,80 20,80" fill="#fff"/>
-<rect x="44" y="30" width="12" height="40" fill="#000"/>
-</svg>`,
-o:`<svg viewBox="0 0 100 100" transform="scale(-1,1) rotate(180)">
-<polygon points="20,20 60,20 80,50 60,80 20,80" fill="#fff"/>
-<rect x="44" y="30" width="12" height="40" fill="#000"/>
-</svg>`,
-r:`Pola mirror horizontal diikuti rotasi 180°. Elemen hitam selalu mempertahankan posisi relatif.`
-},
-{
-a:`<svg viewBox="0 0 100 100">
-<circle cx="42" cy="50" r="22" fill="#fff"/>
-<rect x="42" y="28" width="36" height="44" fill="#fff"/>
+<polygon points="10,10 60,10 10,60" fill="#fff"/>
+<rect x="62" y="12" width="10" height="20" fill="url(#s)"/>
+<rect x="62" y="36" width="10" height="20" fill="url(#s)"/>
+<rect x="62" y="60" width="10" height="20" fill="url(#s)"/>
+<defs><pattern id="s" width="4" height="4" patternUnits="userSpaceOnUse">
+<line x1="0" y1="4" x2="4" y2="0" stroke="#fff" stroke-width="1"/></pattern></defs>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
-<circle cx="58" cy="50" r="22" fill="#fff"/>
-<rect x="22" y="28" width="36" height="44" fill="#fff"/>
+<polygon points="90,10 40,10 90,60" fill="#fff"/>
+<rect x="28" y="12" width="10" height="20" fill="url(#s)"/>
+<rect x="28" y="36" width="10" height="20" fill="url(#s)"/>
+<rect x="28" y="60" width="10" height="20" fill="url(#s)"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
-<circle cx="50" cy="50" r="22" fill="#fff"/>
-<rect x="22" y="28" width="56" height="44" fill="#fff"/>
+<polygon points="10,90 60,90 10,40" fill="#fff"/>
+<rect x="62" y="20" width="10" height="20" fill="url(#s)"/>
+<rect x="62" y="44" width="10" height="20" fill="url(#s)"/>
+<rect x="62" y="68" width="10" height="20" fill="url(#s)"/>
 </svg>`,
-r:`Relasi overlap bertambah. Luas irisan meningkat secara progresif.`
+r:`Segitiga besar bermirror horizontal. Tiga persegi panjang arsir mempertahankan jumlah dan orientasi relatif.`
+},
+{
+a:`<svg viewBox="0 0 100 100">
+<circle cx="30" cy="30" r="10" fill="#fff"/>
+<circle cx="70" cy="30" r="10" fill="#fff"/>
+<rect x="25" y="50" width="50" height="20" fill="#fff"/>
+</svg>`,
+b:`<svg viewBox="0 0 100 100">
+<circle cx="30" cy="70" r="10" fill="#fff"/>
+<circle cx="70" cy="70" r="10" fill="#fff"/>
+<rect x="25" y="30" width="50" height="20" fill="#fff"/>
+</svg>`,
+o:`<svg viewBox="0 0 100 100">
+<circle cx="30" cy="30" r="10" fill="#fff"/>
+<circle cx="70" cy="70" r="10" fill="#fff"/>
+<rect x="25" y="40" width="50" height="20" fill="#fff"/>
+</svg>`,
+r:`Pasangan lingkaran berpindah simetris vertikal, balok tetap di tengah sebagai penyeimbang.`
+},
+{
+a:`<svg viewBox="0 0 100 100">
+<rect x="10" y="10" width="30" height="30" fill="#fff"/>
+<rect x="60" y="10" width="30" height="30" fill="#fff"/>
+<rect x="35" y="60" width="30" height="30" fill="#fff"/>
+</svg>`,
+b:`<svg viewBox="0 0 100 100">
+<rect x="35" y="10" width="30" height="30" fill="#fff"/>
+<rect x="10" y="60" width="30" height="30" fill="#fff"/>
+<rect x="60" y="60" width="30" height="30" fill="#fff"/>
+</svg>`,
+o:`<svg viewBox="0 0 100 100">
+<rect x="10" y="10" width="30" height="30" fill="#fff"/>
+<rect x="35" y="35" width="30" height="30" fill="#fff"/>
+<rect x="60" y="60" width="30" height="30" fill="#fff"/>
+</svg>`,
+r:`Tiga unit berpindah mengikuti rotasi pola segitiga, bukan translasi linear.`
+},
+{
+a:`<svg viewBox="0 0 100 100">
+<polygon points="20,80 50,20 80,80" fill="#fff"/>
+<rect x="42" y="50" width="16" height="30" fill="#000"/>
+</svg>`,
+b:`<svg viewBox="0 0 100 100">
+<polygon points="20,20 80,20 50,80" fill="#fff"/>
+<rect x="42" y="20" width="16" height="30" fill="#000"/>
+</svg>`,
+o:`<svg viewBox="0 0 100 100">
+<polygon points="80,20 80,80 20,50" fill="#fff"/>
+<rect x="20" y="42" width="30" height="16" fill="#000"/>
+</svg>`,
+r:`Segitiga berotasi 120°. Balok hitam selalu menempel pada sisi alas segitiga.`
 },
 {
 a:`<svg viewBox="0 0 100 100">
 <rect x="20" y="20" width="60" height="60" fill="#fff"/>
-<polygon points="20,20 80,80 60,80 20,40" fill="#000"/>
+<circle cx="50" cy="50" r="12" fill="#000"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
 <rect x="20" y="20" width="60" height="60" fill="#fff"/>
-<polygon points="80,20 20,80 40,80 80,40" fill="#000"/>
+<circle cx="35" cy="35" r="12" fill="#000"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
 <rect x="20" y="20" width="60" height="60" fill="#fff"/>
-<polygon points="20,20 80,80 60,80 20,40" fill="#000"/>
-<polygon points="80,20 20,80 40,80 80,40" fill="#000"/>
+<circle cx="65" cy="65" r="12" fill="#000"/>
 </svg>`,
-r:`Dua diagonal berbeda digabung. Bukan rotasi, melainkan akumulasi struktur.`
+r:`Elemen pusat berpindah mengikuti diagonal utama, jarak konsisten.`
 },
 {
 a:`<svg viewBox="0 0 100 100">
-<polygon points="50,18 82,82 18,82" fill="#fff"/>
+<rect x="10" y="10" width="80" height="20" fill="#fff"/>
+<rect x="10" y="40" width="80" height="20" fill="url(#s)"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
-<polygon points="50,18 82,82 18,82" fill="#fff"/>
-<rect x="40" y="62" width="20" height="12" fill="#000"/>
+<rect x="10" y="40" width="80" height="20" fill="#fff"/>
+<rect x="10" y="10" width="80" height="20" fill="url(#s)"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
-<polygon points="50,18 82,82 18,82" fill="#fff"/>
-<rect x="36" y="60" width="28" height="16" fill="#000"/>
+<rect x="10" y="25" width="80" height="20" fill="#fff"/>
+<rect x="10" y="55" width="80" height="20" fill="url(#s)"/>
 </svg>`,
-r:`Elemen baru selalu muncul di pusat massa bidang, dengan skala meningkat.`
+r:`Pertukaran atribut: solid ↔ arsir, posisi ikut bergeser teratur.`
 },
 {
 a:`<svg viewBox="0 0 100 100">
-<rect x="22" y="22" width="56" height="56" fill="#fff"/>
-<rect x="38" y="38" width="24" height="24" fill="#000"/>
-</svg>`,
-b:`<svg viewBox="0 0 100 100" transform="rotate(90)">
-<rect x="22" y="22" width="56" height="56" fill="#fff"/>
-<rect x="38" y="38" width="24" height="24" fill="#000"/>
-</svg>`,
-o:`<svg viewBox="0 0 100 100" transform="rotate(180)">
-<rect x="22" y="22" width="56" height="56" fill="#fff"/>
-<rect x="38" y="38" width="24" height="24" fill="#000"/>
-</svg>`,
-r:`Rotasi bertahap 90°. Posisi relatif pusat tetap konstan.`
-},
-{
-a:`<svg viewBox="0 0 100 100">
-<rect x="30" y="30" width="40" height="40" fill="#fff"/>
+<circle cx="30" cy="50" r="12" fill="#fff"/>
+<circle cx="70" cy="50" r="12" fill="#fff"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
-<rect x="24" y="24" width="20" height="20" fill="#fff"/>
-<rect x="56" y="56" width="20" height="20" fill="#fff"/>
+<circle cx="30" cy="30" r="12" fill="#fff"/>
+<circle cx="70" cy="70" r="12" fill="#fff"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
-<rect x="20" y="20" width="20" height="20" fill="#fff"/>
-<rect x="40" y="40" width="20" height="20" fill="#fff"/>
-<rect x="60" y="60" width="20" height="20" fill="#fff"/>
+<circle cx="50" cy="30" r="12" fill="#fff"/>
+<circle cx="50" cy="70" r="12" fill="#fff"/>
 </svg>`,
-r:`Fragmentasi meningkat: 1 → 2 → 3 unit dengan arah diagonal tetap.`
+r:`Pasangan simetris berubah orientasi: horizontal → diagonal → vertikal.`
 },
 {
 a:`<svg viewBox="0 0 100 100">
-<polygon points="20,50 60,20 60,80" fill="#fff"/>
-</svg>`,
-b:`<svg viewBox="0 0 100 100" transform="rotate(90)">
-<polygon points="20,50 60,20 60,80" fill="#fff"/>
-</svg>`,
-o:`<svg viewBox="0 0 100 100" transform="scale(-1,1) rotate(90)">
-<polygon points="20,50 60,20 60,80" fill="#fff"/>
-</svg>`,
-r:`Transformasi ganda: rotasi lalu mirror. Urutan berpengaruh.`
-},
-{
-a:`<svg viewBox="0 0 100 100">
-<circle cx="50" cy="38" r="18" fill="#fff"/>
-<rect x="34" y="58" width="32" height="16" fill="#fff"/>
+<rect x="20" y="20" width="20" height="60" fill="#fff"/>
+<rect x="60" y="20" width="20" height="60" fill="#000"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
-<circle cx="50" cy="50" r="18" fill="#fff"/>
-<rect x="34" y="30" width="32" height="16" fill="#fff"/>
+<rect x="20" y="20" width="20" height="60" fill="#000"/>
+<rect x="60" y="20" width="20" height="60" fill="#fff"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
-<circle cx="50" cy="30" r="18" fill="#fff"/>
-<rect x="34" y="50" width="32" height="16" fill="#fff"/>
+<rect x="20" y="20" width="20" height="60" fill="#fff"/>
+<rect x="40" y="20" width="20" height="60" fill="#000"/>
+<rect x="60" y="20" width="20" height="60" fill="#fff"/>
 </svg>`,
-r:`Relasi vertikal saling bertukar posisi dengan jarak tetap.`
+r:`Inversi warna diikuti penambahan elemen sebagai penyeimbang visual.`
+},
+{
+a:`<svg viewBox="0 0 100 100">
+<polygon points="20,20 80,20 50,50" fill="#fff"/>
+<polygon points="20,80 80,80 50,50" fill="#fff"/>
+</svg>`,
+b:`<svg viewBox="0 0 100 100">
+<polygon points="20,20 50,50 20,80" fill="#fff"/>
+<polygon points="80,20 50,50 80,80" fill="#fff"/>
+</svg>`,
+o:`<svg viewBox="0 0 100 100">
+<polygon points="20,20 80,80 50,50" fill="#fff"/>
+<polygon points="80,20 20,80 50,50" fill="#fff"/>
+</svg>`,
+r:`Dua segitiga selalu berpasangan dan berpotongan di pusat. Orientasi berubah sistematis.`
 }
 ];
 
@@ -233,11 +205,9 @@ html+=`
   </div>
 
   <div class="rationale">${q.r}</div>
-
   ${i===8?'<div class="cta">FOLLOW • SAVE • PART 2 ➜</div>':''}
 </div>`;
 });
-
 document.write(html);
 
 let idx=0;
