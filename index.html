@@ -2,152 +2,87 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT LOGIKA FIGURAL – QUIZ 1–9</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SNBT Logika Figural – Operasi Himpunan</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#000;font-family:Segoe UI,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;color:#fff}
-.phone{width:360px;height:640px;background:#0b0b0b;border-radius:28px;overflow:hidden}
-.screen{position:absolute;inset:0;padding:14px;display:none;flex-direction:column}
-.screen.active{display:flex}
+body{margin:0;background:#000;color:#fff;font-family:Segoe UI,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh}
+.phone{width:360px;height:640px;background:#0b0b0b;border-radius:26px;overflow:hidden;padding:14px}
 .header{display:flex;justify-content:space-between;font-size:11px;opacity:.7}
-.hook{margin:auto;text-align:center;font-size:20px;font-weight:900}
 .soal{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:14px}
 .row{display:flex;align-items:center;gap:8px}
 .op{font-size:20px;font-weight:900}
-.kotak{width:64px;height:64px;background:#1a1a1a;border:1.5px solid #fff;border-radius:6px;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:3px}
-.kotak.q{border-style:dashed;font-size:18px}
-.tr{width:0;height:0;border-left:14px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent}
-.ti{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:14px solid #fff}
-.r{width:14px;height:7px;background:#fff}
-.rs{width:14px;height:7px;background:repeating-linear-gradient(45deg,#fff 0 2px,transparent 2px 4px)}
-.hc{width:14px;height:7px;background:#fff;border-radius:7px 7px 0 0}
+.kotak{width:64px;height:64px;border:1.5px solid #fff;border-radius:6px;background:#1a1a1a;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:3px}
+.kotak.q{border-style:dashed;font-size:20px;align-items:center;justify-content:center}
+
+/* SHAPES */
+.tr-siku{width:0;height:0;border-left:14px solid #fff;border-top:14px solid transparent}
+.tr-sama-kaki{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:14px solid #fff}
+.tr-sama-sisi{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:14px solid #fff;transform:scaleX(1.2)}
+.rect{width:14px;height:7px;background:#fff}
+.square{width:10px;height:10px;background:#fff}
+.half{width:14px;height:7px;background:#fff;border-radius:7px 7px 0 0}
 .trap{width:14px;height:0;border-bottom:14px solid #fff;border-left:4px solid transparent;border-right:4px solid transparent}
 .para{width:14px;height:7px;background:#fff;transform:skew(20deg)}
-.opsi{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+.opsi{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
 .opt{display:flex;gap:6px;align-items:center;border:1px solid #444;border-radius:8px;padding:6px}
 .lab{width:22px;height:22px;border-radius:50%;border:1px solid #fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-.rationale{margin-top:8px;font-size:11px;opacity:.85;text-align:center}
+.rat{font-size:11px;opacity:.85;text-align:center}
 </style>
 </head>
 <body>
+
 <div class="phone">
-  <div class="screen active" id="hook"><div class="hook">QUIZ SNBT<br>LOGIKA FIGURAL</div></div>
-  <div class="screen" id="quiz">
-    <div class="header"><div id="qno"></div><div>HIMPUNAN</div></div>
-    <div class="soal">
-      <div class="row" id="row"></div>
-      <div class="opsi" id="opsi"></div>
-      <div class="rationale" id="rat"></div>
+  <div class="header">
+    <div>SOAL 1 / 9</div>
+    <div>OPERASI HIMPUNAN</div>
+  </div>
+
+  <div class="soal">
+    <div class="row">
+      <div class="kotak">
+        <div class="tr-siku"></div>
+        <div class="rect"></div>
+      </div>
+      <div class="op">× 2</div>
+      <div class="kotak q">?</div>
+    </div>
+
+    <div class="opsi">
+      <div class="opt">
+        <div class="lab">A</div>
+        <div class="kotak">
+          <div class="tr-siku"></div><div class="rect"></div>
+          <div class="tr-siku"></div><div class="rect"></div>
+        </div>
+      </div>
+      <div class="opt">
+        <div class="lab">B</div>
+        <div class="kotak">
+          <div class="tr-sama-kaki"></div>
+          <div class="tr-sama-kaki"></div>
+        </div>
+      </div>
+      <div class="opt">
+        <div class="lab">C</div>
+        <div class="kotak">
+          <div class="rect"></div><div class="rect"></div>
+        </div>
+      </div>
+      <div class="opt">
+        <div class="lab">D</div>
+        <div class="kotak">
+          <div class="para"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rat">
+      Operasi ×2 berarti **set digandakan tanpa mengubah jenis bangun**.
     </div>
   </div>
 </div>
 
-<script>
-const Q = [
-{row:[
- [['tr','r','rs'],'×2'],
- ['?']
-],ops:[
- ['A',[['tr','r','rs','tr','r','rs']]],
- ['B',[['ti','r']]],
- ['C',[['r','rs']]],
- ['D',[['para']]]
-],rat:'Perkalian = duplikasi elemen.'},
-{row:[
- [['tr','r'],'+'],[['hc','rs']],['?']
-],ops:[
- ['A',[['tr','r','hc','rs']]],
- ['B',[['ti']]],
- ['C',[['hc']]],
- ['D',[['trap']]]
-],rat:'Penjumlahan = gabungan.'},
-{row:[
- [['tr','r','rs'],':'],[['hc','r','rs']],['?']
-],ops:[
- ['A',[['tr','r','rs','hc','r','rs']]],
- ['B',[['hc']]],
- ['C',[['para']]],
- ['D',[['ti']]]
-],rat:'Proporsi jumlah & jenis sama.'},
-{row:[
- [['tr','r'],'×3'],['?']
-],ops:[
- ['A',[['tr','r','tr','r','tr','r']]],
- ['B',[['tr','r','tr']]],
- ['C',[['r','r']]],
- ['D',[['ti']]]
-],rat:'×3 = tiga kali set.'},
-{row:[
- [['hc'], '+'],[['hc']],['?']
-],ops:[
- ['A',[['hc','hc']]],
- ['B',[['hc']]],
- ['C',[['r']]],
- ['D',[['trap']]]
-],rat:'Penjumlahan dua himpunan identik.'},
-{row:[
- [['r','rs'],'×2'],['?']
-],ops:[
- ['A',[['r','rs','r','rs']]],
- ['B',[['r','rs']]],
- ['C',[['r']]],
- ['D',[['para']]]
-],rat:'Gandakan semua elemen.'},
-{row:[
- [['tr'],':'],[['tr','tr']],['?']
-],ops:[
- ['A',[['tr']]],
- ['B',[['tr','tr']]],
- ['C',[['ti']]],
- ['D',[['hc']]]
-],rat:'Perbandingan 1:2.'},
-{row:[
- [['r'], '+'],[['rs']],['?']
-],ops:[
- ['A',[['r','rs']]],
- ['B',[['r']]],
- ['C',[['rs']]],
- ['D',[['trap']]]
-],rat:'Gabungan dua bentuk.'},
-{row:[
- [['ti','r'],'×2'],['?']
-],ops:[
- ['A',[['ti','r','ti','r']]],
- ['B',[['ti','r']]],
- ['C',[['ti']]],
- ['D',[['para']]]
-],rat:'Set digandakan.'}
-];
-
-const hook=document.getElementById('hook'),quiz=document.getElementById('quiz');
-const rowEl=document.getElementById('row'),opsiEl=document.getElementById('opsi');
-const qno=document.getElementById('qno'),rat=document.getElementById('rat');
-let i=0;
-
-function box(items){
-  const d=document.createElement('div'); d.className='kotak';
-  items.forEach(c=>{const s=document.createElement('div'); s.className=c; d.appendChild(s);});
-  return d;
-}
-function render(){
-  qno.textContent=`SOAL ${i+1} / 9`;
-  rowEl.innerHTML=''; opsiEl.innerHTML=''; rat.textContent=Q[i].rat;
-  Q[i].row.forEach(p=>{
-    if(p==='?'){const q=document.createElement('div'); q.className='kotak q'; q.textContent='?'; rowEl.appendChild(q);}
-    else if(Array.isArray(p[0])) rowEl.appendChild(box(p[0]));
-    else{const o=document.createElement('div'); o.className='op'; o.textContent=p; rowEl.appendChild(o);}
-  });
-  Q[i].ops.forEach(o=>{
-    const w=document.createElement('div'); w.className='opt';
-    const l=document.createElement('div'); l.className='lab'; l.textContent=o[0];
-    w.appendChild(l); w.appendChild(box(o[1][0])); opsiEl.appendChild(w);
-  });
-}
-
-setTimeout(()=>{hook.classList.remove('active'); quiz.classList.add('active'); render();
-  setInterval(()=>{i=(i+1)%9; render();},3500);
-},1200);
-</script>
 </body>
 </html>
