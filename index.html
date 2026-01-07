@@ -3,247 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT Logika Figural</title>
+<title>Logika Figural SNBT</title>
 
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  font-family:Segoe UI,Arial,sans-serif;
-  color:#fff;
+  margin:0;background:#000;
+  display:flex;justify-content:center;align-items:center;
+  height:100vh;font-family:Segoe UI,Arial,sans-serif;color:#fff
 }
 .phone{
-  width:360px;height:640px;
-  background:#0b0b0b;
-  border-radius:36px;
-  border:4px solid #3399ff;
+  width:360px;height:640px;background:#0b0b0b;
+  border-radius:36px;border:4px solid #3399ff;
   box-shadow:0 0 35px rgba(0,0,0,.8);
-  overflow:hidden;
-  position:relative;
+  overflow:hidden;position:relative
 }
 .screen{
-  position:absolute; inset:0;
-  padding:18px;
-  display:none;
-  flex-direction:column;
-  align-items:center;
+  position:absolute;inset:0;padding:18px;
+  display:none;flex-direction:column;align-items:center
 }
 .screen.active{display:flex}
-
 .hook{
-  font-size:22px;font-weight:900;text-align:center;
-  margin-top:16px;
-  animation:shake .12s infinite alternate,colorchange .3s infinite alternate;
+  font-size:22px;font-weight:900;margin-top:16px;text-align:center;
+  animation:shake .12s infinite alternate,colorchange .3s infinite alternate
 }
 @keyframes shake{from{transform:translateX(-2px)}to{transform:translateX(2px)}}
 @keyframes colorchange{
   0%{color:#ff4d4d}25%{color:#4dff4d}
   50%{color:#4d4dff}75%{color:#ffff4d}100%{color:#ff4dff}
 }
-
-.level{margin-top:8px;font-size:13px;opacity:.7}
-
-.row{margin-top:18px;display:flex;gap:10px;align-items:center}
-
+.level{margin-top:6px;font-size:13px;opacity:.7}
+.row{margin-top:18px;display:flex;gap:12px;align-items:center}
 .box{
-  width:78px;height:78px;
-  background:#1c1c1c;
-  border:2px solid #fff;
-  border-radius:6px;
-  display:flex;flex-wrap:wrap;
-  justify-content:center;align-content:center;
-  gap:4px;
+  width:96px;height:96px;background:#1c1c1c;
+  border:2px solid #fff;border-radius:6px;
+  display:flex;justify-content:center;align-items:center
 }
-.box.q{border-style:dashed;font-size:26px;font-weight:700}
-
-.shape{width:16px;height:16px;background:#fff}
-.circle{border-radius:50%}
-.rect{width:16px;height:8px}
-.striped{
-  width:16px;height:8px;
-  background:repeating-linear-gradient(45deg,#fff 0 2px,transparent 2px 4px)
-}
-.tri-r{
-  width:0;height:0;
-  border-left:16px solid #fff;
-  border-top:8px solid transparent;
-  border-bottom:8px solid transparent;
-}
-.tri-i{
-  width:0;height:0;
-  border-left:8px solid transparent;
-  border-right:8px solid transparent;
-  border-bottom:16px solid #fff;
-}
-.half{
-  width:16px;height:8px;
-  background:#fff;border-radius:8px 8px 0 0
-}
-
+.box.q{border-style:dashed;font-size:28px;font-weight:700}
 .options{
-  margin-top:22px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+  margin-top:22px;display:grid;
+  grid-template-columns:1fr 1fr;gap:12px
 }
 .opt{display:flex;flex-direction:column;align-items:center;gap:4px}
 .lbl{font-size:12px;opacity:.7}
+svg{width:78px;height:78px}
 </style>
 </head>
 
 <body>
 <div class="phone">
 
-<!-- HOOK -->
-<div class="screen active" id="s0">
-  <div class="hook">LOGIKA FIGURAL SNBT</div>
-</div>
-
-<!-- TEMPLATE SOAL (1–9) -->
 <script>
-const soal = [
-/* 1 ROTASI */
+const F = [
+/* 1 */
 [
-  [['tri-r'],['rect'],['striped']],
-  [['tri-r','r90'],['rect','r90'],['striped','r90']],
-  [
-    [['tri-r','r180'],['rect','r180'],['striped','r180']], // A
-    [['tri-i'],['rect']],
-    [['circle'],['rect']],
-    [['half'],['striped']]
-  ]
+`<svg viewBox="0 0 100 100">
+<rect x="18" y="18" width="44" height="44" fill="#fff"/>
+<polygon points="62,18 86,50 62,82" fill="#fff"/>
+<line x1="18" y1="62" x2="62" y2="18" stroke="#000" stroke-width="4"/>
+</svg>`,
+`<svg viewBox="0 0 100 100" transform="rotate(90)">
+<rect x="18" y="18" width="44" height="44" fill="#fff"/>
+<polygon points="62,18 86,50 62,82" fill="#fff"/>
+<line x1="18" y1="62" x2="62" y2="18" stroke="#000" stroke-width="4"/>
+</svg>`,
+`<svg viewBox="0 0 100 100" transform="rotate(180)">
+<rect x="18" y="18" width="44" height="44" fill="#fff"/>
+<polygon points="62,18 86,50 62,82" fill="#fff"/>
+<line x1="18" y1="62" x2="62" y2="18" stroke="#000" stroke-width="4"/>
+</svg>`
 ],
-/* 2 MIRROR */
+/* 2 */
 [
-  [['tri-r'],['rect']],
-  [['tri-r','flip'],['rect','flip']],
-  [
-    [['tri-r','flip'],['rect','flip']], // A
-    [['tri-r','r90']],
-    [['circle'],['rect']],
-    [['tri-i']]
-  ]
+`<svg viewBox="0 0 100 100">
+<polygon points="20,20 60,20 80,50 60,80 20,80" fill="#fff"/>
+<rect x="42" y="30" width="16" height="40" fill="#000"/>
+</svg>`,
+`<svg viewBox="0 0 100 100" transform="scale(-1,1)">
+<polygon points="20,20 60,20 80,50 60,80 20,80" fill="#fff"/>
+<rect x="42" y="30" width="16" height="40" fill="#000"/>
+</svg>`,
+`<svg viewBox="0 0 100 100" transform="scale(-1,1) rotate(180)">
+<polygon points="20,20 60,20 80,50 60,80 20,80" fill="#fff"/>
+<rect x="42" y="30" width="16" height="40" fill="#000"/>
+</svg>`
 ],
-/* 3 OVERLAP */
+/* 3 */
 [
-  [['circle'],['rect']],
-  [['circle'],['rect'],['rect']],
-  [
-    [['circle'],['rect'],['rect']], // A
-    [['circle']],
-    [['rect']],
-    [['half']]
-  ]
+`<svg viewBox="0 0 100 100">
+<circle cx="42" cy="50" r="22" fill="#fff"/>
+<rect x="42" y="28" width="36" height="44" fill="#fff"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<circle cx="58" cy="50" r="22" fill="#fff"/>
+<rect x="22" y="28" width="36" height="44" fill="#fff"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="22" fill="#fff"/>
+<rect x="22" y="28" width="56" height="44" fill="#fff"/>
+</svg>`
 ],
-/* 4 ARAH */
+/* 4 */
 [
-  [['tri-r'],['tri-r','r90']],
-  [['tri-r','r180'],['tri-r','r270']],
-  [
-    [['tri-r'],['tri-r','r90']], // A (loop)
-    [['tri-i']],
-    [['circle']],
-    [['rect']]
-  ]
+`<svg viewBox="0 0 100 100">
+<rect x="20" y="20" width="60" height="60" fill="#fff"/>
+<polygon points="20,20 80,80 60,80 20,40" fill="#000"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<rect x="20" y="20" width="60" height="60" fill="#fff"/>
+<polygon points="80,20 20,80 40,80 80,40" fill="#000"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<rect x="20" y="20" width="60" height="60" fill="#fff"/>
+<polygon points="20,20 80,80 60,80 20,40" fill="#000"/>
+<polygon points="80,20 20,80 40,80 80,40" fill="#000"/>
+</svg>`
 ],
-/* 5 KOMPOSISI */
+/* 5 */
 [
-  [['rect'],['striped']],
-  [['rect'],['striped'],['rect']],
-  [
-    [['rect'],['striped'],['rect'],['striped']], // A
-    [['rect']],
-    [['striped']],
-    [['half']]
-  ]
+`<svg viewBox="0 0 100 100">
+<polygon points="50,18 82,82 18,82" fill="#fff"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<polygon points="50,18 82,82 18,82" fill="#fff"/>
+<rect x="40" y="62" width="20" height="12" fill="#000"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<polygon points="50,18 82,82 18,82" fill="#fff"/>
+<rect x="36" y="60" width="28" height="16" fill="#000"/>
+</svg>`
 ],
-/* 6 VARIASI BENTUK */
+/* 6 */
 [
-  [['circle'],['rect']],
-  [['circle'],['rect'],['half']],
-  [
-    [['circle'],['rect'],['half'],['circle']], // A
-    [['tri-i']],
-    [['rect']],
-    [['striped']]
-  ]
+`<svg viewBox="0 0 100 100">
+<rect x="22" y="22" width="56" height="56" fill="#fff"/>
+<rect x="38" y="38" width="24" height="24" fill="#000"/>
+</svg>`,
+`<svg viewBox="0 0 100 100" transform="rotate(90)">
+<rect x="22" y="22" width="56" height="56" fill="#fff"/>
+<rect x="38" y="38" width="24" height="24" fill="#000"/>
+</svg>`,
+`<svg viewBox="0 0 100 100" transform="rotate(180)">
+<rect x="22" y="22" width="56" height="56" fill="#fff"/>
+<rect x="38" y="38" width="24" height="24" fill="#000"/>
+</svg>`
 ],
-/* 7 MIRROR + ROTASI */
+/* 7 */
 [
-  [['tri-i'],['rect']],
-  [['tri-i','flip'],['rect','r90']],
-  [
-    [['tri-i','flip'],['rect','r90']], // A
-    [['tri-i']],
-    [['circle']],
-    [['half']]
-  ]
+`<svg viewBox="0 0 100 100">
+<rect x="30" y="30" width="40" height="40" fill="#fff"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<rect x="24" y="24" width="20" height="20" fill="#fff"/>
+<rect x="56" y="56" width="20" height="20" fill="#fff"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<rect x="20" y="20" width="20" height="20" fill="#fff"/>
+<rect x="40" y="40" width="20" height="20" fill="#fff"/>
+<rect x="60" y="60" width="20" height="20" fill="#fff"/>
+</svg>`
 ],
-/* 8 DENSITAS */
+/* 8 */
 [
-  [['rect']],
-  [['rect'],['rect']],
-  [
-    [['rect'],['rect'],['rect']], // A
-    [['striped']],
-    [['circle']],
-    [['tri-r']]
-  ]
+`<svg viewBox="0 0 100 100">
+<polygon points="20,50 60,20 60,80" fill="#fff"/>
+</svg>`,
+`<svg viewBox="0 0 100 100" transform="rotate(90)">
+<polygon points="20,50 60,20 60,80" fill="#fff"/>
+</svg>`,
+`<svg viewBox="0 0 100 100" transform="scale(-1,1) rotate(90)">
+<polygon points="20,50 60,20 60,80" fill="#fff"/>
+</svg>`
 ],
-/* 9 POLA CAMPURAN */
+/* 9 */
 [
-  [['tri-r'],['circle'],['rect']],
-  [['tri-r','r90'],['circle'],['rect','r90']],
-  [
-    [['tri-r','r180'],['circle'],['rect','r180']], // A
-    [['tri-i']],
-    [['half']],
-    [['striped']]
-  ]
+`<svg viewBox="0 0 100 100">
+<circle cx="50" cy="38" r="18" fill="#fff"/>
+<rect x="34" y="58" width="32" height="16" fill="#fff"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="18" fill="#fff"/>
+<rect x="34" y="30" width="32" height="16" fill="#fff"/>
+</svg>`,
+`<svg viewBox="0 0 100 100">
+<circle cx="50" cy="30" r="18" fill="#fff"/>
+<rect x="34" y="50" width="32" height="16" fill="#fff"/>
+</svg>`
 ]
 ];
 
-function shapeHTML(s){
-  let cls=s[0], t=s[1]||'';
-  let style='';
-  if(t==='r90')style='transform:rotate(90deg)';
-  if(t==='r180')style='transform:rotate(180deg)';
-  if(t==='r270')style='transform:rotate(270deg)';
-  if(t==='flip')style='transform:scaleX(-1)';
-  return `<div class="shape ${cls}" style="${style}"></div>`;
-}
-
-let html='';
+let out='';
 for(let i=0;i<9;i++){
-  html+=`<div class="screen" id="s${i+1}">
-    <div class="hook">LOGIKA FIGURAL SNBT</div>
-    <div class="level">Soal ${i+1}</div>
-    <div class="row">
-      <div class="box">${soal[i][0].map(shapeHTML).join('')}</div>
-      <div class="box">${soal[i][1].map(shapeHTML).join('')}</div>
-      <div class="box q">?</div>
-    </div>
-    <div class="options">
-      ${soal[i][2].map((o,j)=>`
-        <div class="opt">
-          <div class="box">${o.map(shapeHTML).join('')}</div>
-          <div class="lbl">${String.fromCharCode(65+j)}</div>
-        </div>`).join('')}
-    </div>
-  </div>`;
+out+=`
+<div class="screen ${i===0?'active':''}">
+  <div class="hook">LOGIKA FIGURAL SNBT</div>
+  <div class="level">Soal ${i+1}</div>
+  <div class="row">
+    <div class="box">${F[i][0]}</div>
+    <div class="box">${F[i][1]}</div>
+    <div class="box q">?</div>
+  </div>
+  <div class="options">
+    <div class="opt"><div class="box">${F[i][2]}</div><div class="lbl">A</div></div>
+    <div class="opt"><div class="box">${F[i][0]}</div><div class="lbl">B</div></div>
+    <div class="opt"><div class="box">${F[i][1]}</div><div class="lbl">C</div></div>
+    <div class="opt"><div class="box">${F[i][0]}</div><div class="lbl">D</div></div>
+  </div>
+</div>`;
 }
-document.write(html);
+document.write(out);
 
 let idx=0;
 setInterval(()=>{
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  idx=(idx+1)%10;
-  document.getElementById('s'+idx).classList.add('active');
+  const s=document.querySelectorAll('.screen');
+  s.forEach(e=>e.classList.remove('active'));
+  idx=(idx+1)%s.length;
+  s[idx].classList.add('active');
 },4000);
 </script>
 
