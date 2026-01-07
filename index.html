@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT Figural Komposisi Hardcore</title>
+<title>SNBT Figural — NEXT LEVEL</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#000;display:flex;justify-content:center;align-items:center;height:100vh;font-family:Arial,sans-serif;color:#fff}
@@ -21,7 +21,7 @@ body{margin:0;background:#000;display:flex;justify-content:center;align-items:ce
 .opt{display:flex;flex-direction:column;align-items:center}
 .lbl{font-size:12px;opacity:.6}
 svg{width:78px;height:78px}
-.rationale{margin-top:14px;font-size:13px;line-height:1.35;opacity:.85;text-align:center}
+.rationale{margin-top:14px;font-size:13px;line-height:1.35;opacity:.9;text-align:center}
 .cta{margin-top:20px;font-size:16px;font-weight:800;padding:10px 14px;border:2px solid #fff;border-radius:8px;animation:pulse .8s infinite alternate}
 @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.06)}}
 </style>
@@ -29,144 +29,146 @@ svg{width:78px;height:78px}
 
 <body>
 <div class="phone">
-
 <script>
+const P=(id)=>`
+<defs>
+<pattern id="${id}" width="4" height="4" patternUnits="userSpaceOnUse">
+<line x1="0" y1="4" x2="4" y2="0" stroke="#fff" stroke-width="1"/>
+</pattern>
+</defs>`;
+
 const Q=[
+// 1 — jumlah vs orientasi
 {
-a:`<svg viewBox="0 0 100 100">
-<polygon points="10,10 60,10 10,60" fill="#fff"/>
-<rect x="62" y="12" width="10" height="20" fill="url(#s)"/>
-<rect x="62" y="36" width="10" height="20" fill="url(#s)"/>
-<rect x="62" y="60" width="10" height="20" fill="url(#s)"/>
-<defs><pattern id="s" width="4" height="4" patternUnits="userSpaceOnUse">
-<line x1="0" y1="4" x2="4" y2="0" stroke="#fff" stroke-width="1"/></pattern></defs>
+a:`<svg viewBox="0 0 100 100">${P('p1')}
+<polygon points="10,10 70,10 10,70" fill="#fff"/>
+<rect x="72" y="12" width="10" height="16" fill="url(#p1)"/>
+<rect x="72" y="32" width="10" height="16" fill="url(#p1)"/>
+<rect x="72" y="52" width="10" height="16" fill="url(#p1)"/>
 </svg>`,
-b:`<svg viewBox="0 0 100 100">
-<polygon points="90,10 40,10 90,60" fill="#fff"/>
-<rect x="28" y="12" width="10" height="20" fill="url(#s)"/>
-<rect x="28" y="36" width="10" height="20" fill="url(#s)"/>
-<rect x="28" y="60" width="10" height="20" fill="url(#s)"/>
+b:`<svg viewBox="0 0 100 100">${P('p1')}
+<polygon points="90,10 30,10 90,70" fill="#fff"/>
+<rect x="18" y="12" width="10" height="16" fill="url(#p1)"/>
+<rect x="18" y="32" width="10" height="16" fill="url(#p1)"/>
+<rect x="18" y="52" width="10" height="16" fill="url(#p1)"/>
 </svg>`,
-o:`<svg viewBox="0 0 100 100">
-<polygon points="10,90 60,90 10,40" fill="#fff"/>
-<rect x="62" y="20" width="10" height="20" fill="url(#s)"/>
-<rect x="62" y="44" width="10" height="20" fill="url(#s)"/>
-<rect x="62" y="68" width="10" height="20" fill="url(#s)"/>
+o:`<svg viewBox="0 0 100 100">${P('p1')}
+<polygon points="10,90 70,90 10,30" fill="#fff"/>
+<rect x="72" y="18" width="10" height="16" fill="url(#p1)"/>
+<rect x="72" y="38" width="10" height="16" fill="url(#p1)"/>
+<rect x="72" y="58" width="10" height="16" fill="url(#p1)"/>
 </svg>`,
-r:`Segitiga besar bermirror horizontal. Tiga persegi panjang arsir mempertahankan jumlah dan orientasi relatif.`
-},
+r:`Pola ganda: segitiga bermirror; jumlah & orientasi balok arsir tetap.`},
+// 2 — pusat massa
 {
 a:`<svg viewBox="0 0 100 100">
 <circle cx="30" cy="30" r="10" fill="#fff"/>
 <circle cx="70" cy="30" r="10" fill="#fff"/>
-<rect x="25" y="50" width="50" height="20" fill="#fff"/>
+<rect x="25" y="55" width="50" height="14" fill="#fff"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
 <circle cx="30" cy="70" r="10" fill="#fff"/>
 <circle cx="70" cy="70" r="10" fill="#fff"/>
-<rect x="25" y="30" width="50" height="20" fill="#fff"/>
+<rect x="25" y="31" width="50" height="14" fill="#fff"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
 <circle cx="30" cy="30" r="10" fill="#fff"/>
 <circle cx="70" cy="70" r="10" fill="#fff"/>
-<rect x="25" y="40" width="50" height="20" fill="#fff"/>
+<rect x="25" y="43" width="50" height="14" fill="#fff"/>
 </svg>`,
-r:`Pasangan lingkaran berpindah simetris vertikal, balok tetap di tengah sebagai penyeimbang.`
-},
+r:`Dua pola: pasangan simetri + balok selalu di pusat massa.`},
+// 3 — fragmentasi bertahap
 {
 a:`<svg viewBox="0 0 100 100">
-<rect x="10" y="10" width="30" height="30" fill="#fff"/>
-<rect x="60" y="10" width="30" height="30" fill="#fff"/>
-<rect x="35" y="60" width="30" height="30" fill="#fff"/>
+<rect x="30" y="30" width="40" height="40" fill="#fff"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
-<rect x="35" y="10" width="30" height="30" fill="#fff"/>
-<rect x="10" y="60" width="30" height="30" fill="#fff"/>
-<rect x="60" y="60" width="30" height="30" fill="#fff"/>
+<rect x="22" y="22" width="20" height="20" fill="#fff"/>
+<rect x="58" y="58" width="20" height="20" fill="#fff"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
-<rect x="10" y="10" width="30" height="30" fill="#fff"/>
-<rect x="35" y="35" width="30" height="30" fill="#fff"/>
-<rect x="60" y="60" width="30" height="30" fill="#fff"/>
+<rect x="18" y="18" width="16" height="16" fill="#fff"/>
+<rect x="42" y="42" width="16" height="16" fill="#fff"/>
+<rect x="66" y="66" width="16" height="16" fill="#fff"/>
 </svg>`,
-r:`Tiga unit berpindah mengikuti rotasi pola segitiga, bukan translasi linear.`
-},
+r:`Fragmentasi naik: 1 → 2 → 3 dengan arah diagonal tetap.`},
+// 4 — rotasi + anchor
 {
 a:`<svg viewBox="0 0 100 100">
 <polygon points="20,80 50,20 80,80" fill="#fff"/>
-<rect x="42" y="50" width="16" height="30" fill="#000"/>
+<rect x="44" y="52" width="12" height="26" fill="#000"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
 <polygon points="20,20 80,20 50,80" fill="#fff"/>
-<rect x="42" y="20" width="16" height="30" fill="#000"/>
+<rect x="44" y="20" width="12" height="26" fill="#000"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
 <polygon points="80,20 80,80 20,50" fill="#fff"/>
-<rect x="20" y="42" width="30" height="16" fill="#000"/>
+<rect x="20" y="44" width="26" height="12" fill="#000"/>
 </svg>`,
-r:`Segitiga berotasi 120°. Balok hitam selalu menempel pada sisi alas segitiga.`
-},
+r:`Rotasi 120°. Elemen hitam menempel sisi alas (anchor).`},
+// 5 — diagonal traversal
 {
 a:`<svg viewBox="0 0 100 100">
 <rect x="20" y="20" width="60" height="60" fill="#fff"/>
-<circle cx="50" cy="50" r="12" fill="#000"/>
+<circle cx="35" cy="35" r="10" fill="#000"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
 <rect x="20" y="20" width="60" height="60" fill="#fff"/>
-<circle cx="35" cy="35" r="12" fill="#000"/>
+<circle cx="50" cy="50" r="10" fill="#000"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
 <rect x="20" y="20" width="60" height="60" fill="#fff"/>
-<circle cx="65" cy="65" r="12" fill="#000"/>
+<circle cx="65" cy="65" r="10" fill="#000"/>
 </svg>`,
-r:`Elemen pusat berpindah mengikuti diagonal utama, jarak konsisten.`
-},
+r:`Titik bergerak di diagonal utama dengan jarak konstan.`},
+// 6 — atribut swap
+{
+a:`<svg viewBox="0 0 100 100">${P('p2')}
+<rect x="10" y="14" width="80" height="18" fill="#fff"/>
+<rect x="10" y="42" width="80" height="18" fill="url(#p2)"/>
+</svg>`,
+b:`<svg viewBox="0 0 100 100">${P('p2')}
+<rect x="10" y="42" width="80" height="18" fill="#fff"/>
+<rect x="10" y="14" width="80" height="18" fill="url(#p2)"/>
+</svg>`,
+o:`<svg viewBox="0 0 100 100">${P('p2')}
+<rect x="10" y="28" width="80" height="18" fill="#fff"/>
+<rect x="10" y="56" width="80" height="18" fill="url(#p2)"/>
+</svg>`,
+r:`Solid ↔ arsir bertukar; posisi ikut bergeser teratur.`},
+// 7 — orientasi pasangan
 {
 a:`<svg viewBox="0 0 100 100">
-<rect x="10" y="10" width="80" height="20" fill="#fff"/>
-<rect x="10" y="40" width="80" height="20" fill="url(#s)"/>
+<circle cx="30" cy="50" r="10" fill="#fff"/>
+<circle cx="70" cy="50" r="10" fill="#fff"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
-<rect x="10" y="40" width="80" height="20" fill="#fff"/>
-<rect x="10" y="10" width="80" height="20" fill="url(#s)"/>
+<circle cx="30" cy="30" r="10" fill="#fff"/>
+<circle cx="70" cy="70" r="10" fill="#fff"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
-<rect x="10" y="25" width="80" height="20" fill="#fff"/>
-<rect x="10" y="55" width="80" height="20" fill="url(#s)"/>
+<circle cx="50" cy="30" r="10" fill="#fff"/>
+<circle cx="50" cy="70" r="10" fill="#fff"/>
 </svg>`,
-r:`Pertukaran atribut: solid ↔ arsir, posisi ikut bergeser teratur.`
-},
+r:`Orientasi pasangan: horizontal → diagonal → vertikal.`},
+// 8 — inversi + penyeimbang
 {
 a:`<svg viewBox="0 0 100 100">
-<circle cx="30" cy="50" r="12" fill="#fff"/>
-<circle cx="70" cy="50" r="12" fill="#fff"/>
+<rect x="20" y="20" width="18" height="60" fill="#fff"/>
+<rect x="62" y="20" width="18" height="60" fill="#000"/>
 </svg>`,
 b:`<svg viewBox="0 0 100 100">
-<circle cx="30" cy="30" r="12" fill="#fff"/>
-<circle cx="70" cy="70" r="12" fill="#fff"/>
+<rect x="20" y="20" width="18" height="60" fill="#000"/>
+<rect x="62" y="20" width="18" height="60" fill="#fff"/>
 </svg>`,
 o:`<svg viewBox="0 0 100 100">
-<circle cx="50" cy="30" r="12" fill="#fff"/>
-<circle cx="50" cy="70" r="12" fill="#fff"/>
+<rect x="20" y="20" width="18" height="60" fill="#fff"/>
+<rect x="41" y="20" width="18" height="60" fill="#000"/>
+<rect x="62" y="20" width="18" height="60" fill="#fff"/>
 </svg>`,
-r:`Pasangan simetris berubah orientasi: horizontal → diagonal → vertikal.`
-},
-{
-a:`<svg viewBox="0 0 100 100">
-<rect x="20" y="20" width="20" height="60" fill="#fff"/>
-<rect x="60" y="20" width="20" height="60" fill="#000"/>
-</svg>`,
-b:`<svg viewBox="0 0 100 100">
-<rect x="20" y="20" width="20" height="60" fill="#000"/>
-<rect x="60" y="20" width="20" height="60" fill="#fff"/>
-</svg>`,
-o:`<svg viewBox="0 0 100 100">
-<rect x="20" y="20" width="20" height="60" fill="#fff"/>
-<rect x="40" y="20" width="20" height="60" fill="#000"/>
-<rect x="60" y="20" width="20" height="60" fill="#fff"/>
-</svg>`,
-r:`Inversi warna diikuti penambahan elemen sebagai penyeimbang visual.`
-},
+r:`Inversi warna lalu tambah elemen penyeimbang visual.`},
+// 9 — crossing symmetry
 {
 a:`<svg viewBox="0 0 100 100">
 <polygon points="20,20 80,20 50,50" fill="#fff"/>
@@ -180,8 +182,7 @@ o:`<svg viewBox="0 0 100 100">
 <polygon points="20,20 80,80 50,50" fill="#fff"/>
 <polygon points="80,20 20,80 50,50" fill="#fff"/>
 </svg>`,
-r:`Dua segitiga selalu berpasangan dan berpotongan di pusat. Orientasi berubah sistematis.`
-}
+r:`Dua segitiga selalu berpotongan di pusat; orientasi berubah sistematis.`}
 ];
 
 let html='';
@@ -190,20 +191,17 @@ html+=`
 <div class="screen ${i===0?'active':''}">
   <div class="hook">LOGIKA FIGURAL</div>
   <div class="level">Soal ${i+1} / 9</div>
-
   <div class="row">
     <div class="box">${q.a}</div>
     <div class="box">${q.b}</div>
     <div class="box q">?</div>
   </div>
-
   <div class="options">
     <div class="opt"><div class="box">${q.o}</div><div class="lbl">A</div></div>
     <div class="opt"><div class="box">${q.a}</div><div class="lbl">B</div></div>
     <div class="opt"><div class="box">${q.b}</div><div class="lbl">C</div></div>
     <div class="opt"><div class="box">${q.a}</div><div class="lbl">D</div></div>
   </div>
-
   <div class="rationale">${q.r}</div>
   ${i===8?'<div class="cta">FOLLOW • SAVE • PART 2 ➜</div>':''}
 </div>`;
@@ -218,7 +216,6 @@ setInterval(()=>{
   s[idx].classList.add('active');
 },4200);
 </script>
-
 </div>
 </body>
 </html>
