@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UTBK TOP 1% – 9 SOAL MENANTANG</title>
+<title>UTBK TOP 1% – 9 SOAL AKTUAL</title>
 <style>
 *{box-sizing:border-box;}
 body{
   margin:0;
-  background:#1e3b7a; /* Background frame biru */
+  background:#ccc; /* background luar grey */
   height:100vh;
   display:flex;
   justify-content:center;
@@ -17,17 +17,17 @@ body{
   overflow:hidden;
 }
 
-/* ===== HP 3D ringan dengan bingkai biru ===== */
+/* HP 3D ringan dengan bingkai biru */
 .phone{
   width:360px;
   height:640px;
-  background:transparent; /* Hilangkan background screen */
+  background:#000; /* background HP hitam */
   border-radius:38px;
   overflow:hidden;
-  color:#ccc; /* overlay teks grey */
+  color:#ccc; /* teks grey */
   position:relative;
-  box-shadow:0 20px 60px rgba(0,0,0,0.6);
   border:4px solid #4aa3ff; /* bingkai kebiruan */
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
   transform:rotateX(3deg) rotateY(-1deg);
 }
 
@@ -40,7 +40,7 @@ body{
 }
 .screen.active{display:block}
 
-/* HOOK SHAKE + flash */
+/* HOOK SHAKE */
 .hook{
   font-size:32px;
   font-weight:900;
@@ -48,7 +48,7 @@ body{
   line-height:1.1;
   margin-top:180px;
   animation: shakeFlash 0.1s 6 alternate;
-  color:#ccc; /* grey */
+  color:#ccc;
 }
 @keyframes shakeFlash{
   0%{transform:translateX(0);}
@@ -61,12 +61,12 @@ body{
 
 /* TYPO */
 .soal{
-  background:transparent; /* Hilangkan background soal */
+  background:transparent;
   padding:20px;
   border-radius:16px;
   font-size:18px;
   line-height:1.55;
-  color:#ccc; /* teks abu */
+  color:#ccc;
 }
 .opsi{
   margin-top:20px;
@@ -97,7 +97,7 @@ body{
   font-size:15px;
   opacity:0;
   transition:.35s;
-  color:#ccc; /* grey */
+  color:#ccc;
 }
 .overlay.show{opacity:1; transform:scale(1.05);}
 .level{
@@ -119,125 +119,134 @@ body{
 <div class="screen active">
   <div class="hook">
     UTBK TOP 1%<br>
-    9 SOAL MENANTANG
+    9 SOAL AKTUAL MENANTANG
   </div>
 </div>
 
-<!-- ===== 9 SOAL REALISTIS & MENANTANG ===== -->
-<!-- LEVELS sama seperti versi terakhir -->
+<!-- ===== 9 SOAL AKTUAL & MENANTANG ===== -->
+
+<!-- LEVEL 1: SILOGISME AKTUAL -->
 <div class="screen">
   <div class="level">LEVEL 1 — SILOGISME</div>
   <div class="soal">
-    Semua manusia fana.<br>
-    Socrates adalah manusia.<br>
+    Semua startup digital memiliki server.<br>
+    Perusahaan X adalah startup digital.<br>
     Kesimpulan?
   </div>
   <div class="opsi">
-    <div>A. Socrates fana</div>
-    <div>B. Socrates abadi</div>
+    <div>A. Perusahaan X memiliki server</div>
+    <div>B. Perusahaan X tidak punya server</div>
     <div>C. Tidak bisa ditentukan</div>
   </div>
-  <div class="overlay">Perhatikan implikasi sederhana.</div>
+  <div class="overlay">Fokus implikasi sederhana.</div>
 </div>
 
+<!-- LEVEL 2: NEGASI & KUANTOR -->
 <div class="screen">
   <div class="level">LEVEL 2 — NEGASI</div>
   <div class="soal">
-    Negasi dari: “Semua angka genap lebih besar dari 0”
+    Negasi: “Semua peserta UTBK mengerjakan soal logika”
   </div>
   <div class="opsi">
-    <div>A. Ada angka genap ≤ 0</div>
-    <div>B. Semua angka ganjil > 0</div>
-    <div>C. Semua angka ≤0</div>
+    <div>A. Ada peserta UTBK yang tidak mengerjakan soal logika</div>
+    <div>B. Semua peserta gagal</div>
+    <div>C. Semua mengerjakan matematika</div>
   </div>
-  <div class="overlay">Fokus pada kata “semua”.</div>
+  <div class="overlay">Fokus kata “semua”.</div>
 </div>
 
+<!-- LEVEL 3: LOGIKA KONDISIONAL -->
 <div class="screen">
   <div class="level">LEVEL 3 — KONDISIONAL</div>
   <div class="soal">
-    Jika hujan, maka jalanan basah.<br>
-    Jalanan basah.<br>
+    Jika server down, maka aplikasi macet.<br>
+    Aplikasi macet.<br>
     Apa yang benar?
   </div>
   <div class="opsi">
-    <div>A. Hujan pasti terjadi</div>
-    <div>B. Hujan mungkin atau tidak</div>
-    <div>C. Jalanan kering</div>
+    <div>A. Server pasti down</div>
+    <div>B. Server mungkin down</div>
+    <div>C. Aplikasi lancar</div>
   </div>
-  <div class="overlay">Jangan terjebak asumsi p → q terbalik.</div>
+  <div class="overlay">Periksa arah implikasi p → q.</div>
 </div>
 
+<!-- LEVEL 4: POLA MATEMATIS -->
 <div class="screen">
   <div class="level">LEVEL 4 — POLA ANGKA</div>
   <div class="soal">
-    Deret: 1, 2, 6, 24, ...<br>
+    Deret: 2, 4, 12, 48, ...<br>
     Angka ke-5?
   </div>
   <div class="opsi">
-    <div>A. 120</div>
-    <div>B. 48</div>
-    <div>C. 60</div>
-    <div>D. 125</div>
+    <div>A. 240</div>
+    <div>B. 192</div>
+    <div>C. 120</div>
+    <div>D. 250</div>
   </div>
-  <div class="overlay">Perhatikan faktor perkalian bertingkat.</div>
+  <div class="overlay">Fokus perkalian bertingkat.</div>
 </div>
 
+<!-- LEVEL 5: LOGIKA VERBAL -->
 <div class="screen">
   <div class="level">LEVEL 5 — LOGIKA VERBAL</div>
   <div class="soal">
-    Semua A adalah B.<br>
-    Beberapa B bukan C.<br>
-    Apakah A bisa menjadi C?
+    Semua X adalah Y.<br>
+    Beberapa Y bukan Z.<br>
+    Apakah X bisa menjadi Z?
   </div>
   <div class="opsi">
     <div>A. Bisa</div>
     <div>B. Tidak bisa</div>
     <div>C. Tidak bisa ditentukan</div>
   </div>
-  <div class="overlay">Analisis relasi logika secara teliti.</div>
+  <div class="overlay">Periksa relasi logika.</div>
 </div>
 
+<!-- LEVEL 6: ANALOGI -->
 <div class="screen">
   <div class="level">LEVEL 6 — ANALOGI</div>
   <div class="soal">
-    Matahari : Siang = Bulan :
+    Laptop : Windows = Smartphone :
   </div>
   <div class="opsi">
-    <div>A. Malam</div>
-    <div>B. Siang</div>
-    <div>C. Senja</div>
+    <div>A. Android</div>
+    <div>B. iOS</div>
+    <div>C. Linux</div>
   </div>
-  <div class="overlay">Hubungan konsekuensi waktu.</div>
+  <div class="overlay">Periksa kesetaraan kategori.</div>
 </div>
 
+<!-- LEVEL 7: KONTRADIKSI -->
 <div class="screen">
   <div class="level">LEVEL 7 — KONTRADIKSI</div>
   <div class="soal">
-    Pernyataan: “Semua burung bisa terbang. Burung unta adalah burung.”<br>
-    Apa implikasinya?
+    “Semua influencer sukses. Influencer X gagal.”<br>
+    Implikasi?
   </div>
   <div class="opsi">
     <div>A. Kontradiksi</div>
-    <div>B. Semua benar</div>
+    <div>B. Benar semua</div>
     <div>C. Tidak bisa ditentukan</div>
   </div>
   <div class="overlay">Periksa kasus pengecualian.</div>
 </div>
 
+<!-- LEVEL 8: LOGIKA SIRKULAR -->
 <div class="screen">
   <div class="level">LEVEL 8 — SIRKULAR</div>
   <div class="soal">
-    Jika A → B, dan B → A, maka...
+    Jika A → B, B → C, C → A, maka...
   </div>
   <div class="opsi">
-    <div>A. A ↔ B</div>
+    <div>A. Hubungan siklus A↔C↔B</div>
     <div>B. A → B</div>
     <div>C. Tidak bisa ditentukan</div>
   </div>
-  <div class="overlay">Relasi bolak-balik harus diperhatikan.</div>
+  <div class="overlay">Periksa siklus logika.</div>
 </div>
 
+<!-- LEVEL 9: FINAL CTA -->
 <div class="screen">
   <div class="level">LEVEL 9 — FINAL</div>
   <div class="soal">Apa yang paling menentukan skor UTBK top 1%?</div>
@@ -274,6 +283,7 @@ function showScreen(i){
   if(overlay) setTimeout(()=>overlay.classList.add('show'), 700);
 }
 
+// auto loop
 setInterval(()=>{
   showScreen(idx);
   idx++;
