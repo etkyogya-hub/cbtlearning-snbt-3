@@ -8,7 +8,7 @@
 *{box-sizing:border-box;}
 body{
   margin:0;
-  background:#ccc; /* background luar grey */
+  background:#ccc;
   height:100vh;
   display:flex;
   justify-content:center;
@@ -22,16 +22,16 @@ body{
   background:#000;
   border-radius:38px;
   overflow:hidden;
-  color:#fff; 
+  color:#fff;
   position:relative;
-  border:4px solid #4aa3ff; /* bingkai biru */
+  border:4px solid #4aa3ff;
   box-shadow:0 20px 60px rgba(0,0,0,0.6);
   transform:rotateX(3deg) rotateY(-1deg);
 }
 .screen{
   position:absolute;
   inset:0;
-  padding:26px;
+  padding:20px;
   display:none;
 }
 .screen.active{display:block;}
@@ -69,6 +69,19 @@ body{
   color:#fff;
   text-shadow:0 0 5px #fff;
 }
+.figure{
+  width:100%;
+  height:150px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:15px;
+}
+.figure svg{
+  width:80px;
+  height:80px;
+  margin:0 5px;
+}
 .opsi{
   margin-top:20px;
   display:flex;
@@ -93,9 +106,9 @@ body{
 }
 .overlay{
   position:absolute;
-  left:26px;
-  right:26px;
-  bottom:26px;
+  left:20px;
+  right:20px;
+  bottom:20px;
   font-size:15px;
   opacity:0;
   transition:.35s;
@@ -124,89 +137,70 @@ body{
   </div>
 </div>
 
-<!-- LEVEL 1 -->
+<!-- LEVELS 1-9 dengan figur -->
 <div class="screen">
   <div class="level">LEVEL 1 — SILOGISME</div>
   <div class="soal">
-    Semua peserta pelatihan robotika memahami coding.<br>
-    Raka adalah peserta pelatihan robotika.<br>
-    Apa kesimpulannya?
+    Semua peserta coding SNBT memahami algoritma.<br>
+    Fajar adalah peserta coding SNBT.<br>
+    Kesimpulannya?
+  </div>
+  <div class="figure">
+    <svg><circle cx="40" cy="40" r="30" fill="#4aa3ff"/></svg>
   </div>
   <div class="opsi">
-    <div>A. Raka memahami coding</div>
-    <div>B. Raka tidak memahami coding</div>
+    <div>A. Fajar memahami algoritma</div>
+    <div>B. Fajar tidak memahami algoritma</div>
     <div>C. Tidak bisa ditentukan</div>
   </div>
   <div class="overlay">Implikasi sederhana.</div>
 </div>
 
-<!-- LEVEL 2 -->
 <div class="screen">
-  <div class="level">LEVEL 2 — NEGASI</div>
+  <div class="level">LEVEL 2 — POLA ANGKA</div>
   <div class="soal">
-    Negasi: “Semua startup di SNBT berhasil membuat prototipe”
+    Deret: 2, 4, 8, 16, ...<br>
+    Angka ke-5?
+  </div>
+  <div class="figure">
+    <svg><rect width="30" height="30" fill="#ff4d4d"/></svg>
+    <svg><rect width="40" height="40" fill="#ffb84d"/></svg>
   </div>
   <div class="opsi">
-    <div>A. Ada startup gagal membuat prototipe</div>
-    <div>B. Semua gagal</div>
-    <div>C. Semua sukses tanpa pengecualian</div>
-  </div>
-  <div class="overlay">Fokus kata “semua”.</div>
-</div>
-
-<!-- LEVEL 3 -->
-<div class="screen">
-  <div class="level">LEVEL 3 — KONDISIONAL</div>
-  <div class="soal">
-    Jika server SNBT overload, maka aplikasi melambat.<br>
-    Aplikasi melambat.<br>
-    Apa yang benar?
-  </div>
-  <div class="opsi">
-    <div>A. Server pasti overload</div>
-    <div>B. Server mungkin overload</div>
-    <div>C. Aplikasi normal</div>
-  </div>
-  <div class="overlay">Periksa arah implikasi.</div>
-</div>
-
-<!-- LEVEL 4 -->
-<div class="screen">
-  <div class="level">LEVEL 4 — POLA ANGKA</div>
-  <div class="soal">
-    Deret skor SNBT: 5, 10, 30, 120, ...<br>
-    Skor ke-5?
-  </div>
-  <div class="opsi">
-    <div>A. 600</div>
-    <div>B. 480</div>
-    <div>C. 500</div>
-    <div>D. 550</div>
+    <div>A. 32</div>
+    <div>B. 24</div>
+    <div>C. 30</div>
+    <div>D. 36</div>
   </div>
   <div class="overlay">Perkalian bertingkat.</div>
 </div>
 
-<!-- LEVEL 5 -->
 <div class="screen">
-  <div class="level">LEVEL 5 — LOGIKA VERBAL</div>
+  <div class="level">LEVEL 3 — LOGIKA KONDISIONAL</div>
   <div class="soal">
-    Semua peserta SNBT mengikuti simulasi.<br>
-    Beberapa simulasi gagal.<br>
-    Apakah peserta bisa gagal?
+    Jika SNBT server down, maka ujian tertunda.<br>
+    Ujian tertunda.<br>
+    Apa yang benar?
+  </div>
+  <div class="figure">
+    <svg><polygon points="40,0 80,80 0,80" fill="#4dff4d"/></svg>
   </div>
   <div class="opsi">
-    <div>A. Bisa</div>
-    <div>B. Tidak bisa</div>
-    <div>C. Tidak bisa ditentukan</div>
+    <div>A. Server pasti down</div>
+    <div>B. Server mungkin down</div>
+    <div>C. Ujian normal</div>
   </div>
-  <div class="overlay">Analisis relasi logika.</div>
+  <div class="overlay">Periksa arah implikasi.</div>
 </div>
 
-<!-- LEVEL 6 -->
 <div class="screen">
-  <div class="level">LEVEL 6 — ANALOGI FIGURATIF</div>
+  <div class="level">LEVEL 4 — ANALOGI FIGURATIF</div>
   <div class="soal">
     Drone : Udara = Kapal : ?
+  </div>
+  <div class="figure">
+    <svg><circle cx="40" cy="40" r="25" fill="#ff4dff"/></svg>
+    <svg><rect width="50" height="30" fill="#4d4dff"/></svg>
   </div>
   <div class="opsi">
     <div>A. Laut</div>
@@ -216,12 +210,32 @@ body{
   <div class="overlay">Periksa kategori fisik.</div>
 </div>
 
-<!-- LEVEL 7 -->
 <div class="screen">
-  <div class="level">LEVEL 7 — KONTRADIKSI KOMPLEKS</div>
+  <div class="level">LEVEL 5 — LOGIKA VERBAL</div>
   <div class="soal">
-    “Semua influencer SNBT berprestasi. Influencer Y gagal.”<br>
+    Semua peserta simulasi SNBT hadir.<br>
+    Beberapa simulasi gagal.<br>
+    Apakah peserta bisa gagal?
+  </div>
+  <div class="figure">
+    <svg><circle cx="20" cy="20" r="15" fill="#ff4d4d"/><circle cx="60" cy="20" r="15" fill="#4dff4d"/></svg>
+  </div>
+  <div class="opsi">
+    <div>A. Bisa</div>
+    <div>B. Tidak bisa</div>
+    <div>C. Tidak bisa ditentukan</div>
+  </div>
+  <div class="overlay">Analisis relasi logika.</div>
+</div>
+
+<div class="screen">
+  <div class="level">LEVEL 6 — KONTRADIKSI</div>
+  <div class="soal">
+    “Semua influencer SNBT berprestasi. Influencer Z gagal.”<br>
     Apa implikasinya?
+  </div>
+  <div class="figure">
+    <svg><rect width="30" height="30" fill="#ffb84d"/><polygon points="0,0 40,0 20,40" fill="#4aa3ff"/></svg>
   </div>
   <div class="opsi">
     <div>A. Kontradiksi</div>
@@ -231,32 +245,54 @@ body{
   <div class="overlay">Periksa pengecualian.</div>
 </div>
 
-<!-- LEVEL 8 -->
+<div class="screen">
+  <div class="level">LEVEL 7 — POLA GEOMETRI</div>
+  <div class="soal">
+    Persegi → 4 sisi<br>
+    Segitiga → ? sisi
+  </div>
+  <div class="figure">
+    <svg><polygon points="20,0 40,40 0,40" fill="#4d4dff"/></svg>
+  </div>
+  <div class="opsi">
+    <div>A. 2</div>
+    <div>B. 3</div>
+    <div>C. 4</div>
+  </div>
+  <div class="overlay">Hitung sisi.</div>
+</div>
+
 <div class="screen">
   <div class="level">LEVEL 8 — LOGIKA SIRKULAR</div>
   <div class="soal">
     Jika A → B, B → C, C → A, maka...
   </div>
+  <div class="figure">
+    <svg><circle cx="40" cy="40" r="15" fill="#ff4dff"/><circle cx="70" cy="70" r="15" fill="#4dff4d"/></svg>
+  </div>
   <div class="opsi">
-    <div>A. Hubungan siklus A↔B↔C</div>
+    <div>A. A ↔ B ↔ C</div>
     <div>B. A → B</div>
     <div>C. Tidak bisa ditentukan</div>
   </div>
   <div class="overlay">Periksa siklus logika.</div>
 </div>
 
-<!-- LEVEL 9 — FINAL CTA + KUNCI -->
+<!-- LEVEL 9 — FINAL + KUNCI -->
 <div class="screen">
   <div class="level">LEVEL 9 — FINAL</div>
-  <div class="soal">Apa yang paling menentukan skor SNBT top 1%?</div>
+  <div class="soal">
+    Apa yang paling menentukan skor SNBT top 1%?
+  </div>
   <div class="opsi">
     <div>A. Cepat menjawab</div>
     <div>B. Hafal rumus</div>
     <div>C. Urutan berpikir benar</div>
   </div>
   <div class="overlay show">
-    CTA 1: Refleksi sekarang! Kamu jatuh di level berapa?<br>
-    Kunci jawaban cepat: Lihat urutan berpikir benar (C)
+    CTA: Refleksi sekarang!<br>
+    <strong>Kunci jawaban SNBT 9 soal:</strong><br>
+    1.A, 2.A, 3.B, 4.A, 5.A, 6.A, 7.B, 8.A, 9.C
   </div>
 </div>
 
@@ -287,7 +323,7 @@ setInterval(()=>{
   showScreen(idx);
   idx++;
   if(idx>=screens.length) idx=0;
-}, 4500);
+}, 5000);
 </script>
 
 </body>
