@@ -3,124 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SNBT LOGIKA FIGURAL</title>
+<title>TES LOGIKA FIGURAL SNBT</title>
 
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;
-  background:#000;
-  color:#fff;
+  margin:0;background:#000;color:#fff;
   font-family:Inter,Segoe UI,sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
+  display:flex;justify-content:center;align-items:center;height:100vh;
 }
-
-/* MOCKUP HP = SCREEN ASLI */
 .phone{
-  width:360px;
-  height:640px;
-  background:#0b0b0b;
-  border-radius:26px;
-  overflow:hidden;
-  padding:18px 14px;
-  position:relative;
+  width:360px;height:640px;background:#0b0b0b;
+  border-radius:26px;overflow:hidden;padding:18px 14px;position:relative;
 }
 
-/* ===== HOOK TITLE ===== */
+/* HOOK */
 .hook{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#000;
-  z-index:10;
-  animation:hideHook 4s forwards;
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:#000;z-index:10;animation:hideHook 4s forwards;
 }
 .hook h1{
-  font-size:28px;
-  font-weight:900;
-  text-align:center;
-  line-height:1.2;
-  animation:shake .15s infinite alternate,
-             colorShift 1s infinite;
+  font-size:30px;font-weight:900;text-align:center;line-height:1.15;
+  animation:shake .14s infinite alternate,colorShift 1s infinite;
 }
-@keyframes shake{
-  from{transform:translate(-1px,-1px) rotate(-1deg)}
-  to{transform:translate(1px,1px) rotate(1deg)}
-}
+@keyframes shake{from{transform:translate(-1px,-1px) rotate(-1deg)}to{transform:translate(1px,1px) rotate(1deg)}}
 @keyframes colorShift{
-  0%{color:#ff2d2d}
-  25%{color:#ffd600}
-  50%{color:#2dff57}
-  75%{color:#2dd7ff}
-  100%{color:#ff2d2d}
+  0%{color:#ff2d2d}25%{color:#ffd600}50%{color:#2dff57}75%{color:#2dd7ff}100%{color:#ff2d2d}
 }
-@keyframes hideHook{
-  0%{opacity:1}
-  80%{opacity:1}
-  100%{opacity:0;pointer-events:none}
-}
+@keyframes hideHook{0%,80%{opacity:1}100%{opacity:0;pointer-events:none}}
 
-/* ===== HEADER ===== */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:42px;
-}
-.title{
-  font-size:18px;
-  font-weight:800;
-}
-.qno{
-  font-size:13px;
-  opacity:.85;
-}
+/* HEADER */
+.header{display:flex;justify-content:space-between;align-items:center;margin-top:42px}
+.title{font-size:18px;font-weight:800}
+.qno{font-size:13px;opacity:.85}
 
-/* ===== SOAL ===== */
-.soal{
-  margin-top:22px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:16px;
-}
-.row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.op{
-  font-size:24px;
-  font-weight:900;
-}
+/* SOAL */
+.soal{margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.row{display:flex;align-items:center;gap:10px}
+.op{font-size:24px;font-weight:900}
 
-/* ===== KOTAK HIMPUNAN ===== */
+/* KOTAK FIGURAL */
 .kotak{
-  width:72px;
-  height:72px;
-  border:2px solid #fff;
-  border-radius:8px;
-  background:#141414;
-  display:flex;
-  flex-wrap:wrap;
-  align-content:center;
-  justify-content:center;
-  gap:4px;
+  width:72px;height:72px;border:2px solid #fff;border-radius:8px;
+  background:#141414;display:flex;flex-wrap:wrap;
+  align-content:center;justify-content:center;gap:4px
 }
 .kotak.q{
-  border-style:dashed;
-  font-size:26px;
-  font-weight:900;
-  align-items:center;
-  justify-content:center;
+  border-style:dashed;font-size:26px;font-weight:900;
+  align-items:center;justify-content:center
 }
 
-/* ===== SHAPES ===== */
+/* SHAPES */
 .tr-siku{width:0;height:0;border-left:16px solid #fff;border-top:16px solid transparent}
 .tr-sama-kaki{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:16px solid #fff}
 .tr-sama-sisi{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:16px solid #fff;transform:scaleX(1.25)}
@@ -130,47 +63,21 @@ body{
 .trap{width:18px;height:0;border-bottom:16px solid #fff;border-left:5px solid transparent;border-right:5px solid transparent}
 .para{width:18px;height:9px;background:#fff;transform:skew(20deg)}
 
-/* ===== OPSI ===== */
-.opsi{
-  margin-top:6px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  width:100%;
-}
-.opt{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:8px;
-  border:1.5px solid #444;
-  border-radius:10px;
-}
+/* OPSI */
+.opsi{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.opt{display:flex;align-items:center;gap:8px;padding:8px;border:1.5px solid #444;border-radius:10px}
 .lab{
-  width:26px;
-  height:26px;
-  border-radius:50%;
-  border:2px solid #fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:800;
-  font-size:13px;
+  width:26px;height:26px;border-radius:50%;
+  border:2px solid #fff;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:13px
 }
 
-/* ===== RATIONALE ===== */
-.rat{
-  margin-top:6px;
-  font-size:13px;
-  opacity:.85;
-  text-align:center;
-  line-height:1.35;
-}
+/* RATIONALE */
+.rat{font-size:13px;opacity:.85;text-align:center;line-height:1.35}
 </style>
 </head>
 
 <body>
-
 <div class="phone">
 
   <!-- HOOK -->
@@ -178,9 +85,9 @@ body{
     <h1>TES LOGIKA<br>FIGURAL SNBT</h1>
   </div>
 
-  <!-- HEADER -->
+  <!-- HEADER (tanpa sub-judul salah) -->
   <div class="header">
-    <div class="title">Operasi Himpunan</div>
+    <div class="title">Logika Figural</div>
     <div class="qno" id="qno">SOAL 1 / 9</div>
   </div>
 
@@ -194,95 +101,86 @@ body{
 
 <script>
 const soal=[
-{
-row:[['tr-siku','rect'],'×2'],
-jawaban:[
-['A',['tr-siku','rect','tr-siku','rect']],
-['B',['tr-sama-kaki','tr-sama-kaki']],
-['C',['rect','rect']],
-['D',['para']]
-],
-rat:'×2 = seluruh elemen digandakan.'
+{ row:[['tr-siku','rect'],'×2'],
+  jawaban:[
+    ['A',['tr-siku','rect','tr-siku','rect']],
+    ['B',['tr-sama-kaki','tr-sama-kaki']],
+    ['C',['rect','rect']],
+    ['D',['para']]
+  ],
+  rat:'Relasi transformasi: pola digandakan utuh.'
 },
-{
-row:[['tr-sama-kaki','rect'],'+',['half']],
-jawaban:[
-['A',['tr-sama-kaki','rect','half']],
-['B',['tr-sama-kaki']],
-['C',['half','half']],
-['D',['trap']]
-],
-rat:'Penjumlahan = gabungan himpunan.'
+{ row:[['tr-sama-kaki','rect'],'+',['half']],
+  jawaban:[
+    ['A',['tr-sama-kaki','rect','half']],
+    ['B',['tr-sama-kaki']],
+    ['C',['half','half']],
+    ['D',['trap']]
+  ],
+  rat:'Relasi penggabungan pola figural.'
 },
-{
-row:[['tr-sama-sisi','square','square'],':',['square','square','square','square']],
-jawaban:[
-['A',['tr-sama-sisi']],
-['B',['square','square']],
-['C',['square']],
-['D',['para']]
-],
-rat:'Perbandingan 1 : 2.'
+{ row:[['tr-sama-sisi','square','square'],':',['square','square','square','square']],
+  jawaban:[
+    ['A',['tr-sama-sisi']],
+    ['B',['square','square']],
+    ['C',['square']],
+    ['D',['para']]
+  ],
+  rat:'Perbandingan kuantitas & jenis bentuk.'
 },
-{
-row:[['half','rect'],'×3'],
-jawaban:[
-['A',['half','rect','half','rect','half','rect']],
-['B',['half','rect','half']],
-['C',['rect','rect','rect']],
-['D',['trap']]
-],
-rat:'×3 = tiga kali set.'
+{ row:[['half','rect'],'×3'],
+  jawaban:[
+    ['A',['half','rect','half','rect','half','rect']],
+    ['B',['half','rect','half']],
+    ['C',['rect','rect','rect']],
+    ['D',['trap']]
+  ],
+  rat:'Transformasi berulang.'
 },
-{
-row:[['tr-siku','tr-sama-kaki'],'+',['rect']],
-jawaban:[
-['A',['tr-siku','tr-sama-kaki','rect']],
-['B',['tr-sama-kaki','rect']],
-['C',['rect','rect']],
-['D',['para']]
-],
-rat:'Semua elemen digabung.'
+{ row:[['tr-siku','tr-sama-kaki'],'+',['rect']],
+  jawaban:[
+    ['A',['tr-siku','tr-sama-kaki','rect']],
+    ['B',['tr-sama-kaki','rect']],
+    ['C',['rect','rect']],
+    ['D',['para']]
+  ],
+  rat:'Relasi kombinasi unsur.'
 },
-{
-row:[['square','square','square'],'-',['square']],
-jawaban:[
-['A',['square','square']],
-['B',['square','square','square']],
-['C',['square']],
-['D',['trap']]
-],
-rat:'Pengurangan satu elemen.'
+{ row:[['square','square','square'],'-',['square']],
+  jawaban:[
+    ['A',['square','square']],
+    ['B',['square','square','square']],
+    ['C',['square']],
+    ['D',['trap']]
+  ],
+  rat:'Reduksi satu unsur.'
 },
-{
-row:[['tr-siku','rect'],':',['rect','rect']],
-jawaban:[
-['A',['tr-siku']],
-['B',['rect']],
-['C',['tr-sama-sisi']],
-['D',['para']]
-],
-rat:'Fokus elemen unik.'
+{ row:[['tr-siku','rect'],':',['rect','rect']],
+  jawaban:[
+    ['A',['tr-siku']],
+    ['B',['rect']],
+    ['C',['tr-sama-sisi']],
+    ['D',['para']]
+  ],
+  rat:'Identifikasi unsur pembeda.'
 },
-{
-row:[['half'],'×4'],
-jawaban:[
-['A',['half','half','half','half']],
-['B',['half','half']],
-['C',['square','square']],
-['D',['trap']]
-],
-rat:'Empat kali bangun sama.'
+{ row:[['half'],'×4'],
+  jawaban:[
+    ['A',['half','half','half','half']],
+    ['B',['half','half']],
+    ['C',['square','square']],
+    ['D',['trap']]
+  ],
+  rat:'Repetisi konsisten.'
 },
-{
-row:[['tr-sama-sisi','rect','half'],'+',['square']],
-jawaban:[
-['A',['tr-sama-sisi','rect','half','square']],
-['B',['rect','half','square']],
-['C',['square','square']],
-['D',['para']]
-],
-rat:'Gabungan akhir.'
+{ row:[['tr-sama-sisi','rect','half'],'+',['square']],
+  jawaban:[
+    ['A',['tr-sama-sisi','rect','half','square']],
+    ['B',['rect','half','square']],
+    ['C',['square','square']],
+    ['D',['para']]
+  ],
+  rat:'Integrasi akhir pola.'
 }
 ];
 
@@ -296,41 +194,25 @@ function kotak(arr,isQ=false){
   const k=document.createElement('div');
   k.className='kotak'+(isQ?' q':'');
   if(isQ){k.textContent='?';return k;}
-  arr.forEach(c=>{
-    const s=document.createElement('div');
-    s.className=c;
-    k.appendChild(s);
-  });
+  arr.forEach(c=>{const s=document.createElement('div');s.className=c;k.appendChild(s);});
   return k;
 }
-
 function render(){
   qno.textContent=`SOAL ${i+1} / 9`;
-  rowEl.innerHTML='';
-  opsiEl.innerHTML='';
-  rat.textContent=soal[i].rat;
-
+  rowEl.innerHTML='';opsiEl.innerHTML='';rat.textContent=soal[i].rat;
   const r=soal[i].row;
   rowEl.appendChild(kotak(r[0]));
   rowEl.appendChild(Object.assign(document.createElement('div'),{className:'op',textContent:r[1]}));
   if(r.length===3)rowEl.appendChild(kotak(r[2]));
   rowEl.appendChild(kotak([],true));
-
   soal[i].jawaban.forEach(o=>{
-    const w=document.createElement('div');
-    w.className='opt';
-    const l=document.createElement('div');
-    l.className='lab';
-    l.textContent=o[0];
-    w.appendChild(l);
-    w.appendChild(kotak(o[1]));
-    opsiEl.appendChild(w);
+    const w=document.createElement('div');w.className='opt';
+    const l=document.createElement('div');l.className='lab';l.textContent=o[0];
+    w.appendChild(l);w.appendChild(kotak(o[1]));opsiEl.appendChild(w);
   });
 }
-
 render();
 setInterval(()=>{i=(i+1)%9;render();},4200);
 </script>
-
 </body>
 </html>
