@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT LOGIKA FIGURAL</title>
+<title>SNBT Logika Figural</title>
 
 <style>
 *{box-sizing:border-box}
@@ -17,11 +17,8 @@ body{
   font-family:Segoe UI,Arial,sans-serif;
   color:#fff;
 }
-
-/* MOCKUP HP */
 .phone{
-  width:360px;
-  height:640px;
+  width:360px;height:640px;
   background:#0b0b0b;
   border-radius:36px;
   border:4px solid #3399ff;
@@ -29,196 +26,227 @@ body{
   overflow:hidden;
   position:relative;
 }
-
-/* SCREEN */
 .screen{
-  position:absolute;
-  inset:0;
+  position:absolute; inset:0;
   padding:18px;
-  display:flex;
+  display:none;
   flex-direction:column;
   align-items:center;
 }
+.screen.active{display:flex}
 
-/* HOOK */
 .hook{
-  font-size:22px;
-  font-weight:900;
-  text-align:center;
-  margin-top:18px;
+  font-size:22px;font-weight:900;text-align:center;
+  margin-top:16px;
   animation:shake .12s infinite alternate,colorchange .3s infinite alternate;
 }
-@keyframes shake{
-  from{transform:translateX(-2px)}
-  to{transform:translateX(2px)}
-}
+@keyframes shake{from{transform:translateX(-2px)}to{transform:translateX(2px)}}
 @keyframes colorchange{
-  0%{color:#ff4d4d}
-  25%{color:#4dff4d}
-  50%{color:#4d4dff}
-  75%{color:#ffff4d}
-  100%{color:#ff4dff}
+  0%{color:#ff4d4d}25%{color:#4dff4d}
+  50%{color:#4d4dff}75%{color:#ffff4d}100%{color:#ff4dff}
 }
 
-/* QUESTION */
-.level{
-  margin-top:10px;
-  font-size:13px;
-  opacity:.75;
-}
+.level{margin-top:8px;font-size:13px;opacity:.7}
 
-.soal{
-  margin-top:18px;
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
+.row{margin-top:18px;display:flex;gap:10px;align-items:center}
 
-/* FIGURE BOX */
 .box{
-  width:78px;
-  height:78px;
+  width:78px;height:78px;
   background:#1c1c1c;
   border:2px solid #fff;
   border-radius:6px;
-  display:flex;
-  flex-wrap:wrap;
-  align-content:center;
-  justify-content:center;
+  display:flex;flex-wrap:wrap;
+  justify-content:center;align-content:center;
   gap:4px;
 }
+.box.q{border-style:dashed;font-size:26px;font-weight:700}
 
-.box.q{
-  border-style:dashed;
-  font-size:26px;
-  font-weight:700;
-}
-
-/* SHAPES */
 .shape{width:16px;height:16px;background:#fff}
-
 .circle{border-radius:50%}
-
-.tri-right{
+.rect{width:16px;height:8px}
+.striped{
+  width:16px;height:8px;
+  background:repeating-linear-gradient(45deg,#fff 0 2px,transparent 2px 4px)
+}
+.tri-r{
   width:0;height:0;
   border-left:16px solid #fff;
   border-top:8px solid transparent;
   border-bottom:8px solid transparent;
 }
-
-.tri-iso{
+.tri-i{
   width:0;height:0;
   border-left:8px solid transparent;
   border-right:8px solid transparent;
   border-bottom:16px solid #fff;
 }
-
-.rect{width:16px;height:8px}
-
-.rect-striped{
+.half{
   width:16px;height:8px;
-  background:repeating-linear-gradient(
-    45deg,#fff 0 2px,transparent 2px 4px
-  );
+  background:#fff;border-radius:8px 8px 0 0
 }
 
-.half-circle{
-  width:16px;height:8px;
-  background:#fff;
-  border-radius:8px 8px 0 0;
-}
-
-/* OPTIONS */
 .options{
   margin-top:22px;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
 }
-
-.opt{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:4px;
-}
-
-.label{
-  font-size:12px;
-  opacity:.7;
-}
+.opt{display:flex;flex-direction:column;align-items:center;gap:4px}
+.lbl{font-size:12px;opacity:.7}
 </style>
 </head>
 
 <body>
 <div class="phone">
-  <div class="screen">
 
-    <!-- HOOK -->
+<!-- HOOK -->
+<div class="screen active" id="s0">
+  <div class="hook">LOGIKA FIGURAL SNBT</div>
+</div>
+
+<!-- TEMPLATE SOAL (1–9) -->
+<script>
+const soal = [
+/* 1 ROTASI */
+[
+  [['tri-r'],['rect'],['striped']],
+  [['tri-r','r90'],['rect','r90'],['striped','r90']],
+  [
+    [['tri-r','r180'],['rect','r180'],['striped','r180']], // A
+    [['tri-i'],['rect']],
+    [['circle'],['rect']],
+    [['half'],['striped']]
+  ]
+],
+/* 2 MIRROR */
+[
+  [['tri-r'],['rect']],
+  [['tri-r','flip'],['rect','flip']],
+  [
+    [['tri-r','flip'],['rect','flip']], // A
+    [['tri-r','r90']],
+    [['circle'],['rect']],
+    [['tri-i']]
+  ]
+],
+/* 3 OVERLAP */
+[
+  [['circle'],['rect']],
+  [['circle'],['rect'],['rect']],
+  [
+    [['circle'],['rect'],['rect']], // A
+    [['circle']],
+    [['rect']],
+    [['half']]
+  ]
+],
+/* 4 ARAH */
+[
+  [['tri-r'],['tri-r','r90']],
+  [['tri-r','r180'],['tri-r','r270']],
+  [
+    [['tri-r'],['tri-r','r90']], // A (loop)
+    [['tri-i']],
+    [['circle']],
+    [['rect']]
+  ]
+],
+/* 5 KOMPOSISI */
+[
+  [['rect'],['striped']],
+  [['rect'],['striped'],['rect']],
+  [
+    [['rect'],['striped'],['rect'],['striped']], // A
+    [['rect']],
+    [['striped']],
+    [['half']]
+  ]
+],
+/* 6 VARIASI BENTUK */
+[
+  [['circle'],['rect']],
+  [['circle'],['rect'],['half']],
+  [
+    [['circle'],['rect'],['half'],['circle']], // A
+    [['tri-i']],
+    [['rect']],
+    [['striped']]
+  ]
+],
+/* 7 MIRROR + ROTASI */
+[
+  [['tri-i'],['rect']],
+  [['tri-i','flip'],['rect','r90']],
+  [
+    [['tri-i','flip'],['rect','r90']], // A
+    [['tri-i']],
+    [['circle']],
+    [['half']]
+  ]
+],
+/* 8 DENSITAS */
+[
+  [['rect']],
+  [['rect'],['rect']],
+  [
+    [['rect'],['rect'],['rect']], // A
+    [['striped']],
+    [['circle']],
+    [['tri-r']]
+  ]
+],
+/* 9 POLA CAMPURAN */
+[
+  [['tri-r'],['circle'],['rect']],
+  [['tri-r','r90'],['circle'],['rect','r90']],
+  [
+    [['tri-r','r180'],['circle'],['rect','r180']], // A
+    [['tri-i']],
+    [['half']],
+    [['striped']]
+  ]
+]
+];
+
+function shapeHTML(s){
+  let cls=s[0], t=s[1]||'';
+  let style='';
+  if(t==='r90')style='transform:rotate(90deg)';
+  if(t==='r180')style='transform:rotate(180deg)';
+  if(t==='r270')style='transform:rotate(270deg)';
+  if(t==='flip')style='transform:scaleX(-1)';
+  return `<div class="shape ${cls}" style="${style}"></div>`;
+}
+
+let html='';
+for(let i=0;i<9;i++){
+  html+=`<div class="screen" id="s${i+1}">
     <div class="hook">LOGIKA FIGURAL SNBT</div>
-    <div class="level">Soal 1</div>
-
-    <!-- QUESTION FIGURE -->
-    <div class="soal">
-      <div class="box">
-        <div class="tri-right"></div>
-        <div class="rect"></div>
-        <div class="rect-striped"></div>
-      </div>
-
-      <div class="box">
-        <div class="tri-right" style="transform:rotate(90deg)"></div>
-        <div class="rect" style="transform:rotate(90deg)"></div>
-        <div class="rect-striped" style="transform:rotate(90deg)"></div>
-      </div>
-
+    <div class="level">Soal ${i+1}</div>
+    <div class="row">
+      <div class="box">${soal[i][0].map(shapeHTML).join('')}</div>
+      <div class="box">${soal[i][1].map(shapeHTML).join('')}</div>
       <div class="box q">?</div>
     </div>
-
-    <!-- OPTIONS -->
     <div class="options">
-
-      <!-- A (BENAR) -->
-      <div class="opt">
-        <div class="box">
-          <div class="tri-right" style="transform:rotate(180deg)"></div>
-          <div class="rect" style="transform:rotate(180deg)"></div>
-          <div class="rect-striped" style="transform:rotate(180deg)"></div>
-        </div>
-        <div class="label">A</div>
-      </div>
-
-      <!-- B -->
-      <div class="opt">
-        <div class="box">
-          <div class="tri-iso"></div>
-          <div class="rect"></div>
-          <div class="rect-striped"></div>
-        </div>
-        <div class="label">B</div>
-      </div>
-
-      <!-- C -->
-      <div class="opt">
-        <div class="box">
-          <div class="circle"></div>
-          <div class="rect"></div>
-        </div>
-        <div class="label">C</div>
-      </div>
-
-      <!-- D -->
-      <div class="opt">
-        <div class="box">
-          <div class="half-circle"></div>
-          <div class="rect-striped"></div>
-        </div>
-        <div class="label">D</div>
-      </div>
-
+      ${soal[i][2].map((o,j)=>`
+        <div class="opt">
+          <div class="box">${o.map(shapeHTML).join('')}</div>
+          <div class="lbl">${String.fromCharCode(65+j)}</div>
+        </div>`).join('')}
     </div>
+  </div>`;
+}
+document.write(html);
 
-  </div>
+let idx=0;
+setInterval(()=>{
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  idx=(idx+1)%10;
+  document.getElementById('s'+idx).classList.add('active');
+},4000);
+</script>
+
 </div>
 </body>
 </html>
