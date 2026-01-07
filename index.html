@@ -3,148 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT – Penalaran Figural</title>
+<title>SNBT Figural</title>
 
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;
   background:#000;
-  font-family:Arial,Helvetica,sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
 }
-.phone{
-  width:360px;
-  height:640px;
+.container{
+  width:720px;
   background:#fff;
-  border-radius:36px;
-  padding:16px;
+  padding:20px;
 }
-
-/* TITLE */
-.title{
-  font-weight:900;
-  font-size:20px;
-  text-align:center;
-  animation:shake .12s infinite alternate,color .3s infinite alternate;
-}
-@keyframes shake{from{transform:translateX(-1px)}to{transform:translateX(1px)}}
-@keyframes color{0%{color:#d00}50%{color:#00f}100%{color:#080}}
-
-/* GRID */
-.top{
+.row{
   display:flex;
+  align-items:center;
   justify-content:space-between;
-  margin-top:18px;
+  margin-bottom:20px;
 }
 .frame{
-  width:150px;
-  height:150px;
+  width:140px;
+  height:140px;
   border:2px solid #000;
   position:relative;
 }
-.eq,.colon{
-  font-size:28px;
+.sym{
+  font-size:32px;
   font-weight:900;
-  align-self:center;
-  margin:0 4px;
 }
 
-/* SHAPES */
-.trap{
+/* ===== SHAPES ===== */
+.hex{
   position:absolute;
-  left:16px; top:24px;
-  width:90px; height:90px;
-  clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);
+  left:20px; top:28px;
+  width:80px; height:80px;
+  background:#fff;
   border:2px solid #000;
+  clip-path:polygon(
+    25% 0%, 75% 0%,
+    100% 50%,
+    75% 100%, 25% 100%,
+    0% 50%
+  );
 }
-.trap.fill{background:repeating-linear-gradient(45deg,#000 0 2px,transparent 2px 4px)}
+.hex.fill{
+  background:repeating-linear-gradient(
+    45deg,#000 0 2px,transparent 2px 4px
+  );
+}
 
-.circle{
+.dot{
   position:absolute;
-  width:18px;height:18px;
-  border:2px solid #000;
+  width:14px;height:14px;
   border-radius:50%;
-}
-.circle.fill{background:#000}
-
-.half{
-  position:absolute;
-  left:18px; top:36px;
-  width:90px;height:45px;
-  border:2px solid #000;
-  border-bottom:none;
-  border-radius:90px 90px 0 0;
-}
-.half.fill{background:repeating-linear-gradient(45deg,#000 0 2px,transparent 2px 4px)}
-
-.square{
-  position:absolute;
-  width:18px;height:18px;
   border:2px solid #000;
 }
-.square.fill{background:#000}
+.dot.fill{background:#000}
+
+.chev{
+  position:absolute;
+  left:30px; top:30px;
+  width:0;height:0;
+  border-top:40px solid transparent;
+  border-bottom:40px solid transparent;
+  border-left:60px solid #000;
+}
+.chev.outline{
+  border-left-color:transparent;
+  border-left:2px solid #000;
+}
 
 /* OPTIONS */
 .options{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:22px;
+  display:flex;
+  justify-content:space-between;
 }
 .opt{
+  width:120px;
+  height:120px;
   border:2px solid #000;
-  height:140px;
   position:relative;
 }
 .label{
   position:absolute;
-  top:4px;left:6px;
+  bottom:-22px;
+  left:50%;
+  transform:translateX(-50%);
   font-weight:900;
 }
 </style>
 </head>
 
 <body>
-<div class="phone">
+<div class="container">
 
-<div class="title">SNBT – PENALARAN FIGURAL</div>
-
-<!-- A : B -->
-<div class="top">
+<!-- A : B = C : ? -->
+<div class="row">
+  <!-- A -->
   <div class="frame">
-    <div class="trap"></div>
-    <div class="circle" style="right:12px;top:18px"></div>
-    <div class="circle fill" style="right:12px;top:58px"></div>
-    <div class="circle" style="right:12px;top:98px"></div>
+    <div class="hex"></div>
+    <div class="dot" style="right:14px;top:26px"></div>
+    <div class="dot fill" style="right:14px;top:56px"></div>
+    <div class="dot" style="right:14px;top:86px"></div>
   </div>
 
-  <div class="colon">:</div>
+  <div class="sym">:</div>
 
+  <!-- B -->
   <div class="frame">
-    <div class="trap fill"></div>
-    <div class="circle" style="right:12px;top:18px"></div>
-    <div class="circle" style="right:12px;top:58px"></div>
-    <div class="circle" style="right:12px;top:98px"></div>
-  </div>
-</div>
-
-<div class="eq" style="text-align:center;margin:6px 0">=</div>
-
-<!-- C : ? -->
-<div class="top">
-  <div class="frame">
-    <div class="half"></div>
-    <div class="square" style="right:12px;top:18px"></div>
-    <div class="square fill" style="right:12px;top:58px"></div>
-    <div class="square" style="right:12px;top:98px"></div>
+    <div class="hex fill"></div>
+    <div class="dot" style="right:14px;top:26px"></div>
+    <div class="dot" style="right:14px;top:56px"></div>
+    <div class="dot" style="right:14px;top:86px"></div>
   </div>
 
-  <div class="colon">:</div>
+  <div class="sym">=</div>
 
+  <!-- C -->
+  <div class="frame">
+    <div class="chev outline"></div>
+    <div class="dot" style="right:14px;top:26px"></div>
+    <div class="dot fill" style="right:14px;top:56px"></div>
+    <div class="dot" style="right:14px;top:86px"></div>
+  </div>
+
+  <div class="sym">:</div>
+
+  <!-- ? -->
   <div class="frame" style="display:flex;justify-content:center;align-items:center;font-size:40px;font-weight:900">
     ?
   </div>
@@ -154,35 +145,43 @@ body{
 <div class="options">
 
 <div class="opt">
-<span class="label">A</span>
-<div class="half"></div>
-<div class="square" style="right:12px;top:18px"></div>
-<div class="square" style="right:12px;top:58px"></div>
-<div class="square fill" style="right:12px;top:98px"></div>
+  <div class="chev"></div>
+  <div class="dot fill" style="right:14px;top:26px"></div>
+  <div class="dot" style="right:14px;top:56px"></div>
+  <div class="dot" style="right:14px;top:86px"></div>
+  <div class="label">A</div>
 </div>
 
 <div class="opt">
-<span class="label">B</span>
-<div class="half fill"></div>
-<div class="square fill" style="right:12px;top:18px"></div>
-<div class="square" style="right:12px;top:58px"></div>
-<div class="square" style="right:12px;top:98px"></div>
+  <div class="chev outline"></div>
+  <div class="dot" style="right:14px;top:26px"></div>
+  <div class="dot" style="right:14px;top:56px"></div>
+  <div class="dot fill" style="right:14px;top:86px"></div>
+  <div class="label">B</div>
 </div>
 
 <div class="opt">
-<span class="label">C</span>
-<div class="half fill"></div>
-<div class="square" style="right:12px;top:18px"></div>
-<div class="square" style="right:12px;top:58px"></div>
-<div class="square" style="right:12px;top:98px"></div>
+  <div class="chev"></div>
+  <div class="dot" style="right:14px;top:26px"></div>
+  <div class="dot" style="right:14px;top:56px"></div>
+  <div class="dot" style="right:14px;top:86px"></div>
+  <div class="label">C</div>
 </div>
 
 <div class="opt">
-<span class="label">D</span>
-<div class="half"></div>
-<div class="square" style="right:12px;top:18px"></div>
-<div class="square fill" style="right:12px;top:58px"></div>
-<div class="square" style="right:12px;top:98px"></div>
+  <div class="chev fill"></div>
+  <div class="dot" style="right:14px;top:26px"></div>
+  <div class="dot" style="right:14px;top:56px"></div>
+  <div class="dot" style="right:14px;top:86px"></div>
+  <div class="label">D</div>
+</div>
+
+<div class="opt">
+  <div class="chev outline"></div>
+  <div class="dot" style="right:14px;top:26px"></div>
+  <div class="dot fill" style="right:14px;top:56px"></div>
+  <div class="dot" style="right:14px;top:86px"></div>
+  <div class="label">E</div>
 </div>
 
 </div>
