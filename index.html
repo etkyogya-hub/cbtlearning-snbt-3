@@ -7,18 +7,18 @@
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#000;font-family:Segoe UI, system-ui,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;color:#fff}
-.phone{width:360px;height:640px;background:#ccc;border-radius:38px;position:relative;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.7);border:4px solid #3399ff}
+.phone{width:360px;height:640px;background:#0b0b0b;border-radius:38px;position:relative;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.7);border:4px solid #3399ff}
 .screen{position:absolute;inset:0;padding:26px;display:none}
 .screen.active{display:block}
 .hook{font-size:28px;font-weight:900;text-align:center;margin-top:180px;animation:shake 0.1s 6 alternate}
 @keyframes shake{0%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}}
-.soal{background:#141414;padding:20px;border-radius:16px;font-size:18px;line-height:1.55;text-align:center}
+.soal{background:#141414;padding:20px;border-radius:16px;font-size:18px;line-height:1.55;text-align:center;color:#fff}
 .opsi{margin-top:20px;display:flex;flex-direction:column;gap:14px;align-items:center}
-.opsi div{background:#1f1f1f;padding:15px;border-radius:14px;font-size:17px;cursor:pointer;transform:scale(0.8);opacity:0;transition:transform 0.35s, opacity 0.35s}
+.opsi div{background:#1f1f1f;padding:15px;border-radius:14px;font-size:17px;cursor:pointer;transform:scale(0.8);opacity:0;transition:transform 0.35s, opacity 0.35s;color:#fff}
 .opsi div.show{transform:scale(1);opacity:1}
-.overlay{position:absolute;left:26px;right:26px;bottom:26px;font-size:15px;opacity:0;transition:.35s;text-align:center}
+.overlay{position:absolute;left:26px;right:26px;bottom:26px;font-size:15px;opacity:0;transition:.35s;text-align:center;color:#fff}
 .overlay.show{opacity:1}
-.level{position:absolute;top:14px;left:18px;font-size:12px;opacity:.55;letter-spacing:.5px}
+.level{position:absolute;top:14px;left:18px;font-size:12px;opacity:.55;letter-spacing:.5px;color:#ccc}
 </style>
 </head>
 <body>
@@ -31,7 +31,7 @@ body{margin:0;background:#000;font-family:Segoe UI, system-ui,sans-serif;display
 
 <!-- ===== 9 SOAL FIGURAL ===== -->
 
-<!-- LEVEL 1: ANALOGI FIGURAL -->
+<!-- LEVEL 1 -->
 <div class="screen">
   <div class="level">LEVEL 1 — ANALOGI</div>
   <div class="soal">○ : □ = △ : ?</div>
@@ -43,7 +43,7 @@ body{margin:0;background:#000;font-family:Segoe UI, system-ui,sans-serif;display
   <div class="overlay">Pikirkan hubungan bentuk dan urutannya.</div>
 </div>
 
-<!-- LEVEL 2: KLASIFIKASI FIGURAL -->
+<!-- LEVEL 2 -->
 <div class="screen">
   <div class="level">LEVEL 2 — KLASIFIKASI</div>
   <div class="soal">Pilih yang tidak sesuai pola: ○ □ △ ○</div>
@@ -56,7 +56,7 @@ body{margin:0;background:#000;font-family:Segoe UI, system-ui,sans-serif;display
   <div class="overlay">Cari yang tidak mengikuti irama.</div>
 </div>
 
-<!-- LEVEL 3: SERIAL FIGURAL -->
+<!-- LEVEL 3 -->
 <div class="screen">
   <div class="level">LEVEL 3 — SERIAL</div>
   <div class="soal">◇ ○ △ □ ◇ ?</div>
