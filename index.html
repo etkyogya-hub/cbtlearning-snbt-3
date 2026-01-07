@@ -26,7 +26,7 @@ body{
   font-size:30px;font-weight:900;text-align:center;line-height:1.15;
   animation:shake .14s infinite alternate,colorShift 1s infinite;
 }
-@keyframes shake{from{transform:translate(-1px,-1px) rotate(-1deg)}to{transform:translate(1px,1px) rotate(1deg)}}
+@keyframes shake{from{transform:translate(-1px,-1px)}to{transform:translate(1px,1px)}}
 @keyframes colorShift{
   0%{color:#ff2d2d}25%{color:#ffd600}50%{color:#2dff57}75%{color:#2dd7ff}100%{color:#ff2d2d}
 }
@@ -38,11 +38,10 @@ body{
 .qno{font-size:13px;opacity:.85}
 
 /* SOAL */
-.soal{margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:18px}
-.row{display:flex;align-items:center;gap:10px}
-.op{font-size:24px;font-weight:900}
+.soal{margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.row{display:flex;align-items:center;gap:12px}
 
-/* KOTAK FIGURAL */
+/* KOTAK */
 .kotak{
   width:72px;height:72px;border:2px solid #fff;border-radius:8px;
   background:#141414;display:flex;flex-wrap:wrap;
@@ -56,12 +55,18 @@ body{
 /* SHAPES */
 .tr-siku{width:0;height:0;border-left:16px solid #fff;border-top:16px solid transparent}
 .tr-sama-kaki{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:16px solid #fff}
-.tr-sama-sisi{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:16px solid #fff;transform:scaleX(1.25)}
 .rect{width:18px;height:8px;background:#fff}
 .square{width:12px;height:12px;background:#fff}
 .half{width:18px;height:9px;background:#fff;border-radius:9px 9px 0 0}
 .trap{width:18px;height:0;border-bottom:16px solid #fff;border-left:5px solid transparent;border-right:5px solid transparent}
 .para{width:18px;height:9px;background:#fff;transform:skew(20deg)}
+
+/* ARSIR */
+.striped{
+  background:repeating-linear-gradient(
+    45deg,#fff 0 2px,transparent 2px 4px
+  ) !important;
+}
 
 /* OPSI */
 .opsi{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
@@ -85,7 +90,7 @@ body{
     <h1>TES LOGIKA<br>FIGURAL SNBT</h1>
   </div>
 
-  <!-- HEADER (tanpa sub-judul salah) -->
+  <!-- HEADER -->
   <div class="header">
     <div class="title">Logika Figural</div>
     <div class="qno" id="qno">SOAL 1 / 9</div>
@@ -101,86 +106,104 @@ body{
 
 <script>
 const soal=[
-{ row:[['tr-siku','rect'],'×2'],
+/* 1 – pengulangan visual */
+{
+  row:[['tr-siku','rect'],['tr-siku','rect'],[]],
   jawaban:[
     ['A',['tr-siku','rect','tr-siku','rect']],
-    ['B',['tr-sama-kaki','tr-sama-kaki']],
-    ['C',['rect','rect']],
-    ['D',['para']]
-  ],
-  rat:'Relasi transformasi: pola digandakan utuh.'
-},
-{ row:[['tr-sama-kaki','rect'],'+',['half']],
-  jawaban:[
-    ['A',['tr-sama-kaki','rect','half']],
-    ['B',['tr-sama-kaki']],
-    ['C',['half','half']],
-    ['D',['trap']]
-  ],
-  rat:'Relasi penggabungan pola figural.'
-},
-{ row:[['tr-sama-sisi','square','square'],':',['square','square','square','square']],
-  jawaban:[
-    ['A',['tr-sama-sisi']],
-    ['B',['square','square']],
-    ['C',['square']],
-    ['D',['para']]
-  ],
-  rat:'Perbandingan kuantitas & jenis bentuk.'
-},
-{ row:[['half','rect'],'×3'],
-  jawaban:[
-    ['A',['half','rect','half','rect','half','rect']],
-    ['B',['half','rect','half']],
-    ['C',['rect','rect','rect']],
-    ['D',['trap']]
-  ],
-  rat:'Transformasi berulang.'
-},
-{ row:[['tr-siku','tr-sama-kaki'],'+',['rect']],
-  jawaban:[
-    ['A',['tr-siku','tr-sama-kaki','rect']],
     ['B',['tr-sama-kaki','rect']],
     ['C',['rect','rect']],
     ['D',['para']]
   ],
-  rat:'Relasi kombinasi unsur.'
+  rat:'Pola diulang konsisten.'
 },
-{ row:[['square','square','square'],'-',['square']],
+/* 2 – penambahan unsur */
+{
+  row:[['tr-sama-kaki'],['tr-sama-kaki','rect'],[]],
   jawaban:[
-    ['A',['square','square']],
-    ['B',['square','square','square']],
+    ['A',['tr-sama-kaki','rect','rect']],
+    ['B',['tr-sama-kaki']],
+    ['C',['rect']],
+    ['D',['trap']]
+  ],
+  rat:'Setiap kotak bertambah satu unsur.'
+},
+/* 3 – substitusi bentuk */
+{
+  row:[['rect'],['square'],[]],
+  jawaban:[
+    ['A',['half']],
+    ['B',['rect']],
     ['C',['square']],
     ['D',['trap']]
   ],
-  rat:'Reduksi satu unsur.'
+  rat:'Bentuk diganti dengan kategori sejenis.'
 },
-{ row:[['tr-siku','rect'],':',['rect','rect']],
+/* 4 – pengurangan visual */
+{
+  row:[['rect','rect','rect'],['rect','rect'],[]],
   jawaban:[
-    ['A',['tr-siku']],
-    ['B',['rect']],
-    ['C',['tr-sama-sisi']],
+    ['A',['rect']],
+    ['B',['rect','rect']],
+    ['C',['square']],
     ['D',['para']]
   ],
-  rat:'Identifikasi unsur pembeda.'
+  rat:'Satu unsur dihilangkan tiap langkah.'
 },
-{ row:[['half'],'×4'],
+/* 5 – arsir */
+{
+  row:[['rect'],['rect striped'],[]],
   jawaban:[
-    ['A',['half','half','half','half']],
-    ['B',['half','half']],
-    ['C',['square','square']],
+    ['A',['rect striped','rect striped']],
+    ['B',['rect']],
+    ['C',['square']],
     ['D',['trap']]
   ],
-  rat:'Repetisi konsisten.'
+  rat:'Perubahan atribut visual.'
 },
-{ row:[['tr-sama-sisi','rect','half'],'+',['square']],
+/* 6 – kombinasi bentuk */
+{
+  row:[['tr-siku'],['tr-siku','half'],[]],
   jawaban:[
-    ['A',['tr-sama-sisi','rect','half','square']],
-    ['B',['rect','half','square']],
-    ['C',['square','square']],
+    ['A',['tr-siku','half','rect']],
+    ['B',['tr-siku']],
+    ['C',['half']],
     ['D',['para']]
   ],
-  rat:'Integrasi akhir pola.'
+  rat:'Unsur baru ditambahkan.'
+},
+/* 7 – konsistensi jenis */
+{
+  row:[['square','square'],['rect','rect'],[]],
+  jawaban:[
+    ['A',['half','half']],
+    ['B',['square','rect']],
+    ['C',['rect']],
+    ['D',['trap']]
+  ],
+  rat:'Jenis bentuk konsisten.'
+},
+/* 8 – progresi kompleksitas */
+{
+  row:[['tr-siku'],['tr-siku','rect'],[]],
+  jawaban:[
+    ['A',['tr-siku','rect','half']],
+    ['B',['tr-siku']],
+    ['C',['rect']],
+    ['D',['para']]
+  ],
+  rat:'Kompleksitas meningkat.'
+},
+/* 9 – integrasi akhir */
+{
+  row:[['rect striped','half'],['rect striped','half','square'],[]],
+  jawaban:[
+    ['A',['rect striped','half','square','square']],
+    ['B',['rect','half']],
+    ['C',['square']],
+    ['D',['trap']]
+  ],
+  rat:'Pola akhir terintegrasi.'
 }
 ];
 
@@ -194,16 +217,18 @@ function kotak(arr,isQ=false){
   const k=document.createElement('div');
   k.className='kotak'+(isQ?' q':'');
   if(isQ){k.textContent='?';return k;}
-  arr.forEach(c=>{const s=document.createElement('div');s.className=c;k.appendChild(s);});
+  arr.forEach(c=>{
+    const s=document.createElement('div');
+    s.className=c;
+    k.appendChild(s);
+  });
   return k;
 }
 function render(){
   qno.textContent=`SOAL ${i+1} / 9`;
   rowEl.innerHTML='';opsiEl.innerHTML='';rat.textContent=soal[i].rat;
-  const r=soal[i].row;
-  rowEl.appendChild(kotak(r[0]));
-  rowEl.appendChild(Object.assign(document.createElement('div'),{className:'op',textContent:r[1]}));
-  if(r.length===3)rowEl.appendChild(kotak(r[2]));
+  rowEl.appendChild(kotak(soal[i].row[0]));
+  rowEl.appendChild(kotak(soal[i].row[1]));
   rowEl.appendChild(kotak([],true));
   soal[i].jawaban.forEach(o=>{
     const w=document.createElement('div');w.className='opt';
