@@ -3,262 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT FIGURATIVE QUIZ – 9 SOAL</title>
+<title>SNBT LOGIKA FIGURAL – 9 SOAL</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:#111;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:Segoe UI, system-ui, sans-serif;
-  overflow:hidden;
-}
-.phone{
-  width:360px;
-  height:640px;
-  background:#ccc; /* grey screen background */
-  border-radius:38px;
-  overflow:hidden;
-  color:#000;
-  position:relative;
-  box-shadow:0 0 30px rgba(0,150,255,0.5);
-  border:6px solid #00bfff; /* blue rim */
-}
-.screen{
-  position:absolute;
-  inset:0;
-  padding:26px;
-  display:none;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-}
-.screen.active{display:flex;}
-.hook{
-  font-size:32px;
-  font-weight:900;
-  text-align:center;
-  line-height:1.1;
-  animation: shake 0.1s 6 alternate;
-}
-@keyframes shake{
-  0%{transform:translateX(0);}
-  20%{transform:translateX(-6px);}
-  40%{transform:translateX(6px);}
-  60%{transform:translateX(-4px);}
-  80%{transform:translateX(4px);}
-  100%{transform:translateX(0);}
-}
-.soal{
-  margin-top:20px;
-  display:flex;
-  gap:15px;
-}
-.figure{
-  width:50px;
-  height:50px;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#fff;
-  font-weight:bold;
-  font-size:20px;
-}
-.opsi{
-  margin-top:30px;
-  display:flex;
-  gap:15px;
-}
-.opsi div{
-  width:50px;
-  height:50px;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#fff;
-  font-weight:bold;
-  font-size:20px;
-  cursor:pointer;
-  transform:scale(0.8);
-  opacity:0;
-  transition:transform 0.35s, opacity 0.35s;
-}
-.opsi div.show{transform:scale(1);opacity:1;}
-.overlay{
-  margin-top:20px;
-  font-size:15px;
-  opacity:0;
-  transition:.35s;
-}
-.overlay.show{opacity:1;}
-.level{
-  position:absolute;
-  top:14px;
-  left:18px;
-  font-size:12px;
-  opacity:.55;
-  letter-spacing:.5px;
-}
+body{margin:0;background:#000;font-family:Segoe UI, system-ui,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;color:#fff}
+.phone{width:360px;height:640px;background:#ccc;border-radius:38px;position:relative;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.7);border:4px solid #3399ff}
+.screen{position:absolute;inset:0;padding:26px;display:none}
+.screen.active{display:block}
+.hook{font-size:28px;font-weight:900;text-align:center;margin-top:180px;animation:shake 0.1s 6 alternate}
+@keyframes shake{0%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}}
+.soal{background:#141414;padding:20px;border-radius:16px;font-size:18px;line-height:1.55;text-align:center}
+.opsi{margin-top:20px;display:flex;flex-direction:column;gap:14px;align-items:center}
+.opsi div{background:#1f1f1f;padding:15px;border-radius:14px;font-size:17px;cursor:pointer;transform:scale(0.8);opacity:0;transition:transform 0.35s, opacity 0.35s}
+.opsi div.show{transform:scale(1);opacity:1}
+.overlay{position:absolute;left:26px;right:26px;bottom:26px;font-size:15px;opacity:0;transition:.35s;text-align:center}
+.overlay.show{opacity:1}
+.level{position:absolute;top:14px;left:18px;font-size:12px;opacity:.55;letter-spacing:.5px}
 </style>
 </head>
 <body>
 <div class="phone">
 
-<!-- HOOK SHAKE -->
+<!-- HOOK -->
 <div class="screen active">
-  <div class="hook">SNBT TOP LOGIC<br>9 SOAL FIGURATIF</div>
+  <div class="hook">SNBT LOGIKA FIGURAL<br>9 SOAL MENANTANG</div>
 </div>
 
-<!-- ===== 9 SOAL FIGURATIF ===== -->
+<!-- ===== 9 SOAL FIGURAL ===== -->
 
-<!-- LEVEL 1 -->
+<!-- LEVEL 1: ANALOGI FIGURAL -->
 <div class="screen">
-  <div class="level">LEVEL 1</div>
-  <div class="soal">
-    <div class="figure">◯</div>
-    <div class="figure">□</div>
-    <div class="figure">◯</div>
-  </div>
+  <div class="level">LEVEL 1 — ANALOGI</div>
+  <div class="soal">○ : □ = △ : ?</div>
   <div class="opsi">
+    <div>◇</div>
+    <div>○</div>
+    <div>□</div>
+  </div>
+  <div class="overlay">Pikirkan hubungan bentuk dan urutannya.</div>
+</div>
+
+<!-- LEVEL 2: KLASIFIKASI FIGURAL -->
+<div class="screen">
+  <div class="level">LEVEL 2 — KLASIFIKASI</div>
+  <div class="soal">Pilih yang tidak sesuai pola: ○ □ △ ○</div>
+  <div class="opsi">
+    <div>○</div>
     <div>□</div>
     <div>△</div>
-    <div>◯</div>
-  </div>
-  <div class="overlay">Pilih figur berikutnya menurut urutan</div>
-</div>
-
-<!-- LEVEL 2 -->
-<div class="screen">
-  <div class="level">LEVEL 2</div>
-  <div class="soal">
-    <div class="figure">△</div>
-    <div class="figure">△ (rot90)</div>
-    <div class="figure">△ (rot180)</div>
-  </div>
-  <div class="opsi">
-    <div>△ (rot270)</div>
-    <div>△ (flip)</div>
     <div>□</div>
   </div>
-  <div class="overlay">Perhatikan rotasi tiap langkah</div>
+  <div class="overlay">Cari yang tidak mengikuti irama.</div>
 </div>
 
-<!-- LEVEL 3 -->
+<!-- LEVEL 3: SERIAL FIGURAL -->
 <div class="screen">
-  <div class="level">LEVEL 3</div>
-  <div class="soal">
-    <div class="figure">▭</div>
-    <div class="figure">▭ + ◯</div>
-    <div class="figure">▭ + ◯ + △</div>
-  </div>
+  <div class="level">LEVEL 3 — SERIAL</div>
+  <div class="soal">◇ ○ △ □ ◇ ?</div>
   <div class="opsi">
-    <div>▭ + ◯ + △ + ◯</div>
-    <div>▭ + △</div>
-    <div>◯ + △</div>
+    <div>○</div>
+    <div>△</div>
+    <div>◇</div>
   </div>
-  <div class="overlay">Pilih kombinasi figur berikutnya</div>
+  <div class="overlay">Perhatikan urutan berulang.</div>
 </div>
 
 <!-- LEVEL 4 -->
 <div class="screen">
-  <div class="level">LEVEL 4</div>
-  <div class="soal">
-    <div class="figure">◯</div>
-    <div class="figure">◯ + ◯</div>
-    <div class="figure">◯ + ◯ + ◯</div>
-  </div>
+  <div class="level">LEVEL 4 — ANALOGI</div>
+  <div class="soal">○△ : □◇ = △○ : ?</div>
   <div class="opsi">
-    <div>◯ + ◯ + ◯ + ◯</div>
-    <div>□</div>
-    <div>△</div>
+    <div>◇□</div>
+    <div>○□</div>
+    <div>△◇</div>
   </div>
-  <div class="overlay">Urutan penambahan satu bentuk tiap langkah</div>
+  <div class="overlay">Hubungan pasangan bentuk penting.</div>
 </div>
 
 <!-- LEVEL 5 -->
 <div class="screen">
-  <div class="level">LEVEL 5</div>
-  <div class="soal">
-    <div class="figure">◯→□</div>
-    <div class="figure">□→△</div>
-    <div class="figure">△→?</div>
-  </div>
+  <div class="level">LEVEL 5 — KLASIFIKASI</div>
+  <div class="soal">□ △ ○ △ ○ ?</div>
   <div class="opsi">
-    <div>◯</div>
-    <div>□</div>
     <div>△</div>
+    <div>□</div>
+    <div>○</div>
   </div>
-  <div class="overlay">Perhatikan transformasi tiap pasangan</div>
+  <div class="overlay">Pilih yang melanggar pola.</div>
 </div>
 
 <!-- LEVEL 6 -->
 <div class="screen">
-  <div class="level">LEVEL 6</div>
-  <div class="soal">
-    <div class="figure">◯ ◯</div>
-    <div class="figure">□ □</div>
-    <div class="figure">◯ ?</div>
-  </div>
+  <div class="level">LEVEL 6 — SERIAL</div>
+  <div class="soal">○ □ □ △ ○ ?</div>
   <div class="opsi">
-    <div>□</div>
     <div>△</div>
-    <div>◯</div>
+    <div>□</div>
+    <div>○</div>
   </div>
-  <div class="overlay">Lanjutkan pola horizontal</div>
+  <div class="overlay">Amati pengulangan dan ritme.</div>
 </div>
 
 <!-- LEVEL 7 -->
 <div class="screen">
-  <div class="level">LEVEL 7</div>
-  <div class="soal">
-    <div class="figure">△◯△</div>
-    <div class="figure">◯△◯</div>
-    <div class="figure">? ? ?</div>
-  </div>
+  <div class="level">LEVEL 7 — ANALOGI</div>
+  <div class="soal">◇ : ○ = △ : ?</div>
   <div class="opsi">
-    <div>△◯△</div>
-    <div>◯△◯</div>
-    <div>△△◯</div>
+    <div>□</div>
+    <div>◇</div>
+    <div>△</div>
   </div>
-  <div class="overlay">Pola silang, pilih yang sesuai</div>
+  <div class="overlay">Bandingkan posisi dan bentuk.</div>
 </div>
 
 <!-- LEVEL 8 -->
 <div class="screen">
-  <div class="level">LEVEL 8</div>
-  <div class="soal">
-    <div class="figure">▭◯△</div>
-    <div class="figure">◯△▭</div>
-    <div class="figure">? ? ?</div>
-  </div>
+  <div class="level">LEVEL 8 — KLASIFIKASI</div>
+  <div class="soal">○ □ △ □ △ ?</div>
   <div class="opsi">
-    <div>▭△◯</div>
-    <div>▭◯△</div>
-    <div>△▭◯</div>
+    <div>□</div>
+    <div>○</div>
+    <div>△</div>
   </div>
-  <div class="overlay">Perhatikan perpindahan posisi tiap langkah</div>
+  <div class="overlay">Pilih yang melanggar urutan.</div>
 </div>
 
 <!-- LEVEL 9 -->
 <div class="screen">
-  <div class="level">LEVEL 9</div>
-  <div class="soal">
-    <div class="figure">◯ + □ → ?</div>
-    <div class="figure">□ + △ → ?</div>
-    <div class="figure">△ + ?</div>
-  </div>
+  <div class="level">LEVEL 9 — SERIAL FINAL</div>
+  <div class="soal">○ + □ → ? ; □ + △ → ? ; △ + ?</div>
   <div class="opsi">
-    <div>◯ + △</div>
-    <div>□ + ◯</div>
-    <div>△ + □</div>
+    <div>○</div>
+    <div>□</div>
+    <div>△</div>
+    <div>◇</div>
   </div>
-  <div class="overlay show">Pilih pola akhir secara logis</div>
+  <div class="overlay show">Refleksi: Pikirkan pola semua 9 soal.</div>
 </div>
 
 </div>
@@ -276,11 +156,11 @@ function showScreen(i){
   const screen=screens[i];
   screen.classList.add('active');
   const opsi=screen.querySelectorAll('.opsi div');
-  opsi.forEach((o,j)=>{setTimeout(()=>o.classList.add('show'),400*j);});
+  opsi.forEach((o,j)=>{setTimeout(()=>o.classList.add('show'),400*j)});
   const overlay=screen.querySelector('.overlay');
   if(overlay) setTimeout(()=>overlay.classList.add('show'),1000);
 }
-setInterval(()=>{showScreen(idx);idx++;if(idx>=screens.length)idx=0;},5000);
+setInterval(()=>{showScreen(idx);idx++;if(idx>=screens.length)idx=0},5000);
 </script>
 </body>
 </html>
