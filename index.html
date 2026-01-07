@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UTBK TOP 1% – 9 SOAL AKTUAL</title>
+<title>UTBK TOP 1% – 9 SOAL ROCKY FLASH</title>
 <style>
 *{box-sizing:border-box;}
 body{
@@ -24,7 +24,7 @@ body{
   background:#000; /* background HP hitam */
   border-radius:38px;
   overflow:hidden;
-  color:#ccc; /* teks grey */
+  color:#fff; 
   position:relative;
   border:4px solid #4aa3ff; /* bingkai kebiruan */
   box-shadow:0 20px 60px rgba(0,0,0,0.6);
@@ -40,15 +40,16 @@ body{
 }
 .screen.active{display:block}
 
-/* HOOK SHAKE */
+/* HOOK SHAKE & FLASHY */
 .hook{
   font-size:32px;
   font-weight:900;
   text-align:center;
   line-height:1.1;
   margin-top:180px;
-  animation: shakeFlash 0.1s 6 alternate;
-  color:#ccc;
+  animation: shakeFlash 0.1s 6 alternate, colorFlash 0.2s infinite alternate;
+  color:#fff;
+  text-shadow: 0 0 8px #fff;
 }
 @keyframes shakeFlash{
   0%{transform:translateX(0);}
@@ -58,6 +59,13 @@ body{
   80%{transform:translateX(4px);}
   100%{transform:translateX(0);}
 }
+@keyframes colorFlash{
+  0%{color:#ff4d4d;}
+  25%{color:#4dff4d;}
+  50%{color:#4d4dff;}
+  75%{color:#ffb84d;}
+  100%{color:#ff4dff;}
+}
 
 /* TYPO */
 .soal{
@@ -66,7 +74,8 @@ body{
   border-radius:16px;
   font-size:18px;
   line-height:1.55;
-  color:#ccc;
+  color:#fff; /* putih menyala */
+  text-shadow:0 0 5px #fff;
 }
 .opsi{
   margin-top:20px;
@@ -83,7 +92,8 @@ body{
   transform:translateY(40px) scale(0.7);
   opacity:0;
   transition:transform 0.5s cubic-bezier(0.68,-0.55,0.27,1.55), opacity 0.5s;
-  color:#ccc;
+  color:#fff;
+  text-shadow:0 0 3px #fff;
 }
 .opsi div.show{
   transform:translateY(0) scale(1);
@@ -97,7 +107,7 @@ body{
   font-size:15px;
   opacity:0;
   transition:.35s;
-  color:#ccc;
+  color:#aaa; /* diredupkan */
 }
 .overlay.show{opacity:1; transform:scale(1.05);}
 .level{
@@ -105,9 +115,9 @@ body{
   top:14px;
   left:18px;
   font-size:12px;
-  opacity:.55;
+  opacity:.5;
   letter-spacing:.5px;
-  color:#ccc;
+  color:#aaa; /* diredupkan */
 }
 </style>
 </head>
@@ -115,17 +125,17 @@ body{
 
 <div class="phone">
 
-<!-- HOOK SHAKE -->
+<!-- HOOK SHAKE & FLASH -->
 <div class="screen active">
   <div class="hook">
     UTBK TOP 1%<br>
-    9 SOAL AKTUAL MENANTANG
+    9 SOAL ROCKY FLASH
   </div>
 </div>
 
 <!-- ===== 9 SOAL AKTUAL & MENANTANG ===== -->
 
-<!-- LEVEL 1: SILOGISME AKTUAL -->
+<!-- LEVEL 1 -->
 <div class="screen">
   <div class="level">LEVEL 1 — SILOGISME</div>
   <div class="soal">
@@ -141,7 +151,7 @@ body{
   <div class="overlay">Fokus implikasi sederhana.</div>
 </div>
 
-<!-- LEVEL 2: NEGASI & KUANTOR -->
+<!-- LEVEL 2 -->
 <div class="screen">
   <div class="level">LEVEL 2 — NEGASI</div>
   <div class="soal">
@@ -155,7 +165,7 @@ body{
   <div class="overlay">Fokus kata “semua”.</div>
 </div>
 
-<!-- LEVEL 3: LOGIKA KONDISIONAL -->
+<!-- LEVEL 3 -->
 <div class="screen">
   <div class="level">LEVEL 3 — KONDISIONAL</div>
   <div class="soal">
@@ -171,7 +181,7 @@ body{
   <div class="overlay">Periksa arah implikasi p → q.</div>
 </div>
 
-<!-- LEVEL 4: POLA MATEMATIS -->
+<!-- LEVEL 4 -->
 <div class="screen">
   <div class="level">LEVEL 4 — POLA ANGKA</div>
   <div class="soal">
@@ -187,7 +197,7 @@ body{
   <div class="overlay">Fokus perkalian bertingkat.</div>
 </div>
 
-<!-- LEVEL 5: LOGIKA VERBAL -->
+<!-- LEVEL 5 -->
 <div class="screen">
   <div class="level">LEVEL 5 — LOGIKA VERBAL</div>
   <div class="soal">
@@ -203,7 +213,7 @@ body{
   <div class="overlay">Periksa relasi logika.</div>
 </div>
 
-<!-- LEVEL 6: ANALOGI -->
+<!-- LEVEL 6 -->
 <div class="screen">
   <div class="level">LEVEL 6 — ANALOGI</div>
   <div class="soal">
@@ -217,7 +227,7 @@ body{
   <div class="overlay">Periksa kesetaraan kategori.</div>
 </div>
 
-<!-- LEVEL 7: KONTRADIKSI -->
+<!-- LEVEL 7 -->
 <div class="screen">
   <div class="level">LEVEL 7 — KONTRADIKSI</div>
   <div class="soal">
@@ -229,10 +239,10 @@ body{
     <div>B. Benar semua</div>
     <div>C. Tidak bisa ditentukan</div>
   </div>
-  <div class="overlay">Periksa kasus pengecualian.</div>
+  <div class="overlay">Periksa pengecualian.</div>
 </div>
 
-<!-- LEVEL 8: LOGIKA SIRKULAR -->
+<!-- LEVEL 8 -->
 <div class="screen">
   <div class="level">LEVEL 8 — SIRKULAR</div>
   <div class="soal">
