@@ -22,7 +22,6 @@ body {
   border-radius: 40px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 30px rgba(0,0,0,0.7);
 }
 .screen {
   width: 100%;
@@ -33,36 +32,34 @@ body {
 }
 .soal {
   font-size: 16px;
-  line-height: 1.5;
   background: #333;
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 20px;
 }
-.jawaban { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-.jawaban div { background: #555; padding: 10px; border-radius: 8px; }
+.jawaban div {
+  background: #555;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
 .text-overlay {
   position: absolute;
   bottom: 20px;
   left: 20px;
   font-size: 14px;
-  line-height: 1.4;
   max-width: 320px;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity .5s;
 }
-.fade-in { opacity: 1 !important; }
+.fade-in { opacity: 1; }
 .list-small {
   position: absolute;
   top: 10px;
   right: 10px;
   font-size: 10px;
-  color: #aaa;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity .3s;
 }
 .list-small.show { opacity: 1; }
 .level { display: none; }
@@ -73,81 +70,72 @@ body {
 
 <div class="phone-frame">
 
-  <!-- LEVEL 3.1 – 3.5 (TIDAK DIUBAH) -->
-  <!-- [ISI SAMA PERSIS DENGAN KODE KAMU] -->
-
-  <!-- ===== LEVEL 3.6: CTA TINGKAT 1 ===== -->
-  <div class="screen level" id="level3-6">
-    <div class="soal">
-      Bukan soal ini yang menentukan.
-    </div>
-
-    <div class="text-overlay" id="overlay6-1">
-      Di langkah mana kamu biasanya jatuh?
-    </div>
-
-    <div class="list-small" id="list6">
-      <div>Konsep</div>
-      <div>Domain</div>
-      <div>Opsi</div>
-      <div>Eliminasi</div>
-      <div>Validasi</div>
-      <div>Logika</div>
-      <div>Konfirmasi</div>
-    </div>
+<!-- LEVEL 3.1 -->
+<div class="screen level" id="level3-1">
+  <div class="soal">Soal ini sering dianggap mudah…</div>
+  <div class="jawaban">
+    <div>A: 60 km</div><div>B: 120 km</div><div>C: 180 km</div><div>D: 240 km</div>
   </div>
+  <div class="text-overlay">Langsung jawab. Tanpa membaca struktur.</div>
+</div>
+
+<!-- LEVEL 3.2 -->
+<div class="screen level" id="level3-2">
+  <div class="soal">Salah pilih konsep sering terjadi…</div>
+  <div class="jawaban">
+    <div>A: Konsep Salah</div><div>B: Konsep Benar</div><div>C: Distractor</div>
+  </div>
+  <div class="text-overlay">Memilih domain keliru → jawaban salah.</div>
+</div>
+
+<!-- LEVEL 3.3 -->
+<div class="screen level" id="level3-3">
+  <div class="soal">Soal ini terlihat gampang…</div>
+  <div class="jawaban">
+    <div>A: 60 km</div><div>B: 120 km</div><div>C: 180 km</div><div>D: 240 km</div>
+  </div>
+  <div class="text-overlay">Terjebak jawaban yang tampak benar.</div>
+</div>
+
+<!-- LEVEL 3.4 -->
+<div class="screen level" id="level3-4">
+  <div class="soal">Rationale singkat:</div>
+  <div class="text-overlay">Konsep → Domain → Opsi → Eliminasi → Validasi</div>
+</div>
+
+<!-- LEVEL 3.5 -->
+<div class="screen level" id="level3-5">
+  <div class="soal">Latihan biasa sering gagal…</div>
+  <div class="jawaban">
+    <div>A: Jawaban Instan</div>
+    <div>B: Jawaban Sistematis</div>
+  </div>
+  <div class="text-overlay">Latihan bukan soal. Tapi sistem berpikir.</div>
+</div>
+
+<!-- LEVEL 3.6 CTA -->
+<div class="screen level" id="level3-6">
+  <div class="soal">Bukan soal ini yang menentukan.</div>
+  <div class="text-overlay">Di langkah mana kamu biasanya jatuh?</div>
+</div>
 
 </div>
 
 <script>
-const levels = [
-  "level3-1",
-  "level3-2",
-  "level3-3",
-  "level3-4",
-  "level3-5",
-  "level3-6"
-];
+const levels = ["level3-1","level3-2","level3-3","level3-4","level3-5","level3-6"];
+let idx = 0;
 
-function showLevel(idx){
-  levels.forEach(id => document.getElementById(id).classList.remove('active'));
-  document.getElementById(levels[idx]).classList.add('active');
+function show(){
+  document.querySelectorAll('.level').forEach(l=>l.classList.remove('active'));
+  const lvl = document.getElementById(levels[idx]);
+  lvl.classList.add('active');
+  const t = lvl.querySelector('.text-overlay');
+  if(t){ setTimeout(()=>t.classList.add('fade-in'),800); }
+  idx = (idx + 1) % levels.length;
 }
 
-function runLevel(idx){
-  showLevel(idx);
-  const level = document.getElementById(levels[idx]);
-  const overlays = level.querySelectorAll(".text-overlay");
-  const listSmall = level.querySelector(".list-small");
-
-  overlays.forEach(o=>o.classList.remove('fade-in'));
-  if(listSmall) listSmall.classList.remove('show');
-
-  let timeline=[];
-  switch(idx){
-    case 0: timeline=[1500,3000,7500,11500]; break;
-    case 1: timeline=[1500,4500,7500]; break;
-    case 2: timeline=[1500,4000,7500,11500]; break;
-    case 3: timeline=[1500,3000,4500,6000,7500,9000,12000]; break;
-    case 4: timeline=[1500,5000,10000,14000]; break;
-    case 5: timeline=[1500]; break; // CTA LEVEL 1
-  }
-
-  overlays.forEach((o,i)=>{
-    setTimeout(()=>{
-      overlays.forEach(x=>x.classList.remove('fade-in'));
-      o.classList.add('fade-in');
-      if(i===overlays.length-1 && listSmall) listSmall.classList.add('show');
-    }, timeline[i] || 1500);
-  });
-
-  // LEVEL 3.6 = STOP (biar linger / loop alami)
-  if(idx < levels.length-1){
-    setTimeout(()=> runLevel(idx+1), 18000);
-  }
-}
-
-runLevel(0);
+show();
+setInterval(show, 3500);
 </script>
 
 </body>
