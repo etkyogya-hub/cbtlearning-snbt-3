@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LOGIKA FIGURAL – ROTASI · MIRROR · ARAH · OVERLAP</title>
+<title>LOGIKA FIGURAL BRUTAL</title>
 
 <style>
 *{box-sizing:border-box}
@@ -17,10 +17,11 @@ body{
   border-radius:26px;overflow:hidden;padding:18px 14px;position:relative;
 }
 
-/* HOOK */
+/* ===== HOOK ===== */
 .hook{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:#000;z-index:10;animation:hideHook 3.5s forwards;
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:#000;z-index:20;
 }
 .hook h1{
   font-size:30px;font-weight:900;text-align:center;line-height:1.15;
@@ -30,18 +31,17 @@ body{
 @keyframes colorShift{
   0%{color:#ff2d2d}25%{color:#ffd600}50%{color:#2dff57}75%{color:#2dd7ff}100%{color:#ff2d2d}
 }
-@keyframes hideHook{0%,80%{opacity:1}100%{opacity:0;pointer-events:none}}
 
-/* HEADER */
-.header{display:flex;justify-content:space-between;align-items:center;margin-top:40px}
+/* ===== HEADER ===== */
+.header{display:flex;justify-content:space-between;align-items:center;margin-top:42px}
 .title{font-size:18px;font-weight:800}
 .qno{font-size:13px;opacity:.85}
 
-/* SOAL */
-.soal{margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:18px}
+/* ===== SOAL ===== */
+.soal{margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:18px}
 .row{display:flex;align-items:center;gap:12px}
 
-/* KOTAK */
+/* ===== KOTAK ===== */
 .kotak{
   width:74px;height:74px;border:2px solid #fff;border-radius:8px;
   background:#141414;display:flex;flex-wrap:wrap;
@@ -52,29 +52,26 @@ body{
   align-items:center;justify-content:center
 }
 
-/* SHAPES */
+/* ===== SHAPES ===== */
 .tr{width:0;height:0;border-left:16px solid #fff;border-top:16px solid transparent}
 .tr2{width:0;height:0;border-right:16px solid #fff;border-top:16px solid transparent}
-.rect{width:18px;height:8px;background:#fff}
 .square{width:12px;height:12px;background:#fff}
 .half{width:18px;height:9px;background:#fff;border-radius:9px 9px 0 0}
 
-/* TRANSFORM */
+/* ===== TRANSFORM ===== */
 .rot90{transform:rotate(90deg)}
 .rot180{transform:rotate(180deg)}
 .rot270{transform:rotate(270deg)}
 .mirror{transform:scaleX(-1)}
 .up{transform:rotate(-90deg)}
+.right{}
 .down{transform:rotate(90deg)}
 .left{transform:rotate(180deg)}
-.right{}
 
-/* OVERLAP */
-.overlap{
-  position:absolute;top:28px;left:28px;opacity:.85
-}
+/* ===== OVERLAP ===== */
+.overlap{position:absolute;top:28px;left:28px;opacity:.85}
 
-/* OPSI */
+/* ===== OPSI ===== */
 .opsi{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
 .opt{display:flex;align-items:center;gap:8px;padding:8px;border:1.5px solid #444;border-radius:10px}
 .lab{
@@ -83,7 +80,7 @@ body{
   font-weight:800;font-size:13px
 }
 
-/* RATIONALE */
+/* ===== RATIONALE ===== */
 .rat{font-size:13px;opacity:.85;text-align:center;line-height:1.35}
 </style>
 </head>
@@ -91,15 +88,18 @@ body{
 <body>
 <div class="phone">
 
-  <div class="hook">
+  <!-- HOOK -->
+  <div class="hook" id="hook">
     <h1>LOGIKA FIGURAL<br>LEVEL BRUTAL</h1>
   </div>
 
+  <!-- HEADER -->
   <div class="header">
     <div class="title">Rotasi · Mirror · Arah · Overlap</div>
     <div class="qno" id="qno">SOAL 1 / 9</div>
   </div>
 
+  <!-- SOAL -->
   <div class="soal">
     <div class="row" id="row"></div>
     <div class="opsi" id="opsi"></div>
@@ -108,88 +108,155 @@ body{
 </div>
 
 <script>
+/* ================= DATA ================= */
 const soal=[
-/* 1 rotasi */
-{
- row:[
-  [{c:'tr',t:''}],
-  [{c:'tr',t:'rot90'}],
-  []
- ],
- jawaban:[
-  ['A',[{c:'tr',t:'rot180'}]],
-  ['B',[{c:'tr',t:'rot90'}]],
-  ['C',[{c:'tr2',t:''}]],
-  ['D',[{c:'square',t:''}]]
- ],
- rat:'Rotasi searah jarum jam.'
+{ row:[
+    [{c:'tr',t:''}],
+    [{c:'tr',t:'rot90'}],[]],
+  jawaban:[
+    ['A',[{c:'tr',t:'rot180'}]],
+    ['B',[{c:'tr',t:'rot90'}]],
+    ['C',[{c:'tr2',t:''}]],
+    ['D',[{c:'square',t:''}]]
+  ],
+  rat:'Rotasi searah jarum jam.'
 },
-/* 2 mirror */
-{
- row:[
-  [{c:'tr',t:''}],
-  [{c:'tr',t:'mirror'}],
-  []
- ],
- jawaban:[
-  ['A',[{c:'tr',t:''}]],
-  ['B',[{c:'tr',t:'mirror'}]],
-  ['C',[{c:'tr2',t:''}]],
-  ['D',[{c:'square',t:''}]]
- ],
- rat:'Pencerminan horizontal.'
+{ row:[
+    [{c:'tr',t:''}],
+    [{c:'tr',t:'mirror'}],[]],
+  jawaban:[
+    ['A',[{c:'tr',t:''}]],
+    ['B',[{c:'tr',t:'mirror'}]],
+    ['C',[{c:'tr2',t:''}]],
+    ['D',[{c:'square',t:''}]]
+  ],
+  rat:'Pencerminan horizontal.'
 },
-/* 3 arah */
-{
- row:[
-  [{c:'tr',t:'up'}],
-  [{c:'tr',t:'right'}],
-  []
- ],
- jawaban:[
-  ['A',[{c:'tr',t:'down'}]],
-  ['B',[{c:'tr',t:'up'}]],
-  ['C',[{c:'tr',t:'left'}]],
-  ['D',[{c:'square',t:''}]]
- ],
- rat:'Perubahan arah berurutan.'
+{ row:[
+    [{c:'tr',t:'up'}],
+    [{c:'tr',t:'right'}],[]],
+  jawaban:[
+    ['A',[{c:'tr',t:'down'}]],
+    ['B',[{c:'tr',t:'up'}]],
+    ['C',[{c:'tr',t:'left'}]],
+    ['D',[{c:'square',t:''}]]
+  ],
+  rat:'Perubahan arah berurutan.'
 },
-/* 4 overlap */
-{
- row:[
-  [{c:'square',t:''}],
-  [{c:'square',t:''},{c:'half',t:'overlap'}],
-  []
- ],
- jawaban:[
-  ['A',[{c:'square',t:''},{c:'half',t:'overlap'}]],
-  ['B',[{c:'square',t:''}]],
-  ['C',[{c:'half',t:''}]],
-  ['D',[{c:'rect',t:''}]]
- ],
- rat:'Penambahan overlap.'
+{ row:[
+    [{c:'square',t:''}],
+    [{c:'square',t:''},{c:'half',t:'overlap'}],[]],
+  jawaban:[
+    ['A',[{c:'square',t:''},{c:'half',t:'overlap'}]],
+    ['B',[{c:'square',t:''}]],
+    ['C',[{c:'half',t:''}]],
+    ['D',[{c:'square',t:''}]]
+  ],
+  rat:'Penambahan overlap.'
 },
-/* 5 rotasi + mirror */
-{
- row:[
-  [{c:'tr',t:''}],
-  [{c:'tr',t:'rot90 mirror'}],
-  []
- ],
- jawaban:[
-  ['A',[{c:'tr',t:'rot180 mirror'}]],
-  ['B',[{c:'tr',t:'rot90'}]],
-  ['C',[{c:'tr2',t:''}]],
-  ['D',[{c:'square',t:''}]]
- ],
- rat:'Transformasi ganda.'
+{ row:[
+    [{c:'tr',t:''}],
+    [{c:'tr',t:'rot90 mirror'}],[]],
+  jawaban:[
+    ['A',[{c:'tr',t:'rot180 mirror'}]],
+    ['B',[{c:'tr',t:'rot90'}]],
+    ['C',[{c:'tr2',t:''}]],
+    ['D',[{c:'square',t:''}]]
+  ],
+  rat:'Rotasi + pencerminan.'
 },
-/* 6 arah konsisten */
-{
- row:[
-  [{c:'rect',t:'up'}],
-  [{c:'rect',t:'right'}],
-  []
- ],
- jawaban:[
-  ['A',[{c:'r]()]()
+{ row:[
+    [{c:'square',t:''}],
+    [{c:'square',t:''},{c:'square',t:'overlap'}],[]],
+  jawaban:[
+    ['A',[{c:'square',t:''},{c:'square',t:'overlap'},{c:'square',t:'overlap'}]],
+    ['B',[{c:'square',t:''}]],
+    ['C',[{c:'half',t:''}]],
+    ['D',[{c:'square',t:''}]]
+  ],
+  rat:'Overlap bertambah.'
+},
+{ row:[
+    [{c:'tr',t:''}],
+    [{c:'tr',t:'rot180'}],[]],
+  jawaban:[
+    ['A',[{c:'tr',t:'rot270'}]],
+    ['B',[{c:'tr',t:'rot90'}]],
+    ['C',[{c:'tr2',t:''}]],
+    ['D',[{c:'square',t:''}]]
+  ],
+  rat:'Rotasi konsisten.'
+},
+{ row:[
+    [{c:'tr',t:'right'}],
+    [{c:'tr',t:'right'},{c:'square',t:'overlap'}],[]],
+  jawaban:[
+    ['A',[{c:'tr',t:'right'},{c:'square',t:'overlap'},{c:'square',t:'overlap'}]],
+    ['B',[{c:'tr',t:'right'}]],
+    ['C',[{c:'square',t:''}]],
+    ['D',[{c:'square',t:''}]]
+  ],
+  rat:'Integrasi arah + overlap.'
+},
+{ row:[
+    [{c:'square',t:''}],
+    [{c:'square',t:'mirror'}],[]],
+  jawaban:[
+    ['A',[{c:'square',t:''}]],
+    ['B',[{c:'square',t:'mirror'}]],
+    ['C',[{c:'half',t:''}]],
+    ['D',[{c:'tr',t:''}]]
+  ],
+  rat:'Pencerminan akhir.'
+}
+];
+
+const rowEl=document.getElementById('row');
+const opsiEl=document.getElementById('opsi');
+const qno=document.getElementById('qno');
+const rat=document.getElementById('rat');
+let i=0, timer=null;
+
+/* ================= RENDER ================= */
+function kotak(arr,isQ=false){
+  const k=document.createElement('div');
+  k.className='kotak'+(isQ?' q':'');
+  if(isQ){k.textContent='?';return k;}
+  arr.forEach(o=>{
+    const s=document.createElement('div');
+    s.className=o.c+(o.t?' '+o.t:'');
+    k.appendChild(s);
+  });
+  return k;
+}
+function render(){
+  qno.textContent=`SOAL ${i+1} / 9`;
+  rowEl.innerHTML='';opsiEl.innerHTML='';rat.textContent=soal[i].rat;
+  rowEl.appendChild(kotak(soal[i].row[0]));
+  rowEl.appendChild(kotak(soal[i].row[1]));
+  rowEl.appendChild(kotak([],true));
+  soal[i].jawaban.forEach(o=>{
+    const w=document.createElement('div');w.className='opt';
+    const l=document.createElement('div');l.className='lab';l.textContent=o[0];
+    w.appendChild(l);w.appendChild(kotak(o[1]));opsiEl.appendChild(w);
+  });
+}
+
+/* ================= FLOW ================= */
+function startQuiz(){
+  render();
+  timer=setInterval(()=>{
+    i=(i+1)%soal.length;
+    render();
+  },4200);
+}
+
+/* ===== HOOK CONTROL ===== */
+setTimeout(()=>{
+  document.getElementById('hook').remove();
+  startQuiz();
+},3500);
+</script>
+
+</body>
+</html>
