@@ -10,8 +10,10 @@ body{margin:0;background:#000;font-family:Segoe UI, system-ui,sans-serif;display
 .phone{width:360px;height:640px;background:#0b0b0b;border-radius:38px;position:relative;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.7);border:4px solid #3399ff}
 .screen{position:absolute;inset:0;padding:26px;display:none}
 .screen.active{display:block}
-.hook{font-size:28px;font-weight:900;text-align:center;margin-top:180px;animation:shake 0.1s 6 alternate}
+/* HOOK ROCKY COLOR */
+.hook{font-size:28px;font-weight:900;text-align:center;margin-top:180px;animation:shake 0.1s 6 alternate,colorchange 0.2s infinite alternate}
 @keyframes shake{0%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}}
+@keyframes colorchange{0%{color:#ff5555}25%{color:#55ff55}50%{color:#5555ff}75%{color:#ffff55}100%{color:#ff55ff}}
 .soal{background:#141414;padding:20px;border-radius:16px;font-size:18px;line-height:1.55;text-align:center;color:#fff}
 .opsi{margin-top:20px;display:flex;flex-direction:column;gap:14px;align-items:center}
 .opsi div{background:#1f1f1f;padding:15px;border-radius:14px;font-size:17px;cursor:pointer;transform:scale(0.8);opacity:0;transition:transform 0.35s, opacity 0.35s;color:#fff}
