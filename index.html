@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT LOGIC – HARD MODE</title>
+<title>UTBK TOP 1% – HARDCORE LOGIC</title>
 
 <style>
 *{box-sizing:border-box}
@@ -35,12 +35,22 @@ body{
 
 /* TYPO */
 .hook{
-  font-size:30px;
+  font-size:32px;
   font-weight:900;
   text-align:center;
-  line-height:1.15;
-  margin-top:190px;
+  line-height:1.1;
+  margin-top:180px;
+  animation: shake 0.1s 6 alternate;
 }
+@keyframes shake{
+  0%{transform:translateX(0);}
+  20%{transform:translateX(-6px);}
+  40%{transform:translateX(6px);}
+  60%{transform:translateX(-4px);}
+  80%{transform:translateX(4px);}
+  100%{transform:translateX(0);}
+}
+
 .soal{
   background:#141414;
   padding:20px;
@@ -82,10 +92,11 @@ body{
 <body>
 <div class="phone">
 
-<!-- ===== HOOK 0 (1.5 DETIK) -->
+<!-- ===== HOOK SHAKE 0 -->
 <div class="screen active">
   <div class="hook">
-    KALAU KAMU JAWAB CEPAT,<br>PASTI SALAH.
+    UTBK TOP 1%<br>
+    HANYA UNTUK YANG BERANI
   </div>
 </div>
 
@@ -93,8 +104,7 @@ body{
 <div class="screen">
   <div class="level">LEVEL 1 — IMPLIKASI</div>
   <div class="soal">
-    Jika <b>p → q</b> bernilai SALAH,<br>
-    maka kondisi yang PASTI benar adalah?
+    Jika <b>p → q</b> salah, maka kondisi yang pasti?
   </div>
   <div class="opsi">
     <div>A. p benar, q salah</div>
@@ -110,19 +120,19 @@ body{
   <div class="soal">
     Semua A adalah B.<br>
     Tidak ada B yang C.<br>
-    Maka:
+    Kesimpulan?
   </div>
   <div class="opsi">
     <div>A. Semua A bukan C</div>
     <div>B. Sebagian A C</div>
     <div>C. Tidak bisa ditentukan</div>
   </div>
-  <div class="overlay">Relasi himpunan.</div>
+  <div class="overlay">Hati-hati jebakan klasik.</div>
 </div>
 
 <!-- ===== QUIZ 3 -->
 <div class="screen">
-  <div class="level">LEVEL 3 — NEGASI</div>
+  <div class="level">LEVEL 3 — NEGASI & KUANTOR</div>
   <div class="soal">
     Negasi dari:<br>
     “Semua mahasiswa lulus”
@@ -132,89 +142,87 @@ body{
     <div>B. Sebagian mahasiswa tidak lulus</div>
     <div>C. Semua mahasiswa tidak lulus</div>
   </div>
-  <div class="overlay">Kesalahan SNBT paling sering.</div>
+  <div class="overlay">Baca setiap kata.</div>
 </div>
 
 <!-- ===== QUIZ 4 -->
 <div class="screen">
-  <div class="level">LEVEL 4 — POLA LOGIKA</div>
+  <div class="level">LEVEL 4 — POLA MATEMATIS</div>
   <div class="soal">
-    Jika hari ini Jumat,<br>
-    2026 hari lagi adalah hari?
+    Hitung hari:<br>
+    Jika hari ini Senin, 1000 hari lagi?
   </div>
   <div class="opsi">
-    <div>A. Senin</div>
+    <div>A. Sabtu</div>
     <div>B. Selasa</div>
     <div>C. Rabu</div>
     <div>D. Kamis</div>
   </div>
-  <div class="overlay">Modulo 7. Jangan hitung manual.</div>
+  <div class="overlay">Modulo 7, jangan nebak.</div>
 </div>
 
 <!-- ===== QUIZ 5 -->
 <div class="screen">
-  <div class="level">LEVEL 5 — KUANTOR</div>
+  <div class="level">LEVEL 5 — ASUMSI</div>
   <div class="soal">
-    Pernyataan berikut BENAR, kecuali:
+    Pernyataan: “Semua siswa rajin lulus”<br>
+    Asumsi minimal agar benar?
   </div>
   <div class="opsi">
-    <div>A. Semua bilangan prima > 2 adalah ganjil</div>
-    <div>B. Semua bilangan genap habis dibagi 2</div>
-    <div>C. Semua bilangan ganjil adalah prima</div>
+    <div>A. Tidak ada siswa rajin gagal</div>
+    <div>B. Semua yang lulus rajin</div>
+    <div>C. Semua siswa pintar</div>
   </div>
-  <div class="overlay">Baca satu-satu.</div>
+  <div class="overlay">Asumsi logika.</div>
 </div>
 
 <!-- ===== QUIZ 6 -->
 <div class="screen">
-  <div class="level">LEVEL 6 — ANALOGI</div>
+  <div class="level">LEVEL 6 — ANALOGI KETAT</div>
   <div class="soal">
-    Dokter : Rumah Sakit =<br>
-    Guru :
+    Dokter : Rumah Sakit = Guru :
   </div>
   <div class="opsi">
     <div>A. Murid</div>
     <div>B. Sekolah</div>
     <div>C. Buku</div>
   </div>
-  <div class="overlay">Relasi profesi–tempat.</div>
+  <div class="overlay">Relasi benar-benar simetris.</div>
 </div>
 
 <!-- ===== QUIZ 7 -->
 <div class="screen">
-  <div class="level">LEVEL 7 — ASUMSI</div>
+  <div class="level">LEVEL 7 — KONTRADIKSI</div>
   <div class="soal">
-    “Semua siswa rajin lulus.”<br>
-    Agar pernyataan ini benar, harus diasumsikan:
-  </div>
-  <div class="opsi">
-    <div>A. Semua yang lulus rajin</div>
-    <div>B. Tidak ada siswa rajin gagal</div>
-    <div>C. Semua siswa rajin pintar</div>
-  </div>
-  <div class="overlay">Asumsi minimal.</div>
-</div>
-
-<!-- ===== QUIZ 8 -->
-<div class="screen">
-  <div class="level">LEVEL 8 — KONSISTENSI</div>
-  <div class="soal">
-    Jika pernyataan ini salah,<br>
-    maka pernyataan ini…
+    Pernyataan salah → implikasi?
   </div>
   <div class="opsi">
     <div>A. Benar</div>
     <div>B. Salah</div>
     <div>C. Paradoks</div>
   </div>
-  <div class="overlay">Self-reference.</div>
+  <div class="overlay">Self-reference jebakan.</div>
 </div>
 
-<!-- ===== QUIZ 9 (FINAL CTA 1) -->
+<!-- ===== QUIZ 8 -->
+<div class="screen">
+  <div class="level">LEVEL 8 — LOGIKA SIRKULAR</div>
+  <div class="soal">
+    Jika <b>p ↔ q</b> salah, maka…
+  </div>
+  <div class="opsi">
+    <div>A. p benar, q salah</div>
+    <div>B. p salah, q benar</div>
+    <div>C. p = q</div>
+  </div>
+  <div class="overlay">Hati-hati jebakan sirkular.</div>
+</div>
+
+<!-- ===== QUIZ 9 — FINAL CTA 1 -->
 <div class="screen">
   <div class="level">LEVEL 9 — FINAL</div>
   <div class="soal">
-    Yang PALING menentukan skor SNBT:
+    Yang PALING menentukan skor UTBK top 1%:
   </div>
   <div class="opsi">
     <div>A. Cepat menjawab</div>
@@ -222,7 +230,7 @@ body{
     <div>C. Urutan berpikir benar</div>
   </div>
   <div class="overlay show">
-    CTA 1: Kamu jatuh di level berapa?
+    CTA 1: Kamu jatuh di level berapa? Refleksi sekarang!
   </div>
 </div>
 
@@ -235,13 +243,13 @@ function play(){
   screens.forEach(s=>s.classList.remove('active'));
   screens[i].classList.add('active');
   const o=screens[i].querySelector('.overlay');
-  if(o) setTimeout(()=>o.classList.add('show'),600);
+  if(o) setTimeout(()=>o.classList.add('show'),500);
   i++;
 }
 let t=0;
 screens.forEach(()=>{
   setTimeout(play,t);
-  t+=3200; // TEMPO CEPAT = RETENSI
+  t+=3000; // cepat & rocky
 });
 </script>
 
