@@ -3,29 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT LOGIKA FIGURAL – KONTAINER</title>
+<title>SNBT LOGIKA FIGURAL – HIMPUNAN</title>
 <style>
 *{box-sizing:border-box;}
 body{margin:0;background:#000;font-family:Segoe UI,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;color:#fff;}
 .phone{width:360px;height:640px;background:#0b0b0b;border-radius:38px;position:relative;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.7);border:4px solid #3399ff;}
-.screen{position:absolute;inset:0;padding:26px;display:none;flex-direction:column;align-items:center}
+.screen{position:absolute;inset:0;padding:20px;display:none;flex-direction:column;align-items:center}
 .screen.active{display:flex}
 .hook{font-size:24px;font-weight:900;text-align:center;margin-top:40px;animation:shake 0.1s 6 alternate,colorchange 0.2s infinite alternate;}
 @keyframes shake{0%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}}
 @keyframes colorchange{0%{color:#ff5555}25%{color:#55ff55}50%{color:#5555ff}75%{color:#ffff55}100%{color:#ff55ff}}
-.soal-container{display:flex;gap:20px;justify-content:center;margin-top:30px}
+.level{position:absolute;top:14px;left:18px;font-size:12px;opacity:.55;letter-spacing:.5px;color:#ccc;}
+.soal-container{display:flex;flex-direction:column;align-items:center;gap:20px;margin-top:30px;}
+.himpunan-row{display:flex;gap:15px;justify-content:center;}
 .kotak{width:120px;height:120px;background:#1f1f1f;border:2px solid #fff;border-radius:8px;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:4px;position:relative;}
+.kotak-empty{border-style:dashed;color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;}
 .shape{width:30px;height:30px;background:#fff;}
 .shape.circle{border-radius:50%;}
 .shape.triangle-right{width:0;height:0;border-left:30px solid #fff;border-top:15px solid transparent;border-bottom:15px solid transparent;}
+.shape.half-circle{width:30px;height:15px;background:#fff;border-radius:15px 15px 0 0;}
 .shape.rectangle{width:30px;height:15px;background:#fff;}
 .shape.rectangle-striped{width:30px;height:15px;background:repeating-linear-gradient(45deg,#fff 0 2px,transparent 2px 4px);}
-.opsi{margin-top:20px;display:flex;flex-direction:row;gap:10px;align-items:center;justify-content:center;}
+.opsi{margin-top:20px;display:flex;flex-direction:row;gap:10px;justify-content:center;align-items:center;}
 .opsi .kotak-op{transform:scale(0.8);opacity:0;transition:transform 0.35s,opacity 0.35s;}
 .opsi .kotak-op.show{transform:scale(1);opacity:1;}
 .overlay{margin-top:15px;font-size:14px;opacity:0;transition:.35s;text-align:center;color:#fff;}
 .overlay.show{opacity:1;}
-.level{position:absolute;top:14px;left:18px;font-size:12px;opacity:.55;letter-spacing:.5px;color:#ccc;}
 </style>
 </head>
 <body>
@@ -33,116 +36,158 @@ body{margin:0;background:#000;font-family:Segoe UI,sans-serif;display:flex;justi
 
 <!-- HOOK -->
 <div class="screen active">
-  <div class="hook">SNBT LOGIKA FIGURAL<br>9 SOAL KONTAINER</div>
+  <div class="hook">SNBT LOGIKA FIGURAL HIMPUNAN<br>Operasi Bilangan & Perbandingan</div>
 </div>
 
 <!-- ==== SOAL 1 ==== -->
 <div class="screen">
-  <div class="level">LEVEL 1 — SEBANDING KOTAK</div>
+  <div class="level">LEVEL 1 — PERBANDINGAN ×2</div>
   <div class="soal-container">
-    <!-- Kotak acuan -->
-    <div class="kotak">
-      <div class="shape triangle-right"></div>
-      <div class="shape rectangle"></div>
-      <div class="shape rectangle"></div>
-      <div class="shape rectangle-striped"></div>
-    </div>
-    <!-- Kotak pertanyaan -->
-    <div class="kotak" style="border-style:dashed;justify-content:center;align-items:center;font-size:24px;color:#fff;">?</div>
-  </div>
-  <div class="opsi">
-    <div class="kotak-op">
-      <div class="kotak">
-        <div class="shape triangle-right"></div>
-        <div class="shape rectangle"></div>
-        <div class="shape rectangle"></div>
-        <div class="shape rectangle-striped"></div>
-      </div>
-    </div>
-    <div class="kotak-op">
+    <div class="himpunan-row">
+      <!-- Himpunan Acuan -->
       <div class="kotak">
         <div class="shape triangle-right"></div>
         <div class="shape rectangle"></div>
         <div class="shape rectangle-striped"></div>
-        <div class="shape rectangle"></div>
       </div>
+      <!-- Himpunan Pertanyaan -->
+      <div class="kotak kotak-empty">?</div>
     </div>
-    <div class="kotak-op">
-      <div class="kotak">
-        <div class="shape rectangle"></div>
-        <div class="shape triangle-right"></div>
-        <div class="shape rectangle"></div>
-        <div class="shape rectangle-striped"></div>
+    <div class="opsi">
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape triangle-right"></div>
+          <div class="shape rectangle"></div>
+          <div class="shape rectangle-striped"></div>
+          <div class="shape triangle-right"></div>
+          <div class="shape rectangle"></div>
+          <div class="shape rectangle-striped"></div>
+        </div>
       </div>
-    </div>
-    <div class="kotak-op">
-      <div class="kotak">
-        <div class="shape triangle-right"></div>
-        <div class="shape rectangle"></div>
-        <div class="shape rectangle"></div>
-        <div class="shape rectangle"></div>
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape triangle-right"></div>
+          <div class="shape rectangle"></div>
+          <div class="shape rectangle-striped"></div>
+        </div>
+      </div>
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape triangle-right"></div>
+          <div class="shape rectangle"></div>
+        </div>
+      </div>
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape rectangle"></div>
+          <div class="shape rectangle-striped"></div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="overlay">Pilih kotak yang sebanding dengan acuan (isi & pola arsir).</div>
+  <div class="overlay">Himpunan ×2 berarti gabungkan elemen acuan sebanyak 2 kali.</div>
 </div>
 
 <!-- ==== SOAL 2 ==== -->
 <div class="screen">
-  <div class="level">LEVEL 2 — SEBANDING KOTAK</div>
+  <div class="level">LEVEL 2 — PENJUMLAHAN HIMPUNAN</div>
   <div class="soal-container">
-    <div class="kotak">
-      <div class="shape triangle-right"></div>
-      <div class="shape triangle-right"></div>
-      <div class="shape rectangle"></div>
-      <div class="shape rectangle-striped"></div>
-    </div>
-    <div class="kotak" style="border-style:dashed;justify-content:center;align-items:center;font-size:24px;color:#fff;">?</div>
-  </div>
-  <div class="opsi">
-    <div class="kotak-op">
+    <div class="himpunan-row">
       <div class="kotak">
         <div class="shape triangle-right"></div>
-        <div class="shape triangle-right"></div>
         <div class="shape rectangle"></div>
+      </div>
+      <div class="kotak">
+        <div class="shape half-circle"></div>
         <div class="shape rectangle-striped"></div>
       </div>
+      <div class="kotak kotak-empty">?</div>
     </div>
-    <div class="kotak-op">
-      <div class="kotak">
-        <div class="shape triangle-right"></div>
-        <div class="shape rectangle"></div>
-        <div class="shape rectangle"></div>
-        <div class="shape rectangle-striped"></div>
+    <div class="opsi">
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape triangle-right"></div>
+          <div class="shape rectangle"></div>
+          <div class="shape half-circle"></div>
+          <div class="shape rectangle-striped"></div>
+        </div>
       </div>
-    </div>
-    <div class="kotak-op">
-      <div class="kotak">
-        <div class="shape rectangle"></div>
-        <div class="shape triangle-right"></div>
-        <div class="shape rectangle"></div>
-        <div class="shape rectangle-striped"></div>
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape triangle-right"></div>
+          <div class="shape rectangle"></div>
+        </div>
       </div>
-    </div>
-    <div class="kotak-op">
-      <div class="kotak">
-        <div class="shape triangle-right"></div>
-        <div class="shape rectangle"></div>
-        <div class="shape rectangle-striped"></div>
-        <div class="shape rectangle"></div>
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape half-circle"></div>
+          <div class="shape rectangle-striped"></div>
+        </div>
+      </div>
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape rectangle"></div>
+          <div class="shape rectangle-striped"></div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="overlay">Perhatikan jumlah dan jenis bentuk, serta arsiran di dalam kotak.</div>
+  <div class="overlay">Himpunan gabungan = jumlah semua elemen dari himpunan yang dijumlahkan.</div>
 </div>
 
-<!-- ==== SOAL 3 hingga 9 bisa diulang dengan pola serupa ==== -->
-<!-- Untuk demo saya buat tiga soal, bisa di-copy dan ganti bentuk / arsir untuk 9 soal -->
+<!-- ==== SOAL 3 ==== -->
+<div class="screen">
+  <div class="level">LEVEL 3 — PERBANDINGAN PROPORSIONAL</div>
+  <div class="soal-container">
+    <div class="himpunan-row">
+      <div class="kotak">
+        <div class="shape triangle-right"></div>
+        <div class="shape rectangle"></div>
+        <div class="shape rectangle-striped"></div>
+      </div>
+      <div class="kotak">
+        <div class="shape half-circle"></div>
+        <div class="shape rectangle"></div>
+        <div class="shape rectangle-striped"></div>
+      </div>
+      <div class="kotak kotak-empty">?</div>
+    </div>
+    <div class="opsi">
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape triangle-right"></div>
+          <div class="shape rectangle"></div>
+          <div class="shape rectangle-striped"></div>
+          <div class="shape half-circle"></div>
+          <div class="shape rectangle"></div>
+          <div class="shape rectangle-striped"></div>
+        </div>
+      </div>
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape triangle-right"></div>
+          <div class="shape rectangle"></div>
+        </div>
+      </div>
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape half-circle"></div>
+        </div>
+      </div>
+      <div class="kotak-op">
+        <div class="kotak">
+          <div class="shape rectangle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay">Pilih himpunan yang **proporsional** sesuai jumlah dan jenis elemen himpunan sebelumnya.</div>
+</div>
 
 </div>
 
 <script>
-const screens=[...document.querySelectorAll('.screen')];
+const screens = [...document.querySelectorAll('.screen')];
 let idx=0;
 let timeouts=[];
 
@@ -157,20 +202,19 @@ function showScreen(i){
     const overlay=s.querySelector('.overlay');
     if(overlay) overlay.classList.remove('show');
   });
-
-  const screen=screens[i];
+  const screen = screens[i];
   screen.classList.add('active');
-  const opsi=screen.querySelectorAll('.kotak-op');
+  const opsi = screen.querySelectorAll('.kotak-op');
   opsi.forEach((o,j)=>timeouts.push(setTimeout(()=>o.classList.add('show'),400*j)));
-  const overlay=screen.querySelector('.overlay');
+  const overlay = screen.querySelector('.overlay');
   if(overlay) timeouts.push(setTimeout(()=>overlay.classList.add('show'),400*opsi.length+400));
 }
 
 function loopScreens(){
   showScreen(idx);
-  const currentScreen=screens[idx];
-  const opsiCount=currentScreen.querySelectorAll('.kotak-op').length;
-  const totalDuration=400*opsiCount+400+2000;
+  const currentScreen = screens[idx];
+  const opsiCount = currentScreen.querySelectorAll('.kotak-op').length;
+  const totalDuration = 400*opsiCount+400+2000;
   idx=(idx+1)%screens.length;
   setTimeout(loopScreens,totalDuration);
 }
