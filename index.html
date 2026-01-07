@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CORE SERIES Level 3 - Final Clean</title>
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #eee;
+}
+.phone-frame {
+  width: 360px;
+  height: 640px;
+  background: #222;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
+.screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.soal {
+  font-size: 16px;
+  line-height: 1.5;
+  background: #333;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.jawaban { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.jawaban div { background: #555; padding: 10px; border-radius: 8px; }
+.text-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 320px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.fade-in { opacity: 1 !important; }
+.list-small {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 10px;
+  color: #aaa;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.list-small.show { opacity: 1; }
+.level { display: none; }
+.level.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+
+  <!-- LEVEL 3.1 – 3.5 (TIDAK DIUBAH) -->
+  <!-- [ISI SAMA PERSIS DENGAN KODE KAMU] -->
+
+  <!-- ===== LEVEL 3.6: CTA TINGKAT 1 ===== -->
+  <div class="screen level" id="level3-6">
+    <div class="soal">
+      Bukan soal ini yang menentukan.
+    </div>
+
+    <div class="text-overlay" id="overlay6-1">
+      Di langkah mana kamu biasanya jatuh?
+    </div>
+
+    <div class="list-small" id="list6">
+      <div>Konsep</div>
+      <div>Domain</div>
+      <div>Opsi</div>
+      <div>Eliminasi</div>
+      <div>Validasi</div>
+      <div>Logika</div>
+      <div>Konfirmasi</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const levels = [
+  "level3-1",
+  "level3-2",
+  "level3-3",
+  "level3-4",
+  "level3-5",
+  "level3-6"
+];
+
+function showLevel(idx){
+  levels.forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById(levels[idx]).classList.add('active');
+}
+
+function runLevel(idx){
+  showLevel(idx);
+  const level = document.getElementById(levels[idx]);
+  const overlays = level.querySelectorAll(".text-overlay");
+  const listSmall = level.querySelector(".list-small");
+
+  overlays.forEach(o=>o.classList.remove('fade-in'));
+  if(listSmall) listSmall.classList.remove('show');
+
+  let timeline=[];
+  switch(idx){
+    case 0: timeline=[1500,3000,7500,11500]; break;
+    case 1: timeline=[1500,4500,7500]; break;
+    case 2: timeline=[1500,4000,7500,11500]; break;
+    case 3: timeline=[1500,3000,4500,6000,7500,9000,12000]; break;
+    case 4: timeline=[1500,5000,10000,14000]; break;
+    case 5: timeline=[1500]; break; // CTA LEVEL 1
+  }
+
+  overlays.forEach((o,i)=>{
+    setTimeout(()=>{
+      overlays.forEach(x=>x.classList.remove('fade-in'));
+      o.classList.add('fade-in');
+      if(i===overlays.length-1 && listSmall) listSmall.classList.add('show');
+    }, timeline[i] || 1500);
+  });
+
+  // LEVEL 3.6 = STOP (biar linger / loop alami)
+  if(idx < levels.length-1){
+    setTimeout(()=> runLevel(idx+1), 18000);
+  }
+}
+
+runLevel(0);
+</script>
+
+</body>
+</html>
