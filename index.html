@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UTBK TOP 1% – HARDCORE LOGIC</title>
+<title>UTBK TOP 1% – LOOP HARDCORE</title>
 
 <style>
 *{box-sizing:border-box}
@@ -245,12 +245,9 @@ function play(){
   const o=screens[i].querySelector('.overlay');
   if(o) setTimeout(()=>o.classList.add('show'),500);
   i++;
+  if(i>=screens.length) i=0; // LOOP AUTO REPLAY
 }
-let t=0;
-screens.forEach(()=>{
-  setTimeout(play,t);
-  t+=3000; // cepat & rocky
-});
+setInterval(play, 3200); // TEMPO CEPAT = RETENSI
 </script>
 
 </body>
