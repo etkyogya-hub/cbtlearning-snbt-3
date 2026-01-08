@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TikTok FYP – AllAdvice</title>
+<title>TikTok FYP Ultra – AllAdvice</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -14,20 +14,16 @@ html,body{
   color:#fff;
 }
 
-/* ================= PHONE MOCKUP ================= */
-.phone-wrap{
-  width:100%;height:100%;
-  display:flex;justify-content:center;align-items:center;
-}
+/* PHONE */
+.phone-wrap{width:100%;height:100%;display:flex;justify-content:center;align-items:center}
 .phone{
   width:360px;height:640px;
   border-radius:36px;border:8px solid #111;
   box-shadow:0 0 40px rgba(0,0,0,.9);
   position:relative;overflow:hidden;
-  background:#000;
 }
 
-/* ================= SAFE ZONE ================= */
+/* SAFE ZONE */
 .safe{
   position:absolute;
   top:70px;bottom:90px;
@@ -38,7 +34,16 @@ html,body{
   text-align:center;
 }
 
-/* ================= UI TIKTOK ================= */
+/* TEXT */
+.level{font-size:14px;letter-spacing:2px;opacity:.7}
+.hook{font-size:26px;margin-top:8px}
+.main{font-size:19px;line-height:1.4;margin-top:18px}
+.option{font-size:17px;margin-top:6px}
+.small{font-size:14px;opacity:.85;margin-top:10px}
+.danger{color:#ff3b3b;text-shadow:0 0 10px rgba(255,0,0,.4)}
+.lock{border:2px solid #fff;padding:12px}
+
+/* UI TIKTOK LIVE */
 .ui-live{
   position:absolute;
   right:12px;
@@ -49,35 +54,33 @@ html,body{
   font-size:14px;
   opacity:.85;
 }
-.ui-item{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:4px;
+.ui-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+
+/* COMMENT BUBBLE */
+.comment-bubble{
+  position:absolute;
+  right:72px;
+  top:260px;
+  max-width:200px;
+  padding:10px 12px;
+  background:rgba(30,30,30,.95);
+  border-radius:14px;
+  font-size:13px;
+  line-height:1.3;
+  box-shadow:0 4px 12px rgba(0,0,0,.6);
+  opacity:0;
 }
-.like-pop{animation:likePop .35s ease-out}
-@keyframes likePop{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.35)}
-  100%{transform:scale(1)}
-}
-.share-float{animation:shareFloat .8s ease-out}
-@keyframes shareFloat{
-  0%{transform:translateY(0);opacity:1}
-  100%{transform:translateY(-12px);opacity:0}
+.comment-bubble::after{
+  content:"";
+  position:absolute;
+  right:-6px;
+  top:18px;
+  border-top:6px solid transparent;
+  border-bottom:6px solid transparent;
+  border-left:6px solid rgba(30,30,30,.95);
 }
 
-/* ================= TEXT ================= */
-.level{font-size:14px;letter-spacing:2px;opacity:.7}
-.hook{font-size:26px;margin-top:8px}
-.main{font-size:19px;line-height:1.4;margin-top:18px}
-.option{font-size:17px;margin-top:6px}
-.small{font-size:14px;opacity:.85;margin-top:10px}
-
-.danger{color:#ff3b3b;text-shadow:0 0 10px rgba(255,0,0,.4)}
-.lock{border:2px solid #fff;padding:12px}
-
-/* ================= FX ================= */
+/* FX */
 .hidden{display:none}
 @keyframes shock{
   0%{transform:scale(.5);opacity:0}
@@ -92,10 +95,31 @@ html,body{
   100%{transform:translate(0)}
 }
 @keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes likePop{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.35)}
+  100%{transform:scale(1)}
+}
+@keyframes shareFloat{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-12px);opacity:0}
+}
+@keyframes commentIn{
+  from{transform:translateX(12px);opacity:0}
+  to{transform:translateX(0);opacity:1}
+}
+@keyframes commentOut{
+  from{opacity:1}
+  to{opacity:0}
+}
 
 .shock{animation:shock .35s ease-out forwards}
 .shake{animation:shake .3s infinite}
 .fade{animation:fade .5s ease forwards}
+.like-pop{animation:likePop .35s ease-out}
+.share-float{animation:shareFloat .8s ease-out}
+.comment-show{animation:commentIn .4s ease-out forwards}
+.comment-hide{animation:commentOut .4s ease-out forwards}
 </style>
 </head>
 
@@ -109,6 +133,11 @@ html,body{
   <div class="ui-item">❤️ <span id="likeCount">1.2K</span></div>
   <div class="ui-item">💬 <span>87</span></div>
   <div class="ui-item" id="shareBtn">↗ <span>Share</span></div>
+</div>
+
+<!-- COMMENT -->
+<div id="commentBubble" class="comment-bubble hidden">
+  “Aku yakin B, tapi kok ragu…”
 </div>
 
 <!-- SAFE CONTENT -->
@@ -155,7 +184,7 @@ html,body{
 </div>
 
 <script>
-/* ================= TIMELINE ================= */
+/* TIMELINE */
 setTimeout(()=>{hook.classList.remove("hidden");hook.classList.add("shock","shake")},100);
 setTimeout(()=>{hook.classList.remove("shake");threat.classList.remove("hidden")},1600);
 setTimeout(()=>{q.classList.remove("hidden");q.classList.add("fade")},4000);
@@ -164,27 +193,32 @@ setTimeout(()=>{doubt.classList.remove("hidden");doubt.classList.add("fade")},18
 setTimeout(()=>{final.classList.remove("hidden");final.classList.add("shock")},52000);
 setTimeout(()=>{cta.classList.remove("hidden");cta.classList.add("fade")},56000);
 
-/* ================= UI LIVE ================= */
+/* LIKE NAIK */
 let like = 1200;
 const likeEl = document.getElementById("likeCount");
-const shareBtn = document.getElementById("shareBtn");
-
-/* LIKE NAIK PELAN */
 setTimeout(()=>{
-  const likeInterval = setInterval(()=>{
+  const li = setInterval(()=>{
     like += Math.floor(Math.random()*3)+1;
     likeEl.innerText = (like/1000).toFixed(1)+"K";
     likeEl.parentElement.classList.add("like-pop");
     setTimeout(()=>likeEl.parentElement.classList.remove("like-pop"),300);
   },2200);
-  setTimeout(()=>clearInterval(likeInterval),24000);
+  setTimeout(()=>clearInterval(li),24000);
 },6000);
 
-/* SHARE SEKALI */
+/* SHARE 1x */
 setTimeout(()=>{
   shareBtn.classList.add("share-float");
   setTimeout(()=>shareBtn.classList.remove("share-float"),800);
 },18000);
+
+/* COMMENT BUBBLE 1x */
+const comment = document.getElementById("commentBubble");
+setTimeout(()=>{
+  comment.classList.remove("hidden");
+  comment.classList.add("comment-show");
+  setTimeout(()=>comment.classList.add("comment-hide"),2600);
+},20000);
 </script>
 
 </body>
