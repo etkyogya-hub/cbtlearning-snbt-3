@@ -3,87 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FYP HUNTER – MOCKUP</title>
+<title>TikTok FYP – AllAdvice</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 html,body{
-  width:100%;
-  height:100%;
-  background:#000;
-  overflow:hidden;
+  width:100%;height:100%;
+  background:#000;overflow:hidden;
   font-family:Impact, Arial Black, sans-serif;
   color:#fff;
 }
 
 /* ================= PHONE MOCKUP ================= */
 .phone-wrap{
-  width:100%;
-  height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  width:100%;height:100%;
+  display:flex;justify-content:center;align-items:center;
 }
-
 .phone{
-  position:relative;
-  width:360px;
-  height:640px;
-  background:#000;
-  border-radius:36px;
-  border:8px solid #111;
+  width:360px;height:640px;
+  border-radius:36px;border:8px solid #111;
   box-shadow:0 0 40px rgba(0,0,0,.9);
-  overflow:hidden;
+  position:relative;overflow:hidden;
+  background:#000;
 }
 
-/* SAFE AREA (TIKTOK REAL) */
+/* ================= SAFE ZONE ================= */
 .safe{
   position:absolute;
-  top:70px;
-  bottom:90px;
-  left:20px;
-  right:70px;
+  top:70px;bottom:90px;
+  left:20px;right:70px;
   display:flex;
-  justify-content:center;
+  flex-direction:column;
   align-items:center;
   text-align:center;
-  padding:12px;
 }
 
-/* ================= UI TIKTOK (DUMMY) ================= */
-.ui-right{
+/* ================= UI TIKTOK ================= */
+.ui-live{
   position:absolute;
-  top:120px;
-  right:15px;
+  right:12px;
+  top:140px;
   display:flex;
   flex-direction:column;
   gap:18px;
-  opacity:.75;
+  font-size:14px;
+  opacity:.85;
 }
-.ui-dot{
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  background:#222;
+.ui-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.like-pop{animation:likePop .35s ease-out}
+@keyframes likePop{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.35)}
+  100%{transform:scale(1)}
+}
+.share-float{animation:shareFloat .8s ease-out}
+@keyframes shareFloat{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-12px);opacity:0}
 }
 
 /* ================= TEXT ================= */
-.hook{font-size:28px;letter-spacing:2px}
-.main{font-size:19px;line-height:1.4}
+.level{font-size:14px;letter-spacing:2px;opacity:.7}
+.hook{font-size:26px;margin-top:8px}
+.main{font-size:19px;line-height:1.4;margin-top:18px}
 .option{font-size:17px;margin-top:6px}
-.small{font-size:14px;opacity:.85}
+.small{font-size:14px;opacity:.85;margin-top:10px}
 
-.danger{
-  color:#ff3b3b;
-  text-shadow:0 0 10px rgba(255,0,0,.4);
-}
-.lock{
-  border:2px solid #fff;
-  padding:12px;
-}
+.danger{color:#ff3b3b;text-shadow:0 0 10px rgba(255,0,0,.4)}
+.lock{border:2px solid #fff;padding:12px}
 
 /* ================= FX ================= */
+.hidden{display:none}
 @keyframes shock{
   0%{transform:scale(.5);opacity:0}
   70%{transform:scale(1.15);opacity:1}
@@ -96,19 +91,10 @@ html,body{
   75%{transform:translate(-1px,1px)}
   100%{transform:translate(0)}
 }
-@keyframes blink{
-  0%,100%{opacity:1}
-  50%{opacity:.25}
-}
-@keyframes fade{
-  from{opacity:0}
-  to{opacity:1}
-}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 
-.hidden{display:none}
 .shock{animation:shock .35s ease-out forwards}
 .shake{animation:shake .3s infinite}
-.blink{animation:blink .9s infinite}
 .fade{animation:fade .5s ease forwards}
 </style>
 </head>
@@ -116,66 +102,89 @@ html,body{
 <body>
 
 <div class="phone-wrap">
-  <div class="phone">
+<div class="phone">
 
-    <!-- UI TIKTOK -->
-    <div class="ui-right">
-      <div class="ui-dot"></div>
-      <div class="ui-dot"></div>
-      <div class="ui-dot"></div>
-      <div class="ui-dot"></div>
-    </div>
+<!-- UI TIKTOK LIVE -->
+<div class="ui-live">
+  <div class="ui-item">❤️ <span id="likeCount">1.2K</span></div>
+  <div class="ui-item">💬 <span>87</span></div>
+  <div class="ui-item" id="shareBtn">↗ <span>Share</span></div>
+</div>
 
-    <!-- SAFE CONTENT -->
-    <div class="safe">
+<!-- SAFE CONTENT -->
+<div class="safe">
 
-      <div id="hook" class="hook hidden danger">
-        JANGAN JAWAB CEPAT
-      </div>
+<div class="level">LEVEL 9</div>
 
-      <div id="threat" class="small hidden danger blink" style="margin-top:10px">
-        TERBURU-BURU = SALAH
-      </div>
+<div id="hook" class="hook hidden danger">
+  JANGAN JAWAB CEPAT
+</div>
 
-      <div id="q" class="main hidden lock" style="margin-top:18px">
-        <!-- EDIT SOAL -->
-        Perhatikan pola berikut.  
-        Kesimpulan PALING TEPAT adalah?
-      </div>
+<div id="threat" class="small hidden danger">
+  Yang terburu-buru hampir pasti salah.
+</div>
 
-      <div id="ops" class="hidden" style="margin-top:12px">
-        <!-- EDIT OPSI -->
-        <div class="option">A. Opsi pertama</div>
-        <div class="option">B. Opsi kedua</div>
-        <div class="option">C. Opsi ketiga</div>
-        <div class="option">D. Opsi keempat</div>
-      </div>
+<div id="q" class="main hidden lock">
+  <!-- GANTI SOAL -->
+  Perhatikan pola berikut.  
+  Kesimpulan PALING TEPAT adalah?
+</div>
 
-      <div id="doubt" class="small hidden danger" style="margin-top:14px">
-        Mayoritas yakin… tetap salah.
-      </div>
+<div id="ops" class="hidden">
+  <!-- GANTI OPSI -->
+  <div class="option">A. Opsi pertama</div>
+  <div class="option">B. Opsi kedua</div>
+  <div class="option">C. Opsi ketiga</div>
+  <div class="option">D. Opsi keempat</div>
+</div>
 
-      <div id="final" class="hook hidden" style="margin-top:20px">
-        BACA PELAN
-      </div>
+<div id="doubt" class="small hidden danger">
+  Yang yakin belum tentu benar.
+</div>
 
-      <div id="cta" class="small hidden" style="margin-top:6px">
-        Level berikutnya ada di profil.
-      </div>
+<div id="final" class="hook hidden">
+  BACA PELAN. INI FINAL.
+</div>
 
-    </div>
-  </div>
+<div id="cta" class="small hidden">
+  Kalau ini terasa mudah, level berikutnya ada di profil.
+</div>
+
+</div>
+</div>
 </div>
 
 <script>
-setTimeout(()=>{hook.classList.remove('hidden');hook.classList.add('shock','shake')},100);
-setTimeout(()=>{threat.classList.remove('hidden')},1100);
-setTimeout(()=>{hook.classList.remove('shake')},2200);
-setTimeout(()=>{q.classList.remove('hidden');q.classList.add('fade')},4000);
-setTimeout(()=>{ops.classList.remove('hidden');ops.classList.add('fade')},9000);
-setTimeout(()=>{doubt.classList.remove('hidden');doubt.classList.add('fade')},18000);
-setTimeout(()=>{final.classList.remove('hidden');final.classList.add('shock')},54000);
-setTimeout(()=>{cta.classList.remove('hidden');cta.classList.add('fade')},57500);
+/* ================= TIMELINE ================= */
+setTimeout(()=>{hook.classList.remove("hidden");hook.classList.add("shock","shake")},100);
+setTimeout(()=>{hook.classList.remove("shake");threat.classList.remove("hidden")},1600);
+setTimeout(()=>{q.classList.remove("hidden");q.classList.add("fade")},4000);
+setTimeout(()=>{ops.classList.remove("hidden");ops.classList.add("fade")},9000);
+setTimeout(()=>{doubt.classList.remove("hidden");doubt.classList.add("fade")},18000);
+setTimeout(()=>{final.classList.remove("hidden");final.classList.add("shock")},52000);
+setTimeout(()=>{cta.classList.remove("hidden");cta.classList.add("fade")},56000);
+
+/* ================= UI LIVE ================= */
+let like = 1200;
+const likeEl = document.getElementById("likeCount");
+const shareBtn = document.getElementById("shareBtn");
+
+/* LIKE NAIK PELAN */
+setTimeout(()=>{
+  const likeInterval = setInterval(()=>{
+    like += Math.floor(Math.random()*3)+1;
+    likeEl.innerText = (like/1000).toFixed(1)+"K";
+    likeEl.parentElement.classList.add("like-pop");
+    setTimeout(()=>likeEl.parentElement.classList.remove("like-pop"),300);
+  },2200);
+  setTimeout(()=>clearInterval(likeInterval),24000);
+},6000);
+
+/* SHARE SEKALI */
+setTimeout(()=>{
+  shareBtn.classList.add("share-float");
+  setTimeout(()=>shareBtn.classList.remove("share-float"),800);
+},18000);
 </script>
 
 </body>
