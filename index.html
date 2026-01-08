@@ -1,307 +1,184 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNBT LOGIKA FIGURAL — EXAM MODE</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+<title>TikTok Reasoning Overlay</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#000;display:flex;justify-content:center;align-items:center;height:100vh;font-family:Segoe UI,Arial,sans-serif;color:#fff}
-.phone{width:360px;height:640px;background:#0b0b0b;border-radius:36px;border:4px solid #3399ff;box-shadow:0 0 40px rgba(0,0,0,.9);overflow:hidden;position:relative}
-.screen{position:absolute;inset:0;padding:14px;display:flex;flex-direction:column;align-items:center}
-.hook{font-size:22px;font-weight:900;text-align:center;margin-top:10px;animation:shake .12s infinite alternate,color .3s infinite alternate}
-@keyframes shake{from{transform:translateX(-2px)}to{transform:translateX(2px)}}
-@keyframes color{0%{color:#ff4d4d}25%{color:#4dff4d}50%{color:#4d4dff}75%{color:#ffff4d}100%{color:#ff4dff}}
-.level{margin-top:4px;font-size:13px;opacity:.75}
-.timer{margin-top:2px;font-size:13px;opacity:.85}
-.row{margin-top:14px;display:flex;gap:10px}
-.box{width:90px;height:90px;background:#1c1c1c;border:2px solid #fff;border-radius:6px;display:flex;justify-content:center;align-items:center}
-.box.q{border-style:dashed;font-size:26px;font-weight:700}
-.options{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.opt{display:flex;flex-direction:column;align-items:center}
-.lbl{font-size:12px;opacity:.7}
-svg{width:70px;height:70px}
-.rationale{margin-top:8px;font-size:12px;line-height:1.45;opacity:0;transition:.4s;text-align:center}
-.rationale.show{opacity:1}
-.cta{position:absolute;bottom:16px;font-size:14px;font-weight:800;opacity:0;transition:.4s;animation:pulse 1s infinite alternate}
-@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.08)}}
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  font-family: 'Arial Black', Arial, sans-serif;
+  color: #fff;
+}
+
+/* ================= CANVAS ================= */
+#screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6vw;
+}
+
+/* ================= TEXT STYLES ================= */
+.hook {
+  font-size: 8vw;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.main {
+  font-size: 5vw;
+  line-height: 1.4;
+}
+
+.option {
+  font-size: 4.5vw;
+  margin-top: 1.2vw;
+}
+
+.small {
+  font-size: 3.5vw;
+  opacity: 0.85;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes zoomShock {
+  0%   { transform: scale(0.6); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes microShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes flashDim {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ================= STATES ================= */
+.hidden { display: none; }
+.fade { animation: fadeIn 0.6s ease forwards; }
+.shock { animation: zoomShock 0.4s ease-out forwards; }
+.shake { animation: microShake 0.3s ease-in-out infinite; }
+.flash { animation: flashDim 0.5s ease-in-out alternate 2; }
+
 </style>
 </head>
-
 <body>
-<div class="phone"><div class="screen">
-  <div class="hook">LOGIKA FIGURAL SNBT</div>
-  <div class="level" id="lvl">Soal 1 / 9</div>
-  <div class="timer" id="timer">EXAM MODE · 6 detik</div>
-  <div class="row" id="row"></div>
-  <div class="options" id="opsi"></div>
-  <div class="rationale" id="rat"></div>
-  <div class="cta" id="cta">FOLLOW · SAVE · PART 2</div>
-</div></div>
+
+<div id="screen">
+
+  <!-- ================= HOOK ================= -->
+  <div id="hook" class="hook hidden">
+    JANGAN JAWAB CEPAT
+  </div>
+
+  <!-- ================= MID WARNING ================= -->
+  <div id="warn1" class="small hidden" style="margin-top:6vw;">
+    ⚠️ 83% SALAH DI BAGIAN INI
+  </div>
+
+  <!-- ================= QUESTION ================= -->
+  <div id="question" class="main hidden" style="margin-top:6vw;">
+    <!-- EDIT SOAL DI SINI -->
+    Perhatikan pola berikut.  
+    Kesimpulan yang PALING TEPAT adalah?
+  </div>
+
+  <!-- ================= OPTIONS ================= -->
+  <div id="options" class="hidden">
+    <!-- EDIT OPSI DI SINI -->
+    <div class="option">A. Pilihan pertama</div>
+    <div class="option">B. Pilihan kedua</div>
+    <div class="option">C. Pilihan ketiga</div>
+    <div class="option">D. Pilihan keempat</div>
+  </div>
+
+  <!-- ================= MID PSYCHO ================= -->
+  <div id="warn2" class="small hidden" style="margin-top:6vw;">
+    Yang yakin justru sering keliru.
+  </div>
+
+  <!-- ================= FINAL ================= -->
+  <div id="final" class="hook hidden" style="margin-top:6vw;">
+    BACA PELAN. INI FINAL.
+  </div>
+
+  <!-- ================= CTA 1 ================= -->
+  <div id="cta" class="small hidden" style="margin-top:3vw;">
+    Kalau ini terasa mudah, cek level selanjutnya.
+  </div>
+
+</div>
 
 <script>
-/* ====== SVG HELPERS ====== */
-const defs = `
-<defs>
-  <pattern id="h" width="4" height="4" patternUnits="userSpaceOnUse">
-    <rect width="2" height="4" fill="#fff"/>
-  </pattern>
-</defs>`;
-const wrap = c => `<svg viewBox="0 0 100 100">${defs}${c}</svg>`;
+/* ================= TIMELINE (detik) ================= */
 
-/* ====== BANK 9 SOAL (SEMUA BERBEDA) ====== */
-const S = [
-/* 1: rotasi komposit + swap arsiran */
-{
-q:[
-`<polygon points="10,80 60,20 60,80" fill="#fff"/>
- <rect x="62" y="20" width="10" height="60" fill="#fff"/>
- <rect x="76" y="20" width="10" height="60" fill="url(#h)"/>`,
-`<g transform="rotate(90 50 50)">
- <polygon points="10,80 60,20 60,80" fill="#fff"/>
- <rect x="62" y="20" width="10" height="60" fill="url(#h)"/>
- <rect x="76" y="20" width="10" height="60" fill="#fff"/></g>`
-],
-ops:[
-`<g transform="rotate(180 50 50)">
- <polygon points="10,80 60,20 60,80" fill="#fff"/>
- <rect x="62" y="20" width="10" height="60" fill="#fff"/>
- <rect x="76" y="20" width="10" height="60" fill="url(#h)"/></g>`,
-`<g transform="rotate(180 50 50)">
- <polygon points="10,80 60,20 60,80" fill="#fff"/>
- <rect x="62" y="20" width="10" height="60" fill="url(#h)"/>
- <rect x="76" y="20" width="10" height="60" fill="#fff"/></g>`,
-`<polygon points="10,80 60,20 60,80" fill="#fff"/>`,
-`<rect x="20" y="20" width="60" height="60" fill="#fff"/>`
-],
-ans:0,
-rat:"Rotasi 90° tiap langkah. Atribut arsiran berpindah satu posisi, komposisi bangun tetap."
-},
+setTimeout(() => {
+  hook.classList.remove('hidden');
+  hook.classList.add('shock', 'shake', 'flash');
+}, 100);
 
-/* 2: pergeseran posisi + konservasi jumlah */
-{
-q:[
-`<rect x="18" y="18" width="26" height="26" fill="#fff"/>
- <rect x="56" y="18" width="26" height="26" fill="url(#h)"/>
- <circle cx="31" cy="64" r="9" fill="#fff"/>`,
-`<rect x="56" y="18" width="26" height="26" fill="#fff"/>
- <circle cx="69" cy="64" r="9" fill="#fff"/>
- <rect x="18" y="56" width="26" height="26" fill="url(#h)"/>`
-],
-ops:[
-`<circle cx="31" cy="36" r="9" fill="#fff"/>
- <rect x="18" y="56" width="26" height="26" fill="#fff"/>
- <rect x="56" y="56" width="26" height="26" fill="url(#h)"/>`,
-`<circle cx="50" cy="50" r="18" fill="#fff"/>`,
-`<rect x="20" y="20" width="60" height="60" fill="#fff"/>`,
-`<polygon points="50,10 90,90 10,90" fill="#fff"/>`
-],
-ans:0,
-rat:"Tiga bangun bergeser searah jarum jam; jumlah & jenis tetap, arsiran ikut bergeser."
-},
+setTimeout(() => {
+  hook.classList.remove('shake');
+}, 2000);
 
-/* 3: mirror selektif */
-{
-q:[
-`<polygon points="20,70 50,20 80,70" fill="#fff"/>
- <rect x="22" y="72" width="18" height="8" fill="url(#h)"/>
- <rect x="60" y="72" width="18" height="8" fill="#fff"/>`,
-`<g transform="scale(-1,1) translate(-100,0)">
- <polygon points="20,70 50,20 80,70" fill="#fff"/>
- <rect x="22" y="72" width="18" height="8" fill="#fff"/>
- <rect x="60" y="72" width="18" height="8" fill="url(#h)"/></g>`
-],
-ops:[
-`<g transform="rotate(180 50 50)">
- <polygon points="20,70 50,20 80,70" fill="#fff"/>
- <rect x="22" y="72" width="18" height="8" fill="url(#h)"/>
- <rect x="60" y="72" width="18" height="8" fill="#fff"/></g>`,
-`<g transform="scale(-1,1) translate(-100,0)">
- <polygon points="20,70 50,20 80,70" fill="#fff"/></g>`,
-`<rect x="20" y="20" width="60" height="60" fill="#fff"/>`,
-`<circle cx="50" cy="50" r="22" fill="#fff"/>`
-],
-ans:0,
-rat:"Mirror horizontal + pertukaran arsiran kiri–kanan; langkah berikutnya rotasi 180°."
-},
+setTimeout(() => {
+  question.classList.remove('hidden');
+  question.classList.add('fade');
+}, 4000);
 
-/* 4: overlap + rotasi */
-{
-q:[
-`<rect x="18" y="30" width="40" height="20" fill="#fff"/>
- <circle cx="58" cy="50" r="14" fill="url(#h)"/>
- <line x1="18" y1="50" x2="72" y2="50" stroke="#000" stroke-width="4"/>`,
-`<g transform="rotate(90 50 50)">
- <rect x="18" y="30" width="40" height="20" fill="#fff"/>
- <circle cx="58" cy="50" r="14" fill="url(#h)"/>
- <line x1="18" y1="50" x2="72" y2="50" stroke="#000" stroke-width="4"/></g>`
-],
-ops:[
-`<g transform="rotate(180 50 50)">
- <rect x="18" y="30" width="40" height="20" fill="#fff"/>
- <circle cx="58" cy="50" r="14" fill="url(#h)"/>
- <line x1="18" y1="50" x2="72" y2="50" stroke="#000" stroke-width="4"/></g>`,
-`<rect x="20" y="20" width="60" height="60" fill="#fff"/>`,
-`<circle cx="50" cy="50" r="20" fill="#fff"/>`,
-`<polygon points="50,10 90,90 10,90" fill="#fff"/>`
-],
-ans:0,
-rat:"Rotasi komposit; overlap & garis referensi dipertahankan."
-},
+setTimeout(() => {
+  warn1.classList.remove('hidden');
+  warn1.classList.add('fade');
+}, 10000);
 
-/* 5: substitusi parsial */
-{
-q:[
-`<rect x="20" y="20" width="20" height="20" fill="#fff"/>
- <rect x="60" y="20" width="20" height="20" fill="#fff"/>
- <rect x="40" y="60" width="20" height="20" fill="url(#h)"/>`,
-`<rect x="20" y="20" width="20" height="20" fill="#fff"/>
- <polygon points="60,20 80,40 60,60" fill="#fff"/>
- <rect x="40" y="60" width="20" height="20" fill="url(#h)"/>`
-],
-ops:[
-`<polygon points="20,20 40,40 20,60" fill="#fff"/>
- <polygon points="60,20 80,40 60,60" fill="#fff"/>
- <rect x="40" y="60" width="20" height="20" fill="url(#h)"/>`,
-`<rect x="20" y="20" width="60" height="60" fill="#fff"/>`,
-`<circle cx="50" cy="50" r="22" fill="#fff"/>`,
-`<polygon points="50,10 90,90 10,90" fill="#fff"/>`
-],
-ans:0,
-rat:"Satu persegi disubstitusi segitiga; arsiran tetap konstan."
-},
+setTimeout(() => {
+  options.classList.remove('hidden');
+  options.classList.add('fade');
+}, 14000);
 
-/* 6: konservasi orientasi + tukar ukuran */
-{
-q:[
-`<circle cx="32" cy="50" r="10" fill="#fff"/>
- <circle cx="68" cy="50" r="16" fill="url(#h)"/>`,
-`<circle cx="32" cy="50" r="16" fill="url(#h)"/>
- <circle cx="68" cy="50" r="10" fill="#fff"/>`
-],
-ops:[
-`<circle cx="32" cy="50" r="10" fill="url(#h)"/>
- <circle cx="68" cy="50" r="16" fill="#fff"/>`,
-`<circle cx="50" cy="50" r="22" fill="#fff"/>`,
-`<rect x="20" y="20" width="60" height="60" fill="#fff"/>`,
-`<polygon points="50,10 90,90 10,90" fill="#fff"/>`
-],
-ans:0,
-rat:"Ukuran & arsiran saling bertukar; posisi tetap."
-},
+setTimeout(() => {
+  warn2.classList.remove('hidden');
+  warn2.classList.add('fade');
+}, 22000);
 
-/* 7: arah panah + mirror */
-{
-q:[
-`<polygon points="20,50 60,20 60,40 80,40 80,60 60,60 60,80" fill="#fff"/>
- <rect x="20" y="20" width="12" height="12" fill="url(#h)"/>`,
-`<g transform="scale(-1,1) translate(-100,0)">
- <polygon points="20,50 60,20 60,40 80,40 80,60 60,60 60,80" fill="#fff"/>
- <rect x="20" y="20" width="12" height="12" fill="url(#h)"/></g>`
-],
-ops:[
-`<g transform="rotate(180 50 50)">
- <polygon points="20,50 60,20 60,40 80,40 80,60 60,60 60,80" fill="#fff"/>
- <rect x="20" y="20" width="12" height="12" fill="url(#h)"/></g>`,
-`<polygon points="50,10 90,90 10,90" fill="#fff"/>`,
-`<rect x="20" y="20" width="60" height="60" fill="#fff"/>`,
-`<circle cx="50" cy="50" r="22" fill="#fff"/>`
-],
-ans:0,
-rat:"Mirror horizontal lalu rotasi 180°; penanda arsiran tetap."
-},
+setTimeout(() => {
+  final.classList.remove('hidden');
+  final.classList.add('shock');
+}, 55000);
 
-/* 8: grid komposisi */
-{
-q:[
-`<rect x="18" y="18" width="18" height="18" fill="#fff"/>
- <rect x="40" y="18" width="18" height="18" fill="url(#h)"/>
- <rect x="62" y="18" width="18" height="18" fill="#fff"/>`,
-`<rect x="18" y="40" width="18" height="18" fill="url(#h)"/>
- <rect x="40" y="40" width="18" height="18" fill="#fff"/>
- <rect x="62" y="40" width="18" height="18" fill="url(#h)"/>`
-],
-ops:[
-`<rect x="18" y="62" width="18" height="18" fill="#fff"/>
- <rect x="40" y="62" width="18" height="18" fill="url(#h)"/>
- <rect x="62" y="62" width="18" height="18" fill="#fff"/>`,
-`<rect x="20" y="20" width="60" height="60" fill="#fff"/>`,
-`<circle cx="50" cy="50" r="22" fill="#fff"/>`,
-`<polygon points="50,10 90,90 10,90" fill="#fff"/>`
-],
-ans:0,
-rat:"Pola baris; arsiran bergantian per kolom."
-},
-
-/* 9: komposit akhir (campuran) */
-{
-q:[
-`<polygon points="20,80 50,30 80,80" fill="#fff"/>
- <circle cx="50" cy="55" r="8" fill="url(#h)"/>
- <rect x="24" y="82" width="52" height="6" fill="#fff"/>`,
-`<g transform="rotate(90 50 50)">
- <polygon points="20,80 50,30 80,80" fill="#fff"/>
- <circle cx="50" cy="55" r="8" fill="url(#h)"/>
- <rect x="24" y="82" width="52" height="6" fill="#fff"/></g>`
-],
-ops:[
-`<g transform="rotate(180 50 50)">
- <polygon points="20,80 50,30 80,80" fill="#fff"/>
- <circle cx="50" cy="55" r="8" fill="url(#h)"/>
- <rect x="24" y="82" width="52" height="6" fill="#fff"/></g>`,
-`<polygon points="50,10 90,90 10,90" fill="#fff"/>`,
-`<rect x="20" y="20" width="60" height="60" fill="#fff"/>`,
-`<circle cx="50" cy="50" r="22" fill="#fff"/>`
-],
-ans:0,
-rat:"Rotasi komposit konsisten; semua atribut dipertahankan."
-}
-];
-
-/* ====== RENDER & TIMING ====== */
-let i=0, t=6, iv;
-const row=document.getElementById('row');
-const opsi=document.getElementById('opsi');
-const rat=document.getElementById('rat');
-const lvl=document.getElementById('lvl');
-const tim=document.getElementById('timer');
-const cta=document.getElementById('cta');
-
-function load(){
-  row.innerHTML = `
-    <div class="box">${wrap(S[i].q[0])}</div>
-    <div class="box">${wrap(S[i].q[1])}</div>
-    <div class="box q">?</div>`;
-  opsi.innerHTML = "";
-  S[i].ops.forEach((o,k)=>{
-    opsi.innerHTML += `
-      <div class="opt">
-        <div class="box">${wrap(o)}</div>
-        <div class="lbl">${String.fromCharCode(65+k)}</div>
-      </div>`;
-  });
-  lvl.textContent = `Soal ${i+1} / 9`;
-  rat.textContent = S[i].rat;
-  rat.classList.remove('show');
-  t=6; tim.textContent = `EXAM MODE · ${t} detik`;
-}
-
-function start(){
-  iv = setInterval(()=>{
-    t--; tim.textContent = `EXAM MODE · ${t} detik`;
-    if(t===0){
-      rat.classList.add('show');
-      clearInterval(iv);
-      setTimeout(()=>{
-        i++;
-        if(i<9){ load(); start(); }
-        else{ cta.style.opacity=1; setTimeout(()=>location.reload(),2500); }
-      },2000);
-    }
-  },1000);
-}
-
-load(); start();
+setTimeout(() => {
+  cta.classList.remove('hidden');
+  cta.classList.add('fade');
+}, 58000);
 </script>
+
 </body>
 </html>
