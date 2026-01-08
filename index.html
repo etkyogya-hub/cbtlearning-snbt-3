@@ -3,174 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ULTIMATE – Silent Correction</title>
+<title>CBT Figural Reasoning</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{
-  width:100%;height:100%;
-  background:#000;overflow:hidden;
-  font-family:Impact, Arial Black, sans-serif;
+body{
+  margin:0;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:Arial, sans-serif;
   color:#fff;
 }
 
-/* PHONE */
-.wrap{width:100%;height:100%;display:flex;justify-content:center;align-items:center}
 .phone{
-  width:360px;height:640px;
-  border-radius:36px;border:8px solid #111;
-  position:relative;overflow:hidden;background:#000;
+  width:360px;
+  height:640px;
+  border:8px solid #111;
+  border-radius:30px;
+  padding:24px;
+  box-sizing:border-box;
 }
 
-/* SAFE */
-.safe{
-  position:absolute;top:70px;bottom:90px;left:20px;right:70px;
-  display:flex;flex-direction:column;align-items:center;text-align:center;
+.title{
+  text-align:center;
+  font-size:14px;
+  letter-spacing:2px;
+  opacity:.7;
 }
 
-/* TEXT */
-.level{font-size:13px;letter-spacing:3px;opacity:.6}
-.hook{font-size:26px;margin-top:6px}
-.small{font-size:13px;opacity:.85;margin-top:6px}
-.danger{color:#ff2f2f;text-shadow:0 0 14px rgba(255,0,0,.55)}
+.question{
+  margin-top:12px;
+  font-size:16px;
+  text-align:center;
+}
 
-/* GRID */
 .grid{
-  margin-top:18px;
-  display:grid;grid-template-columns:repeat(3,70px);grid-template-rows:repeat(3,70px);
-  gap:8px;
+  margin:24px auto;
+  display:grid;
+  grid-template-columns:repeat(3,80px);
+  grid-template-rows:repeat(3,80px);
+  gap:10px;
+  justify-content:center;
 }
+
 .cell{
   border:2px solid #fff;
-  display:flex;align-items:center;justify-content:center;
-  font-size:26px;font-weight:bold;
-  transition:transform .6s ease, opacity .6s ease, filter .6s ease;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
 }
 
-/* MICRO MOTION (SUBTLE) */
-@keyframes microDrift{0%{transform:translate(0)}50%{transform:translate(1px,-1px)}100%{transform:translate(0)}}
-.micro{animation:microDrift 2.8s infinite ease-in-out}
-
-/* UI */
-.ui{position:absolute;right:10px;top:130px;font-size:14px}
-
-/* COMMENT (1x) */
-.comment{
-  position:absolute;right:70px;top:260px;max-width:210px;
-  padding:10px 12px;background:rgba(20,20,20,.96);
-  border-radius:14px;font-size:13px;opacity:0;
+.note{
+  text-align:center;
+  font-size:13px;
+  opacity:.75;
 }
-@keyframes commentIn{from{transform:translateX(14px);opacity:0}to{transform:translateX(0);opacity:1}}
-@keyframes commentOut{from{opacity:1}to{opacity:0}}
-.comment-show{animation:commentIn .4s ease forwards}
-.comment-hide{animation:commentOut .4s ease forwards}
-
-/* CTA */
-.cta{margin-top:10px;opacity:0;transition:opacity .6s ease}
-.cta.show{opacity:1}
 </style>
 </head>
 
 <body>
-<div class="wrap">
+
 <div class="phone">
 
-<!-- UI -->
-<div class="ui">
-  ❤️ <span id="likes">2.4K</span><br>
-  💬 168<br>
-  ↗ Share
-</div>
+  <div class="title">FIGURAL REASONING</div>
 
-<!-- COMMENT -->
-<div id="comment" class="comment">“Kok rasanya berubah ya…”</div>
-
-<div class="safe">
-  <div class="level">LEVEL 18</div>
-  <div class="hook danger">JANGAN BERKEDIP</div>
-  <div class="small danger">Jawaban tidak pernah ditulis.</div>
-
-  <!-- GRID -->
-  <div id="grid" class="grid">
-    <div class="cell micro">▲</div><div class="cell micro">▲</div><div class="cell micro">▲</div>
-    <div class="cell micro">●</div><div class="cell micro">●</div><div class="cell micro">●</div>
-    <div class="cell micro">■</div><div class="cell micro">■</div><div class="cell micro">?</div>
+  <div class="question">
+    Perhatikan pola berikut.  
+    Bentuk apakah yang paling tepat menggantikan tanda tanya?
   </div>
 
-  <div class="small" style="margin-top:10px">
-    Mayoritas akan memilih simbol yang keliru.
+  <div class="grid">
+    <!-- BARIS 1 -->
+    <div class="cell">▲</div>
+    <div class="cell">▶</div>
+    <div class="cell">▼</div>
+
+    <!-- BARIS 2 -->
+    <div class="cell">◀</div>
+    <div class="cell">▲</div>
+    <div class="cell">▶</div>
+
+    <!-- BARIS 3 -->
+    <div class="cell">▼</div>
+    <div class="cell">◀</div>
+    <div class="cell">?</div>
   </div>
 
-  <div id="cta" class="cta small">
-    Kalau kamu sadar kapan polanya terkunci, lanjutkan level berikutnya.
+  <div class="note">
+    Setiap baris mengikuti aturan yang sama.
   </div>
+
 </div>
-</div>
-</div>
 
-<script>
-/* =========================
-   ULTIMATE SILENT LOGIC
-   PHASES:
-   1) BASE (AMBIGUOUS)
-   2) MISLEAD (SUBTLE BIAS)
-   3) LOCK (CORRECT PATTERN STABIL)
-   ========================= */
-
-/* FRAME SETS */
-const BASE=[
- ["▲","▲","▲","●","●","●","■","■","?"],
- ["▲","▲","▲","●","●","●","■","?","■"]
-];
-const MISLEAD=[
- ["▲","▲","▲","●","●","●","■","■","■"], // bias ke ■
- ["▲","▲","▲","●","●","●","■","■","■"]
-];
-const LOCK=[
- ["▲","▲","▲","●","●","●","▲","▲","▲"], // kunci ke ▲
- ["▲","▲","▲","●","●","●","▲","▲","▲"]
-];
-
-const cells=[...document.querySelectorAll(".cell")];
-let phase=0, idx=0;
-
-/* FRAME LOOP */
-const tick=setInterval(()=>{
-  let frames = phase===0?BASE:(phase===1?MISLEAD:LOCK);
-  idx=(idx+1)%frames.length;
-  frames[idx].forEach((v,i)=>cells[i].textContent=v);
-},2200);
-
-/* PHASE TIMING */
-setTimeout(()=>phase=1,14000);   // MISLEAD (penonton yakin salah)
-setTimeout(()=>phase=2,32000);   // LOCK (koreksi diam-diam)
-
-/* VISUAL LOCK EMPHASIS */
-setTimeout(()=>{
-  cells.forEach(c=>{c.style.filter="brightness(1.1)"});
-},33000);
-
-/* COMMENT 1x */
-const c=document.getElementById("comment");
-setTimeout(()=>{
-  c.classList.add("comment-show");
-  setTimeout(()=>c.classList.add("comment-hide"),2600);
-},21000);
-
-/* CTA */
-setTimeout(()=>{
-  document.getElementById("cta").classList.add("show");
-},52000);
-
-/* LIKE SOFT BURST */
-let likes=2400; const likesEl=document.getElementById("likes");
-setTimeout(()=>{
-  const li=setInterval(()=>{
-    likes+=Math.floor(Math.random()*6)+2;
-    likesEl.textContent=(likes/1000).toFixed(1)+"K";
-  },2200);
-  setTimeout(()=>clearInterval(li),26000);
-},6000);
-</script>
 </body>
 </html>
