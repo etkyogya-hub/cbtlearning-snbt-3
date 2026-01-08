@@ -3,35 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Figural Frame Illusion</title>
+<title>Wrong → Correct Illusion</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{
   width:100%;height:100%;
   background:#000;
-  font-family:Arial Black, Impact, sans-serif;
+  font-family:Impact, Arial Black, sans-serif;
   color:#fff;
   overflow:hidden;
 }
 
 /* PHONE */
-.wrap{
-  width:100%;height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+.wrap{width:100%;height:100%;display:flex;justify-content:center;align-items:center}
 .phone{
   width:360px;height:640px;
   border-radius:36px;
   border:8px solid #111;
   position:relative;
   overflow:hidden;
-  background:#000;
 }
 
-/* SAFE AREA */
+/* SAFE */
 .safe{
   position:absolute;
   top:70px;bottom:90px;
@@ -46,10 +40,8 @@ html,body{
 .level{font-size:13px;letter-spacing:3px;opacity:.6}
 .hook{font-size:26px;margin-top:6px}
 .small{font-size:13px;opacity:.8;margin-top:6px}
-.danger{
-  color:#ff2f2f;
-  text-shadow:0 0 14px rgba(255,0,0,.55);
-}
+.danger{color:#ff2f2f;text-shadow:0 0 14px rgba(255,0,0,.55)}
+.good{color:#4dff88;text-shadow:0 0 14px rgba(77,255,136,.5)}
 
 /* FIGURAL */
 .figural{
@@ -65,9 +57,17 @@ html,body{
   justify-content:center;
   align-items:center;
   font-size:26px;
-  font-weight:bold;
   transition:all .6s ease;
 }
+
+/* ANSWER */
+.answer{
+  margin-top:14px;
+  font-size:22px;
+  opacity:0;
+  transition:opacity .6s ease;
+}
+.answer.show{opacity:1}
 
 /* UI */
 .ui{
@@ -111,36 +111,85 @@ html,body{
 
 <!-- UI -->
 <div class="ui">
-  ❤️ 1.8K<br>
-  💬 104<br>
+  ❤️ 2.1K<br>
+  💬 136<br>
   ↗ Share
 </div>
 
 <!-- COMMENT -->
 <div id="comment" class="comment">
-  “Tunggu… barusan beda gak sih?”
+  “Aku yakin jawabanku barusan…”
 </div>
 
 <div class="safe">
 
-<div class="level">LEVEL 13</div>
-<div class="hook danger">JANGAN BERKEDIP</div>
-<div class="small danger">Perubahannya HALUS</div>
+<div class="level">LEVEL 15</div>
+<div class="hook danger">HAMPIR SEMUA SALAH</div>
+<div class="small danger">Termasuk yang merasa yakin</div>
 
-<!-- FIGURAL GRID -->
+<!-- FIGURAL -->
 <div id="grid" class="figural">
   <div class="cell">▲</div><div class="cell">▲</div><div class="cell">▲</div>
   <div class="cell">●</div><div class="cell">●</div><div class="cell">●</div>
   <div class="cell">■</div><div class="cell">■</div><div class="cell">?</div>
 </div>
 
-<div class="small" style="margin-top:10px">
-  Pola berubah setiap beberapa detik.
+<!-- WRONG ANSWER -->
+<div id="wrong" class="answer danger">
+  Jawaban: ■
+</div>
+
+<!-- CORRECT ANSWER -->
+<div id="correct" class="answer good hidden">
+  Jawaban yang tepat: ▲
 </div>
 
 <div id="cta" class="small hidden">
-  Kalau ini terasa statis, berarti kamu belum lihat.
+  Kalau kamu langsung tahu kenapa, level berikutnya cocok buatmu.
 </div>
 
 </div>
-</d
+</div>
+</div>
+
+<script>
+/* FRAME ILLUSION */
+const frames=[
+ ["▲","▲","▲","●","●","●","■","■","?"],
+ ["▲","▲","▲","●","●","●","■","?","■"],
+ ["▲","▲","▲","●","●","●","?","■","■"]
+];
+const cells=document.querySelectorAll(".cell");
+let f=0;
+setInterval(()=>{
+  f=(f+1)%frames.length;
+  frames[f].forEach((v,i)=>cells[i].textContent=v);
+},2200);
+
+/* WRONG ANSWER FIRST */
+setTimeout(()=>{
+  document.getElementById("wrong").classList.add("show");
+},18000);
+
+/* COMMENT */
+const c=document.getElementById("comment");
+setTimeout(()=>{
+  c.classList.add("comment-show");
+  setTimeout(()=>c.classList.add("comment-hide"),2600);
+},21000);
+
+/* CORRECTION */
+setTimeout(()=>{
+  document.getElementById("wrong").classList.remove("show");
+  document.getElementById("correct").classList.remove("hidden");
+  document.getElementById("correct").classList.add("show");
+},34000);
+
+/* CTA */
+setTimeout(()=>{
+  document.getElementById("cta").classList.remove("hidden");
+},52000);
+</script>
+
+</body>
+</html>
