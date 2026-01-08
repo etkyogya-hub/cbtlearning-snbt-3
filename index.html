@@ -6,36 +6,43 @@
 <style>
 body{
   margin:0;
-  background:#000;
-  color:#fff;
-  font-family:Arial, Helvetica, sans-serif;
-  overflow:hidden;
-}
-.container{
-  position:relative;
-  width:100vw;
-  height:100vh;
+  background:#111;
   display:flex;
-  flex-direction:column;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
-/* HOOK TITLE */
+/* PHONE FRAME */
+.phone{
+  width:360px;
+  height:640px; /* 9:16 */
+  background:#000;
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  color:#fff;
+}
+
+/* TITLE HOOK */
 .title{
-  font-size:22px;
+  position:absolute;
+  top:16px;
+  width:100%;
+  text-align:center;
+  font-size:18px;
   font-weight:900;
   animation:shake 0.4s infinite, colorShift 2s infinite;
-  margin-bottom:12px;
 }
 
 /* SHAKE */
 @keyframes shake{
-  0%{transform:translate(0,0) rotate(0deg);}
-  25%{transform:translate(2px,-2px) rotate(-1deg);}
-  50%{transform:translate(-2px,2px) rotate(1deg);}
-  75%{transform:translate(2px,2px) rotate(0deg);}
-  100%{transform:translate(0,0) rotate(0deg);}
+  0%{transform:translate(0,0);}
+  25%{transform:translate(2px,-2px);}
+  50%{transform:translate(-2px,2px);}
+  75%{transform:translate(2px,2px);}
+  100%{transform:translate(0,0);}
 }
 
 /* COLOR SHIFT */
@@ -47,52 +54,57 @@ body{
 
 /* TIMER */
 #timer{
-  font-size:64px;
+  position:absolute;
+  top:56px;
+  width:100%;
+  text-align:center;
+  font-size:56px;
   font-weight:900;
-  margin-bottom:16px;
 }
 
 /* FIGURAL GRID */
 .grid{
+  position:absolute;
+  top:140px;
+  width:100%;
   display:grid;
   grid-template-columns:repeat(3,70px);
   grid-template-rows:repeat(3,70px);
   gap:10px;
-  margin-bottom:20px;
+  justify-content:center;
 }
 .cell{
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:36px;
-  border:2px solid #444;
+  align-items:center;
+  font-size:34px;
   background:#111;
+  border:2px solid #444;
 }
 
-/* COMMENT BUBBLE */
+/* COMMENT BUBBLE (UI SIMULATION) */
 .comment{
   position:absolute;
-  top:22%;
-  left:12%;
+  bottom:130px;
+  left:16px;
   background:#1f1f1f;
   padding:10px 14px;
   border-radius:18px;
-  font-size:13px;
+  font-size:12px;
   opacity:0;
-  animation:commentPop 1.2s forwards;
+  animation:commentPop 0.8s forwards;
   animation-delay:3s;
 }
 
-/* COMMENT POP */
 @keyframes commentPop{
-  0%{opacity:0; transform:scale(0.7);}
-  100%{opacity:1; transform:scale(1);}
+  from{opacity:0; transform:scale(0.8);}
+  to{opacity:1; transform:scale(1);}
 }
 
 /* CTA */
 #cta{
   position:absolute;
-  bottom:22px;
+  bottom:24px;
   left:50%;
   transform:translateX(-50%);
   background:#ff2f2f;
@@ -101,16 +113,17 @@ body{
   font-size:14px;
   font-weight:bold;
   opacity:0;
-  transition:opacity 0.5s;
+  transition:opacity 0.4s;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
+
+<div class="phone">
 
   <!-- HOOK -->
-  <div class="title">LOGICAL FIGURAL TEST</div>
+  <div class="title">FIGURAL LOGIC TEST</div>
 
   <!-- TIMER -->
   <div id="timer">15</div>
@@ -130,8 +143,8 @@ body{
     <div class="cell">?</div>
   </div>
 
-  <!-- COMMENT BUBBLE -->
-  <div class="comment">Yang kanan bawah apa?</div>
+  <!-- COMMENT UI -->
+  <div class="comment">Jawaban apa?</div>
 
   <!-- CTA -->
   <div id="cta">Komentar jawabannya 👇</div>
@@ -139,15 +152,15 @@ body{
 </div>
 
 <script>
-let time = 15;
+let t = 15;
 const timer = document.getElementById("timer");
 const cta = document.getElementById("cta");
 
-const countdown = setInterval(()=>{
-  time--;
-  timer.textContent = time;
-  if(time <= 0){
-    clearInterval(countdown);
+const run = setInterval(()=>{
+  t--;
+  timer.textContent = t;
+  if(t <= 0){
+    clearInterval(run);
     cta.style.opacity = 1;
   }
 },1000);
