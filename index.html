@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Figural Bergerak – EXTREME</title>
+<title>Figural Frame Illusion</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -44,15 +44,15 @@ html,body{
 
 /* TEXT */
 .level{font-size:13px;letter-spacing:3px;opacity:.6}
-.hook{font-size:28px;margin-top:6px}
+.hook{font-size:26px;margin-top:6px}
 .small{font-size:13px;opacity:.8;margin-top:6px}
 .danger{
   color:#ff2f2f;
   text-shadow:0 0 14px rgba(255,0,0,.55);
 }
 
-/* FIGURAL GRID */
-.figural-box{
+/* FIGURAL */
+.figural{
   margin-top:18px;
   display:grid;
   grid-template-columns:repeat(3,70px);
@@ -66,36 +66,14 @@ html,body{
   align-items:center;
   font-size:26px;
   font-weight:bold;
+  transition:all .6s ease;
 }
-
-/* MOVEMENT */
-@keyframes drift{
-  0%{transform:translate(0,0)}
-  50%{transform:translate(2px,-2px)}
-  100%{transform:translate(0,0)}
-}
-@keyframes rotateMicro{
-  0%{transform:rotate(0)}
-  50%{transform:rotate(2deg)}
-  100%{transform:rotate(0)}
-}
-@keyframes pulseFade{
-  0%,100%{opacity:1}
-  50%{opacity:.7}
-}
-
-.move-a{animation:drift 2.4s infinite ease-in-out}
-.move-b{animation:rotateMicro 2.8s infinite ease-in-out}
-.move-c{animation:pulseFade 2.2s infinite}
 
 /* UI */
 .ui{
   position:absolute;
   right:10px;
   top:130px;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
   font-size:14px;
 }
 
@@ -133,67 +111,36 @@ html,body{
 
 <!-- UI -->
 <div class="ui">
-  ❤️ 1.6K<br>
-  💬 88<br>
+  ❤️ 1.8K<br>
+  💬 104<br>
   ↗ Share
 </div>
 
 <!-- COMMENT -->
 <div id="comment" class="comment">
-  “Geraknya bikin fokus ke pola…”
+  “Tunggu… barusan beda gak sih?”
 </div>
 
 <div class="safe">
 
-<div class="level">LEVEL 11</div>
-<div class="hook danger">JANGAN KELEWATAN GERAKNYA</div>
-<div class="small danger">Satu detail kecil = jawaban</div>
+<div class="level">LEVEL 13</div>
+<div class="hook danger">JANGAN BERKEDIP</div>
+<div class="small danger">Perubahannya HALUS</div>
 
-<!-- FIGURAL -->
-<div class="figural-box">
-
-  <!-- BARIS 1 -->
-  <div class="cell move-a">▲</div>
-  <div class="cell move-b">▲</div>
-  <div class="cell move-c">▲</div>
-
-  <!-- BARIS 2 -->
-  <div class="cell move-b">●</div>
-  <div class="cell move-c">●</div>
-  <div class="cell move-a">●</div>
-
-  <!-- BARIS 3 -->
-  <div class="cell move-c">■</div>
-  <div class="cell move-a">■</div>
-  <div class="cell move-b">?</div>
-
+<!-- FIGURAL GRID -->
+<div id="grid" class="figural">
+  <div class="cell">▲</div><div class="cell">▲</div><div class="cell">▲</div>
+  <div class="cell">●</div><div class="cell">●</div><div class="cell">●</div>
+  <div class="cell">■</div><div class="cell">■</div><div class="cell">?</div>
 </div>
 
 <div class="small" style="margin-top:10px">
-  Pola apa yang hilang?
+  Pola berubah setiap beberapa detik.
 </div>
 
 <div id="cta" class="small hidden">
-  Kalau ini terasa mudah, LEVEL berikutnya tidak.
+  Kalau ini terasa statis, berarti kamu belum lihat.
 </div>
 
 </div>
-</div>
-</div>
-
-<script>
-/* COMMENT 1x */
-const c=document.getElementById("comment");
-setTimeout(()=>{
-  c.classList.add("comment-show");
-  setTimeout(()=>c.classList.add("comment-hide"),2600);
-},19000);
-
-/* CTA */
-setTimeout(()=>{
-  document.getElementById("cta").classList.remove("hidden");
-},52000);
-</script>
-
-</body>
-</html>
+</d
