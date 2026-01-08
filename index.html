@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
-<title>FYP HUNTER – REASONING</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FYP HUNTER – MOCKUP</title>
 
 <style>
-/* ================= RESET ================= */
-* { box-sizing:border-box; margin:0; padding:0; }
+*{box-sizing:border-box;margin:0;padding:0}
 
 html,body{
   width:100%;
@@ -18,152 +17,166 @@ html,body{
   color:#fff;
 }
 
-/* ================= LAYOUT ================= */
-#screen{
+/* ================= PHONE MOCKUP ================= */
+.phone-wrap{
   width:100%;
   height:100%;
   display:flex;
-  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.phone{
+  position:relative;
+  width:360px;
+  height:640px;
+  background:#000;
+  border-radius:36px;
+  border:8px solid #111;
+  box-shadow:0 0 40px rgba(0,0,0,.9);
+  overflow:hidden;
+}
+
+/* SAFE AREA (TIKTOK REAL) */
+.safe{
+  position:absolute;
+  top:70px;
+  bottom:90px;
+  left:20px;
+  right:70px;
+  display:flex;
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:6vw;
+  padding:12px;
+}
+
+/* ================= UI TIKTOK (DUMMY) ================= */
+.ui-right{
+  position:absolute;
+  top:120px;
+  right:15px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  opacity:.75;
+}
+.ui-dot{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#222;
 }
 
 /* ================= TEXT ================= */
-.hook{ font-size:9vw; font-weight:900; letter-spacing:0.05em; }
-.main{ font-size:5.2vw; line-height:1.45; }
-.option{ font-size:4.6vw; margin-top:1.3vw; }
-.small{ font-size:3.4vw; opacity:0.85; }
+.hook{font-size:28px;letter-spacing:2px}
+.main{font-size:19px;line-height:1.4}
+.option{font-size:17px;margin-top:6px}
+.small{font-size:14px;opacity:.85}
+
+.danger{
+  color:#ff3b3b;
+  text-shadow:0 0 10px rgba(255,0,0,.4);
+}
+.lock{
+  border:2px solid #fff;
+  padding:12px;
+}
 
 /* ================= FX ================= */
-@keyframes shockZoom {
-  0%{transform:scale(0.4);opacity:0}
-  60%{transform:scale(1.15);opacity:1}
+@keyframes shock{
+  0%{transform:scale(.5);opacity:0}
+  70%{transform:scale(1.15);opacity:1}
   100%{transform:scale(1)}
 }
-@keyframes hardShake {
+@keyframes shake{
   0%{transform:translate(0)}
-  20%{transform:translate(-4px,2px)}
-  40%{transform:translate(4px,-2px)}
-  60%{transform:translate(-3px,1px)}
-  80%{transform:translate(3px,-1px)}
+  25%{transform:translate(-2px,1px)}
+  50%{transform:translate(2px,-1px)}
+  75%{transform:translate(-1px,1px)}
   100%{transform:translate(0)}
 }
-@keyframes blink {
+@keyframes blink{
   0%,100%{opacity:1}
-  50%{opacity:0.25}
+  50%{opacity:.25}
 }
-@keyframes fade {
+@keyframes fade{
   from{opacity:0}
   to{opacity:1}
 }
 
 .hidden{display:none}
-.shock{animation:shockZoom .35s ease-out forwards}
-.shake{animation:hardShake .25s infinite}
+.shock{animation:shock .35s ease-out forwards}
+.shake{animation:shake .3s infinite}
 .blink{animation:blink .9s infinite}
-.fade{animation:fade .6s ease forwards}
-
-/* ================= WARNING STYLE ================= */
-.danger{
-  color:#ff3b3b;
-  text-shadow:0 0 12px rgba(255,0,0,.4);
-}
-.lock{
-  border:2px solid #fff;
-  padding:2vw 3vw;
-  margin-top:5vw;
-}
+.fade{animation:fade .5s ease forwards}
 </style>
 </head>
 
 <body>
-<div id="screen">
 
-  <!-- HOOK -->
-  <div id="hook" class="hook hidden danger">
-    JANGAN JAWAB CEPAT
+<div class="phone-wrap">
+  <div class="phone">
+
+    <!-- UI TIKTOK -->
+    <div class="ui-right">
+      <div class="ui-dot"></div>
+      <div class="ui-dot"></div>
+      <div class="ui-dot"></div>
+      <div class="ui-dot"></div>
+    </div>
+
+    <!-- SAFE CONTENT -->
+    <div class="safe">
+
+      <div id="hook" class="hook hidden danger">
+        JANGAN JAWAB CEPAT
+      </div>
+
+      <div id="threat" class="small hidden danger blink" style="margin-top:10px">
+        TERBURU-BURU = SALAH
+      </div>
+
+      <div id="q" class="main hidden lock" style="margin-top:18px">
+        <!-- EDIT SOAL -->
+        Perhatikan pola berikut.  
+        Kesimpulan PALING TEPAT adalah?
+      </div>
+
+      <div id="ops" class="hidden" style="margin-top:12px">
+        <!-- EDIT OPSI -->
+        <div class="option">A. Opsi pertama</div>
+        <div class="option">B. Opsi kedua</div>
+        <div class="option">C. Opsi ketiga</div>
+        <div class="option">D. Opsi keempat</div>
+      </div>
+
+      <div id="doubt" class="small hidden danger" style="margin-top:14px">
+        Mayoritas yakin… tetap salah.
+      </div>
+
+      <div id="final" class="hook hidden" style="margin-top:20px">
+        BACA PELAN
+      </div>
+
+      <div id="cta" class="small hidden" style="margin-top:6px">
+        Level berikutnya ada di profil.
+      </div>
+
+    </div>
   </div>
-
-  <!-- THREAT -->
-  <div id="threat" class="small hidden blink danger" style="margin-top:4vw">
-    YANG TERBURU-BURU HAMPIR PASTI SALAH
-  </div>
-
-  <!-- QUESTION -->
-  <div id="q" class="main hidden lock">
-    <!-- EDIT SOAL -->
-    Perhatikan pola berikut.  
-    Kesimpulan PALING TEPAT adalah?
-  </div>
-
-  <!-- OPTIONS -->
-  <div id="ops" class="hidden">
-    <!-- EDIT OPSI -->
-    <div class="option">A. Opsi pertama</div>
-    <div class="option">B. Opsi kedua</div>
-    <div class="option">C. Opsi ketiga</div>
-    <div class="option">D. Opsi keempat</div>
-  </div>
-
-  <!-- DOUBT -->
-  <div id="doubt" class="small hidden danger" style="margin-top:5vw">
-    Mayoritas yakin… dan tetap salah.
-  </div>
-
-  <!-- FINAL -->
-  <div id="final" class="hook hidden">
-    BACA PELAN. FINAL.
-  </div>
-
-  <!-- CTA -->
-  <div id="cta" class="small hidden" style="margin-top:3vw">
-    Kalau ini terasa mudah, level berikutnya ada di profil.
-  </div>
-
 </div>
 
 <script>
-/* ================= TIMELINE (ms) ================= */
-setTimeout(()=>{
-  hook.classList.remove('hidden');
-  hook.classList.add('shock','shake');
-},100);
-
-setTimeout(()=>{
-  threat.classList.remove('hidden');
-  threat.classList.add('fade');
-},1200);
-
-setTimeout(()=>{
-  hook.classList.remove('shake');
-},2200);
-
-setTimeout(()=>{
-  q.classList.remove('hidden');
-  q.classList.add('fade');
-},4200);
-
-setTimeout(()=>{
-  ops.classList.remove('hidden');
-  ops.classList.add('fade');
-},9000);
-
-setTimeout(()=>{
-  doubt.classList.remove('hidden');
-  doubt.classList.add('fade');
-},18000);
-
-setTimeout(()=>{
-  final.classList.remove('hidden');
-  final.classList.add('shock');
-},54000);
-
-setTimeout(()=>{
-  cta.classList.remove('hidden');
-  cta.classList.add('fade');
-},57500);
+setTimeout(()=>{hook.classList.remove('hidden');hook.classList.add('shock','shake')},100);
+setTimeout(()=>{threat.classList.remove('hidden')},1100);
+setTimeout(()=>{hook.classList.remove('shake')},2200);
+setTimeout(()=>{q.classList.remove('hidden');q.classList.add('fade')},4000);
+setTimeout(()=>{ops.classList.remove('hidden');ops.classList.add('fade')},9000);
+setTimeout(()=>{doubt.classList.remove('hidden');doubt.classList.add('fade')},18000);
+setTimeout(()=>{final.classList.remove('hidden');final.classList.add('shock')},54000);
+setTimeout(()=>{cta.classList.remove('hidden');cta.classList.add('fade')},57500);
 </script>
+
 </body>
 </html>
