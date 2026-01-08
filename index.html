@@ -3,27 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TikTok EXTREME – AllAdvice</title>
+<title>Figural Bergerak – EXTREME</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{
   width:100%;height:100%;
-  background:#000;overflow:hidden;
-  font-family:Impact, Arial Black, sans-serif;
+  background:#000;
+  font-family:Arial Black, Impact, sans-serif;
   color:#fff;
+  overflow:hidden;
 }
 
 /* PHONE */
-.phone-wrap{width:100%;height:100%;display:flex;justify-content:center;align-items:center}
+.wrap{
+  width:100%;height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
 .phone{
   width:360px;height:640px;
-  border-radius:36px;border:8px solid #111;
-  box-shadow:0 0 50px rgba(0,0,0,.95);
-  position:relative;overflow:hidden;
+  border-radius:36px;
+  border:8px solid #111;
+  position:relative;
+  overflow:hidden;
+  background:#000;
 }
 
-/* SAFE */
+/* SAFE AREA */
 .safe{
   position:absolute;
   top:70px;bottom:90px;
@@ -37,17 +45,51 @@ html,body{
 /* TEXT */
 .level{font-size:13px;letter-spacing:3px;opacity:.6}
 .hook{font-size:28px;margin-top:6px}
-.main{font-size:19px;line-height:1.45;margin-top:18px}
-.option{font-size:17px;margin-top:6px}
-.small{font-size:13px;opacity:.85;margin-top:8px}
+.small{font-size:13px;opacity:.8;margin-top:6px}
 .danger{
   color:#ff2f2f;
   text-shadow:0 0 14px rgba(255,0,0,.55);
 }
-.lock{border:2px solid #fff;padding:12px}
 
-/* UI LIVE */
-.ui-live{
+/* FIGURAL GRID */
+.figural-box{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3,70px);
+  grid-template-rows:repeat(3,70px);
+  gap:8px;
+}
+.cell{
+  border:2px solid #fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:26px;
+  font-weight:bold;
+}
+
+/* MOVEMENT */
+@keyframes drift{
+  0%{transform:translate(0,0)}
+  50%{transform:translate(2px,-2px)}
+  100%{transform:translate(0,0)}
+}
+@keyframes rotateMicro{
+  0%{transform:rotate(0)}
+  50%{transform:rotate(2deg)}
+  100%{transform:rotate(0)}
+}
+@keyframes pulseFade{
+  0%,100%{opacity:1}
+  50%{opacity:.7}
+}
+
+.move-a{animation:drift 2.4s infinite ease-in-out}
+.move-b{animation:rotateMicro 2.8s infinite ease-in-out}
+.move-c{animation:pulseFade 2.2s infinite}
+
+/* UI */
+.ui{
   position:absolute;
   right:10px;
   top:130px;
@@ -56,50 +98,18 @@ html,body{
   gap:18px;
   font-size:14px;
 }
-.ui-item{display:flex;flex-direction:column;align-items:center;gap:4px}
 
 /* COMMENT */
-.comment-bubble{
+.comment{
   position:absolute;
   right:70px;
-  top:255px;
+  top:260px;
   max-width:210px;
-  padding:11px 13px;
-  background:rgba(20,20,20,.97);
+  padding:10px 12px;
+  background:rgba(20,20,20,.96);
   border-radius:14px;
   font-size:13px;
-  box-shadow:0 6px 16px rgba(0,0,0,.7);
   opacity:0;
-}
-
-/* FX */
-.hidden{display:none}
-@keyframes shock{
-  0%{transform:scale(.35) rotate(-2deg);opacity:0}
-  60%{transform:scale(1.2) rotate(1deg);opacity:1}
-  100%{transform:scale(1) rotate(0)}
-}
-@keyframes shake{
-  0%{transform:translate(0)}
-  20%{transform:translate(-3px,2px)}
-  40%{transform:translate(3px,-2px)}
-  60%{transform:translate(-2px,1px)}
-  80%{transform:translate(2px,-1px)}
-  100%{transform:translate(0)}
-}
-@keyframes pulse{
-  0%,100%{opacity:1}
-  50%{opacity:.6}
-}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes likePop{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.4)}
-  100%{transform:scale(1)}
-}
-@keyframes shareFloat{
-  0%{transform:translateY(0);opacity:1}
-  100%{transform:translateY(-14px);opacity:0}
 }
 @keyframes commentIn{
   from{transform:translateX(14px);opacity:0}
@@ -109,72 +119,62 @@ html,body{
   from{opacity:1}
   to{opacity:0}
 }
+.comment-show{animation:commentIn .4s ease forwards}
+.comment-hide{animation:commentOut .4s ease forwards}
 
-.shock{animation:shock .35s ease-out forwards}
-.shake{animation:shake .28s infinite}
-.fade{animation:fade .45s ease forwards}
-.pulse{animation:pulse 1s infinite}
-.like-pop{animation:likePop .35s ease-out}
-.share-float{animation:shareFloat .9s ease-out}
-.comment-show{animation:commentIn .4s ease-out forwards}
-.comment-hide{animation:commentOut .4s ease-out forwards}
+.hidden{display:none}
 </style>
 </head>
 
 <body>
 
-<div class="phone-wrap">
+<div class="wrap">
 <div class="phone">
 
-<!-- UI LIVE -->
-<div class="ui-live">
-  <div class="ui-item">❤️ <span id="likeCount">1.3K</span></div>
-  <div class="ui-item">💬 <span>92</span></div>
-  <div class="ui-item" id="shareBtn">↗ <span>Share</span></div>
+<!-- UI -->
+<div class="ui">
+  ❤️ 1.6K<br>
+  💬 88<br>
+  ↗ Share
 </div>
 
 <!-- COMMENT -->
-<div id="commentBubble" class="comment-bubble">
-  “Yang kelihatan gampang justru jebakan…”
+<div id="comment" class="comment">
+  “Geraknya bikin fokus ke pola…”
 </div>
 
-<!-- SAFE -->
 <div class="safe">
 
-<div class="level">LEVEL 9</div>
+<div class="level">LEVEL 11</div>
+<div class="hook danger">JANGAN KELEWATAN GERAKNYA</div>
+<div class="small danger">Satu detail kecil = jawaban</div>
 
-<div id="hook" class="hook hidden danger">
-  JANGAN JAWAB CEPAT
+<!-- FIGURAL -->
+<div class="figural-box">
+
+  <!-- BARIS 1 -->
+  <div class="cell move-a">▲</div>
+  <div class="cell move-b">▲</div>
+  <div class="cell move-c">▲</div>
+
+  <!-- BARIS 2 -->
+  <div class="cell move-b">●</div>
+  <div class="cell move-c">●</div>
+  <div class="cell move-a">●</div>
+
+  <!-- BARIS 3 -->
+  <div class="cell move-c">■</div>
+  <div class="cell move-a">■</div>
+  <div class="cell move-b">?</div>
+
 </div>
 
-<div id="threat" class="small hidden danger pulse">
-  OTak TERBURU-BURU = SALAH
-</div>
-
-<div id="q" class="main hidden lock">
-  <!-- GANTI SOAL -->
-  Perhatikan pola berikut.  
-  Kesimpulan PALING TEPAT adalah?
-</div>
-
-<div id="ops" class="hidden">
-  <!-- GANTI OPSI -->
-  <div class="option">A. Opsi pertama</div>
-  <div class="option">B. Opsi kedua</div>
-  <div class="option">C. Opsi ketiga</div>
-  <div class="option">D. Opsi keempat</div>
-</div>
-
-<div id="doubt" class="small hidden danger">
-  Mayoritas yakin… dan tetap salah.
-</div>
-
-<div id="final" class="hook hidden">
-  BACA PELAN.
+<div class="small" style="margin-top:10px">
+  Pola apa yang hilang?
 </div>
 
 <div id="cta" class="small hidden">
-  Kalau ini terasa mudah, level berikutnya tidak.
+  Kalau ini terasa mudah, LEVEL berikutnya tidak.
 </div>
 
 </div>
@@ -182,40 +182,17 @@ html,body{
 </div>
 
 <script>
-/* TIMELINE */
-setTimeout(()=>{hook.classList.remove("hidden");hook.classList.add("shock","shake")},80);
-setTimeout(()=>{hook.classList.remove("shake");threat.classList.remove("hidden")},1400);
-setTimeout(()=>{q.classList.remove("hidden");q.classList.add("fade")},3500);
-setTimeout(()=>{ops.classList.remove("hidden");ops.classList.add("fade")},8500);
-setTimeout(()=>{doubt.classList.remove("hidden");doubt.classList.add("fade")},16000);
-setTimeout(()=>{final.classList.remove("hidden");final.classList.add("shock")},50000);
-setTimeout(()=>{cta.classList.remove("hidden");cta.classList.add("fade")},54500);
-
-/* LIKE BURST */
-let like=1300;
-const likeEl=document.getElementById("likeCount");
-setTimeout(()=>{
-  const li=setInterval(()=>{
-    like+=Math.floor(Math.random()*5)+2;
-    likeEl.innerText=(like/1000).toFixed(1)+"K";
-    likeEl.parentElement.classList.add("like-pop");
-    setTimeout(()=>likeEl.parentElement.classList.remove("like-pop"),300);
-  },1800);
-  setTimeout(()=>clearInterval(li),28000);
-},5000);
-
-/* SHARE */
-setTimeout(()=>{
-  shareBtn.classList.add("share-float");
-  setTimeout(()=>shareBtn.classList.remove("share-float"),900);
-},17000);
-
 /* COMMENT 1x */
-const comment=document.getElementById("commentBubble");
+const c=document.getElementById("comment");
 setTimeout(()=>{
-  comment.classList.add("comment-show");
-  setTimeout(()=>comment.classList.add("comment-hide"),2600);
+  c.classList.add("comment-show");
+  setTimeout(()=>c.classList.add("comment-hide"),2600);
 },19000);
+
+/* CTA */
+setTimeout(()=>{
+  document.getElementById("cta").classList.remove("hidden");
+},52000);
 </script>
 
 </body>
