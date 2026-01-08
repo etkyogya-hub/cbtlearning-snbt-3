@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CBT Figural Reasoning</title>
+<title>CBT Figural Logic – TikTok Upload</title>
+
 <style>
+/* RESET */
+*{box-sizing:border-box;}
 body{
   margin:0;
   background:#111;
@@ -14,88 +17,117 @@ body{
   font-family:Arial, Helvetica, sans-serif;
 }
 
-/* PHONE */
+/* PHONE MOCKUP 9:16 */
 .phone{
   width:360px;
   height:640px;
-  background:#1b1b1b;
-  border-radius:26px;
-  overflow:hidden;
+  background:#0b0b0b;
+  border-radius:28px;
   position:relative;
+  overflow:hidden;
   color:#fff;
 }
 
-/* HEADER */
-.header{
+/* ===== HOOK TITLE ===== */
+.title{
+  position:absolute;
+  top:16px;
+  width:100%;
   text-align:center;
-  font-size:15px;
-  font-weight:700;
-  margin-top:14px;
-}
-.sub{
-  text-align:center;
-  font-size:11px;
-  color:#aaa;
-  margin-bottom:10px;
+  font-size:20px;
+  font-weight:900;
+  animation:
+    shake 0.35s infinite,
+    rock 1.4s infinite,
+    colorShift 2.5s infinite;
 }
 
-/* TIMER */
+/* SHAKE */
+@keyframes shake{
+  0%{transform:translate(0,0);}
+  25%{transform:translate(2px,-2px);}
+  50%{transform:translate(-2px,2px);}
+  75%{transform:translate(2px,2px);}
+  100%{transform:translate(0,0);}
+}
+
+/* ROCK */
+@keyframes rock{
+  0%{transform:rotate(0deg);}
+  50%{transform:rotate(1.5deg);}
+  100%{transform:rotate(0deg);}
+}
+
+/* COLOR CHANGE */
+@keyframes colorShift{
+  0%{color:#ff2f2f;}
+  33%{color:#facc15;}
+  66%{color:#22d3ee;}
+  100%{color:#ff2f2f;}
+}
+
+/* ===== TIMER ===== */
 #timer{
+  position:absolute;
+  top:64px;
+  width:100%;
   text-align:center;
-  font-size:36px;
-  font-weight:700;
-  margin-bottom:10px;
+  font-size:56px;
+  font-weight:900;
 }
 
-/* GRID */
+/* ===== FIGURAL GRID ===== */
 .grid{
+  position:absolute;
+  top:150px;
+  width:100%;
   display:grid;
-  grid-template-columns:repeat(3,80px);
-  grid-template-rows:repeat(3,80px);
+  grid-template-columns:repeat(3,78px);
+  grid-template-rows:repeat(3,78px);
   gap:12px;
   justify-content:center;
-  margin-top:20px;
 }
 
-/* CELL */
 .cell{
-  background:#222;
-  border-radius:10px;
+  background:#1a1a1a;
+  border-radius:12px;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
+  gap:6px;
 }
 
 /* FIGURES */
-.box{
-  width:28px;
-  height:28px;
-  border:3px solid #4fd1c5;
+.square{
+  width:22px;
+  height:22px;
+  border:3px solid #38bdf8;
 }
 .circle{
-  width:26px;
-  height:26px;
+  width:22px;
+  height:22px;
   border-radius:50%;
-  border:3px solid #f56565;
+  border:3px solid #fb7185;
 }
 .triangle{
   width:0;
   height:0;
-  border-left:14px solid transparent;
-  border-right:14px solid transparent;
-  border-bottom:26px solid #ecc94b;
+  border-left:11px solid transparent;
+  border-right:11px solid transparent;
+  border-bottom:20px solid #facc15;
 }
 
-/* CTA */
+/* ===== CTA ===== */
 #cta{
   position:absolute;
-  bottom:22px;
+  bottom:24px;
   left:50%;
   transform:translateX(-50%);
-  border:2px solid #fff;
-  padding:10px 22px;
-  font-size:13px;
-  font-weight:600;
+  background:#ff2f2f;
+  padding:12px 22px;
+  border-radius:22px;
+  font-size:14px;
+  font-weight:700;
   opacity:0;
   transition:opacity 0.4s;
 }
@@ -106,56 +138,59 @@ body{
 
 <div class="phone">
 
-  <div class="header">FIGURAL REASONING</div>
-  <div class="sub">IST / TPA / SKD — CBT MODE</div>
+  <!-- HOOK -->
+  <div class="title">FIGURAL LOGIC TEST</div>
 
-  <div id="timer">25</div>
+  <!-- TIMER -->
+  <div id="timer">20</div>
 
+  <!-- FIGURAL -->
   <div class="grid">
-    <div class="cell"><div class="box"></div></div>
+    <div class="cell"><div class="square"></div></div>
     <div class="cell"><div class="circle"></div></div>
     <div class="cell"><div class="triangle"></div></div>
 
     <div class="cell">
-      <div class="box"></div>
-      <div class="circle" style="margin-left:6px"></div>
+      <div class="square"></div>
+      <div class="circle"></div>
     </div>
     <div class="cell">
       <div class="circle"></div>
-      <div class="triangle" style="margin-left:6px"></div>
+      <div class="triangle"></div>
     </div>
     <div class="cell">
       <div class="triangle"></div>
-      <div class="box" style="margin-left:6px"></div>
+      <div class="square"></div>
     </div>
 
     <div class="cell">
-      <div class="box"></div>
-      <div class="circle" style="margin-left:6px"></div>
-      <div class="triangle" style="margin-left:6px"></div>
+      <div class="square"></div>
+      <div class="circle"></div>
+      <div class="triangle"></div>
     </div>
     <div class="cell">
       <div class="circle"></div>
-      <div class="triangle" style="margin-left:6px"></div>
-      <div class="box" style="margin-left:6px"></div>
+      <div class="triangle"></div>
+      <div class="square"></div>
     </div>
     <div class="cell">?</div>
   </div>
 
-  <div id="cta">Tentukan figurnya</div>
+  <!-- CTA -->
+  <div id="cta">Komentar jawabannya 👇</div>
 
 </div>
 
 <script>
-let t = 25;
+let t = 20;
 const timer = document.getElementById("timer");
 const cta = document.getElementById("cta");
 
-const run = setInterval(()=>{
+const countdown = setInterval(()=>{
   t--;
   timer.textContent = t;
-  if(t<=0){
-    clearInterval(run);
+  if(t <= 0){
+    clearInterval(countdown);
     cta.style.opacity = 1;
   }
 },1000);
