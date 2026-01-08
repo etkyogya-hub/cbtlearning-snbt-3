@@ -6,48 +6,83 @@
 <title>CBT Figural Reasoning</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-  margin:0;
   background:#000;
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100vh;
   font-family:Arial, sans-serif;
   color:#fff;
 }
 
+/* PHONE */
 .phone{
-  width:360px;
-  height:640px;
+  width:360px;height:640px;
   border:8px solid #111;
-  border-radius:30px;
-  padding:24px;
-  box-sizing:border-box;
+  border-radius:32px;
+  position:relative;
+  overflow:hidden;
+  padding:22px;
 }
 
-.title{
+/* ===== HOOK ===== */
+.hook{
   text-align:center;
-  font-size:14px;
-  letter-spacing:2px;
-  opacity:.7;
+  font-size:22px;
+  font-weight:bold;
+  color:#ff2f2f;
+  margin-top:10px;
+  animation:shake .25s infinite, pulseColor 1.2s infinite;
+}
+@keyframes shake{
+  0%{transform:translate(0)}
+  25%{transform:translate(-2px,2px)}
+  50%{transform:translate(2px,-2px)}
+  75%{transform:translate(-2px,-1px)}
+  100%{transform:translate(0)}
+}
+@keyframes pulseColor{
+  0%,100%{color:#ff2f2f}
+  50%{color:#ffffff}
 }
 
-.question{
-  margin-top:12px;
-  font-size:16px;
+/* SUB */
+.sub{
   text-align:center;
+  font-size:13px;
+  opacity:.85;
+  margin-top:4px;
 }
 
+/* ===== TIMER ===== */
+.timer{
+  margin:14px auto;
+  width:100px;height:100px;
+  border-radius:50%;
+  border:5px solid #ff2f2f;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:34px;
+  font-weight:bold;
+  animation:pulse 1s infinite;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+
+/* GRID */
 .grid{
-  margin:24px auto;
+  margin:18px auto;
   display:grid;
-  grid-template-columns:repeat(3,80px);
-  grid-template-rows:repeat(3,80px);
+  grid-template-columns:repeat(3,78px);
+  grid-template-rows:repeat(3,78px);
   gap:10px;
   justify-content:center;
 }
-
 .cell{
   border:2px solid #fff;
   display:flex;
@@ -56,11 +91,45 @@ body{
   font-size:28px;
 }
 
-.note{
+/* QUESTION */
+.question{
   text-align:center;
-  font-size:13px;
-  opacity:.75;
+  font-size:15px;
+  margin-top:8px;
 }
+
+/* ===== UI FYP ===== */
+.ui{
+  position:absolute;
+  right:10px;
+  top:140px;
+  font-size:14px;
+}
+.ui span{display:block;margin-bottom:10px}
+
+/* ===== COMMENT ===== */
+.comment{
+  position:absolute;
+  right:70px;
+  top:280px;
+  max-width:200px;
+  background:rgba(25,25,25,.95);
+  padding:10px 12px;
+  border-radius:14px;
+  font-size:13px;
+  opacity:0;
+}
+@keyframes commentIn{
+  from{transform:translateX(14px);opacity:0}
+  to{transform:translateX(0);opacity:1}
+}
+@keyframes commentOut{
+  from{opacity:1}
+  to{opacity:0}
+}
+.comment.show{animation:commentIn .4s forwards}
+.comment.hide{animation:commentOut .4s forwards}
+
 </style>
 </head>
 
@@ -68,35 +137,71 @@ body{
 
 <div class="phone">
 
-  <div class="title">FIGURAL REASONING</div>
-
-  <div class="question">
-    Perhatikan pola berikut.  
-    Bentuk apakah yang paling tepat menggantikan tanda tanya?
+  <!-- FYP UI -->
+  <div class="ui">
+    ❤️ <span id="likes">1.9K</span>
+    💬 84
+    ↗ Share
   </div>
 
+  <!-- COMMENT -->
+  <div id="comment" class="comment">
+    “Ini kelihatan gampang… tapi kok ragu ya?”
+  </div>
+
+  <!-- HOOK -->
+  <div class="hook">CBT LOGICAL TRAP</div>
+  <div class="sub">Jangan jawab sebelum waktunya</div>
+
+  <!-- TIMER -->
+  <div id="timer" class="timer">15</div>
+
+  <!-- GRID -->
   <div class="grid">
-    <!-- BARIS 1 -->
     <div class="cell">▲</div>
     <div class="cell">▶</div>
     <div class="cell">▼</div>
 
-    <!-- BARIS 2 -->
     <div class="cell">◀</div>
     <div class="cell">▲</div>
     <div class="cell">▶</div>
 
-    <!-- BARIS 3 -->
     <div class="cell">▼</div>
     <div class="cell">◀</div>
     <div class="cell">?</div>
   </div>
 
-  <div class="note">
-    Setiap baris mengikuti aturan yang sama.
+  <div class="question">
+    Bentuk apa yang paling tepat?
   </div>
 
 </div>
+
+<script>
+/* TIMER */
+let t=15;
+const timer=document.getElementById("timer");
+const tick=setInterval(()=>{
+  t--;
+  timer.textContent=t;
+  if(t<=0) clearInterval(tick);
+},1000);
+
+/* COMMENT 1x (RETENTION MID) */
+const c=document.getElementById("comment");
+setTimeout(()=>{
+  c.classList.add("show");
+  setTimeout(()=>c.classList.add("hide"),2600);
+},9000);
+
+/* LIKE SOFT */
+let likes=1900;
+const l=document.getElementById("likes");
+setInterval(()=>{
+  likes+=Math.floor(Math.random()*4)+1;
+  l.textContent=(likes/1000).toFixed(1)+"K";
+},2200);
+</script>
 
 </body>
 </html>
