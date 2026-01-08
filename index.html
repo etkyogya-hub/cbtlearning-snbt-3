@@ -1,15 +1,157 @@
-<!-- CTA -->
-<div id="cta" style="
-position:absolute;
-bottom:22px;
-left:50%;
-transform:translateX(-50%);
-background:#ff2f2f;
-padding:10px 18px;
-border-radius:18px;
-font-weight:bold;
-font-size:14px;
-opacity:0;
-">
-Komentar jawabannya 👇
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CBT Figural Logic</title>
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  font-family:Arial, Helvetica, sans-serif;
+  overflow:hidden;
+}
+.container{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+/* HOOK TITLE */
+.title{
+  font-size:22px;
+  font-weight:900;
+  animation:shake 0.4s infinite, colorShift 2s infinite;
+  margin-bottom:12px;
+}
+
+/* SHAKE */
+@keyframes shake{
+  0%{transform:translate(0,0) rotate(0deg);}
+  25%{transform:translate(2px,-2px) rotate(-1deg);}
+  50%{transform:translate(-2px,2px) rotate(1deg);}
+  75%{transform:translate(2px,2px) rotate(0deg);}
+  100%{transform:translate(0,0) rotate(0deg);}
+}
+
+/* COLOR SHIFT */
+@keyframes colorShift{
+  0%{color:#ff2f2f;}
+  50%{color:#00ffcc;}
+  100%{color:#ff2f2f;}
+}
+
+/* TIMER */
+#timer{
+  font-size:64px;
+  font-weight:900;
+  margin-bottom:16px;
+}
+
+/* FIGURAL GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,70px);
+  grid-template-rows:repeat(3,70px);
+  gap:10px;
+  margin-bottom:20px;
+}
+.cell{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:36px;
+  border:2px solid #444;
+  background:#111;
+}
+
+/* COMMENT BUBBLE */
+.comment{
+  position:absolute;
+  top:22%;
+  left:12%;
+  background:#1f1f1f;
+  padding:10px 14px;
+  border-radius:18px;
+  font-size:13px;
+  opacity:0;
+  animation:commentPop 1.2s forwards;
+  animation-delay:3s;
+}
+
+/* COMMENT POP */
+@keyframes commentPop{
+  0%{opacity:0; transform:scale(0.7);}
+  100%{opacity:1; transform:scale(1);}
+}
+
+/* CTA */
+#cta{
+  position:absolute;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#ff2f2f;
+  padding:12px 22px;
+  border-radius:20px;
+  font-size:14px;
+  font-weight:bold;
+  opacity:0;
+  transition:opacity 0.5s;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- HOOK -->
+  <div class="title">LOGICAL FIGURAL TEST</div>
+
+  <!-- TIMER -->
+  <div id="timer">15</div>
+
+  <!-- FIGURAL CBT -->
+  <div class="grid">
+    <div class="cell">└</div>
+    <div class="cell">┴</div>
+    <div class="cell">┬</div>
+
+    <div class="cell">├</div>
+    <div class="cell">┼</div>
+    <div class="cell">┤</div>
+
+    <div class="cell">┌</div>
+    <div class="cell">┬</div>
+    <div class="cell">?</div>
+  </div>
+
+  <!-- COMMENT BUBBLE -->
+  <div class="comment">Yang kanan bawah apa?</div>
+
+  <!-- CTA -->
+  <div id="cta">Komentar jawabannya 👇</div>
+
 </div>
+
+<script>
+let time = 15;
+const timer = document.getElementById("timer");
+const cta = document.getElementById("cta");
+
+const countdown = setInterval(()=>{
+  time--;
+  timer.textContent = time;
+  if(time <= 0){
+    clearInterval(countdown);
+    cta.style.opacity = 1;
+  }
+},1000);
+</script>
+
+</body>
+</html>
