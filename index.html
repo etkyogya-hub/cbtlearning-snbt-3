@@ -3,182 +3,167 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
-<title>TikTok Reasoning Overlay</title>
+<title>FYP HUNTER – REASONING</title>
 
 <style>
 /* ================= RESET ================= */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+* { box-sizing:border-box; margin:0; padding:0; }
+
+html,body{
+  width:100%;
+  height:100%;
+  background:#000;
+  overflow:hidden;
+  font-family:Impact, Arial Black, sans-serif;
+  color:#fff;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  overflow: hidden;
-  font-family: 'Arial Black', Arial, sans-serif;
-  color: #fff;
+/* ================= LAYOUT ================= */
+#screen{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:6vw;
 }
 
-/* ================= CANVAS ================= */
-#screen {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 6vw;
+/* ================= TEXT ================= */
+.hook{ font-size:9vw; font-weight:900; letter-spacing:0.05em; }
+.main{ font-size:5.2vw; line-height:1.45; }
+.option{ font-size:4.6vw; margin-top:1.3vw; }
+.small{ font-size:3.4vw; opacity:0.85; }
+
+/* ================= FX ================= */
+@keyframes shockZoom {
+  0%{transform:scale(0.4);opacity:0}
+  60%{transform:scale(1.15);opacity:1}
+  100%{transform:scale(1)}
+}
+@keyframes hardShake {
+  0%{transform:translate(0)}
+  20%{transform:translate(-4px,2px)}
+  40%{transform:translate(4px,-2px)}
+  60%{transform:translate(-3px,1px)}
+  80%{transform:translate(3px,-1px)}
+  100%{transform:translate(0)}
+}
+@keyframes blink {
+  0%,100%{opacity:1}
+  50%{opacity:0.25}
+}
+@keyframes fade {
+  from{opacity:0}
+  to{opacity:1}
 }
 
-/* ================= TEXT STYLES ================= */
-.hook {
-  font-size: 8vw;
-  font-weight: 900;
-  letter-spacing: 0.04em;
+.hidden{display:none}
+.shock{animation:shockZoom .35s ease-out forwards}
+.shake{animation:hardShake .25s infinite}
+.blink{animation:blink .9s infinite}
+.fade{animation:fade .6s ease forwards}
+
+/* ================= WARNING STYLE ================= */
+.danger{
+  color:#ff3b3b;
+  text-shadow:0 0 12px rgba(255,0,0,.4);
 }
-
-.main {
-  font-size: 5vw;
-  line-height: 1.4;
+.lock{
+  border:2px solid #fff;
+  padding:2vw 3vw;
+  margin-top:5vw;
 }
-
-.option {
-  font-size: 4.5vw;
-  margin-top: 1.2vw;
-}
-
-.small {
-  font-size: 3.5vw;
-  opacity: 0.85;
-}
-
-/* ================= ANIMATIONS ================= */
-@keyframes zoomShock {
-  0%   { transform: scale(0.6); opacity: 0; }
-  60%  { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); }
-}
-
-@keyframes microShake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  50% { transform: translateX(2px); }
-  75% { transform: translateX(-1px); }
-  100% { transform: translateX(0); }
-}
-
-@keyframes flashDim {
-  0% { opacity: 0.8; }
-  100% { opacity: 1; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* ================= STATES ================= */
-.hidden { display: none; }
-.fade { animation: fadeIn 0.6s ease forwards; }
-.shock { animation: zoomShock 0.4s ease-out forwards; }
-.shake { animation: microShake 0.3s ease-in-out infinite; }
-.flash { animation: flashDim 0.5s ease-in-out alternate 2; }
-
 </style>
 </head>
-<body>
 
+<body>
 <div id="screen">
 
-  <!-- ================= HOOK ================= -->
-  <div id="hook" class="hook hidden">
+  <!-- HOOK -->
+  <div id="hook" class="hook hidden danger">
     JANGAN JAWAB CEPAT
   </div>
 
-  <!-- ================= MID WARNING ================= -->
-  <div id="warn1" class="small hidden" style="margin-top:6vw;">
-    ⚠️ 83% SALAH DI BAGIAN INI
+  <!-- THREAT -->
+  <div id="threat" class="small hidden blink danger" style="margin-top:4vw">
+    YANG TERBURU-BURU HAMPIR PASTI SALAH
   </div>
 
-  <!-- ================= QUESTION ================= -->
-  <div id="question" class="main hidden" style="margin-top:6vw;">
-    <!-- EDIT SOAL DI SINI -->
+  <!-- QUESTION -->
+  <div id="q" class="main hidden lock">
+    <!-- EDIT SOAL -->
     Perhatikan pola berikut.  
-    Kesimpulan yang PALING TEPAT adalah?
+    Kesimpulan PALING TEPAT adalah?
   </div>
 
-  <!-- ================= OPTIONS ================= -->
-  <div id="options" class="hidden">
-    <!-- EDIT OPSI DI SINI -->
-    <div class="option">A. Pilihan pertama</div>
-    <div class="option">B. Pilihan kedua</div>
-    <div class="option">C. Pilihan ketiga</div>
-    <div class="option">D. Pilihan keempat</div>
+  <!-- OPTIONS -->
+  <div id="ops" class="hidden">
+    <!-- EDIT OPSI -->
+    <div class="option">A. Opsi pertama</div>
+    <div class="option">B. Opsi kedua</div>
+    <div class="option">C. Opsi ketiga</div>
+    <div class="option">D. Opsi keempat</div>
   </div>
 
-  <!-- ================= MID PSYCHO ================= -->
-  <div id="warn2" class="small hidden" style="margin-top:6vw;">
-    Yang yakin justru sering keliru.
+  <!-- DOUBT -->
+  <div id="doubt" class="small hidden danger" style="margin-top:5vw">
+    Mayoritas yakin… dan tetap salah.
   </div>
 
-  <!-- ================= FINAL ================= -->
-  <div id="final" class="hook hidden" style="margin-top:6vw;">
-    BACA PELAN. INI FINAL.
+  <!-- FINAL -->
+  <div id="final" class="hook hidden">
+    BACA PELAN. FINAL.
   </div>
 
-  <!-- ================= CTA 1 ================= -->
-  <div id="cta" class="small hidden" style="margin-top:3vw;">
-    Kalau ini terasa mudah, cek level selanjutnya.
+  <!-- CTA -->
+  <div id="cta" class="small hidden" style="margin-top:3vw">
+    Kalau ini terasa mudah, level berikutnya ada di profil.
   </div>
 
 </div>
 
 <script>
-/* ================= TIMELINE (detik) ================= */
-
-setTimeout(() => {
+/* ================= TIMELINE (ms) ================= */
+setTimeout(()=>{
   hook.classList.remove('hidden');
-  hook.classList.add('shock', 'shake', 'flash');
-}, 100);
+  hook.classList.add('shock','shake');
+},100);
 
-setTimeout(() => {
+setTimeout(()=>{
+  threat.classList.remove('hidden');
+  threat.classList.add('fade');
+},1200);
+
+setTimeout(()=>{
   hook.classList.remove('shake');
-}, 2000);
+},2200);
 
-setTimeout(() => {
-  question.classList.remove('hidden');
-  question.classList.add('fade');
-}, 4000);
+setTimeout(()=>{
+  q.classList.remove('hidden');
+  q.classList.add('fade');
+},4200);
 
-setTimeout(() => {
-  warn1.classList.remove('hidden');
-  warn1.classList.add('fade');
-}, 10000);
+setTimeout(()=>{
+  ops.classList.remove('hidden');
+  ops.classList.add('fade');
+},9000);
 
-setTimeout(() => {
-  options.classList.remove('hidden');
-  options.classList.add('fade');
-}, 14000);
+setTimeout(()=>{
+  doubt.classList.remove('hidden');
+  doubt.classList.add('fade');
+},18000);
 
-setTimeout(() => {
-  warn2.classList.remove('hidden');
-  warn2.classList.add('fade');
-}, 22000);
-
-setTimeout(() => {
+setTimeout(()=>{
   final.classList.remove('hidden');
   final.classList.add('shock');
-}, 55000);
+},54000);
 
-setTimeout(() => {
+setTimeout(()=>{
   cta.classList.remove('hidden');
   cta.classList.add('fade');
-}, 58000);
+},57500);
 </script>
-
 </body>
 </html>
