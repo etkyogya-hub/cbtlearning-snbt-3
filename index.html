@@ -1,200 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>CBT Figural Logic – TikTok Upload</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TikTok Mockup – UTBK Series</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      font-family: Inter, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
 
-<style>
-/* RESET */
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  background:#111;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  font-family:Arial, Helvetica, sans-serif;
-}
+    .phone {
+      width: 360px;
+      height: 640px;
+      background: #000;
+      border-radius: 28px;
+      padding: 16px;
+      box-shadow: 0 0 40px rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
 
-/* PHONE MOCKUP 9:16 */
-.phone{
-  width:360px;
-  height:640px;
-  background:#0b0b0b;
-  border-radius:28px;
-  position:relative;
-  overflow:hidden;
-  color:#fff;
-}
+    .screen {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top, #111, #000);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
-/* ===== HOOK TITLE ===== */
-.title{
-  position:absolute;
-  top:16px;
-  width:100%;
-  text-align:center;
-  font-size:20px;
-  font-weight:900;
-  animation:
-    shake 0.35s infinite,
-    rock 1.4s infinite,
-    colorShift 2.5s infinite;
-}
+    .hook {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      animation: pop 0.6s ease;
+    }
 
-/* SHAKE */
-@keyframes shake{
-  0%{transform:translate(0,0);}
-  25%{transform:translate(2px,-2px);}
-  50%{transform:translate(-2px,2px);}
-  75%{transform:translate(2px,2px);}
-  100%{transform:translate(0,0);}
-}
+    .sub {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 32px;
+    }
 
-/* ROCK */
-@keyframes rock{
-  0%{transform:rotate(0deg);}
-  50%{transform:rotate(1.5deg);}
-  100%{transform:rotate(0deg);}
-}
+    .card {
+      width: 100%;
+      padding: 18px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #111, #050505);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 14px;
+    }
 
-/* COLOR CHANGE */
-@keyframes colorShift{
-  0%{color:#ff2f2f;}
-  33%{color:#facc15;}
-  66%{color:#22d3ee;}
-  100%{color:#ff2f2f;}
-}
+    .question {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
 
-/* ===== TIMER ===== */
-#timer{
-  position:absolute;
-  top:64px;
-  width:100%;
-  text-align:center;
-  font-size:56px;
-  font-weight:900;
-}
+    .option {
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #0e0e0e;
+      margin: 6px 0;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
 
-/* ===== FIGURAL GRID ===== */
-.grid{
-  position:absolute;
-  top:150px;
-  width:100%;
-  display:grid;
-  grid-template-columns:repeat(3,78px);
-  grid-template-rows:repeat(3,78px);
-  gap:12px;
-  justify-content:center;
-}
+    .cta {
+      position: absolute;
+      bottom: 24px;
+      width: 100%;
+      left: 0;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.8;
+    }
 
-.cell{
-  background:#1a1a1a;
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-}
-
-/* FIGURES */
-.square{
-  width:22px;
-  height:22px;
-  border:3px solid #38bdf8;
-}
-.circle{
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  border:3px solid #fb7185;
-}
-.triangle{
-  width:0;
-  height:0;
-  border-left:11px solid transparent;
-  border-right:11px solid transparent;
-  border-bottom:20px solid #facc15;
-}
-
-/* ===== CTA ===== */
-#cta{
-  position:absolute;
-  bottom:24px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#ff2f2f;
-  padding:12px 22px;
-  border-radius:22px;
-  font-size:14px;
-  font-weight:700;
-  opacity:0;
-  transition:opacity 0.4s;
-}
-</style>
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="phone">
+    <div class="screen">
+      <div class="hook">❗ 98% ORANG SALAH DI SOAL INI</div>
+      <div class="sub">UTBK TOP 1% — SIAPKAN LOGIKA MU</div>
 
-<div class="phone">
+      <div class="card">
+        <div class="question">Jika 3 = 9, 4 = 16, maka 5 = ?</div>
+        <div class="option">A. 20</div>
+        <div class="option">B. 25</div>
+        <div class="option">C. 15</div>
+        <div class="option">D. 10</div>
+      </div>
 
-  <!-- HOOK -->
-  <div class="title">FIGURAL LOGIC TEST</div>
-
-  <!-- TIMER -->
-  <div id="timer">20</div>
-
-  <!-- FIGURAL -->
-  <div class="grid">
-    <div class="cell"><div class="square"></div></div>
-    <div class="cell"><div class="circle"></div></div>
-    <div class="cell"><div class="triangle"></div></div>
-
-    <div class="cell">
-      <div class="square"></div>
-      <div class="circle"></div>
+      <div class="cta">Follow kalau mau level lebih brutal.</div>
     </div>
-    <div class="cell">
-      <div class="circle"></div>
-      <div class="triangle"></div>
-    </div>
-    <div class="cell">
-      <div class="triangle"></div>
-      <div class="square"></div>
-    </div>
-
-    <div class="cell">
-      <div class="square"></div>
-      <div class="circle"></div>
-      <div class="triangle"></div>
-    </div>
-    <div class="cell">
-      <div class="circle"></div>
-      <div class="triangle"></div>
-      <div class="square"></div>
-    </div>
-    <div class="cell">?</div>
   </div>
-
-  <!-- CTA -->
-  <div id="cta">Komentar jawabannya 👇</div>
-
-</div>
-
-<script>
-let t = 20;
-const timer = document.getElementById("timer");
-const cta = document.getElementById("cta");
-
-const countdown = setInterval(()=>{
-  t--;
-  timer.textContent = t;
-  if(t <= 0){
-    clearInterval(countdown);
-    cta.style.opacity = 1;
-  }
-},1000);
-</script>
-
 </body>
 </html>
