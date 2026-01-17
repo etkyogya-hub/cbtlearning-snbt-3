@@ -2,170 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CBTEXAM – Numeric Trap</title>
+<title>CBTEXAM – FYP Engine PRO</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  font-family: Arial, sans-serif;
-  overflow: hidden;
-  color: white;
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  color:#fff;
+  font-family:Arial, sans-serif;
+  overflow:hidden;
 }
 
-#frame {
-  width: 100vw;
-  height: 100vh;
-  aspect-ratio: 9/16;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+#frame{
+  width:100vw;
+  height:100vh;
+  aspect-ratio:9/16;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.screen {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  padding: 40px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.6s;
+.screen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  padding:40px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  opacity:0;
+  transition:opacity .6s;
 }
 
-.active { opacity: 1; }
+.active{opacity:1}
 
-.big {
-  font-size: 2.3em;
-  font-weight: 800;
+.big{font-size:2.3em;font-weight:800}
+.medium{font-size:1.5em}
+.small{font-size:1em;opacity:.7}
+
+.brand{
+  position:absolute;
+  top:14px;
+  width:100%;
+  text-align:center;
+  font-size:.9em;
+  opacity:.6;
+  letter-spacing:2px;
 }
 
-.medium {
-  font-size: 1.5em;
+.glitch{
+  animation:glitch .15s infinite;
 }
 
-.small {
-  font-size: 1em;
-  opacity: 0.7;
+@keyframes glitch{
+  0%{transform:translate(0)}
+  25%{transform:translate(-2px,2px)}
+  50%{transform:translate(2px,-2px)}
+  75%{transform:translate(-2px,-2px)}
+  100%{transform:translate(0)}
 }
 
-.glitch {
-  animation: glitch 0.15s infinite;
+.pulse{
+  animation:pulse 1s infinite;
 }
 
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(2px, -2px); }
-  60% { transform: translate(-2px, -2px); }
-  80% { transform: translate(2px, 2px); }
-  100% { transform: translate(0); }
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.04)}
+  100%{transform:scale(1)}
 }
 
-.countdown {
-  font-size: 4em;
-  color: #ff2d2d;
+.shake{
+  animation:shake .2s infinite;
 }
 
-.brand {
-  position: absolute;
-  top: 15px;
-  width: 100%;
-  text-align: center;
-  font-size: 0.9em;
-  opacity: 0.6;
+@keyframes shake{
+  0%{transform:translate(0)}
+  25%{transform:translate(-1px,1px)}
+  50%{transform:translate(1px,-1px)}
+  75%{transform:translate(-1px,-1px)}
+  100%{transform:translate(0)}
 }
 
-.option {
-  margin: 12px 0;
-  font-size: 1.3em;
-  opacity: 0.9;
+.countdown{
+  font-size:4em;
+  color:#ff3b3b;
+}
+
+.option{
+  margin:12px 0;
+  font-size:1.3em;
+  opacity:.9;
+}
+
+#bar{
+  position:absolute;
+  bottom:0;
+  left:0;
+  height:4px;
+  background:linear-gradient(90deg,#00ffff,#ff00ff);
+  width:0%;
+  transition:width .3s;
 }
 </style>
 </head>
 <body>
 
 <div id="frame">
+  <div class="brand">CBTEXAM</div>
+  <div id="bar"></div>
 
-<div class="brand">CBTEXAM</div>
-
-<div id="s1" class="screen active">
-  <div class="big glitch">98% SALAH DI SOAL INI</div>
-</div>
-
-<div id="s2" class="screen">
-  <div class="medium">Jangan hitung. Pikir.</div>
-</div>
-
-<div id="s3" class="screen">
-  <div class="countdown" id="count">5</div>
-</div>
-
-<div id="s4" class="screen">
-  <div>
-    <div class="big">Mana yang lebih besar?</div>
-    <div class="option">A: 0.5% dari 2000</div>
-    <div class="option">B: 5% dari 200</div>
-    <div class="option">C: Sama</div>
+  <div id="s1" class="screen active">
+    <div class="big glitch">98% SALAH DI SOAL INI</div>
   </div>
-</div>
 
-<div id="s5" class="screen">
-  <div class="medium">Jawaban di akhir.</div>
-</div>
-
-<div id="s6" class="screen">
-  <div>
-    <div class="big">C — SAMA ✅</div>
-    <div class="small">Keduanya = 10</div>
+  <div id="s2" class="screen">
+    <div class="medium pulse">Jangan hitung. Pikir.</div>
   </div>
-</div>
 
-<div id="s7" class="screen">
-  <div>
-    <div class="medium">Mau lanjut level berikutnya?</div>
-    <div class="small">Follow CBTEXAM</div>
+  <div id="s3" class="screen">
+    <div class="countdown shake" id="count">5</div>
   </div>
-</div>
 
+  <div id="s4" class="screen">
+    <div>
+      <div class="big">Mana yang lebih besar?</div>
+      <div class="option">A: 0.5% dari 2000</div>
+      <div class="option">B: 5% dari 200</div>
+      <div class="option">C: Sama</div>
+    </div>
+  </div>
+
+  <div id="s5" class="screen">
+    <div class="medium">Jawaban di akhir.</div>
+  </div>
+
+  <div id="s6" class="screen">
+    <div>
+      <div class="big">C — SAMA ✅</div>
+      <div class="small">Keduanya = 10</div>
+    </div>
+  </div>
+
+  <div id="s7" class="screen">
+    <div>
+      <div class="big">LEVEL 2</div>
+      <div class="medium">Mana lebih besar?</div>
+      <div class="option">A: 25% dari 80</div>
+      <div class="option">B: 40% dari 50</div>
+      <div class="option">C: Sama</div>
+    </div>
+  </div>
+
+  <div id="s8" class="screen">
+    <div>
+      <div class="big">A — 20 ✅</div>
+      <div class="small">B = 20 juga → jebakan fokus</div>
+    </div>
+  </div>
+
+  <div id="s9" class="screen">
+    <div>
+      <div class="medium">Mau lanjut LEVEL 3?</div>
+      <div class="small">Follow CBTEXAM</div>
+    </div>
+  </div>
 </div>
 
 <script>
-const screens = ["s1","s2","s3","s4","s5","s6","s7"];
+const screens = ["s1","s2","s3","s4","s5","s6","s7","s8","s9"];
 let i = 0;
+const bar = document.getElementById("bar");
 
-function showNext() {
-  if (i > 0) document.getElementById(screens[i-1]).classList.remove("active");
-  if (i < screens.length) {
+function showNext(){
+  if(i>0) document.getElementById(screens[i-1]).classList.remove("active");
+  if(i<screens.length){
     document.getElementById(screens[i]).classList.add("active");
+    bar.style.width = ((i+1)/screens.length)*100 + "%";
   }
   i++;
 }
 
 showNext();
-setTimeout(showNext, 2000);
-setTimeout(showNext, 4000);
+setTimeout(showNext,2000);
+setTimeout(showNext,4000);
 
-let c = 5;
-const timer = setInterval(() => {
-  const el = document.getElementById("count");
-  if (!el) return;
-  el.innerText = c;
+let c=5;
+const timer=setInterval(()=>{
+  const el=document.getElementById("count");
+  if(!el) return;
+  el.innerText=c;
   c--;
-  if (c < 0) clearInterval(timer);
-}, 1000);
+  if(c<0) clearInterval(timer);
+},1000);
 
-setTimeout(showNext, 9000);
-setTimeout(showNext, 14000);
-setTimeout(showNext, 18000);
-setTimeout(showNext, 23000);
+setTimeout(showNext,9000);
+setTimeout(showNext,14000);
+setTimeout(showNext,19000);
+setTimeout(showNext,24000);
+setTimeout(showNext,29000);
+setTimeout(showNext,34000);
 </script>
 
 </body>
