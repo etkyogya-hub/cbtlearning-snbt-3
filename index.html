@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CBTEXAM – FYP Engine</title>
+<title>CBTEXAM – Numeric Trap</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 * { box-sizing: border-box; }
@@ -82,6 +82,12 @@ html, body {
   font-size: 0.9em;
   opacity: 0.6;
 }
+
+.option {
+  margin: 12px 0;
+  font-size: 1.3em;
+  opacity: 0.9;
+}
 </style>
 </head>
 <body>
@@ -91,11 +97,11 @@ html, body {
 <div class="brand">CBTEXAM</div>
 
 <div id="s1" class="screen active">
-  <div class="big glitch">98% ORANG SALAH DI SOAL INI</div>
+  <div class="big glitch">98% SALAH DI SOAL INI</div>
 </div>
 
 <div id="s2" class="screen">
-  <div class="medium">Jangan jawab cepat.</div>
+  <div class="medium">Jangan hitung. Pikir.</div>
 </div>
 
 <div id="s3" class="screen">
@@ -103,10 +109,11 @@ html, body {
 </div>
 
 <div id="s4" class="screen">
-  <div class="big">
-    Jika semua A adalah B<br>
-    dan semua B adalah C,<br><br>
-    apakah semua A adalah C?
+  <div>
+    <div class="big">Mana yang lebih besar?</div>
+    <div class="option">A: 0.5% dari 2000</div>
+    <div class="option">B: 5% dari 200</div>
+    <div class="option">C: Sama</div>
   </div>
 </div>
 
@@ -116,8 +123,8 @@ html, body {
 
 <div id="s6" class="screen">
   <div>
-    <div class="big">YA ✅</div>
-    <div class="small">Ini silogisme valid.</div>
+    <div class="big">C — SAMA ✅</div>
+    <div class="small">Keduanya = 10</div>
   </div>
 </div>
 
