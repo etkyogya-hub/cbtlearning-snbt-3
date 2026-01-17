@@ -6,81 +6,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 html,body{
-  margin:0;
-  padding:0;
-  background:#000;
-  color:#fff;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  height:100%;
-  overflow:hidden;
+  margin:0; padding:0;
+  background:#000; color:#fff;
+  font-family:system-ui, sans-serif;
+  height:100%; overflow:hidden;
 }
 #app{
-  width:100vw;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:100vw; height:100vh;
+  display:flex; align-items:center; justify-content:center;
 }
 .card{
-  width:360px;
-  height:640px;
+  width:360px; height:640px;
   border:2px solid #222;
-  border-radius:16px;
+  border-radius:20px;
   padding:16px;
-  display:flex;
-  flex-direction:column;
+  display:flex; flex-direction:column;
   justify-content:space-between;
 }
-.hook{
-  font-size:26px;
-  font-weight:700;
-  text-align:center;
-}
-.question{
-  font-size:22px;
-  text-align:center;
-}
+.badge{font-size:12px; opacity:.7; text-align:center;}
+.hook{font-size:26px; font-weight:700; text-align:center;}
+.question{font-size:22px; text-align:center;}
 .options{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:12px;
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:10px; margin-top:12px;
 }
 .opt{
-  border:1px solid #444;
-  padding:10px;
-  border-radius:8px;
-  text-align:center;
+  border:1px solid #444; padding:10px;
+  border-radius:8px; text-align:center;
 }
-.footer{
-  font-size:14px;
-  opacity:.8;
-  text-align:center;
-}
-.badge{
-  font-size:12px;
-  opacity:.7;
-  text-align:center;
-}
+.timer{font-size:20px; text-align:center; opacity:.8;}
+.reveal{color:#0f0; font-weight:700; text-align:center;}
+.footer{font-size:14px; opacity:.7; text-align:center;}
 .btn{
-  margin-top:8px;
-  padding:10px;
-  background:#fff;
-  color:#000;
-  border:none;
-  border-radius:8px;
+  padding:10px; background:#fff; color:#000;
+  border:none; border-radius:10px;
   font-weight:700;
 }
+.hidden{display:none;}
 </style>
 </head>
 <body>
 
 <div id="app">
   <div class="card">
-    <div class="badge" id="mode"></div>
+    <div class="badge" id="badge"></div>
     <div class="hook" id="hook"></div>
+    <div class="timer" id="timer"></div>
     <div class="question" id="question"></div>
     <div class="options" id="options"></div>
+    <div class="reveal hidden" id="reveal"></div>
     <div class="footer" id="footer"></div>
     <button class="btn" onclick="next()">NEXT</button>
   </div>
@@ -88,95 +62,111 @@ html,body{
 
 <script>
 // ============================
-// DAILY CONTENT FACTORY CORE
+// CORE ENGINE — PART 1
 // ============================
 
 // --- HOOKS ---
 const HOOKS = [
-  "Only 1% get this right",
-  "Most people fail this",
-  "Your brain will trick you",
-  "Don’t answer too fast",
-  "This looks easy… but isn’t"
+  "Only 1% pass this",
+  "Your brain will lie",
+  "Don't answer fast",
+  "Most people fail Q2",
+  "Looks easy. Isn't."
 ];
 
 // --- CTA ---
 const CTAS = [
   "Comment your answer",
-  "Replay if you failed",
-  "Follow for daily brain tests",
-  "Try again tomorrow"
+  "Replay if wrong",
+  "Follow for daily tests",
+  "Try tomorrow"
 ];
 
-// --- TRAPS (SAMPLE, expandable) ---
-const TRAPS = [
-  {id:1,type:"numeric",q:"7 + 7 × 0 = ?",o:["0","7","14","49"],a:"7"},
-  {id:2,type:"numeric",q:"(8 ÷ 4)² = ?",o:["4","2","8","16"],a:"4"},
-  {id:3,type:"logic",q:"If all bloops are razzies and all razzies are lazzies, are all bloops lazzies?",o:["Yes","No","Maybe","Unknown"],a:"Yes"},
-  {id:4,type:"logic",q:"Which is heavier: 1kg of steel or 1kg of feathers?",o:["Steel","Feathers","Same","Unknown"],a:"Same"},
-  {id:5,type:"pattern",q:"2, 4, 8, 16, ?",o:["18","24","30","32"],a:"32"},
-  {id:6,type:"pattern",q:"A C E G ?",o:["H","I","J","K"],a:"I"},
-  {id:7,type:"mixed",q:"A bat and ball cost $1.10. Bat costs $1 more than ball. How much is ball?",o:["$0.10","$0.05","$0.01","$0.50"],a:"$0.05"},
-  {id:8,type:"mixed",q:"Which has more: 3² or 2³?",o:["3²","2³","Same","None"],a:"Same"}
-];
-
-// --- DAILY MODE ---
+// --- MODES ---
 const MODES = ["numeric","logic","pattern","mixed"];
-const today = new Date().getDay();
-const MODE = MODES[today % MODES.length];
+const MODE = MODES[new Date().getDay() % MODES.length];
+
+// --- SAMPLE TRAPS (Part 2 will inject 100+) ---
+const TRAPS = [
+  {id:1,type:"numeric",lvl:1,q:"7 + 7 × 0 = ?",o:["0","7","14","49"],a:"7"},
+  {id:2,type:"numeric",lvl:2,q:"(8 ÷ 4)² = ?",o:["4","2","8","16"],a:"4"},
+  {id:3,type:"logic",lvl:1,q:"All bloops are razzies. All razzies are lazzies. Are all bloops lazzies?",o:["Yes","No","Maybe","Unknown"],a:"Yes"},
+  {id:4,type:"logic",lvl:2,q:"Which is heavier: 1kg steel or 1kg feathers?",o:["Steel","Feathers","Same","Unknown"],a:"Same"},
+  {id:5,type:"pattern",lvl:1,q:"2,4,8,16, ?",o:["18","24","30","32"],a:"32"},
+  {id:6,type:"mixed",lvl:3,q:"Bat & ball = $1.10. Bat is $1 more. Ball = ?",o:["$0.10","$0.05","$0.01","$0.50"],a:"$0.05"}
+];
 
 // --- MEMORY ---
 let used = JSON.parse(localStorage.getItem("used")||"[]");
 
 // --- UTILS ---
-function shuffle(a){
-  return a.sort(()=>Math.random()-0.5);
-}
-function pick(arr){
-  return arr[Math.floor(Math.random()*arr.length)];
-}
+function shuffle(a){ return a.sort(()=>Math.random()-0.5); }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
 
-// --- BATCH BUILDER ---
-function buildBatch(){
+// --- BUILD 3-QUESTION LADDER ---
+function buildLadder(){
   let pool = TRAPS.filter(t=>MODE==="mixed" || t.type===MODE);
   pool = pool.filter(t=>!used.includes(t.id));
-  if(pool.length < 3){
-    used=[];
-    pool = TRAPS;
-  }
-  pool = shuffle(pool);
+  if(pool.length < 3){ used=[]; pool = TRAPS; }
+  pool = shuffle(pool).sort((a,b)=>a.lvl-b.lvl);
   const ladder = pool.slice(0,3);
   ladder.forEach(t=>used.push(t.id));
   localStorage.setItem("used", JSON.stringify(used));
   return ladder;
 }
 
-let batch = buildBatch();
+let ladder = buildLadder();
 let step = 0;
+let timerInterval;
+let countdown = 4;
 
 // --- RENDER ---
 function render(){
-  const q = batch[step];
-  document.getElementById("mode").innerText = "MODE: " + MODE.toUpperCase() + " | Q " + (step+1) + "/3";
+  const q = ladder[step];
+  document.getElementById("badge").innerText = `MODE: ${MODE.toUpperCase()} | Q ${step+1}/3`;
   document.getElementById("hook").innerText = pick(HOOKS);
   document.getElementById("question").innerText = q.q;
+  document.getElementById("footer").innerText = pick(CTAS);
 
   const optBox = document.getElementById("options");
-  optBox.innerHTML="";
+  optBox.innerHTML = "";
   shuffle([...q.o]).forEach(opt=>{
-    const d=document.createElement("div");
+    const d = document.createElement("div");
     d.className="opt";
     d.innerText=opt;
     optBox.appendChild(d);
   });
 
-  document.getElementById("footer").innerText = pick(CTAS);
+  document.getElementById("reveal").classList.add("hidden");
+  startTimer();
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+  countdown = 4;
+  const t = document.getElementById("timer");
+  t.innerText = "⏳ " + countdown;
+
+  timerInterval = setInterval(()=>{
+    countdown--;
+    t.innerText = "⏳ " + countdown;
+    if(countdown <= 0){
+      clearInterval(timerInterval);
+      reveal();
+    }
+  },1000);
+}
+
+function reveal(){
+  const r = document.getElementById("reveal");
+  r.innerText = "ANSWER: " + ladder[step].a;
+  r.classList.remove("hidden");
 }
 
 function next(){
   step++;
-  if(step>=batch.length){
-    batch = buildBatch();
+  if(step >= ladder.length){
+    ladder = buildLadder();
     step = 0;
   }
   render();
