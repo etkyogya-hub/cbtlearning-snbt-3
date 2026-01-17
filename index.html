@@ -2,211 +2,188 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CBTEXAM – FYP Engine PRO</title>
+<title>Daily Content Factory — CBTLearning</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-*{box-sizing:border-box}
 html,body{
   margin:0;
-  width:100%;
-  height:100%;
+  padding:0;
   background:#000;
   color:#fff;
-  font-family:Arial, sans-serif;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  height:100%;
   overflow:hidden;
 }
-
-#frame{
+#app{
   width:100vw;
   height:100vh;
-  aspect-ratio:9/16;
-  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-
-.screen{
-  position:absolute;
-  width:100%;
-  height:100%;
-  padding:40px 20px;
+.card{
+  width:360px;
+  height:640px;
+  border:2px solid #222;
+  border-radius:16px;
+  padding:16px;
   display:flex;
-  align-items:center;
-  justify-content:center;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.hook{
+  font-size:26px;
+  font-weight:700;
   text-align:center;
-  opacity:0;
-  transition:opacity .6s;
 }
-
-.active{opacity:1}
-
-.big{font-size:2.3em;font-weight:800}
-.medium{font-size:1.5em}
-.small{font-size:1em;opacity:.7}
-
-.brand{
-  position:absolute;
-  top:14px;
-  width:100%;
+.question{
+  font-size:22px;
   text-align:center;
-  font-size:.9em;
-  opacity:.6;
-  letter-spacing:2px;
 }
-
-.glitch{
-  animation:glitch .15s infinite;
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
 }
-
-@keyframes glitch{
-  0%{transform:translate(0)}
-  25%{transform:translate(-2px,2px)}
-  50%{transform:translate(2px,-2px)}
-  75%{transform:translate(-2px,-2px)}
-  100%{transform:translate(0)}
+.opt{
+  border:1px solid #444;
+  padding:10px;
+  border-radius:8px;
+  text-align:center;
 }
-
-.pulse{
-  animation:pulse 1s infinite;
+.footer{
+  font-size:14px;
+  opacity:.8;
+  text-align:center;
 }
-
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.04)}
-  100%{transform:scale(1)}
+.badge{
+  font-size:12px;
+  opacity:.7;
+  text-align:center;
 }
-
-.shake{
-  animation:shake .2s infinite;
-}
-
-@keyframes shake{
-  0%{transform:translate(0)}
-  25%{transform:translate(-1px,1px)}
-  50%{transform:translate(1px,-1px)}
-  75%{transform:translate(-1px,-1px)}
-  100%{transform:translate(0)}
-}
-
-.countdown{
-  font-size:4em;
-  color:#ff3b3b;
-}
-
-.option{
-  margin:12px 0;
-  font-size:1.3em;
-  opacity:.9;
-}
-
-#bar{
-  position:absolute;
-  bottom:0;
-  left:0;
-  height:4px;
-  background:linear-gradient(90deg,#00ffff,#ff00ff);
-  width:0%;
-  transition:width .3s;
+.btn{
+  margin-top:8px;
+  padding:10px;
+  background:#fff;
+  color:#000;
+  border:none;
+  border-radius:8px;
+  font-weight:700;
 }
 </style>
 </head>
 <body>
 
-<div id="frame">
-  <div class="brand">CBTEXAM</div>
-  <div id="bar"></div>
-
-  <div id="s1" class="screen active">
-    <div class="big glitch">98% SALAH DI SOAL INI</div>
-  </div>
-
-  <div id="s2" class="screen">
-    <div class="medium pulse">Jangan hitung. Pikir.</div>
-  </div>
-
-  <div id="s3" class="screen">
-    <div class="countdown shake" id="count">5</div>
-  </div>
-
-  <div id="s4" class="screen">
-    <div>
-      <div class="big">Mana yang lebih besar?</div>
-      <div class="option">A: 0.5% dari 2000</div>
-      <div class="option">B: 5% dari 200</div>
-      <div class="option">C: Sama</div>
-    </div>
-  </div>
-
-  <div id="s5" class="screen">
-    <div class="medium">Jawaban di akhir.</div>
-  </div>
-
-  <div id="s6" class="screen">
-    <div>
-      <div class="big">C — SAMA ✅</div>
-      <div class="small">Keduanya = 10</div>
-    </div>
-  </div>
-
-  <div id="s7" class="screen">
-    <div>
-      <div class="big">LEVEL 2</div>
-      <div class="medium">Mana lebih besar?</div>
-      <div class="option">A: 25% dari 80</div>
-      <div class="option">B: 40% dari 50</div>
-      <div class="option">C: Sama</div>
-    </div>
-  </div>
-
-  <div id="s8" class="screen">
-    <div>
-      <div class="big">A — 20 ✅</div>
-      <div class="small">B = 20 juga → jebakan fokus</div>
-    </div>
-  </div>
-
-  <div id="s9" class="screen">
-    <div>
-      <div class="medium">Mau lanjut LEVEL 3?</div>
-      <div class="small">Follow CBTEXAM</div>
-    </div>
+<div id="app">
+  <div class="card">
+    <div class="badge" id="mode"></div>
+    <div class="hook" id="hook"></div>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="footer" id="footer"></div>
+    <button class="btn" onclick="next()">NEXT</button>
   </div>
 </div>
 
 <script>
-const screens = ["s1","s2","s3","s4","s5","s6","s7","s8","s9"];
-let i = 0;
-const bar = document.getElementById("bar");
+// ============================
+// DAILY CONTENT FACTORY CORE
+// ============================
 
-function showNext(){
-  if(i>0) document.getElementById(screens[i-1]).classList.remove("active");
-  if(i<screens.length){
-    document.getElementById(screens[i]).classList.add("active");
-    bar.style.width = ((i+1)/screens.length)*100 + "%";
-  }
-  i++;
+// --- HOOKS ---
+const HOOKS = [
+  "Only 1% get this right",
+  "Most people fail this",
+  "Your brain will trick you",
+  "Don’t answer too fast",
+  "This looks easy… but isn’t"
+];
+
+// --- CTA ---
+const CTAS = [
+  "Comment your answer",
+  "Replay if you failed",
+  "Follow for daily brain tests",
+  "Try again tomorrow"
+];
+
+// --- TRAPS (SAMPLE, expandable) ---
+const TRAPS = [
+  {id:1,type:"numeric",q:"7 + 7 × 0 = ?",o:["0","7","14","49"],a:"7"},
+  {id:2,type:"numeric",q:"(8 ÷ 4)² = ?",o:["4","2","8","16"],a:"4"},
+  {id:3,type:"logic",q:"If all bloops are razzies and all razzies are lazzies, are all bloops lazzies?",o:["Yes","No","Maybe","Unknown"],a:"Yes"},
+  {id:4,type:"logic",q:"Which is heavier: 1kg of steel or 1kg of feathers?",o:["Steel","Feathers","Same","Unknown"],a:"Same"},
+  {id:5,type:"pattern",q:"2, 4, 8, 16, ?",o:["18","24","30","32"],a:"32"},
+  {id:6,type:"pattern",q:"A C E G ?",o:["H","I","J","K"],a:"I"},
+  {id:7,type:"mixed",q:"A bat and ball cost $1.10. Bat costs $1 more than ball. How much is ball?",o:["$0.10","$0.05","$0.01","$0.50"],a:"$0.05"},
+  {id:8,type:"mixed",q:"Which has more: 3² or 2³?",o:["3²","2³","Same","None"],a:"Same"}
+];
+
+// --- DAILY MODE ---
+const MODES = ["numeric","logic","pattern","mixed"];
+const today = new Date().getDay();
+const MODE = MODES[today % MODES.length];
+
+// --- MEMORY ---
+let used = JSON.parse(localStorage.getItem("used")||"[]");
+
+// --- UTILS ---
+function shuffle(a){
+  return a.sort(()=>Math.random()-0.5);
+}
+function pick(arr){
+  return arr[Math.floor(Math.random()*arr.length)];
 }
 
-showNext();
-setTimeout(showNext,2000);
-setTimeout(showNext,4000);
+// --- BATCH BUILDER ---
+function buildBatch(){
+  let pool = TRAPS.filter(t=>MODE==="mixed" || t.type===MODE);
+  pool = pool.filter(t=>!used.includes(t.id));
+  if(pool.length < 3){
+    used=[];
+    pool = TRAPS;
+  }
+  pool = shuffle(pool);
+  const ladder = pool.slice(0,3);
+  ladder.forEach(t=>used.push(t.id));
+  localStorage.setItem("used", JSON.stringify(used));
+  return ladder;
+}
 
-let c=5;
-const timer=setInterval(()=>{
-  const el=document.getElementById("count");
-  if(!el) return;
-  el.innerText=c;
-  c--;
-  if(c<0) clearInterval(timer);
-},1000);
+let batch = buildBatch();
+let step = 0;
 
-setTimeout(showNext,9000);
-setTimeout(showNext,14000);
-setTimeout(showNext,19000);
-setTimeout(showNext,24000);
-setTimeout(showNext,29000);
-setTimeout(showNext,34000);
+// --- RENDER ---
+function render(){
+  const q = batch[step];
+  document.getElementById("mode").innerText = "MODE: " + MODE.toUpperCase() + " | Q " + (step+1) + "/3";
+  document.getElementById("hook").innerText = pick(HOOKS);
+  document.getElementById("question").innerText = q.q;
+
+  const optBox = document.getElementById("options");
+  optBox.innerHTML="";
+  shuffle([...q.o]).forEach(opt=>{
+    const d=document.createElement("div");
+    d.className="opt";
+    d.innerText=opt;
+    optBox.appendChild(d);
+  });
+
+  document.getElementById("footer").innerText = pick(CTAS);
+}
+
+function next(){
+  step++;
+  if(step>=batch.length){
+    batch = buildBatch();
+    step = 0;
+  }
+  render();
+}
+
+// INIT
+render();
 </script>
 
 </body>
